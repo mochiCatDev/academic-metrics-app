@@ -148,75 +148,26 @@ function promediar(){
   tabla += "<p>"+"Promedio fisica: "+promedioFis+"<p/>"
 
   listado.innerHTML= tabla;
+  pintarBarras();
 }
 
 
-function agregarNota(){
-  let cmpNotas = parseFloat(document.getElementById("notaMath").value);
+function agregarNota(id, arreglo){
+  let cmpNotas = parseFloat(document.getElementById(id).value);
   let tabla = "NOTAS";
   let listado = document.getElementById("tabla");
-  notasMath.push(cmpNotas);
-  for(let i = 0; i < notasMath.length; i++){
-    tabla += "<p>"+notasMath[i]+"<p/>"
+  arreglo.push(cmpNotas);
+  for(let i = 0; i < arreglo.length; i++){
+    tabla += "<p>"+arreglo[i]+"<p/>"
   }
   listado.innerHTML=tabla
-  document.getElementById("notaMath").value = ""
-}
-function agregarNota2(){
-  let cmpNotas = parseFloat(document.getElementById("notaIng").value);
-  let tabla = "NOTAS";
-  let listado = document.getElementById("tabla2");
-  notasIng.push(cmpNotas);
-  for(let i = 0; i < notasIng.length; i++){
-    tabla += "<p>"+notasIng[i]+"<p/>"
-  } 
-  listado.innerHTML=tabla
-  document.getElementById("notaIng").value = ""
-}
-function agregarNota3(){
-  let cmpNotas = parseFloat(document.getElementById("notaQuim").value);
-  let tabla = "NOTAS";
-  let listado = document.getElementById("tabla3");
-  notasQuim.push(cmpNotas);
-  for(let i = 0; i < notasQuim.length; i++){
-    tabla += "<p>"+notasQuim[i]+"<p/>"
-  } 
-  listado.innerHTML=tabla
-  document.getElementById("notaQuim").value = ""
+  document.getElementById(id).value = ""
 }
 
-function agregarNota4(){
-  let cmpNotas = parseFloat(document.getElementById("notaBio").value);
-  let tabla = "NOTAS";
-  let listado = document.getElementById("tabla4");
-  notasBio.push(cmpNotas);
-  for(let i = 0; i < notasBio.length; i++){
-    tabla += "<p>"+notasBio[i]+"<p/>"
-  } 
-  listado.innerHTML=tabla
-  document.getElementById("notaBio").value = ""
-}
-
-function agregarNota5(){
-  let cmpNotas = parseFloat(document.getElementById("notaFilo").value);
-  let tabla = "NOTAS";
-  let listado = document.getElementById("tabla5");
-  notasFilo.push(cmpNotas);
-  for(let i = 0; i < notasFilo.length; i++){
-    tabla += "<p>"+notasFilo[i]+"<p/>"
-  } 
-  listado.innerHTML=tabla
-  document.getElementById("notaFilo").value = ""
-}
-
-function agregarNota6(){
-  let cmpNotas = parseFloat(document.getElementById("notaFis").value);
-  let tabla = "NOTAS";
-  let listado = document.getElementById("tabla6");
-  notasFisi.push(cmpNotas);
-  for(let i = 0; i < notasFisi.length; i++){
-    tabla += "<p>"+notasFisi[i]+"<p/>"
-  } 
-  listado.innerHTML=tabla
-  document.getElementById("notaFis").value = ""
-}
+// Botones
+document.getElementById("btn-notaMath").addEventListener('click', () => { agregarNota("notaMath", notasMath) });
+document.getElementById("btn-notaIng").addEventListener('click', () => { agregarNota("notaIng", notasIng) });
+document.getElementById("btn-notaQuim").addEventListener('click', () => { agregarNota("notaQuim", notasQuim) });
+document.getElementById("btn-notaBio").addEventListener('click', () => { agregarNota("notaBio", notasBio) });
+document.getElementById("btn-notaFilo").addEventListener('click', () => { agregarNota("notaFilo", notasFilo) });
+document.getElementById("btn-notaFis").addEventListener('click', () => { agregarNota("notaFis", notasFisi) });
