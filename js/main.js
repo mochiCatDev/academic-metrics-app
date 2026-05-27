@@ -148,12 +148,12 @@ function agregarNota(id, arreglo){
 }
 
 // Botones
-$ID("btn-notaMath").addEventListener('click', () => { agregarNota("notaMath", notasMath) });
-$ID("btn-notaIng").addEventListener('click', () => { agregarNota("notaIng", notasIng) });
-$ID("btn-notaQuim").addEventListener('click', () => { agregarNota("notaQuim", notasQuim) });
-$ID("btn-notaBio").addEventListener('click', () => { agregarNota("notaBio", notasBio) });
-$ID("btn-notaFilo").addEventListener('click', () => { agregarNota("notaFilo", notasFilo) });
-$ID("btn-notaFis").addEventListener('click', () => { agregarNota("notaFis", notasFisi) });
-$ID("btn-main").addEventListener("click", () => { mostrarSeccion(main); actualizarBarraProgreso(1, 100) ;pintarBarras(); });
-$ID("btn-manager").addEventListener("click", () => { mostrarSeccion(manager); });
-$ID("btn-about").addEventListener("click", () => { mostrarSeccion(about); });
+onClick("#btn-notaMath", () => { agregarNota("notaMath", notasMath) });
+onClick("#btn-notaIng", () => { agregarNota("notaIng", notasIng) });
+onClick("#btn-notaQuim", () => { agregarNota("notaQuim", notasQuim) });
+onClick("#btn-notaBio", () => { agregarNota("notaBio", notasBio) });
+onClick("#btn-notaFilo", () => { agregarNota("notaFilo", notasFilo) });
+onClick("#btn-notaFis", () => { agregarNota("notaFis", notasFisi) });
+onClick("#btn-main", () => { mostrarSeccion(main); actualizarBarraProgreso(1, 100) ;pintarBarras(); });
+onClick("#btn-manager", () => { mostrarSeccion(manager); });
+onClick("#btn-about", () => { mostrarSeccion(about); });
