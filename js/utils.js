@@ -1,2 +1,1 @@
-const $ = (selector) => { document.querySelector('selector') };
-const $$ = (selector) => { document.querySelectorAll('selector') };
+const $ID = (id) => { return document.getElementById(id) };

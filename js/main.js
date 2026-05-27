@@ -1,11 +1,9 @@
 // Variables Globales
-const main = document.getElementById("section-main");
-const manager = document.getElementById("section-manager");
-const about = document.getElementById("section-about");
-
-const data = ["Matematicas","Filosofia","Lenguaje","Ingles","Biologia","Quimica"]
-
+const main = $ID("section-main");
+const manager = $ID("section-manager");
+const about = $ID("section-about");
 const todasLasSecciones = [main, manager, about];
+const data = ["Matematicas","Filosofia","Lenguaje","Ingles","Biologia","Quimica"]
 
 let notasMath = [];
 let notasIng = [];
@@ -26,8 +24,8 @@ function mostrarSeccion(seccion) {
 
 // Funcion para que la barra se llene con el porcentaje que se le de
 function actualizarBarraProgreso(valorActual, valorMaximo) {
-    const barra_progress = document.getElementById("bar-progress");
-    const text_progress = document.getElementById("text-progress");
+    const barra_progress = $ID("bar-progress");
+    const text_progress = $ID("text-progress");
 
     let porcentaje = (valorActual / valorMaximo) * 100;
     
@@ -38,25 +36,10 @@ function actualizarBarraProgreso(valorActual, valorMaximo) {
     text_progress.textContent = porcentaje + '%';
 }
 
-
-actualizarBarraProgreso(1,100);
-
-// Eventos de clic a los botones
-document.getElementById("btn-main").addEventListener("click", () => {
-  mostrarSeccion(main);
-  pintarBarras();
-});
-document.getElementById("btn-manager").addEventListener("click", () => {
-  mostrarSeccion(manager);
-});
-document.getElementById("btn-about").addEventListener("click", () => {
-  mostrarSeccion(about);
-});
-
 let barras = null;
 
 function pintarBarras(){
-  let canva = document.getElementById("canva").getContext("2d");
+  let canva = $ID("canva").getContext("2d");
 
   if(barras !== null){
     barras.destroy();
@@ -102,7 +85,7 @@ function promediar(){
   let promedioFilo;
   let promedioFis;
   let tabla = "PROMEDIOS";
-  let listado = document.getElementById("promedios")
+  let listado = $ID("promedios")
 
   notasMath.forEach((nota) => {
     sumaMath = sumaMath + nota
@@ -153,21 +136,24 @@ function promediar(){
 
 
 function agregarNota(id, arreglo){
-  let cmpNotas = parseFloat(document.getElementById(id).value);
+  let cmpNotas = parseFloat($ID(id).value);
   let tabla = "NOTAS";
-  let listado = document.getElementById("tabla");
+  let listado = $ID("tabla");
   arreglo.push(cmpNotas);
   for(let i = 0; i < arreglo.length; i++){
     tabla += "<p>"+arreglo[i]+"<p/>"
   }
   listado.innerHTML=tabla
-  document.getElementById(id).value = ""
+  $ID(id).value = ""
 }
 
 // Botones
-document.getElementById("btn-notaMath").addEventListener('click', () => { agregarNota("notaMath", notasMath) });
-document.getElementById("btn-notaIng").addEventListener('click', () => { agregarNota("notaIng", notasIng) });
-document.getElementById("btn-notaQuim").addEventListener('click', () => { agregarNota("notaQuim", notasQuim) });
-document.getElementById("btn-notaBio").addEventListener('click', () => { agregarNota("notaBio", notasBio) });
-document.getElementById("btn-notaFilo").addEventListener('click', () => { agregarNota("notaFilo", notasFilo) });
-document.getElementById("btn-notaFis").addEventListener('click', () => { agregarNota("notaFis", notasFisi) });
+$ID("btn-notaMath").addEventListener('click', () => { agregarNota("notaMath", notasMath) });
+$ID("btn-notaIng").addEventListener('click', () => { agregarNota("notaIng", notasIng) });
+$ID("btn-notaQuim").addEventListener('click', () => { agregarNota("notaQuim", notasQuim) });
+$ID("btn-notaBio").addEventListener('click', () => { agregarNota("notaBio", notasBio) });
+$ID("btn-notaFilo").addEventListener('click', () => { agregarNota("notaFilo", notasFilo) });
+$ID("btn-notaFis").addEventListener('click', () => { agregarNota("notaFis", notasFisi) });
+$ID("btn-main").addEventListener("click", () => { mostrarSeccion(main); actualizarBarraProgreso(1, 100) ;pintarBarras(); });
+$ID("btn-manager").addEventListener("click", () => { mostrarSeccion(manager); });
+$ID("btn-about").addEventListener("click", () => { mostrarSeccion(about); });
