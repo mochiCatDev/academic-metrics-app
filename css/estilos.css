@@ -16,6 +16,10 @@ header {
     margin-bottom: 20px;
 }
 
+.oculto {
+    display: none;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -70,6 +74,35 @@ nav {
     transition: all 0.3s ease;
 }
 
-.oculto {
-    display: none;
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+#modal-teoria {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 2px;
+    z-index: 999;
+    width: 90%;
+    max-width: 500px;
+}
+
+#btn-teoria-cerrar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
 }
