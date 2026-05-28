@@ -82,7 +82,7 @@ function promediar(){
   let sumaQuim = 0;
   let sumaBio = 0;
   let sumaFilo = 0;
-  let sumaFisi = 0
+  let sumaFisi = 0;
   let promedioM;
   let promedioI;
   let promedioQ;

@@ -1,115 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Academic Metrics App</title>
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/estilos.css" />
+    <!-- Libreria Chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+    <!-- Libreria KaTeX -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css"
+      integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js"
+      integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body)"
+    ></script>
+  </head>
+  <body>
     <!-- Header -->
     <header>
-        <h1>Aplicación de métricas académicas</h1>
+      <h1>Aplicación de métricas académicas</h1>
     </header>
 
     <!-- Nav -->
     <nav>
-        <button id="btn-main">Principal</button>
-        <button id="btn-manager">Gestionar</button>
-        <button id="btn-about">Acerca de</button>
+      <button id="btn-main">Principal</button>
+      <button id="btn-manager">Gestionar</button>
+      <button id="btn-about">Acerca de</button>
     </nav>
 
     <!-- Main -->
     <main>
-        <!-- Principal -->
-        <section id="section-main" class="oculto">
-            <div class="container-bar-progress">
-                <div class="border-bar-progress">
-                    <div id="bar-progress"></div>
-                </div>
-                <div id="text-progress">0%</div>
-            </div>
-            <div class="container w-75">
-                <canvas id="canva" height="100" width="300"></canvas>
-            </div>
-        </section>
+      <!-- Principal -->
+      <section id="section-main" class="oculto">
+        <div class="container-bar-progress">
+          <div class="border-bar-progress">
+            <div id="bar-progress"></div>
+          </div>
+          <div id="text-progress">0%</div>
+        </div>
+        <div class="container w-75">
+          <canvas id="canva" height="100" width="300"></canvas>
+        </div>
+      </section>
 
-        <!-- Gestion (Manager) -->
-        <section id="section-manager" class="oculto">
-            <div class="math">
-                <h2>MATEMATICAS</h2>
-                <label for="notaMath">Calificaciones</label>
-                <input type="number" id="notaMath" placeholder="ingresar notas"/>
-                <button id="btn-notaMath"> AGREGAR NOTAS</button>
-                <div id="tabla"></div>
-            </div>         
-            <div class="ing">
-                <h2>INGLÉS</h2>
-                <label for="notaIng">Calificaciones</label>
-                <input type="number" id="notaIng" placeholder="ingresar notas"/>       
-                <button id="btn-notaIng"> AGREGAR NOTAS</button>
-                <div id="tabla2"></div>
-            </div>
-            <div class="quimica">
-                <h2>QUIMICA</h2>
-                <label for="notaQuim">Calificaciones</label>
-                <input type="number" id="notaQuim" placeholder="ingresar notas"/>
-                <button id="btn-notaQuim"> AGREGAR NOTAS</button>
-                <div id="tabla3"></div>
-            </div>       
-            <div class="biologia">
-                <h2>BIOLOGIA</h2>
-                <label for="notaBio">Calificaciones</label>
-                <input type="number" id="notaBio" placeholder="ingresar notas"/>
-                <button id="btn-notaBio"> AGREGAR NOTAS</button>
-                <div id="tabla4"></div>
-            </div>       
-            <div class="filosifia">
-                <h2>FILOSOFIA</h2>
-                <label for="notaFilo">Calificaciones</label>
-                <input type="number" id="notaFilo" placeholder="ingresar notas"/>
-                <button id="btn-notaFilo"> AGREGAR NOTAS</button>
-                <div id="tabla5"></div>
-            </div>       
-            <div class="fisica">
-                <h2>FISICA</h2>
-                <label for="notaFis">Calificaciones</label>
-                <input type="number" id="notaFis" placeholder="ingresar notas"/>
-                <button id="btn-notaFis"> AGREGAR NOTAS</button>
-                <div id="tabla6"></div>
-            </div>       
-            <div>
-                <button onclick="promediar()">promediar</button>
-                <div id="promedios">PROMEDIOS</div>
-            </div>
-        </section>
+      <!-- Gestion (Manager) -->
+      <section id="section-manager" class="oculto">
+        <div class="math">
+          <h2>MATEMATICAS</h2>
+          <label for="notaMath">Calificaciones</label>
+          <input type="number" id="notaMath" placeholder="ingresar notas" />
+          <button id="btn-notaMath">AGREGAR NOTAS</button>
+          <div id="tabla"></div>
+        </div>
+        <div class="ing">
+          <h2>INGLÉS</h2>
+          <label for="notaIng">Calificaciones</label>
+          <input type="number" id="notaIng" placeholder="ingresar notas" />
+          <button id="btn-notaIng">AGREGAR NOTAS</button>
+          <div id="tabla2"></div>
+        </div>
+        <div class="quimica">
+          <h2>QUIMICA</h2>
+          <label for="notaQuim">Calificaciones</label>
+          <input type="number" id="notaQuim" placeholder="ingresar notas" />
+          <button id="btn-notaQuim">AGREGAR NOTAS</button>
+          <div id="tabla3"></div>
+        </div>
+        <div class="biologia">
+          <h2>BIOLOGIA</h2>
+          <label for="notaBio">Calificaciones</label>
+          <input type="number" id="notaBio" placeholder="ingresar notas" />
+          <button id="btn-notaBio">AGREGAR NOTAS</button>
+          <div id="tabla4"></div>
+        </div>
+        <div class="filosifia">
+          <h2>FILOSOFIA</h2>
+          <label for="notaFilo">Calificaciones</label>
+          <input type="number" id="notaFilo" placeholder="ingresar notas" />
+          <button id="btn-notaFilo">AGREGAR NOTAS</button>
+          <div id="tabla5"></div>
+        </div>
+        <div class="fisica">
+          <h2>FISICA</h2>
+          <label for="notaFis">Calificaciones</label>
+          <input type="number" id="notaFis" placeholder="ingresar notas" />
+          <button id="btn-notaFis">AGREGAR NOTAS</button>
+          <div id="tabla6"></div>
+        </div>
+        <div>
+          <button onclick="promediar()">promediar</button>
+          <div id="promedios">PROMEDIOS</div>
+        </div>
+      </section>
 
-        <!-- Acerca De (Informacion Personal de nosotros los desarrolladores ) -->
-        <section id="section-about" class="oculto"></section>
+      <!-- Acerca De (Informacion Personal de nosotros los desarrolladores ) -->
+      <section id="section-about" class="oculto"></section>
 
-        <!-- Informacion Teorica -->
-         <button id="btn-teoria-abrir">?</button>
-         <div id="overlay" class="oculto"></div>
-         <section id="modal-teoria" class="oculto">
-            <h2>Media</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis natus totam praesentium laudantium excepturi voluptas repellat illum error labore soluta dolorem, quaerat, expedita distinctio officia odit omnis dolorum non!</p>
-            <h2>Mediana</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat quo quisquam a porro natus distinctio labore quos alias! Tempore sit maxime commodi molestias eveniet magni non impedit quo ducimus deleniti.</p>
-            
-            <button id="btn-teoria-cerrar">X</button>
-        </section>
+      <!-- Informacion Teorica -->
+      <button id="btn-teoria-abrir">?</button>
+      <div id="overlay" class="oculto"></div>
+      <section id="modal-teoria" class="oculto">
+        <h2>Estadística Aplicada</h2>
+        <ol>
+          <li>
+            <h3>Media</h3>
+            <p>
+              El promedio es una medida estadística utilizada para obtener un
+              valor representativo de un conjunto de datos. En programación y
+              análisis de datos, el promedio permite resumir información
+              numérica para facilitar la interpretación y la toma de decisiones.
+              El promedio es muy utilizado en:
+            </p>
+          </li>
+          <li>
+            <h3>Mediana</h3>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat
+              quo quisquam a porro natus distinctio labore quos alias! Tempore
+              sit maxime commodi molestias eveniet magni non impedit quo ducimus
+              deleniti.
+            </p>
+          </li>
+        </ol>
+
+        <button id="btn-teoria-cerrar">X</button>
+      </section>
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>Proyecto realizado por el Team D<sup>2</sup></p>
+      <p>Proyecto realizado por el Team D<sup>2</sup></p>
     </footer>
 
     <!-- Scripts -->
-     <script src="js/utils.js"></script>
-     <script src="js/main.js"></script>
-     
-</body>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
