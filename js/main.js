@@ -2,13 +2,9 @@
 const main = $ID("section-main");
 const manager = $ID("section-manager");
 const about = $ID("section-about");
+const teoria = $ID("section-teoria");
 const todasLasSecciones = [main, manager, about];
 const data = ["Matematicas","Filosofia","Lenguaje","Ingles","Biologia","Quimica"]
-
-const botonAbrir = $ID("btn-teoria-abrir");
-const botonCerrar = $ID("btn-teoria-cerrar");
-const modal = $ID("modal-teoria");
-const overlay = $ID("overlay");
 
 let notasMath = [];
 let notasIng = [];
@@ -159,18 +155,11 @@ onClick("#btn-notaQuim", () => { agregarNota("notaQuim", notasQuim) });
 onClick("#btn-notaBio", () => { agregarNota("notaBio", notasBio) });
 onClick("#btn-notaFilo", () => { agregarNota("notaFilo", notasFilo) });
 onClick("#btn-notaFis", () => { agregarNota("notaFis", notasFisi) });
-onClick("#btn-main", () => { mostrarSeccion(main); actualizarBarraProgreso(1, 100) ;pintarBarras(); });
-onClick("#btn-manager", () => { mostrarSeccion(manager); });
-onClick("#btn-about", () => { mostrarSeccion(about); });
-
-
-// Funcion para mostrar la informacion encima del todo en una caja
-botonAbrir.addEventListener("click", () => {
-  modal.classList.remove("oculto");
-  overlay.classList.remove("oculto");
+onClick("#btn-main", () => { 
+  mostrarSeccion(main); 
+  actualizarBarraProgreso(1, 100);
+  pintarBarras(); 
 });
-
-botonCerrar.addEventListener("click", () => {
-  modal.classList.add("oculto");
-  overlay.classList.add("oculto");
-});
+onClick("#btn-manager", () => { mostrarSeccion(manager) });
+onClick("#btn-teoria", () => { mostrarSeccion(teoria) });
+onClick("#btn-about", () => { mostrarSeccion(about) });
