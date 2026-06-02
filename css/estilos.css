@@ -1,3 +1,6 @@
+/* ==========================================================================
+   Estilos Globales e Interfaz de Usuario
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -5,43 +8,116 @@
 }
 
 body {
-    width: 80%;
-    height: 100vh;
+    width: 85%;
+    max-width: 1200px;
+    min-height: 100vh;
     margin: 0 auto;
-    position: relative;
+    font-family: var(--font-ui);
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    line-height: 1.6;
 }
 
+/* Ocultar secciones inactivas */
+.oculto {
+    display: none !important;
+}
+
+/* ==========================================================================
+   Header y Navegación (Estilo Journal Científico)
+   ========================================================================== */
 header {
     text-align: center;
-    padding: 10px;
+    padding: 30px 10px 15px 10px;
+    border-bottom: 2px solid var(--primary-color);
     margin-bottom: 20px;
 }
 
-.oculto {
-    display: none;
+header h1 {
+    font-family: var(--font-academic);
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
 }
 
-/* ============== */
-/*  Section Main  */
-/* ============== */
+nav button {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    padding: 8px 18px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
 
-/* Barra de progreso */
+nav button:hover, nav button:focus {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* ==========================================================================
+   Sección Principal (Métricas y Gráficos)
+   ========================================================================== */
+#section-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+/* Contenedor del Canvas de Chart.js */
+.container.w-75 {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Barra de progreso termómetro mejorada */
 .container-bar-progress {
-    width: 100px;
-    height: 400px;
-    border: 1px solid #000;
-    background-color: #dfdadf;
-    border-radius: 12px;
+    width: 80px;
+    height: 320px;
+    background-color: #edf2f7;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.border-bar-progress {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+#bar-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+    transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #text-progress {
@@ -49,28 +125,229 @@ nav {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: sans-serif;
-    font-size: 14px;
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
     font-weight: bold;
-    color: #000000;
+    color: var(--text-main);
+    mix-blend-mode: difference; /* Efecto hacker/matemático: cambia de color según el fondo */
+    filter: invert(1) grayscale(1) contrast(9);
     z-index: 10;
 }
 
-.border-bar-progress {
-    position: absolute;
-    width: 90%;
-    height: 98%;
-    border: 1px solid #000;
-    border-radius: 12px;
-    overflow: hidden;
+/* ==========================================================================
+   Sección de Gestión (Grid de Materias)
+   ========================================================================== */
+#section-manager {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
 }
 
-#bar-progress {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+/* Contenedor de cada materia */
+#section-manager > div:not(:last-child) {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+}
+
+#section-manager h2 {
+    font-family: var(--font-academic);
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#section-manager label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+#section-manager input[type="number"] {
     width: 100%;
-    height: 0%;
-    background-color: #3498db;
-    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#section-manager input[type="number"]:focus {
+    border-color: var(--secondary-color);
+}
+
+#section-manager button {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s;
+}
+
+#section-manager button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Bloque final del botón Promediar */
+#section-manager > div:last-child {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 20px;
+    background: #edf2f7;
+    border-radius: 6px;
+}
+
+#section-manager > div:last-child button {
+    width: auto;
+    padding: 12px 40px;
+    font-size: 1.1rem;
+    background-color: var(--accent-color);
+}
+
+#section-manager > div:last-child button:hover {
+    background-color: #c05621;
+}
+
+#promedios {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Tablas de notas ingresadas */
+[id^="tabla"] {
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+/* ==========================================================================
+   Sección de Teoría (Formato de Reporte Técnico / LaTeX)
+   ========================================================================== */
+#section-teoria {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    max-width: 850px;
+    margin: 0 auto 40px auto;
+}
+
+#section-teoria > h2 {
+    font-family: var(--font-academic);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+#section-teoria ol {
+    list-style-position: inside;
+}
+
+#section-teoria li {
+    margin-bottom: 35px;
+}
+
+#section-teoria li section {
+    display: inline; /* Mantiene la coherencia con la lista */
+}
+
+#section-teoria h3 {
+    font-family: var(--font-academic);
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    display: inline-block;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#section-teoria p {
+    font-family: var(--font-academic);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    text-align: justify;
+    color: #333;
+}
+
+#section-teoria h4 {
+    font-size: 1rem;
+    margin: 15px 0 8px 0;
+    color: var(--secondary-color);
+}
+
+#section-teoria ul {
+    list-style-type: square;
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+#section-teoria li ul li {
+    font-family: var(--font-academic);
+    font-size: 1.05rem;
+    margin-bottom: 5px;
+}
+
+/* Bloques de Código de JavaScript */
+#section-teoria pre {
+    background-color: #1a202c !important; /* Ajuste manual por si falla Prism */
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 15px 0;
+    border-left: 4px solid var(--secondary-color);
+}
+
+#section-teoria code {
+    font-family: var(--font-mono) !important;
+    font-size: 0.9rem !important;
+}
+
+/* Estilos para KaTeX (Ajuste de fórmulas en bloque) */
+.katex-display {
+    margin: 20px 0 !important;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 4px;
+    border: 1px dashed var(--border-color);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 30px 10px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    margin-top: 50px;
+}
+
+footer sup {
+    font-family: var(--font-academic);
+    font-weight: bold;
 }
