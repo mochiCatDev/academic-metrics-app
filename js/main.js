@@ -3,7 +3,7 @@ const main = $ID("section-main");
 const manager = $ID("section-manager");
 const about = $ID("section-about");
 const teoria = $ID("section-teoria");
-const todasLasSecciones = [main, manager, about];
+const todasLasSecciones = [main, manager, teoria ,about];
 const data = ["Matematicas","Filosofia","Lenguaje","Ingles","Biologia","Quimica"]
 
 let notasMath = [];
