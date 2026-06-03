@@ -28,7 +28,7 @@ function actualizarBarraProgreso(valorActual, valorMaximo) {
     const barra_progress = $ID("bar-progress");
     const text_progress = $ID("text-progress");
 
-    let porcentaje = (valorActual / valorMaximo) * 100;
+    let porcentaje = ((valorActual / valorMaximo) * 100).toFixed(2);
     
     if (porcentaje < 0) porcentaje = 0;
     if (porcentaje > 100) porcentaje = 100;
@@ -46,6 +46,22 @@ function pintarBarras(){
     barras.destroy();
   }
 
+  let backgroundColors = [];
+  let borderColors = [];
+
+  promedios.forEach((nota) => {
+    if (nota < 5) {
+      backgroundColors.push("rgba(255, 99, 132, 0.6)");
+      borderColors.push("rgba(255, 99, 132, 1)");
+    } else if (nota >= 5 && nota <= 7) {
+      backgroundColors.push("rgba(255, 206, 86, 0.6)");
+      borderColors.push("rgba(255, 206, 86, 1)");
+    } else {
+      backgroundColors.push("rgba(75, 192, 192, 0.6)");
+      borderColors.push("rgba(75, 192, 192, 1)");
+    }
+  });
+
   barras = new Chart(canva, {
     type: 'bar',
     data: {
@@ -53,14 +69,14 @@ function pintarBarras(){
       datasets: [{
         label: "NOTAS GENERALES",
         data: promedios,
-        backgroundColor: ["#000fff56", "#ae678956", "#3456ff56"],
-        borderColor: ["#000fff", "#ae6789", "#3456ff"],
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
         borderWidth: 2
       }]
     },
     options: {
-            scales: {
-                    y: {
+        scales: {
+                y: {
                       beginAtZero: true,
                       min: 0,
                       max: 10
@@ -73,6 +89,7 @@ function pintarBarras(){
 
 
 function promediar(){
+  promedios = [];
   let sumaMath = 0;
   let sumaIng = 0;
   let sumaQuim = 0;
@@ -92,43 +109,43 @@ function promediar(){
   notasMath.forEach((nota) => {
     sumaMath = sumaMath + nota
   });
-  promedioM= (sumaMath / notasMath.length).toFixed(2);
-  promedioM = parseFloat(promedioM);
+  docM= (sumaMath / notasMath.length).toFixed(2);
+  promedioM = parseFloat(docM);
   promedios.push(promedioM);
 
   notasIng.forEach((nota) => {
     sumaIng = sumaIng + nota
   });
-  promedioI= (sumaIng / notasIng.length).toFixed(2);
-  promedioI = parseFloat(promedioI);
+  docI= (sumaIng / notasIng.length).toFixed(2);
+  promedioI = parseFloat(docI);
   promedios.push(promedioI);
 
   notasQuim.forEach((nota) =>{
     sumaQuim = sumaQuim + nota
   });
-  promedioQ= (sumaQuim / notasQuim.length).toFixed(2);
-  promedioQ = parseFloat(promedioQ);
+  docQ= (sumaQuim / notasQuim.length).toFixed(2);
+  promedioQ = parseFloat(docQ);
   promedios.push(promedioQ);
 
   notasBio.forEach((nota) =>{
     sumaBio = sumaBio + nota
   });
-  promedioB= (sumaBio / notasBio.length).toFixed(2);
-  promedioB = parseFloat(promedioB);
+  docB= (sumaBio / notasBio.length).toFixed(2);
+  promedioB = parseFloat(docB);
   promedios.push(promedioB);
   
   notasFilo.forEach((nota) =>{
     sumaFilo = sumaFilo + nota
   });
-  promedioFilo= (sumaFilo / notasFilo.length).toFixed(2);
-  promedioFilo = parseFloat(promedioFilo);
+  docFilo= (sumaFilo / notasFilo.length).toFixed(2);
+  promedioFilo = parseFloat(docFilo);
   promedios.push(promedioFilo);
 
   notasFisi.forEach((nota) =>{
     sumaFisi = sumaFisi + nota
   });
-  promedioFis= (sumaFisi / notasFisi.length).toFixed(2);
-  promedioFis = parseFloat(promedioFis);
+  docFis= (sumaFisi / notasFisi.length).toFixed(2);
+  promedioFis = parseFloat(docFis);
   promedios.push(promedioFis);
 
   promedioGeneral = ((promedioM + promedioI + promedioQ + promedioB + promedioFilo + promedioFis) / 6).toFixed(2);
