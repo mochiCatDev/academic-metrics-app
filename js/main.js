@@ -143,10 +143,10 @@ function promediar(){
 }
 
 
-function agregarNota(id, arreglo){
+function agregarNota(id, arreglo, divTabla){
   let cmpNotas = parseFloat($ID(id).value);
   let tabla = "NOTAS";
-  let listado = $ID("tabla");
+  let listado = $ID(divTabla);
   arreglo.push(cmpNotas);
   for(let i = 0; i < arreglo.length; i++){
     tabla += "<p>"+arreglo[i]+"<p/>"
@@ -156,12 +156,12 @@ function agregarNota(id, arreglo){
 }
 
 // Botones
-onClick("#btn-notaMath", () => { agregarNota("notaMath", notasMath) });
-onClick("#btn-notaIng", () => { agregarNota("notaIng", notasIng) });
-onClick("#btn-notaQuim", () => { agregarNota("notaQuim", notasQuim) });
-onClick("#btn-notaBio", () => { agregarNota("notaBio", notasBio) });
-onClick("#btn-notaFilo", () => { agregarNota("notaFilo", notasFilo) });
-onClick("#btn-notaFis", () => { agregarNota("notaFis", notasFisi) });
+onClick("#btn-notaMath", () => { agregarNota("notaMath", notasMath, "tabla") });
+onClick("#btn-notaIng", () => { agregarNota("notaIng", notasIng, "tabla2") });
+onClick("#btn-notaQuim", () => { agregarNota("notaQuim", notasQuim, "tabla3") });
+onClick("#btn-notaBio", () => { agregarNota("notaBio", notasBio, "tabla4") });
+onClick("#btn-notaFilo", () => { agregarNota("notaFilo", notasFilo, "tabla5") });
+onClick("#btn-notaFis", () => { agregarNota("notaFis", notasFisi, "tabla6") });
 onClick("#btn-main", () => { mostrarSeccion(main) });
 onClick("#btn-manager", () => { mostrarSeccion(manager) });
 onClick("#btn-teoria", () => { mostrarSeccion(teoria) });
