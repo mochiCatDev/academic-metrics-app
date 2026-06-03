@@ -256,8 +256,7 @@ nav button:hover, nav button:focus {
     padding: 40px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    max-width: 850px;
-    margin: 0 auto 40px auto;
+    width: 100%;
 }
 
 #section-teoria .btns-teoria {
