@@ -27,6 +27,7 @@
     <h1>Aplicación de métricas académicas</h1>
   </header>
 
+<<<<<<< HEAD
   <!-- Nav -->
   <nav>
     <button id="btn-main">Principal</button>
@@ -34,6 +35,82 @@
     <button id="btn-teoria">Teoria</button>
     <button id="btn-about">Acerca de</button>
   </nav>
+=======
+      <!-- Gestion (Manager) -->
+      <section id="section-manager" class="oculto">
+        <div class="math">
+          <h2>MATEMATICAS</h2>
+          <label for="notaMath">Calificaciones</label>
+          <input type="number" id="notaMath" placeholder="ingresar notas" />
+          <button id="btn-notaMath">AGREGAR NOTAS</button>
+          <div id="tabla"></div>
+        </div>
+        <div class="ing">
+          <h2>INGLÉS</h2>
+          <label for="notaIng">Calificaciones</label>
+          <input type="number" id="notaIng" placeholder="ingresar notas" />
+          <button id="btn-notaIng">AGREGAR NOTAS</button>
+          <div id="tabla2"></div>
+        </div>
+        <div class="quimica">
+          <h2>QUIMICA</h2>
+          <label for="notaQuim">Calificaciones</label>
+          <input type="number" id="notaQuim" placeholder="ingresar notas" />
+          <button id="btn-notaQuim">AGREGAR NOTAS</button>
+          <div id="tabla3"></div>
+        </div>
+        <div class="biologia">
+          <h2>BIOLOGIA</h2>
+          <label for="notaBio">Calificaciones</label>
+          <input type="number" id="notaBio" placeholder="ingresar notas" />
+          <button id="btn-notaBio">AGREGAR NOTAS</button>
+          <div id="tabla4"></div>
+        </div>
+        <div class="filosifia">
+          <h2>FILOSOFIA</h2>
+          <label for="notaFilo">Calificaciones</label>
+          <input type="number" id="notaFilo" placeholder="ingresar notas" />
+          <button id="btn-notaFilo">AGREGAR NOTAS</button>
+          <div id="tabla5"></div>
+        </div>
+        <div class="fisica">
+          <h2>FISICA</h2>
+          <label for="notaFis">Calificaciones</label>
+          <input type="number" id="notaFis" placeholder="ingresar notas" />
+          <button id="btn-notaFis">AGREGAR NOTAS</button>
+          <div id="tabla6"></div>
+        </div>
+        <div>
+          <button onclick="promediar()">promediar</button>
+          <div id="promedios">PROMEDIOS</div>
+        </div>
+      </section>
+      
+      <!-- Informacion Teorica -->
+      <section id="section-teoria" class="oculto">
+        <h2>Estadística Aplicada</h2>
+        <!-- Menu interno -->
+        <div class="btns-teoria">
+          <a href="#promedio-concept">1. Promedio</a>
+            <a href="#media-concept">2. Media Aritmética</a>
+            <a href="#moda-concept">3. Moda</a>
+            <a href="#porcentaje-concept">4. Porcentaje</a>
+            <a href="#tendencias-concept">5. Análisis de Tendencias</a>
+            <a href="#graficos-concept">6. Interpretación de Gráficos</a>
+            <a href="#analisis-datos-concept">7. Análisis de Datos</a>
+            <a href="#anomalias-concept">8. Detección de Anomalías</a>
+        </div>
+        <ol>
+          <li>
+            <section id="promedio-concept">
+              <h3>Promedio</h3>
+              <p>
+                El promedio es un valor que representa el "centro" de un grupo
+                de números. Imagina que quieres repartir dulces de forma
+                equitativa entre tus amigos; el promedio te dice cuántos le
+                tocarían a cada uno.
+              </p>
+>>>>>>> d1dd82a1d46fb2d4002868571dc8ee5377e759d3
 
   <!-- Main -->
   <main>
@@ -432,10 +509,44 @@
                 console.log("Cuidado, detectamos estas anomalías:", anomalias); 
                 // Mostrará: [45]
         </code></pre>
+<<<<<<< HEAD
           </section>
         </li>
       </ol>
     </section>
+=======
+            </section>
+          </li>
+        </ol>
+      </section>
+      
+      <!-- Acerca De (Informacion Personal de nosotros los desarrolladores ) -->
+      <section id="section-about" class="oculto">
+        <div class="about-card">
+          <h2>Sobre el Proyecto</h2>
+          <p>Esta aplicación fue desarrollada como una herramienta interactiva para la gestión y visualización de métricas académicas. Combina el procesamiento de datos estadísticos en tiempo real con componentes visuales dinámicos para facilitar la interpretación del rendimiento escolar.</p>
+          
+          <div class="divider"></div>
+          
+          <h3>Equipo de Desarrollo</h3>
+          <div class="team-grid">
+            <div class="member-profile">
+              <img class="member-avatar" src="https://avatars.githubusercontent.com/u/230013094?v=4" alt="Perfil D¹">
+              <h4>Dilan Solorzano</h4>
+              <p class="role">Lead Programmer & UI Designer</p>
+              <p class="bio">Estudiante enfocado en el desarrollo de aplicaciones web interactivas, algoritmos lógicos y optimización de interfaces de usuario.</p>
+            </div>
+            
+            <div class="member-profile">
+              <img class="member-avatar" src="https://avatars.githubusercontent.com/u/274369168?v=4" alt="Perfil D²">
+              <h4>Joshua David</h4>
+              <p class="role">Data Analyst & Back-End Developer</p>
+              <p class="bio">Interesado en la implementación de estructuras de datos, análisis estadístico aplicado y consumo eficiente de librerías gráficas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+>>>>>>> d1dd82a1d46fb2d4002868571dc8ee5377e759d3
 
     <!-- Acerca De (Informacion Personal de nosotros los desarrolladores ) -->
     <section id="section-about" class="oculto"></section>
