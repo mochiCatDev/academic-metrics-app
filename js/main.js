@@ -4,7 +4,7 @@ const manager = $ID("section-manager");
 const about = $ID("section-about");
 const teoria = $ID("section-teoria");
 const todasLasSecciones = [main, manager, teoria ,about];
-const data = ["Matematicas","Filosofia","Lenguaje","Ingles","Biologia","Quimica"]
+const data = ["Matematicas","Igles","Quimica","Biologia","Filosofia","Fisica"]
 
 let notasMath = [];
 let notasIng = [];
