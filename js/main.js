@@ -92,40 +92,46 @@ function promediar(){
   notasMath.forEach((nota) => {
     sumaMath = sumaMath + nota
   });
-  promedioM= (sumaMath / notasMath.length).toFixed(2); 
+  promedioM= (sumaMath / notasMath.length).toFixed(2);
+  promedioM = parseFloat(promedioM);
   promedios.push(promedioM);
 
   notasIng.forEach((nota) => {
     sumaIng = sumaIng + nota
   });
   promedioI= (sumaIng / notasIng.length).toFixed(2);
+  promedioI = parseFloat(promedioI);
   promedios.push(promedioI);
 
   notasQuim.forEach((nota) =>{
     sumaQuim = sumaQuim + nota
   });
   promedioQ= (sumaQuim / notasQuim.length).toFixed(2);
+  promedioQ = parseFloat(promedioQ);
   promedios.push(promedioQ);
 
   notasBio.forEach((nota) =>{
     sumaBio = sumaBio + nota
   });
   promedioB= (sumaBio / notasBio.length).toFixed(2);
+  promedioB = parseFloat(promedioB);
   promedios.push(promedioB);
   
   notasFilo.forEach((nota) =>{
     sumaFilo = sumaFilo + nota
   });
   promedioFilo= (sumaFilo / notasFilo.length).toFixed(2);
+  promedioFilo = parseFloat(promedioFilo);
   promedios.push(promedioFilo);
 
   notasFisi.forEach((nota) =>{
     sumaFisi = sumaFisi + nota
   });
   promedioFis= (sumaFisi / notasFisi.length).toFixed(2);
+  promedioFis = parseFloat(promedioFis);
   promedios.push(promedioFis);
 
-  promedioGeneral = (promedioM + promedioI + promedioQ + promedioB + promedioFilo + promedioFis) / 6;
+  promedioGeneral = ((promedioM + promedioI + promedioQ + promedioB + promedioFilo + promedioFis) / 6).toFixed(2);
 
   tabla = `
     <p>Promedio matematicas: ${promedioM}</p>
