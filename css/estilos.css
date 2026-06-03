@@ -351,3 +351,51 @@ footer sup {
     font-family: var(--font-academic);
     font-weight: bold;
 }
+
+
+   Estilos para Ejemplos Didácticos Interactivos 
+
+.ejemplo-didactico {
+    background-color: #f8fafc;
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 6px;
+}
+
+.ejemplo-didactico input[type="number"] {
+    padding: 6px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    margin-right: 8px;
+    margin-bottom: 10px;
+}
+
+.ejemplo-didactico button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.2s;
+}
+
+.ejemplo-didactico button:hover {
+    background-color: var(--primary-color);
+}
+
+.ejemplo-resultado {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    margin-top: 5px;
+    padding: 8px;
+    background-color: #edf2f7;
+    border-radius: 4px;
+    color: var(--primary-color);
+}
