@@ -7,6 +7,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     width: 85%;
     max-width: 1200px;
@@ -256,6 +260,69 @@ nav button:hover, nav button:focus {
     margin: 0 auto 40px auto;
 }
 
+#section-teoria .btns-teoria {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    border-radius: 12px;
+    width: 100%;
+    margin: 0 auto 30px auto; 
+    padding: 10px;
+    overflow-x: auto;
+    background-color: var(--bg-app);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+}
+
+#section-teoria .btns-teoria::-webkit-scrollbar {
+    height: 5px;
+}
+
+#section-teoria .btns-teoria::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#section-teoria .btns-teoria::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 20px;
+}
+
+#section-teoria .btns-teoria::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-muted);
+}
+
+#section-teoria .btns-teoria a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-card);
+    color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    transition: all 0.2s ease-in-out;
+    flex-shrink: 0;
+}
+
+#section-teoria .btns-teoria a:hover,
+#section-teoria .btns-teoria a:focus {
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    border-color: var(--secondary-color);
+    box-shadow: 0 4px 8px rgba(43, 108, 176, 0.15);
+    transform: translateY(-1px);
+}
+
 #section-teoria > h2 {
     font-family: var(--font-academic);
     font-size: 2rem;
@@ -273,7 +340,11 @@ nav button:hover, nav button:focus {
 }
 
 #section-teoria li section {
-    display: inline; /* Mantiene la coherencia con la lista */
+    display: inline;
+}
+
+#section-teoria ol li section {
+    scroll-margin-top: 80px;
 }
 
 #section-teoria h3 {
