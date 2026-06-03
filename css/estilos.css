@@ -437,6 +437,14 @@ nav button:hover, nav button:focus {
     color: var(--accent-color);
 }
 
+.mini-chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 150px;
+    margin: 15px auto 0 0;
+}
+
 /* Estilos para KaTeX (Ajuste de fórmulas en bloque) */
 .katex-display {
     margin: 20px 0 !important;
