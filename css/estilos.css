@@ -2,625 +2,677 @@
    Estilos Globales e Interfaz de Usuario
    ========================================================================== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    width: 85%;
-    max-width: 1200px;
-    min-height: 100vh;
-    margin: 0 auto;
-    font-family: var(--font-ui);
-    background-color: var(--bg-app);
-    color: var(--text-main);
-    line-height: 1.6;
+  width: 85%;
+  max-width: 1200px;
+  min-height: 100vh;
+  margin: 0 auto;
+  font-family: var(--font-ui);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.6;
 }
 
 /* Ocultar secciones inactivas */
 .oculto {
-    display: none !important;
+  display: none !important;
 }
 
 /* ==========================================================================
    Header y Navegación (Estilo Journal Científico)
    ========================================================================== */
 header {
-    text-align: center;
-    padding: 30px 10px 15px 10px;
-    border-bottom: 2px solid var(--primary-color);
-    margin-bottom: 20px;
+  text-align: center;
+  padding: 30px 10px 15px 10px;
+  border-bottom: 2px solid var(--primary-color);
+  margin-bottom: 20px;
 }
 
 header h1 {
-    font-family: var(--font-academic);
-    font-size: 2.2rem;
-    color: var(--primary-color);
-    font-weight: 700;
-    letter-spacing: 0.5px;
+  font-family: var(--font-academic);
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 nav {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
 }
 
 nav button {
-    background-color: transparent;
-    color: var(--secondary-color);
-    border: 1px solid var(--secondary-color);
-    padding: 8px 18px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.2s ease;
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
 }
 
-nav button:hover, nav button:focus {
-    background-color: var(--secondary-color);
-    color: white;
+nav button:hover,
+nav button:focus {
+  background-color: var(--secondary-color);
+  color: white;
 }
 
 /* ==========================================================================
    Sección Principal (Métricas y Gráficos)
    ========================================================================== */
 #section-main {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-card);
-    padding: 30px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
 }
 
 /* Contenedor del Canvas de Chart.js */
 .container.w-75 {
-    flex: 1;
-    min-width: 300px;
+  flex: 1;
+  min-width: 300px;
 }
 
 /* Barra de progreso termómetro mejorada */
 .container-bar-progress {
-    width: 80px;
-    height: 320px;
-    background-color: #edf2f7;
-    border: 1px solid var(--border-color);
-    border-radius: 50px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  width: 80px;
+  height: 320px;
+  background-color: #edf2f7;
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .border-bar-progress {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50px;
-    overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  overflow: hidden;
 }
 
 #bar-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0%;
-    background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
-    transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(
+    to top,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #text-progress {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-ui);
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: var(--text-main);
-    mix-blend-mode: difference; /* Efecto hacker/matemático: cambia de color según el fondo */
-    filter: invert(1) grayscale(1) contrast(9);
-    z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--text-main);
+  mix-blend-mode: difference; /* Efecto hacker/matemático: cambia de color según el fondo */
+  filter: invert(1) grayscale(1) contrast(9);
+  z-index: 10;
 }
 
 /* ==========================================================================
    Sección de Gestión (Grid de Materias)
    ========================================================================== */
 #section-manager {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 /* Contenedor de cada materia */
 #section-manager > div:not(:last-child) {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
 }
 
 #section-manager h2 {
-    font-family: var(--font-academic);
-    font-size: 1.2rem;
-    color: var(--primary-color);
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 8px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  font-family: var(--font-academic);
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 #section-manager label {
-    display: block;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 5px;
-    font-weight: 600;
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+  font-weight: 600;
 }
 
 #section-manager input[type="number"] {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-family: var(--font-mono);
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-    outline: none;
-    transition: border-color 0.2s;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
 #section-manager input[type="number"]:focus {
-    border-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 #section-manager button {
-    width: 100%;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 8px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    transition: background-color 0.2s;
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s;
 }
 
 #section-manager button:hover {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 /* Bloque final del botón Promediar */
 #section-manager > div:last-child {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
-    padding: 20px;
-    background: #edf2f7;
-    border-radius: 6px;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 20px;
+  background: #edf2f7;
+  border-radius: 6px;
 }
 
 #section-manager > div:last-child button {
-    width: auto;
-    padding: 12px 40px;
-    font-size: 1.1rem;
-    background-color: var(--accent-color);
+  width: auto;
+  padding: 12px 40px;
+  font-size: 1.1rem;
+  background-color: var(--accent-color);
 }
 
 #section-manager > div:last-child button:hover {
-    background-color: #c05621;
+  background-color: #c05621;
 }
 
 #promedios {
-    font-family: var(--font-mono);
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--primary-color);
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--primary-color);
 }
 
 /* Tablas de notas ingresadas */
 [id^="tabla"] {
-    margin-top: 12px;
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    color: var(--text-main);
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-main);
 }
 
 /* ==========================================================================
    Sección de Teoría (Formato de Reporte Técnico / LaTeX)
    ========================================================================== */
 #section-teoria {
-    background: var(--bg-card);
-    padding: 40px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    width: 100%;
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  width: 100%;
 }
 
 #section-teoria .btns-teoria {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 12px;
-    border-radius: 12px;
-    width: 100%;
-    margin: 0 auto 30px auto; 
-    padding: 10px;
-    overflow-x: auto;
-    background-color: var(--bg-app);
-    scrollbar-width: thin;
-    scrollbar-color: var(--border-color) transparent;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  width: 100%;
+  margin: 0 auto 30px auto;
+  padding: 10px;
+  overflow-x: auto;
+  background-color: var(--bg-app);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
 }
 
 #section-teoria .btns-teoria::-webkit-scrollbar {
-    height: 5px;
+  height: 5px;
 }
 
 #section-teoria .btns-teoria::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
 
 #section-teoria .btns-teoria::-webkit-scrollbar-thumb {
-    background-color: var(--border-color);
-    border-radius: 20px;
+  background-color: var(--border-color);
+  border-radius: 20px;
 }
 
 #section-teoria .btns-teoria::-webkit-scrollbar-thumb:hover {
-    background-color: var(--text-muted);
+  background-color: var(--text-muted);
 }
 
 #section-teoria .btns-teoria a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-card);
-    color: var(--secondary-color);
-    border: 1px solid var(--border-color);
-    padding: 10px 20px;
-    font-size: 0.88rem;
-    font-weight: 500;
-    text-decoration: none;
-    white-space: nowrap;
-    cursor: pointer;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-    transition: all 0.2s ease-in-out;
-    flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-card);
+  color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  padding: 10px 20px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
 }
 
 #section-teoria .btns-teoria a:hover,
 #section-teoria .btns-teoria a:focus {
-    background-color: var(--secondary-color);
-    color: #ffffff;
-    border-color: var(--secondary-color);
-    box-shadow: 0 4px 8px rgba(43, 108, 176, 0.15);
-    transform: translateY(-1px);
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  border-color: var(--secondary-color);
+  box-shadow: 0 4px 8px rgba(43, 108, 176, 0.15);
+  transform: translateY(-1px);
 }
 
 #section-teoria > h2 {
-    font-family: var(--font-academic);
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 30px;
-    color: var(--primary-color);
+  font-family: var(--font-academic);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary-color);
 }
 
 #section-teoria ol {
-    list-style-position: inside;
+  list-style-position: inside;
 }
 
 #section-teoria li {
-    margin-bottom: 35px;
+  margin-bottom: 35px;
 }
 
 #section-teoria li section {
-    display: inline;
+  display: inline;
 }
 
-#section-teoria ol li section, 
+#section-teoria ol li section,
 #quiz-container {
-    scroll-margin-top: 80px;
+  scroll-margin-top: 80px;
 }
 
 #section-teoria h3 {
-    font-family: var(--font-academic);
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    display: inline-block;
-    margin-bottom: 15px;
-    border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-academic);
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  display: inline-block;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 #section-teoria p {
-    font-family: var(--font-academic);
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    text-align: justify;
-    color: #333;
+  font-family: var(--font-academic);
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  text-align: justify;
+  color: #333;
 }
 
 #section-teoria h4 {
-    font-size: 1rem;
-    margin: 15px 0 8px 0;
-    color: var(--secondary-color);
+  font-size: 1rem;
+  margin: 15px 0 8px 0;
+  color: var(--secondary-color);
 }
 
 #section-teoria ul {
-    list-style-type: square;
-    margin-left: 30px;
-    margin-bottom: 15px;
+  list-style-type: square;
+  margin-left: 30px;
+  margin-bottom: 15px;
 }
 
 #section-teoria li ul li {
-    font-family: var(--font-academic);
-    font-size: 1.05rem;
-    margin-bottom: 5px;
+  font-family: var(--font-academic);
+  font-size: 1.05rem;
+  margin-bottom: 5px;
 }
 
 /* Bloques de Código de JavaScript */
 #section-teoria pre {
-    background-color: #1a202c !important; /* Ajuste manual por si falla Prism */
-    padding: 15px;
-    border-radius: 6px;
-    overflow-x: auto;
-    margin: 15px 0;
-    border-left: 4px solid var(--secondary-color);
+  background-color: #1a202c !important; /* Ajuste manual por si falla Prism */
+  padding: 15px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 15px 0;
+  border-left: 4px solid var(--secondary-color);
 }
 
 #section-teoria code {
-    font-family: var(--font-mono) !important;
-    font-size: 0.9rem !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.9rem !important;
 }
 
 /* Estilos para las cajas de ejemplo interactivo en teoría */
 .demo-box {
-    background-color: var(--bg-app);
-    border: 1px solid var(--border-color);
-    border-left: 4px solid var(--accent-color);
-    padding: 15px;
-    border-radius: 6px;
-    margin: 15px 0 25px 0;
+  background-color: var(--bg-app);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-color);
+  padding: 15px;
+  border-radius: 6px;
+  margin: 15px 0 25px 0;
 }
 
 .demo-box label {
-    display: block;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: bold;
-    margin-bottom: 5px;
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .demo-box input[type="text"],
 .demo-box input[type="number"] {
-    width: 100%;
-    max-width: 400px;
-    padding: 6px 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-family: var(--font-mono);
-    margin-bottom: 10px;
-    display: block;
+  width: 100%;
+  max-width: 400px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  margin-bottom: 10px;
+  display: block;
 }
 
 .demo-box p {
-    margin-top: 5px;
-    margin-bottom: 0 !important;
-    font-size: 1rem !important;
-    color: var(--text-main);
+  margin-top: 5px;
+  margin-bottom: 0 !important;
+  font-size: 1rem !important;
+  color: var(--text-main);
 }
 
 .demo-box strong {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 .mini-chart-container {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    height: 150px;
-    margin: 15px auto 0 0;
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 150px;
+  margin: 15px auto 0 0;
 }
 
 /* Estilos para el mini-Test estadistico */
 
 #quiz-container {
-    margin-top: 40px;
-    padding: 25px;
+  margin-top: 40px;
+  padding: 25px;
 }
 
 #quiz-container h3 {
-    color: var(--primary-color);
-    margin-bottom: 5px;
+  color: var(--primary-color);
+  margin-bottom: 5px;
 }
 
 .quiz-instruction {
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-    color: var(--text-main);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  color: var(--text-main);
 }
 
 .quiz-question {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .quiz-question p {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .quiz-option {
-    display: block;
-    margin: 6px 0;
-    cursor: pointer;
-    font-size: 0.95rem;
+  display: block;
+  margin: 6px 0;
+  cursor: pointer;
+  font-size: 0.95rem;
 }
 
 .quiz-option input[type="radio"] {
-    margin-right: 6px;
-    cursor: pointer;
+  margin-right: 6px;
+  cursor: pointer;
 }
 
 .quiz-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 25px;
 }
 
 #btn-evaluar-quiz {
-    padding: 10px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: var(--primary-color);
-    color: var(--bg-card);
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--bg-card);
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
 #btn-evaluar-quiz:hover {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 #quiz-resultado {
-    font-weight: bold;
-    font-size: 1.1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 /* Estilos para KaTeX (Ajuste de fórmulas en bloque) */
 .katex-display {
-    margin: 20px 0 !important;
-    padding: 10px;
-    background: #f8fafc;
-    border-radius: 4px;
-    border: 1px dashed var(--border-color);
+  margin: 20px 0 !important;
+  padding: 10px;
+  background: #f8fafc;
+  border-radius: 4px;
+  border: 1px dashed var(--border-color);
 }
 
 #section-about .about-card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 40px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
 }
 
 #section-about h2 {
-    font-family: var(--font-academic);
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+  font-family: var(--font-academic);
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin-bottom: 15px;
 }
 
 #section-about h3 {
-    font-family: var(--font-academic);
-    color: var(--primary-color);
-    font-size: 1.4rem;
-    margin-bottom: 25px;
+  font-family: var(--font-academic);
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin-bottom: 25px;
 }
 
 #section-about p {
-    font-size: 1.05rem;
-    color: var(--text-main);
-    text-align: justify;
-    margin-bottom: 20px;
+  font-size: 1.05rem;
+  color: var(--text-main);
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+/* Sección de Evaluación en Google Forms */
+.feedback-container {
+  padding: 20px;
+  background-color: var(--bg-app);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedback-container h3 {
+  margin-top: 0;
+  color: var(--color-text-main, #ffffff);
+}
+
+.feedback-container p {
+  color: var(--color-text-muted, #aaaaaa);
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.btn-feedback {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #ffffff;
+  border-radius: 5px;
+  font-weight: bold;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.btn-feedback:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+}
+
+.btn-feedback:active {
+  transform: translateY(0);
 }
 
 #section-about .divider {
-    height: 1px;
-    background-color: var(--border-color);
-    margin: 30px 0;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 30px 0;
 }
 
 #section-about .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
 }
 
 #section-about .member-profile {
-    background-color: var(--bg-app);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 25px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  background-color: var(--bg-app);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #section-about .member-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
 }
 
 #section-about .member-profile h4 {
-    font-family: var(--font-ui);
-    color: var(--text-main);
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-    text-align: center;
+  font-family: var(--font-ui);
+  color: var(--text-main);
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 #section-about .member-profile .role {
-    font-size: 0.85rem;
-    color: var(--accent-color);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 15px;
-    text-align: center;
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 #section-about .member-profile .bio {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    text-align: center;
-    line-height: 1.5;
-    margin-bottom: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
 /* ==========================================================================
    Footer
    ========================================================================== */
 footer {
-    text-align: center;
-    padding: 30px 10px;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    border-top: 1px solid var(--border-color);
-    margin-top: 50px;
+  text-align: center;
+  padding: 30px 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-color);
+  margin-top: 50px;
 }
 
 footer sup {
-    font-family: var(--font-academic);
-    font-weight: bold;
+  font-family: var(--font-academic);
+  font-weight: bold;
 }
