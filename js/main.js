@@ -127,13 +127,15 @@ function promediar(){
 
   promedioGeneral = (promedioM + promedioI + promedioQ + promedioB + promedioFilo + promedioFis) / 6;
 
-  tabla += "<p>"+"Promedio matematicas: "+promedioM+"</p>"
-  tabla += "<p>"+"Promedio ingles: "+promedioI+"</p>"
-  tabla += "<p>"+"Promedio quimica: "+promedioQ+"</p>"
-  tabla += "<p>"+"Promedio biologia: "+promedioB+"</p>"
-  tabla += "<p>"+"Promedio filosofia: "+promedioFilo+"</p>"
-  tabla += "<p>"+"Promedio fisica: "+promedioFis+"</p>"
-  tabla += "<p>"+"Promedio Total: "+promedioGeneral+"</p>"
+  tabla = `
+    <p>Promedio matematicas: ${promedioM}</p>
+    <p>Promedio ingles: ${promedioI}</p>
+    <p>Promedio quimica: ${promedioQ}</p>
+    <p>Promedio biologia: ${promedioB}</p>
+    <p>Promedio filosofia: ${promedioFilo}</p>
+    <p>Promedio fisica: ${promedioFis}</p>
+    <p>Promedio Total: ${promedioGeneral}</p>
+  `
 
   listado.innerHTML= tabla;
   pintarBarras();
