@@ -85,6 +85,7 @@ function promediar(){
   let promedioB;
   let promedioFilo;
   let promedioFis;
+  let promedioGeneral;
   let tabla = "PROMEDIOS";
   let listado = $ID("promedios")
 
@@ -124,15 +125,19 @@ function promediar(){
   promedioFis= (sumaFisi / notasFisi.length).toFixed(2);
   promedios.push(promedioFis);
 
-  tabla += "<p>"+"Promedio matematicas: "+promedioM+"<p/>"
-  tabla += "<p>"+"Promedio ingles: "+promedioI+"<p/>"
-  tabla += "<p>"+"Promedio quimica: "+promedioQ+"<p/>"
-  tabla += "<p>"+"Promedio biologia: "+promedioB+"<p/>"
-  tabla += "<p>"+"Promedio filosofia: "+promedioFilo+"<p/>"
-  tabla += "<p>"+"Promedio fisica: "+promedioFis+"<p/>"
+  promedioGeneral = (promedioM + promedioI + promedioQ + promedioB + promedioFilo + promedioFis) / 6;
+
+  tabla += "<p>"+"Promedio matematicas: "+promedioM+"</p>"
+  tabla += "<p>"+"Promedio ingles: "+promedioI+"</p>"
+  tabla += "<p>"+"Promedio quimica: "+promedioQ+"</p>"
+  tabla += "<p>"+"Promedio biologia: "+promedioB+"</p>"
+  tabla += "<p>"+"Promedio filosofia: "+promedioFilo+"</p>"
+  tabla += "<p>"+"Promedio fisica: "+promedioFis+"</p>"
+  tabla += "<p>"+"Promedio Total: "+promedioGeneral+"</p>"
 
   listado.innerHTML= tabla;
   pintarBarras();
+  actualizarBarraProgreso(promedioGeneral, 10);
 }
 
 
@@ -155,11 +160,10 @@ onClick("#btn-notaQuim", () => { agregarNota("notaQuim", notasQuim) });
 onClick("#btn-notaBio", () => { agregarNota("notaBio", notasBio) });
 onClick("#btn-notaFilo", () => { agregarNota("notaFilo", notasFilo) });
 onClick("#btn-notaFis", () => { agregarNota("notaFis", notasFisi) });
-onClick("#btn-main", () => { 
-  mostrarSeccion(main); 
-  actualizarBarraProgreso(1, 100);
-  pintarBarras(); 
-});
+onClick("#btn-main", () => { mostrarSeccion(main) });
 onClick("#btn-manager", () => { mostrarSeccion(manager) });
 onClick("#btn-teoria", () => { mostrarSeccion(teoria) });
 onClick("#btn-about", () => { mostrarSeccion(about) });
+
+mostrarSeccion(main);
+pintarBarras();
