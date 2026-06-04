@@ -193,6 +193,78 @@ function agregarNota(id, arreglo, divTabla) {
   $ID(id).value = "";
 }
 
+// Laboratorio Interactivo
+
+function demoTendencia() {
+  const input = $ID("demo-tendencia-input").value;
+  const numArr = input.split(",").map((n) => parseFloat(n.trim()));
+
+  const datosValidos = numArr.filter((n) => !isNaN(n));
+
+  if (datosValidos.length < 2) {
+    if (miMiniChart) {
+      miMiniChart.destroy();
+      miMiniChart = null;
+    }
+    return;
+  }
+
+  const primerPunto = datosValidos[0];
+  const ultimoPunto = datosValidos[datosValidos.length - 1];
+
+  let colorGrafica = "#718096";
+  let colorFondoSutil = "rgba(113, 128, 150, 0.1)";
+
+  if (ultimoPunto > primerPunto) {
+    colorGrafica = "#48bb78";
+    colorFondoSutil = "rgba(72, 187, 120, 0.1)";
+  } else if (ultimoPunto < primerPunto) {
+    colorGrafica = "#e53e3e";
+    colorFondoSutil = "rgba(229, 62, 62, 0.1)";
+  }
+
+  actualizarMiniGrafica(datosValidos, colorGrafica, colorFondoSutil);
+}
+
+function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
+  if (miMiniChart) {
+    miMiniChart.destroy();
+  }
+
+  const labelsX = datosValidos.map((_, index) => `t-${index + 1}`);
+  const ctx = $ID("demo-tendencia-chart").getContext("2d");
+
+  miMiniChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labelsX,
+      datasets: [
+        {
+          label: "Evolución",
+          data: datosValidos,
+          borderColor: colorLinea,
+          backgroundColor: colorFondo,
+          borderWidth: 3,
+          tension: 0.2,
+          pointRadius: 4,
+          pointBackgroundColor: "#1a365d",
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+        y: { ticks: { font: { size: 10 } } },
+      },
+    },
+  });
+}
+
 // Función para evaluar el mini-Test estadistico
 function evaluarTest() {
   const totalPreguntas = 20;
