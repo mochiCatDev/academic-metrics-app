@@ -578,40 +578,5 @@ function evaluarTest() {
   }
 }
 
-// Botones
-onClick("#btn-notaMath", () => {
-  agregarNota("notaMath", notasMath, "tabla");
-});
-onClick("#btn-notaIng", () => {
-  agregarNota("notaIng", notasIng, "tabla2");
-});
-onClick("#btn-notaQuim", () => {
-  agregarNota("notaQuim", notasQuim, "tabla3");
-});
-onClick("#btn-notaBio", () => {
-  agregarNota("notaBio", notasBio, "tabla4");
-});
-onClick("#btn-notaFilo", () => {
-  agregarNota("notaFilo", notasFilo, "tabla5");
-});
-onClick("#btn-notaFis", () => {
-  agregarNota("notaFis", notasFisi, "tabla6");
-});
-onClick("#btn-main", () => {
-  mostrarSeccion(main);
-});
-onClick("#btn-manager", () => {
-  mostrarSeccion(manager);
-});
-onClick("#btn-teoria", () => {
-  mostrarSeccion(teoria);
-});
-onClick("#btn-about", () => {
-  mostrarSeccion(about);
-});
-onClick("#btn-evaluar-quiz", () => {
-  evaluarTest();
-});
-
 mostrarSeccion(main);
 pintarBarras();
