@@ -266,6 +266,7 @@ nav button:focus {
 
 #section-teoria .btns-teoria {
   position: sticky;
+  top: 0;
   z-index: 100;
   display: flex;
   justify-content: flex-start;
@@ -327,6 +328,8 @@ nav button:focus {
 }
 
 #section-teoria > h2 {
+  font-family: var(--font-academic);
+  font-size: 2rem;
   text-align: center;
   margin-bottom: 30px;
   color: var(--primary-color);
@@ -670,12 +673,11 @@ footer {
 }
 
 footer sup {
-    font-family: var(--font-academic);
-    font-weight: bold;
+  font-family: var(--font-academic);
+  font-weight: bold;
 }
 
-
-   Estilos para Ejemplos Didácticos Interactivos 
+  Estilos para Ejemplos Didácticos Interactivos 
 
 .ejemplo-didactico {
     background-color: #f8fafc;
