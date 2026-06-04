@@ -195,51 +195,6 @@ function agregarNota(id, arreglo, divTabla) {
 
 // Laboratorio Interactivo
 
-function demoPromedio() {
-  const input = $ID("demo-promedio-input").value;
-  const numArr = input.split(",").map((n) => parseFloat(n.trim()));
-
-  const suma = numArr.reduce((acc, curr) => acc + curr, 0);
-  const resultado = suma / numArr.length;
-
-  $ID("demo-promedio-res").textContent = isNaN(resultado)
-    ? "0.00"
-    : resultado.toFixed(2);
-}
-
-function demoModa() {
-  const input = $ID("demo-moda-input").value;
-  const numArr = input.split(",").map((n) => n.trim());
-
-  const mapeo = {};
-  let maxRepeticiones = 0;
-  let modas = [];
-
-  numArr.forEach((num) => {
-    if (num !== "") {
-      mapeo[num] = (mapeo[num] || 0) + 1;
-      if (mapeo[num] > maxRepeticiones) maxRepeticiones = mapeo[num];
-    }
-  });
-
-  for (let num in mapeo) {
-    if (mapeo[num] === maxRepeticiones) modas.push(num);
-  }
-
-  $ID("demo-moda-res").textContent =
-    modas.length > 0 ? modas.join(", ") : "Ninguno";
-}
-
-function demoPorcentaje() {
-  const parte = parseFloat($ID("demo-porcentaje-parte").value);
-  const total = parseFloat($ID("demo-porcentaje-total").value);
-
-  const porcentaje = (parte / total) * 100;
-  $ID("demo-porcentaje-res").textContent = isNaN(porcentaje)
-    ? "0%"
-    : porcentaje.toFixed(1) + "%";
-}
-
 function demoTendencia() {
   const input = $ID("demo-tendencia-input").value;
   const numArr = input.split(",").map((n) => parseFloat(n.trim()));
@@ -310,16 +265,6 @@ function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
   });
 }
 
-function demoAnomalias() {
-  const input = $ID("demo-anomalia-datos").value;
-  const limite = parseFloat($ID("demo-anomalia-limite").value);
-  const numArr = input.split(",").map((n) => parseFloat(n.trim()));
-
-  const anomalias = numArr.filter((temp) => temp > limite);
-
-  $ID("demo-anomalia-res").textContent = `[${anomalias.join(", ")}]`;
-}
-
 // Función para evaluar el mini-Test estadistico
 function evaluarTest() {
   const totalPreguntas = 20;
@@ -385,9 +330,14 @@ onClick("#btn-about", () => {
 onClick("#btn-evaluar-quiz", () => {
   evaluarTest();
 });
+onClick("#demo-tendencia-input", () => {
+  const inputTendencia = $ID("demo-tendencia-input");
+  if (inputTendencia) {
+    inputTendencia.addEventListener("input", demoTendencia);
+  }
+});
 
-
-
+demoTendencia();
 mostrarSeccion(main);
 pintarBarras();
 
