@@ -6,11 +6,11 @@ const teoria = $ID("section-teoria");
 const todasLasSecciones = [main, manager, teoria, about];
 const data = [
   "Matematicas",
-  "Filosofia",
-  "Lenguaje",
-  "Ingles",
-  "Biologia",
-  "Quimica",
+  "Inglés",
+  "Química",
+  "Biología",
+  "Filosofía",
+  "Física",
 ];
 
 let miMiniChart = null;
@@ -194,131 +194,208 @@ function agregarNota(id, arreglo, divTabla) {
 }
 
 // Laboratorio Interactivo
+//  PROMEDIO 
+let notas = []; 
 
-function demoPromedio() {
-  const input = $ID("demo-promedio-input").value;
-  const numArr = input.split(",").map((n) => parseFloat(n.trim()));
-
-  const suma = numArr.reduce((acc, curr) => acc + curr, 0);
-  const resultado = suma / numArr.length;
-
-  $ID("demo-promedio-res").textContent = isNaN(resultado)
-    ? "0.00"
-    : resultado.toFixed(2);
-}
-
-function demoModa() {
-  const input = $ID("demo-moda-input").value;
-  const numArr = input.split(",").map((n) => n.trim());
-
-  const mapeo = {};
-  let maxRepeticiones = 0;
-  let modas = [];
-
-  numArr.forEach((num) => {
-    if (num !== "") {
-      mapeo[num] = (mapeo[num] || 0) + 1;
-      if (mapeo[num] > maxRepeticiones) maxRepeticiones = mapeo[num];
-    }
-  });
-
-  for (let num in mapeo) {
-    if (mapeo[num] === maxRepeticiones) modas.push(num);
-  }
-
-  $ID("demo-moda-res").textContent =
-    modas.length > 0 ? modas.join(", ") : "Ninguno";
-}
-
-function demoPorcentaje() {
-  const parte = parseFloat($ID("demo-porcentaje-parte").value);
-  const total = parseFloat($ID("demo-porcentaje-total").value);
-
-  const porcentaje = (parte / total) * 100;
-  $ID("demo-porcentaje-res").textContent = isNaN(porcentaje)
-    ? "0%"
-    : porcentaje.toFixed(1) + "%";
-}
-
-function demoTendencia() {
-  const input = $ID("demo-tendencia-input").value;
-  const numArr = input.split(",").map((n) => parseFloat(n.trim()));
-
-  const datosValidos = numArr.filter((n) => !isNaN(n));
-
-  if (datosValidos.length < 2) {
-    if (miMiniChart) {
-      miMiniChart.destroy();
-      miMiniChart = null;
-    }
+function promedioE() { 
+  if (notas.length === 0) {
+    $ID("ejemplo1").innerHTML = "PROMEDIO: Sin datos ingresados";
     return;
   }
 
-  const primerPunto = datosValidos[0];
-  const ultimoPunto = datosValidos[datosValidos.length - 1];
-
-  let colorGrafica = "#718096";
-  let colorFondoSutil = "rgba(113, 128, 150, 0.1)";
-
-  if (ultimoPunto > primerPunto) {
-    colorGrafica = "#48bb78";
-    colorFondoSutil = "rgba(72, 187, 120, 0.1)";
-  } else if (ultimoPunto < primerPunto) {
-    colorGrafica = "#e53e3e";
-    colorFondoSutil = "rgba(229, 62, 62, 0.1)";
-  }
-
-  actualizarMiniGrafica(datosValidos, colorGrafica, colorFondoSutil);
-}
-
-function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
-  if (miMiniChart) {
-    miMiniChart.destroy();
-  }
-
-  const labelsX = datosValidos.map((_, index) => `t-${index + 1}`);
-  const ctx = $ID("demo-tendencia-chart").getContext("2d");
-
-  miMiniChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: labelsX,
-      datasets: [
-        {
-          label: "Evolución",
-          data: datosValidos,
-          borderColor: colorLinea,
-          backgroundColor: colorFondo,
-          borderWidth: 3,
-          tension: 0.2,
-          pointRadius: 4,
-          pointBackgroundColor: "#1a365d",
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-      },
-      scales: {
-        x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-        y: { ticks: { font: { size: 10 } } },
-      },
-    },
+  let sumaTotal = 0;
+  notas.forEach((nota) => { 
+    sumaTotal = sumaTotal + nota;
   });
+
+  let resultadoPromedio = sumaTotal / notas.length;
+  $ID("ejemplo1").innerHTML = `PROMEDIO: <strong>${resultadoPromedio.toFixed(2)}</strong> (Datos: [ ${notas.join(" - ")} ])`;
 }
 
-function demoAnomalias() {
-  const input = $ID("demo-anomalia-datos").value;
-  const limite = parseFloat($ID("demo-anomalia-limite").value);
-  const numArr = input.split(",").map((n) => parseFloat(n.trim()));
 
-  const anomalias = numArr.filter((temp) => temp > limite);
+//  MEDIA ARITMÉTICA 
+let edadesMedia = [];
 
-  $ID("demo-anomalia-res").textContent = `[${anomalias.join(", ")}]`;
+function agregarMedia() {
+  let campoInput = $ID("inputMediaEdad");
+  let valorNumero = parseFloat(campoInput.value);
+  if (!isNaN(valorNumero)) {
+    edadesMedia.push(valorNumero); 
+    $ID("resultadoMedia").innerHTML = `EDADES INGRESADAS: [ ${edadesMedia.join(", ")} ]`;
+  }
+  campoInput.value = ""; 
 }
+
+function calcularMedia() {
+  if (edadesMedia.length === 0) return;
+  let sumaEdades = 0;
+  for (let i = 0; i < edadesMedia.length; i++) {
+    sumaEdades = sumaEdades + edadesMedia[i];
+  }
+
+  let resultadoMedia = sumaEdades / edadesMedia.length;
+  $ID("resultadoMedia").innerHTML = `MEDIA ARITMÉTICA: <strong>${resultadoMedia.toFixed(2)}</strong> de las edades`;
+}
+
+
+//  MODA 
+let datosModa = [];
+
+function agregarModa() {
+  let campoInput = $ID("inputModa");
+  let valorNumero = parseFloat(campoInput.value);
+
+  if (!isNaN(valorNumero)) {
+    datosModa.push(valorNumero);
+    $ID("resultadoModa").innerHTML = `NÚMEROS INGRESADOS: [ ${datosModa.join(", ")} ]`;
+  }
+  campoInput.value = "";
+}
+
+function calcularModa() {
+  if (datosModa.length === 0) return;
+  let frecuencias = {}; 
+  
+  for (let i = 0; i < datosModa.length; i++) {
+    let numeroActual = datosModa[i];
+    if (frecuencias[numeroActual] === undefined) {
+      frecuencias[numeroActual] = 1;
+    } else {
+      frecuencias[numeroActual] = frecuencias[numeroActual] + 1;
+    }
+  }
+
+  let maxRepeticiones = 0;
+  for (let numero in frecuencias) {
+    if (frecuencias[numero] > maxRepeticiones) {
+      maxRepeticiones = frecuencias[numero];
+    }
+  }
+  let modasEncontradas = [];
+  for (let numero in frecuencias) {
+    if (frecuencias[numero] === maxRepeticiones && maxRepeticiones > 1) {
+      modasEncontradas.push(numero);
+    }
+  }
+  if (modasEncontradas.length === 0) {
+    $ID("resultadoModa").innerHTML = `MODA: <strong>No hay moda</strong> (Ningún valor se repite)`;
+  } else {
+    $ID("resultadoModa").innerHTML = `MODA: <strong>${modasEncontradas.join(", ")}</strong> (Se repite ${maxRepeticiones} veces)`;
+  }
+}
+
+
+//  PORCENTAJE
+function calcularPorcentajeTeoria() {
+  let parte = parseFloat($ID("inputPorcentajeParte").value);
+  let total = parseFloat($ID("inputPorcentajeTotal").value);
+  
+  if (isNaN(parte) || isNaN(total) || total === 0) {
+    $ID("resultadoPorcentaje").innerHTML = "PORCENTAJE: Por favor ingresa valores válidos.";
+    return;
+  }
+  let porcentajeCalculado = (parte / total) * 100;
+  $ID("resultadoPorcentaje").innerHTML = `PORCENTAJE: <strong>${porcentajeCalculado.toFixed(2)}%</strong>`;
+}
+
+
+//  ANÁLISIS DE TENDENCIAS
+let datosTendencia = [];
+
+function agregarTendencia() {
+  let campoInput = $ID("inputTendencia");
+  let valorNumero = parseFloat(campoInput.value);
+
+  if (!isNaN(valorNumero)) {
+    datosTendencia.push(valorNumero);
+    $ID("resultadoTendencia").innerHTML = `SERIE: [ ${datosTendencia.join(" → ")} ]`;
+  }
+  campoInput.value = "";
+}
+
+function calcularTendencia() {
+  if (datosTendencia.length < 2) {
+    $ID("resultadoTendencia").innerHTML = "TENDENCIA: Inserta al menos 2 datos en orden para analizar.";
+    return;
+  }
+  let contadorSubidas = 0;
+  let contadorBajadas = 0;
+  
+  for (let i = 1; i < datosTendencia.length; i++) {
+    let valorActual = datosTendencia[i];
+    let valorAnterior = datosTendencia[i - 1];
+
+    if (valorActual > valorAnterior) {
+      contadorSubidas = contadorSubidas + 1; 
+    } else if (valorActual < valorAnterior) {
+      contadorBajadas = contadorBajadas + 1; 
+    }
+  }
+
+  let diagnostico = "Estable / Oscilante";
+  if (contadorSubidas > 0 && contadorBajadas === 0) {
+    diagnostico = "Ascendente 📈 (¡El rendimiento mejora constantemente!)";
+  } else if (contadorBajadas > 0 && contadorSubidas === 0) {
+    diagnostico = "Descendente 📉 (¡Atención, va disminuyendo!)";
+  }
+  
+  $ID("resultadoTendencia").innerHTML = `TENDENCIA DETECTADA: <strong>${diagnostico}</strong>`;
+}
+
+
+// DETECCIÓN DE ANOMALÍAS
+let datosAnomalias = [];
+
+function agregarAnomalia() {
+  let campoInput = $ID("inputAnomalia");
+  let valorNumero = parseFloat(campoInput.value);
+
+  if (!isNaN(valorNumero)) {
+    datosAnomalias.push(valorNumero);
+    $ID("resultadoAnomalia").innerHTML = `DATOS: [ ${datosAnomalias.join(", ")} ]`;
+  }
+  campoInput.value = "";
+}
+
+function calcularAnomalia() {
+  if (datosAnomalias.length === 0) return;
+
+  let limiteMaximoEscolar = 10;
+  let listaErrores = [];
+
+ 
+  for (let i = 0; i < datosAnomalias.length; i++) {
+    let dato = datosAnomalias[i];
+    if (dato > limiteMaximoEscolar || dato < 0) {
+      listaErrores.push(dato);
+    }
+  }
+  
+  if (listaErrores.length > 0) {
+    $ID("resultadoAnomalia").innerHTML = `ANOMALÍAS DETECTADAS: <strong style="color: var(--accent-color);">[ ${listaErrores.join(", ")} ]</strong> superan el rango escolar permitido (0-10).`;
+  } else {
+    $ID("resultadoAnomalia").innerHTML = `ANOMALÍAS DETECTADAS: <strong>Ninguna 🎉</strong>. Todos los datos están en rangos normales.`;
+  }
+}
+
+// botones seccion didactica
+onClick("#btn-add", () => { agregarNota("ejemploProm", notas, "ejemplo1"); });
+onClick("#btn-prueba", () => { promedioE(); });
+
+onClick("#btn-addMedia", () => { agregarMedia(); });
+onClick("#btn-calcMedia", () => { calcularMedia(); });
+
+onClick("#btn-addModa", () => { agregarModa(); });
+onClick("#btn-calcModa", () => { calcularModa(); });
+
+onClick("#btn-calcPorcentaje", () => { calcularPorcentajeTeoria(); });
+
+onClick("#btn-addTendencia", () => { agregarTendencia(); });
+onClick("#btn-calcTendencia", () => { calcularTendencia(); });
+
+onClick("#btn-addAnomalia", () => { agregarAnomalia(); });
+onClick("#btn-calcAnomalia", () => { calcularAnomalia(); });
+
 
 // Función para evaluar el mini-Test estadistico
 function evaluarTest() {
