@@ -1,67 +1,41 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Academic Metrics App</title>
-    <link rel="stylesheet" href="css/variables.css" />
-    <link rel="stylesheet" href="css/estilos.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
-      rel="stylesheet"
-    />
-    <!-- Libreria Chart -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Libreria KaTeX -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css"
-      integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB"
-      crossorigin="anonymous"
-    />
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js"
-      integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js"
-      integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz"
-      crossorigin="anonymous"
-      onload="renderMathInElement(document.body)"
-    ></script>
-  </head>
-  <body>
-    <!-- Header -->
-    <header>
-      <h1>Aplicación de métricas académicas</h1>
-    </header>
 
-    <!-- Nav -->
-    <nav>
-      <button id="btn-main">Principal</button>
-      <button id="btn-manager">Gestionar</button>
-      <button id="btn-teoria">Teoria</button>
-      <button id="btn-about">Acerca de</button>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Metrics App</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/estilos.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <!-- Libreria Chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Libreria KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css"
+    integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js"
+    integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs"
+    crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous"
+    onload="renderMathInElement(document.body)"></script>
+</head>
 
-    <!-- Main -->
-    <main>
-      <!-- Principal -->
-      <section id="section-main" class="oculto">
-        <div class="container-bar-progress">
-          <div class="border-bar-progress">
-            <div id="bar-progress"></div>
-          </div>
-          <div id="text-progress">0%</div>
-        </div>
-        <div class="container w-75">
-          <canvas id="canva" height="100" width="300"></canvas>
-        </div>
-      </section>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Aplicación de métricas académicas</h1>
+  </header>
 
+<<<<<<< HEAD
+  <!-- Nav -->
+  <nav>
+    <button id="btn-main">Principal</button>
+    <button id="btn-manager">Gestionar</button>
+    <button id="btn-teoria">Teoria</button>
+    <button id="btn-about">Acerca de</button>
+  </nav>
+=======
       <!-- Gestion (Manager) -->
       <section id="section-manager" class="oculto">
         <div class="math">
@@ -137,101 +111,196 @@
                 equitativa entre tus amigos; el promedio te dice cuántos le
                 tocarían a cada uno.
               </p>
+>>>>>>> d1dd82a1d46fb2d4002868571dc8ee5377e759d3
 
-              <h4>¿Cómo lo haces tú mismo?</h4>
-              <p>La fórmula matemática es esta:</p>
-              <p>$$\text{Promedio} = \frac{\sum x}{n}$$</p>
-              <ul>
-                <li>
-                  <strong>Paso 1 (La sumatoria - \(\sum x\)):</strong> Suma
-                  todos los valores que tienes. Por ejemplo, si las notas son 8,
-                  9 y 7, la suma es 24.
-                </li>
-                <li>
-                  <strong>Paso 2 (La división - \(n\)):</strong> Cuenta cuántos
-                  valores sumaste. En este caso son 3 notas.
-                </li>
-                <li>
-                  <strong>Paso 3:</strong> Divide la suma total entre la
-                  cantidad de valores (24 divido para 3 es 8). ¡Ese es tu
-                  promedio!
-                </li>
-              </ul>
+  <!-- Main -->
+  <main>
+    <!-- Principal -->
+    <section id="section-main" class="oculto">
+      <div class="container-bar-progress">
+        <div class="border-bar-progress">
+          <div id="bar-progress"></div>
+        </div>
+        <div id="text-progress">0%</div>
+      </div>
+      <div class="container w-75">
+        <canvas id="canva" height="100" width="300"></canvas>
+      </div>
+    </section>
 
-              <h4>¿Cómo lo hace la computadora?</h4>
-              <pre><code class="language-javascript">
-function calcularPromedio(notas) {
-    // 1. Sumamos todo (usando reduce)
-    const suma = notas.reduce((acumulador, nota) => acumulador + nota, 0);
-    // 2. Dividimos por la cantidad de elementos
-    return suma / notas.length;
-}
+      <!-- Gestion (Manager) -->
+      <section id="section-manager" class="oculto">
+        <div class="math">
+          <h2>MATEMATICAS</h2>
+          <label for="notaMath">Calificaciones</label>
+          <input type="number" id="notaMath" placeholder="ingresar notas" />
+          <button id="btn-notaMath">AGREGAR NOTAS</button>
+          <div id="tabla"></div>
+        </div>
+        <div class="ing">
+          <h2>INGLÉS</h2>
+          <label for="notaIng">Calificaciones</label>
+          <input type="number" id="notaIng" placeholder="ingresar notas" />
+          <button id="btn-notaIng">AGREGAR NOTAS</button>
+          <div id="tabla2"></div>
+        </div>
+        <div class="quimica">
+          <h2>QUIMICA</h2>
+          <label for="notaQuim">Calificaciones</label>
+          <input type="number" id="notaQuim" placeholder="ingresar notas" />
+          <button id="btn-notaQuim">AGREGAR NOTAS</button>
+          <div id="tabla3"></div>
+        </div>
+        <div class="biologia">
+          <h2>BIOLOGIA</h2>
+          <label for="notaBio">Calificaciones</label>
+          <input type="number" id="notaBio" placeholder="ingresar notas" />
+          <button id="btn-notaBio">AGREGAR NOTAS</button>
+          <div id="tabla4"></div>
+        </div>
+        <div class="filosifia">
+          <h2>FILOSOFIA</h2>
+          <label for="notaFilo">Calificaciones</label>
+          <input type="number" id="notaFilo" placeholder="ingresar notas" />
+          <button id="btn-notaFilo">AGREGAR NOTAS</button>
+          <div id="tabla5"></div>
+        </div>
+        <div class="fisica">
+          <h2>FISICA</h2>
+          <label for="notaFis">Calificaciones</label>
+          <input type="number" id="notaFis" placeholder="ingresar notas" />
+          <button id="btn-notaFis">AGREGAR NOTAS</button>
+          <div id="tabla6"></div>
+        </div>
+        <div>
+          <button onclick="promediar()">promediar</button>
+          <div id="promedios">PROMEDIOS</div>
+        </div>
+      </section>
+      
+      <!-- Informacion Teorica -->
+      <section id="section-teoria" class="oculto">
+        <h2>Estadística Aplicada</h2>
+        <!-- Menu interno -->
+        <div class="btns-teoria">
+          <a href="#promedio-concept">1. Promedio</a>
+          <a href="#media-concept">2. Media Aritmética</a>
+          <a href="#moda-concept">3. Moda</a>
+          <a href="#porcentaje-concept">4. Porcentaje</a>
+          <a href="#tendencias-concept">5. Análisis de Tendencias</a>
+          <a href="#graficos-concept">6. Interpretación de Gráficos</a>
+          <a href="#analisis-datos-concept">7. Análisis de Datos</a>
+          <a href="#anomalias-concept">8. Detección de Anomalías</a>
+          <a href="#quiz-container">9. Evaluación</a>
+        </div>
+        <ol>
+          <li>
+            <section id="promedio-concept">
+              <h3>Promedio</h3>
+              <p>
+                El promedio es un valor que representa el "centro" de un grupo
+                de números. Imagina que quieres repartir dulces de forma
+                equitativa entre tus amigos; el promedio te dice cuántos le
+                tocarían a cada uno.
+              </p>
+
+            <h4>¿Cómo lo haces tú mismo?</h4>
+            <p>La fórmula matemática es esta:</p>
+            <p>$$\text{Promedio} = \frac{\sum x}{n}$$</p>
+            <ul>
+              <li>
+                <strong>Paso 1 (La sumatoria - \(\sum x\)):</strong> Suma
+                todos los valores que tienes. Por ejemplo, si las notas son 8,
+                9 y 7, la suma es 24.
+              </li>
+              <li>
+                <strong>Paso 2 (La division - \(n\)):</strong> Cuenta cuántos
+                valores sumaste. En este caso son 3 notas.
+              </li>
+              <li>
+                <strong>Paso 3:</strong> Divide la suma total entre la
+                cantidad de valores (24 divido para 3 es 8). ¡Ese es tu
+                promedio!
+              </li>
+              <strong>AHORA UN PEQUEÑO EJEMPLO:</strong>
+              <p>Ingresa tus notas una por una para calcular su promedio:</p>
+              <div class="ejemplo-didactico">
+                <input type="number" placeholder="Ingresa una nota" id="ejemploProm" />
+                <button id="btn-add">Agregar Nota</button>
+                <button id="btn-prueba">Calcular Promedio</button>
+                <div id="ejemplo1" class="ejemplo-resultado">PROMEDIO: </div>
+              </div>
+            </ul>
+
+
+            <h4>¿Cómo lo hace la computadora?</h4>
+            <pre><code class="language-javascript">
+                function calcularPromedio(notas) {
+                    // 1. Sumamos todo (usando reduce)
+                    const suma = notas.reduce((acumulador, nota) => acumulador + nota, 0);
+                    // 2. Dividimos por la cantidad de elementos
+                    return suma / notas.length;
+                }
 
 console.log(calcularPromedio([8, 9, 7])); // Resultado: 8
-              </code></pre>
-
-              <h4>¡Pruébalo tú mismo!</h4>
-              <div class="demo-box">
-                <label>Ingresa números separados por comas:</label>
-                <input
-                  type="text"
-                  id="demo-promedio-input"
-                  value="8, 9, 7"
-                  oninput="demoPromedio()"
-                />
-                <p>
-                  Resultado en tiempo real:
-                  <strong id="demo-promedio-res">8.00</strong>
-                </p>
-              </div>
-            </section>
-          </li>
-
-          <li>
-            <section id="media-concept">
-              <h3>Media Aritmética</h3>
-              <p>
-                En el mundo de la programación y los datos, "Promedio" y "Media"
-                suelen usarse como sinónimos. La media es la medida que más
-                usamos en Inteligencia Artificial para encontrar el punto de
-                equilibrio en un mar de información.
-              </p>
-
-              <h4>¿Cómo lo calculas?</h4>
-              <p>
-                Exactamente igual que el promedio. Si tienes las edades de tus
-                usuarios: 18, 20, 22 y 25.
-              </p>
-              <ul>
-                <li>Sumas las edades: 18 + 20 + 22 + 25 = 85.</li>
-                <li>Divides por los 4 usuarios que tienes: 85 / 4 = 21.25.</li>
-              </ul>
-
-              <pre><code class="language-javascript">
-const edades = [18, 20, 22, 25];
-let sumaEdades = 0;
-
-// Hacemos el Paso 1 iterando la lista
-for(let i = 0; i < edades.length; i++) {
-    sumaEdades += edades[i];
-}
-
-// Hacemos el Paso 2
-const media = sumaEdades / edades.length;
-console.log(`La media es: ${media}`);
         </code></pre>
             </section>
           </li>
 
-          <li>
-            <section id="moda-concept">
-              <h3>Moda</h3>
-              <p>
-                La moda no tiene nada que ver con ropa en este contexto; es
-                simplemente <strong>el valor que más se repite</strong> en un
-                conjunto de datos. Sirve muchísimo para saber cuáles son los
-                gustos más comunes de los usuarios.
-              </p>
+        <li>
+          <section id="media-concept">
+            <h3>Media Aritmética</h3>
+            <p>
+              En el mundo de la programación y los datos, "Promedio" y "Media"
+              suelen usarse como sinónimos. La media es la medida que más
+              usamos en Inteligencia Artificial para encontrar el punto de
+              equilibrio en un mar de información.
+            </p>
+
+            <h4>¿Cómo lo calculas?</h4>
+            <p>
+              Exactamente igual que el promedio. Si tienes las edades de tus
+              usuarios: 18, 20, 22 y 25.
+            </p>
+            <ul>
+              <li>Sumas las edades: 18 + 20 + 22 + 25 = 85.</li>
+              <li>Divides por los 4 usuarios que tienes: 85 / 4 = 21.25.</li>
+              <br>
+              <strong>PROBAR CON EDADES:</strong>
+              <p>Ingresa las edades de tu grupo para obtener la media:</p>
+              <div class="ejemplo-didactico">
+                <input type="number" placeholder="Ingresa una edad" id="inputMediaEdad" />
+                <button id="btn-addMedia">Agregar Edad</button>
+                <button id="btn-calcMedia">Calcular Media</button>
+                <div id="resultadoMedia" class="ejemplo-resultado">MEDIA ARITMÉTICA: </div>
+              </div>
+            </ul>
+
+            <pre><code class="language-javascript">
+              const edades = [18, 20, 22, 25];
+              let sumaEdades = 0;
+
+              // Hacemos el Paso 1 iterando la lista
+              for(let i = 0; i < edades.length; i++) {
+                  sumaEdades += edades[i];
+              }
+
+              // Hacemos el Paso 2
+              const media = sumaEdades / edades.length;
+              console.log(`La media es: ${media}`);
+        </code></pre>
+          </section>
+        </li>
+
+        <li>
+          <section id="moda-concept">
+            <h3>Moda</h3>
+            <p>
+              La moda no tiene nada que ver con ropa en este contexto; es
+              simplemente <strong>el valor que más se repite</strong> en un
+              conjunto de datos. Sirve muchísimo para saber cuáles son los
+              gustos más comunes de los usuarios.
+            </p>
 
               <h4>¿Cómo lo haces tú mismo?</h4>
               <ul>
@@ -242,254 +311,208 @@ console.log(`La media es: ${media}`);
                   moda!
                 </li>
               </ul>
-              <h4>¡Pruébalo tú mismo!</h4>
-              <div class="demo-box">
-                <label>Ingresa números separados por comas:</label>
-                <input
-                  type="text"
-                  id="demo-moda-input"
-                  value="5, 7, 5, 9, 5, 8"
-                  oninput="demoModa()"
-                />
-                <p>
-                  El valor que más se repite es:
-                  <strong id="demo-moda-res">5</strong>
-                </p>
-              </div>
             </section>
           </li>
 
-          <li>
-            <section id="porcentaje-concept">
-              <h3>Porcentaje</h3>
-              <p>
-                El porcentaje nos ayuda a entender qué tan grande es una parte
-                en comparación con el todo, asumiendo que el "todo" siempre vale
-                100. Es vital para barras de progreso o descuentos.
-              </p>
+        <li>
+          <section id="porcentaje-concept">
+            <h3>Porcentaje</h3>
+            <p>
+              El porcentaje nos ayuda a entender qué tan grande es una parte
+              en comparación con el todo, asumiendo que el "todo" siempre vale
+              100. Es vital para barras de progreso o descuentos.
+            </p>
 
-              <h4>¿Cómo lo calculas a mano?</h4>
-              <p>
-                $$ \text{Porcentaje} = \left( \frac{\text{Parte}}{\text{Total}}
-                \right) \times 100 $$
-              </p>
-              <ul>
-                <li>
-                  <strong>Paso 1:</strong> Toma la "Parte" que quieres analizar.
-                  Ejemplo: Tienes 45 puntos en un examen.
-                </li>
-                <li>
-                  <strong>Paso 2:</strong> Divídelo por el "Total" posible. El
-                  examen valía 50 puntos (45 / 50 = 0.90).
-                </li>
-                <li>
-                  <strong>Paso 3:</strong> Multiplica por 100 para pasarlo a
-                  formato de porcentaje (0.90 * 100 = 90%).
-                </li>
-              </ul>
+            <h4>¿Cómo lo calculas a mano?</h4>
+            <p>
+              $$ \text{Porcentaje} = \left( \frac{\text{Parte}}{\text{Total}}
+              \right) \times 100 $$
+            </p>
+            <ul>
+              <li>
+                <strong>Paso 1:</strong> Toma la "Parte" que quieres analizar.
+                Ejemplo: Tienes 45 puntos en un examen.
+              </li>
+              <li>
+                <strong>Paso 2:</strong> Divídelo por el "Total" posible. El
+                examen valía 50 puntos (45 / 50 = 0.90).
+              </li>
+              <li>
+                <strong>Paso 3:</strong> Multiplica por 100 para pasarlo a
+                formato de porcentaje (0.90 * 100 = 90%).
+              </li>
+              <br>
+              <strong>SIMULADOR DE EFECTIVIDAD / AVANCE:</strong>
+              <p>Calcula el porcentaje de forma instantánea:</p>
+              <div class="ejemplo-didactico" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <input type="number" placeholder="Parte (ej. tus puntos)" id="inputPorcentajeParte"
+                  style="width: 48%;" />
+                <input type="number" placeholder="Total (ej. puntos totales)" id="inputPorcentajeTotal"
+                  style="width: 48%;" />
+                <button id="btn-calcPorcentaje" style="width: 100%;">Calcular Porcentaje</button>
+                <div id="resultadoPorcentaje" class="ejemplo-resultado" style="width: 100%;">PORCENTAJE: </div>
+              </div>
+            </ul>
 
-              <h4>¿Cómo lo programamos?</h4>
-              <pre><code class="language-javascript">
-function calcularPorcentaje(puntosObtenidos, puntosTotales) {
-    return (puntosObtenidos / puntosTotales) * 100;
-}
+            <h4>¿Cómo lo programamos?</h4>
+            <pre><code class="language-javascript">
+                  function calcularPorcentaje(puntosObtenidos, puntosTotales) {
+                      return (puntosObtenidos / puntosTotales) * 100;
+                  }
 
-const miNota = calcularPorcentaje(45, 50);
-console.log(`Lograste un ${miNota}% de efectividad`);
+                  const miNota = calcularPorcentaje(45, 50);
+                  console.log(`Lograste un ${miNota}% de efectividad`);
         </code></pre>
-              <h4>¡Pruébalo tú mismo!</h4>
-              <div class="demo-box">
-                <label>Puntos Obtenidos:</label>
-                <input
-                  type="number"
-                  id="demo-porcentaje-parte"
-                  value="45"
-                  oninput="demoPorcentaje()"
-                />
-                <label>Total Posible:</label>
-                <input
-                  type="number"
-                  id="demo-porcentaje-total"
-                  value="50"
-                  oninput="demoPorcentaje()"
-                />
-                <p>
-                  Efectividad: <strong id="demo-porcentaje-res">90%</strong>
-                </p>
-              </div>
             </section>
           </li>
 
-          <li>
-            <section id="tendencias-concept">
-              <h3>Análisis de Tendencias</h3>
-              <p>
-                Una tendencia es un patrón. Nos dice hacia dónde se están
-                moviendo las cosas a lo largo del tiempo. Es la base de las
-                predicciones financieras y de crecimiento.
-              </p>
+        <li>
+          <section id="tendencias-concept">
+            <h3>Análisis de Tendencias</h3>
+            <p>
+              Una tendencia es un patrón. Nos dice hacia dónde se están
+              moviendo las cosas a lo largo del tiempo. Es la base de las
+              predicciones financieras y de crecimiento.
+            </p>
 
-              <h4>¿Cómo identificarla a simple vista?</h4>
-              <ul>
-                <li>
-                  <strong>Ascendente:</strong> Cada valor nuevo es mayor que el
-                  anterior (ej. ventas: 100, 150, 200). ¡El negocio crece!
-                </li>
-                <li>
-                  <strong>Descendente:</strong> Cada valor nuevo es menor.
-                  ¡Cuidado!
-                </li>
-                <li>
-                  <strong>Estable:</strong> Los valores se mantienen muy
-                  parecidos.
-                </li>
-              </ul>
+            <h4>¿Cómo identificarla a simple vista?</h4>
+            <ul>
+              <li>
+                <strong>Ascendente:</strong> Cada valor nuevo es mayor que el
+                anterior (ej. ventas: 100, 150, 200). ¡El negocio crece!
+              </li>
+              <li>
+                <strong>Descendente:</strong> Cada valor nuevo es menor.
+                ¡Cuidado!
+              </li>
+              <li>
+                <strong>Estable:</strong> Los valores se mantienen muy
+                parecidos.
+              </li>
+              <br>
+              <strong>ANALIZADOR DE RITMO ACADÉMICO:</strong>
+              <p>Ingresa tus últimas calificaciones cronológicamente para evaluar tu tendencia:</p>
+              <div class="ejemplo-didactico">
+                <input type="number" placeholder="Nota en orden temporal" id="inputTendencia" />
+                <button id="btn-addTendencia">Agregar a la Serie</button>
+                <button id="btn-calcTendencia">Analizar Tendencia</button>
+                <div id="resultadoTendencia" class="ejemplo-resultado">TENDENCIA: </div>
+              </div>
+            </ul>
 
-              <pre><code class="language-javascript">
-const ventas = [100, 150, 200];
+            <pre><code class="language-javascript">
+                const ventas = [100, 150, 200];
 
-// Comparamos si el último mes fue mejor que el anterior
-if (ventas[2] > ventas[1]) {
-    console.log("¡Tenemos una tendencia de crecimiento!");
-}
+                // Comparamos si el último mes fue mejor que el anterior
+                if (ventas[2] > ventas[1]) {
+                    console.log("¡Tenemos una tendencia de crecimiento!");
+                }
         </code></pre>
-              <h4>¡Pruébalo tú mismo!</h4>
-              <div class="demo-box">
-                <label
-                  >Progreso temporal (ej: números separados por comas):</label
-                >
-                <input
-                  type="text"
-                  id="demo-tendencia-input"
-                  value="10, 15, 12, 18, 14, 20"
-                  oninput="demoTendencia()"
-                />
+            </section>
+          </li>
 
-                <div
-                  class="mini-chart-container"
-                  style="margin-top: 15px; max-height: 180px"
-                >
-                  <canvas id="demo-tendencia-chart"></canvas>
-                </div>
+        <li>
+          <section id="graficos-concept">
+            <h3>Interpretación de Gráficos</h3>
+            <p>
+              A nuestro cerebro le cuesta leer miles de números en una tabla,
+              pero entiende formas y colores al instante. Un gráfico traduce
+              datos en dibujos.
+            </p>
+
+            <h4>¿Cómo elegir y leer el correcto?</h4>
+            <ul>
+              <li>
+                <strong>Gráfico de Barras:</strong> Úsalo para comparar
+                cantidades (¿Qué materia tiene mejores notas?).
+              </li>
+              <li>
+                <strong>Gráfico de Líneas:</strong> Úsalo para ver el tiempo
+                (¿Cómo evolucionó tu nota durante el año?).
+              </li>
+              <li>
+                <strong>Gráfico de Pastel:</strong> Úsalo para ver porcentajes
+                (¿Qué parte del día pasas estudiando vs jugando?).
+              </li>
+            </ul>
+          </section>
+        </li>
+
+        <li>
+          <section id="analisis-datos-concept">
+            <h3>Análisis de Datos</h3>
+            <p>
+              No es magia, es un proceso paso a paso para sacarle la verdad a
+              los números. Como desarrolladores, creamos sistemas que hacen
+              esto automáticamente.
+            </p>
+
+            <h4>Los 5 pasos que tú mismo puedes aplicar:</h4>
+            <ul>
+              <li>
+                <strong>1. Recolección:</strong> Conseguir los datos (pedir
+                las notas a los profesores).
+              </li>
+              <li>
+                <strong>2. Limpieza:</strong> Quitar lo que no sirve o está
+                mal (borrar un registro que dice nota "999" por error).
+              </li>
+              <li>
+                <strong>3. Procesamiento:</strong> Hacer los cálculos (sacar
+                promedios, porcentajes).
+              </li>
+              <li>
+                <strong>4. Visualización:</strong> Dibujar los gráficos.
+              </li>
+              <li>
+                <strong>5. Interpretación:</strong> Tomar decisiones con lo
+                que ves ("Debo estudiar más Física").
+              </li>
+            </ul>
+          </section>
+        </li>
+
+        <li>
+          <section id="anomalias-concept">
+            <h3>Detección de Anomalías</h3>
+            <p>
+              Una anomalía es el "bicho raro" del grupo. Es un dato que se
+              aleja tanto de lo normal que nos obliga a investigar si hubo un
+              error o un evento especial.
+            </p>
+
+            <h4>¿Cómo detectarlo manualmente?</h4>
+            <ul>
+              <li>
+                Mira tus datos normales: 20, 21, 22, 20. Sabes que el rango es
+                alrededor de 21.
+              </li>
+              <li>Aparece un 45.</li>
+              <li>
+                Comparas el 45 con tu rango normal. Al estar tan lejos, lo
+                marcas como anomalía.
+              </li>
+              <br>
+              <strong>FILTRO DE ANOMALÍAS AUTOMÁTICO:</strong>
+              <p>Ingresa notas (rango esperado 0-10). Si pones un error (ej: 88), el sistema lo aislará:</p>
+              <div class="ejemplo-didactico">
+                <input type="number" placeholder="Ingresa datos" id="inputAnomalia" />
+                <button id="btn-addAnomalia">Agregar Dato</button>
+                <button id="btn-calcAnomalia">Detectar Erreores (> 10)</button>
+                <div id="resultadoAnomalia" class="ejemplo-resultado">ANOMALÍAS DETECTADAS: </div>
               </div>
-            </section>
-          </li>
+            </ul>
 
-          <li>
-            <section id="graficos-concept">
-              <h3>Interpretación de Gráficos</h3>
-              <p>
-                A nuestro cerebro le cuesta leer miles de números en una tabla,
-                pero entiende formas y colores al instante. Un gráfico traduce
-                datos en dibujos.
-              </p>
+            <h4>¿Cómo lo hace el código?</h4>
+            <pre><code class="language-javascript">
+                const temperaturas = [20, 21, 22, 20, 21, 45];
+                const limiteNormal = 30; // Definimos qué es "normal"
 
-              <h4>¿Cómo elegir y leer el correcto?</h4>
-              <ul>
-                <li>
-                  <strong>Gráfico de Barras:</strong> Úsalo para comparar
-                  cantidades (¿Qué materia tiene mejores notas?).
-                </li>
-                <li>
-                  <strong>Gráfico de Líneas:</strong> Úsalo para ver el tiempo
-                  (¿Cómo evolucionó tu nota durante el año?).
-                </li>
-                <li>
-                  <strong>Gráfico de Pastel:</strong> Úsalo para ver porcentajes
-                  (¿Qué parte del día pasas estudiando vs jugando?).
-                </li>
-              </ul>
-            </section>
-          </li>
-
-          <li>
-            <section id="analisis-datos-concept">
-              <h3>Análisis de Datos</h3>
-              <p>
-                No es magia, es un proceso paso a paso para sacarle la verdad a
-                los números. Como desarrolladores, creamos sistemas que hacen
-                esto automáticamente.
-              </p>
-
-              <h4>Los 5 pasos que tú mismo puedes aplicar:</h4>
-              <ul>
-                <li>
-                  <strong>1. Recolección:</strong> Conseguir los datos (pedir
-                  las notas a los profesores).
-                </li>
-                <li>
-                  <strong>2. Limpieza:</strong> Quitar lo que no sirve o está
-                  mal (borrar un registro que dice nota "999" por error).
-                </li>
-                <li>
-                  <strong>3. Procesamiento:</strong> Hacer los cálculos (sacar
-                  promedios, porcentajes).
-                </li>
-                <li>
-                  <strong>4. Visualización:</strong> Dibujar los gráficos.
-                </li>
-                <li>
-                  <strong>5. Interpretación:</strong> Tomar decisiones con lo
-                  que ves ("Debo estudiar más Física").
-                </li>
-              </ul>
-            </section>
-          </li>
-
-          <li>
-            <section id="anomalias-concept">
-              <h3>Detección de Anomalías</h3>
-              <p>
-                Una anomalía es el "bicho raro" del grupo. Es un dato que se
-                aleja tanto de lo normal que nos obliga a investigar si hubo un
-                error o un evento especial.
-              </p>
-
-              <h4>¿Cómo detectarlo manualmente?</h4>
-              <ul>
-                <li>
-                  Mira tus datos normales: 20, 21, 22, 20. Sabes que el rango es
-                  alrededor de 21.
-                </li>
-                <li>Aparece un 45.</li>
-                <li>
-                  Comparas el 45 con tu rango normal. Al estar tan lejos, lo
-                  marcas como anomalía.
-                </li>
-              </ul>
-
-              <h4>¿Cómo lo hace el código?</h4>
-              <pre><code class="language-javascript">
-const temperaturas = [20, 21, 22, 20, 21, 45];
-const limiteNormal = 30; // Definimos qué es "normal"
-
-// Filtramos todo lo que supere el límite
-const anomalias = temperaturas.filter(temp => temp > limiteNormal);
-
-console.log("Cuidado, detectamos estas anomalías:", anomalias); 
-// Mostrará: [45]
+                // Filtramos todo lo que supere el límite
+                const anomalias = temperaturas.filter(temp => temp > limiteNormal);
+                console.log("Cuidado, detectamos estas anomalías:", anomalias); 
+                // Mostrará: [45]
         </code></pre>
-              <h4>¡Pruébalo tú mismo!</h4>
-              <div class="demo-box">
-                <label>Lista de datos (separados por comas):</label>
-                <input
-                  type="text"
-                  id="demo-anomalia-datos"
-                  value="20, 21, 22, 20, 21, 45"
-                  oninput="demoAnomalias()"
-                />
-                <label>Límite Umbral Máximo:</label>
-                <input
-                  type="number"
-                  id="demo-anomalia-limite"
-                  value="30"
-                  oninput="demoAnomalias()"
-                />
-                <p>
-                  Anomalías detectadas:
-                  <strong id="demo-anomalia-res">[45]</strong>
-                </p>
-              </div>
             </section>
           </li>
         </ol>
@@ -705,18 +728,20 @@ console.log("Cuidado, detectamos estas anomalías:", anomalias);
           </div>
         </div>
       </section>
+
     </main>
 
-    <!-- Footer -->
-    <footer>
-      <p>Proyecto realizado por el Team D<sup>2</sup></p>
-    </footer>
+  <!-- Footer -->
+  <footer>
+    <p>Proyecto realizado por el Team D<sup>2</sup></p>
+  </footer>
 
-    <!-- Scripts -->
-    <script src="js/utils.js"></script>
-    <script src="js/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
-  </body>
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+</body>
+
 </html>
