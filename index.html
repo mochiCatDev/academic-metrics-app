@@ -27,13 +27,13 @@
     <h1>Aplicación de métricas académicas</h1>
   </header>
 
-  <!-- Nav -->
-  <nav>
-    <button id="btn-main">Principal</button>
-    <button id="btn-manager">Gestionar</button>
-    <button id="btn-teoria">Teoria</button>
-    <button id="btn-about">Acerca de</button>
-  </nav>
+    <!-- Nav -->
+    <nav>
+      <button id="btn-main">Principal</button>
+      <button id="btn-manager">Gestionar</button>
+      <button id="btn-teoria">Teoria</button>
+      <button id="btn-about">Acerca de</button>
+    </nav>
 
   <!-- Main -->
   <main>
@@ -157,12 +157,12 @@
 
             <h4>¿Cómo lo hace la computadora?</h4>
             <pre><code class="language-javascript">
-                function calcularPromedio(notas) {
-                    // 1. Sumamos todo (usando reduce)
-                    const suma = notas.reduce((acumulador, nota) => acumulador + nota, 0);
-                    // 2. Dividimos por la cantidad de elementos
-                    return suma / notas.length;
-                }
+function calcularPromedio(notas) {
+  // 1. Sumamos todo (usando reduce)
+  const suma = notas.reduce((acumulador, nota) => acumulador + nota, 0);
+  // 2. Dividimos por la cantidad de elementos
+    return suma / notas.length;
+}
 
 console.log(calcularPromedio([8, 9, 7])); // Resultado: 8
         </code></pre>
@@ -199,17 +199,17 @@ console.log(calcularPromedio([8, 9, 7])); // Resultado: 8
             </ul>
 
             <pre><code class="language-javascript">
-              const edades = [18, 20, 22, 25];
-              let sumaEdades = 0;
+const edades = [18, 20, 22, 25];
+let sumaEdades = 0;
 
-              // Hacemos el Paso 1 iterando la lista
-              for(let i = 0; i < edades.length; i++) {
-                  sumaEdades += edades[i];
-              }
+// Hacemos el Paso 1 iterando la lista
+for(let i = 0; i < edades.length; i++) {
+  sumaEdades += edades[i];
+}
 
-              // Hacemos el Paso 2
-              const media = sumaEdades / edades.length;
-              console.log(`La media es: ${media}`);
+// Hacemos el Paso 2
+const media = sumaEdades / edades.length;
+console.log(`La media es: ${media}`);
         </code></pre>
           </section>
         </li>
@@ -287,12 +287,12 @@ console.log(calcularPromedio([8, 9, 7])); // Resultado: 8
 
             <h4>¿Cómo lo programamos?</h4>
             <pre><code class="language-javascript">
-                  function calcularPorcentaje(puntosObtenidos, puntosTotales) {
-                      return (puntosObtenidos / puntosTotales) * 100;
-                  }
+function calcularPorcentaje(puntosObtenidos, puntosTotales) {
+    return (puntosObtenidos / puntosTotales) * 100;
+}
 
-                  const miNota = calcularPorcentaje(45, 50);
-                  console.log(`Lograste un ${miNota}% de efectividad`);
+const miNota = calcularPorcentaje(45, 50);
+console.log(`Lograste un ${miNota}% de efectividad`);
         </code></pre>
             </section>
           </li>
@@ -332,12 +332,12 @@ console.log(calcularPromedio([8, 9, 7])); // Resultado: 8
             </ul>
 
             <pre><code class="language-javascript">
-                const ventas = [100, 150, 200];
+const ventas = [100, 150, 200];
 
-                // Comparamos si el último mes fue mejor que el anterior
-                if (ventas[2] > ventas[1]) {
-                    console.log("¡Tenemos una tendencia de crecimiento!");
-                }
+// Comparamos si el último mes fue mejor que el anterior
+if (ventas[2] > ventas[1]) {
+    console.log("¡Tenemos una tendencia de crecimiento!");
+}
         </code></pre>
             </section>
           </li>
@@ -436,13 +436,13 @@ console.log(calcularPromedio([8, 9, 7])); // Resultado: 8
 
             <h4>¿Cómo lo hace el código?</h4>
             <pre><code class="language-javascript">
-                const temperaturas = [20, 21, 22, 20, 21, 45];
-                const limiteNormal = 30; // Definimos qué es "normal"
+const temperaturas = [20, 21, 22, 20, 21, 45];
+const limiteNormal = 30; // Definimos qué es "normal"
 
-                // Filtramos todo lo que supere el límite
-                const anomalias = temperaturas.filter(temp => temp > limiteNormal);
-                console.log("Cuidado, detectamos estas anomalías:", anomalias); 
-                // Mostrará: [45]
+// Filtramos todo lo que supere el límite
+const anomalias = temperaturas.filter(temp => temp > limiteNormal);
+console.log("Cuidado, detectamos estas anomalías:", anomalias); 
+// Mostrará: [45]
         </code></pre>
             </section>
           </li>
