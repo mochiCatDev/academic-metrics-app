@@ -6,11 +6,11 @@ const teoria = $ID("section-teoria");
 const todasLasSecciones = [main, manager, teoria, about];
 const data = [
   "Matematicas",
-  "Filosofia",
-  "Lenguaje",
-  "Ingles",
-  "Biologia",
-  "Quimica",
+  "Inglés",
+  "Química",
+  "Biología",
+  "Filosofía",
+  "Física",
 ];
 
 let miMiniChart = null;
@@ -545,3 +545,73 @@ onClick("#btn-calcTendencia", () => { calcularTendencia(); });
 
 onClick("#btn-addAnomalia", () => { agregarAnomalia(); });
 onClick("#btn-calcAnomalia", () => { calcularAnomalia(); });
+
+
+// Función para evaluar el mini-Test estadistico
+function evaluarTest() {
+  const totalPreguntas = 20;
+  let correctas = 0;
+
+  for (let i = 1; i <= totalPreguntas; i++) {
+    const opcionSeleccionada = document.querySelector(`input[name="p${i}"]:checked`);
+    
+    if (opcionSeleccionada && opcionSeleccionada.value === "correcto") {
+      correctas++;
+    }
+  }
+
+  const notaFinal = ((correctas / totalPreguntas) * 10).toFixed(2);
+  const contenedorResultado = $ID("quiz-resultado");
+
+  if (correctas === totalPreguntas) {
+    contenedorResultado.style.color = "#48bb78"; // Verde exito
+    contenedorResultado.innerHTML = `¡Rendimiento Perfecto! Nota: ${notaFinal}/10.00 (${correctas}/${totalPreguntas} aciertos)`;
+  } else if (notaFinal >= 7.00) {
+    contenedorResultado.style.color = "#2b6cb0"; // Azul enfoque (Aprobado)
+    contenedorResultado.innerHTML = `¡Aprobado! Nota: ${notaFinal}/10.00 (Acertaste ${correctas} de ${totalPreguntas})`;
+  } else if (correctas > 0) {
+    contenedorResultado.style.color = "#dd6b20"; // Naranja advertencia sutil
+    contenedorResultado.innerHTML = `Puedes mejorar. Nota: ${notaFinal}/10.00 (Acertaste ${correctas} de ${totalPreguntas})`;
+  } else {
+    contenedorResultado.style.color = "#e53e3e"; // Rojo error
+    contenedorResultado.innerHTML = `Nota: ${notaFinal}/10.00. Te recomendamos repasar las herramientas prácticas.`;
+  }
+}
+
+// Botones
+onClick("#btn-notaMath", () => {
+  agregarNota("notaMath", notasMath, "tabla");
+});
+onClick("#btn-notaIng", () => {
+  agregarNota("notaIng", notasIng, "tabla2");
+});
+onClick("#btn-notaQuim", () => {
+  agregarNota("notaQuim", notasQuim, "tabla3");
+});
+onClick("#btn-notaBio", () => {
+  agregarNota("notaBio", notasBio, "tabla4");
+});
+onClick("#btn-notaFilo", () => {
+  agregarNota("notaFilo", notasFilo, "tabla5");
+});
+onClick("#btn-notaFis", () => {
+  agregarNota("notaFis", notasFisi, "tabla6");
+});
+onClick("#btn-main", () => {
+  mostrarSeccion(main);
+});
+onClick("#btn-manager", () => {
+  mostrarSeccion(manager);
+});
+onClick("#btn-teoria", () => {
+  mostrarSeccion(teoria);
+});
+onClick("#btn-about", () => {
+  mostrarSeccion(about);
+});
+onClick("#btn-evaluar-quiz", () => {
+  evaluarTest();
+});
+
+mostrarSeccion(main);
+pintarBarras();
