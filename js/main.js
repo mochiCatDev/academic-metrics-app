@@ -296,51 +296,6 @@ function evaluarTest() {
   }
 }
 
-// Botones
-onClick("#btn-notaMath", () => {
-  agregarNota("notaMath", notasMath, "tabla");
-});
-onClick("#btn-notaIng", () => {
-  agregarNota("notaIng", notasIng, "tabla2");
-});
-onClick("#btn-notaQuim", () => {
-  agregarNota("notaQuim", notasQuim, "tabla3");
-});
-onClick("#btn-notaBio", () => {
-  agregarNota("notaBio", notasBio, "tabla4");
-});
-onClick("#btn-notaFilo", () => {
-  agregarNota("notaFilo", notasFilo, "tabla5");
-});
-onClick("#btn-notaFis", () => {
-  agregarNota("notaFis", notasFisi, "tabla6");
-});
-onClick("#btn-main", () => {
-  mostrarSeccion(main);
-});
-onClick("#btn-manager", () => {
-  mostrarSeccion(manager);
-});
-onClick("#btn-teoria", () => {
-  mostrarSeccion(teoria);
-});
-onClick("#btn-about", () => {
-  mostrarSeccion(about);
-});
-onClick("#btn-evaluar-quiz", () => {
-  evaluarTest();
-});
-onClick("#demo-tendencia-input", () => {
-  const inputTendencia = $ID("demo-tendencia-input");
-  if (inputTendencia) {
-    inputTendencia.addEventListener("input", demoTendencia);
-  }
-});
-
-demoTendencia();
-mostrarSeccion(main);
-pintarBarras();
-
 // funciones didacticas
 
 
@@ -528,25 +483,6 @@ function calcularAnomalia() {
   }
 }
 
-// botones seccion didactica
-onClick("#btn-add", () => { agregarNota("ejemploProm", notas, "ejemplo1"); });
-onClick("#btn-prueba", () => { promedioE(); });
-
-onClick("#btn-addMedia", () => { agregarMedia(); });
-onClick("#btn-calcMedia", () => { calcularMedia(); });
-
-onClick("#btn-addModa", () => { agregarModa(); });
-onClick("#btn-calcModa", () => { calcularModa(); });
-
-onClick("#btn-calcPorcentaje", () => { calcularPorcentajeTeoria(); });
-
-onClick("#btn-addTendencia", () => { agregarTendencia(); });
-onClick("#btn-calcTendencia", () => { calcularTendencia(); });
-
-onClick("#btn-addAnomalia", () => { agregarAnomalia(); });
-onClick("#btn-calcAnomalia", () => { calcularAnomalia(); });
-
-
 // Función para evaluar el mini-Test estadistico
 function evaluarTest() {
   const totalPreguntas = 20;
@@ -578,5 +514,46 @@ function evaluarTest() {
   }
 }
 
+// -----------------------
+// |  Seccion de Botones |
+// -----------------------
+
+// Botones para agregar notas
+onClick("#btn-notaMath", () => { agregarNota("notaMath", notasMath, "tabla");  });
+onClick("#btn-notaIng", () => { agregarNota("notaIng", notasIng, "tabla2");  });
+onClick("#btn-notaQuim", () => { agregarNota("notaQuim", notasQuim, "tabla3");  });
+onClick("#btn-notaBio", () => { agregarNota("notaBio", notasBio, "tabla4");	});
+onClick("#btn-notaFilo", () => { agregarNota("notaFilo", notasFilo, "tabla5"); });
+onClick("#btn-notaFis", () => { agregarNota("notaFis", notasFisi, "tabla6"); });
+
+// Botones para mostrar secciones
+onClick("#btn-main", () => { mostrarSeccion(main); });
+onClick("#btn-manager", () => { mostrarSeccion(manager); });
+onClick("#btn-teoria", () => { mostrarSeccion(teoria); });
+onClick("#btn-about", () => { mostrarSeccion(about); });
+
+onClick("#btn-evaluar-quiz", () => { evaluarTest(); });
+onClick("#demo-tendencia-input", () => {
+  const inputTendencia = $ID("demo-tendencia-input");
+  if (inputTendencia) {
+    inputTendencia.addEventListener("input", demoTendencia);
+  }
+});
+
+// botones seccion didactica
+onClick("#btn-add", () => { agregarNota("ejemploProm", notas, "ejemplo1"); });
+onClick("#btn-prueba", () => { promedioE(); });
+onClick("#btn-addMedia", () => { agregarMedia(); });
+onClick("#btn-calcMedia", () => { calcularMedia(); });
+onClick("#btn-addModa", () => { agregarModa(); });
+onClick("#btn-calcModa", () => { calcularModa(); });
+onClick("#btn-calcPorcentaje", () => { calcularPorcentajeTeoria(); });
+onClick("#btn-addTendencia", () => { agregarTendencia(); });
+onClick("#btn-calcTendencia", () => { calcularTendencia(); });
+onClick("#btn-addAnomalia", () => { agregarAnomalia(); });
+onClick("#btn-calcAnomalia", () => { calcularAnomalia(); });
+
+
+demoTendencia();
 mostrarSeccion(main);
 pintarBarras();
