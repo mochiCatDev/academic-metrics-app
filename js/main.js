@@ -296,25 +296,24 @@ function evaluarTest() {
   }
 }
 
-// funciones didacticas
-
+// --------------------------
+// |  Funciones didacticas  |
+// --------------------------
 
 //  PROMEDIO 
 let notas = []; 
 
 function promedioE() { 
   if (notas.length === 0) {
-    $ID("ejemplo1").innerHTML = "PROMEDIO: Sin datos ingresados";
+    $ID("ejemplo1").innerHTML = `PROMEDIO: <span style="color: red">Sin datos ingresados</span>`;
     return;
   }
 
   let sumaTotal = 0;
-  notas.forEach((nota) => { 
-    sumaTotal = sumaTotal + nota;
-  });
+  notas.forEach(nota => { sumaTotal = sumaTotal + nota; });
 
-  let resultadoPromedio = sumaTotal / notas.length;
-  $ID("ejemplo1").innerHTML = `PROMEDIO: <strong>${resultadoPromedio.toFixed(2)}</strong> (Datos: [ ${notas.join(" - ")} ])`;
+  let resultadoPromedio = (sumaTotal / notas.length).toFixed(2);
+  $ID("ejemplo1").innerHTML = `PROMEDIO: <strong>${resultadoPromedio}</strong>`;
 }
 
 
@@ -361,30 +360,14 @@ function calcularModa() {
   if (datosModa.length === 0) return;
   let frecuencias = {}; 
   
-  for (let i = 0; i < datosModa.length; i++) {
-    let numeroActual = datosModa[i];
-    if (frecuencias[numeroActual] === undefined) {
-      frecuencias[numeroActual] = 1;
-    } else {
-      frecuencias[numeroActual] = frecuencias[numeroActual] + 1;
-    }
-  }
-
-  let maxRepeticiones = 0;
-  for (let numero in frecuencias) {
-    if (frecuencias[numero] > maxRepeticiones) {
-      maxRepeticiones = frecuencias[numero];
-    }
-  }
-  let modasEncontradas = [];
-  for (let numero in frecuencias) {
-    if (frecuencias[numero] === maxRepeticiones && maxRepeticiones > 1) {
-      modasEncontradas.push(numero);
-    }
-  }
+  datosModa.forEach(n => frecuencias[n] = (frecuencias[n] || 0) + 1);
+  let maxRepeticiones = Math.max(...Object.values(frecuencias));
+  let modasEncontradas = Object.keys(frecuencias).filter(n => frecuencias[n] === maxRepeticiones && maxRepeticiones > 1);
+  
   if (modasEncontradas.length === 0) {
     $ID("resultadoModa").innerHTML = `MODA: <strong>No hay moda</strong> (Ningún valor se repite)`;
-  } else {
+  } 
+  else {
     $ID("resultadoModa").innerHTML = `MODA: <strong>${modasEncontradas.join(", ")}</strong> (Se repite ${maxRepeticiones} veces)`;
   }
 }
@@ -399,6 +382,7 @@ function calcularPorcentajeTeoria() {
     $ID("resultadoPorcentaje").innerHTML = "PORCENTAJE: Por favor ingresa valores válidos.";
     return;
   }
+  
   let porcentajeCalculado = (parte / total) * 100;
   $ID("resultadoPorcentaje").innerHTML = `PORCENTAJE: <strong>${porcentajeCalculado.toFixed(2)}%</strong>`;
 }
@@ -432,7 +416,8 @@ function calcularTendencia() {
 
     if (valorActual > valorAnterior) {
       contadorSubidas = contadorSubidas + 1; 
-    } else if (valorActual < valorAnterior) {
+    }
+    else if (valorActual < valorAnterior) {
       contadorBajadas = contadorBajadas + 1; 
     }
   }
@@ -467,18 +452,16 @@ function calcularAnomalia() {
 
   let limiteMaximoEscolar = 10;
   let listaErrores = [];
-
  
   for (let i = 0; i < datosAnomalias.length; i++) {
     let dato = datosAnomalias[i];
-    if (dato > limiteMaximoEscolar || dato < 0) {
-      listaErrores.push(dato);
-    }
+    if (dato > limiteMaximoEscolar || dato < 0) { listaErrores.push(dato); }
   }
   
   if (listaErrores.length > 0) {
     $ID("resultadoAnomalia").innerHTML = `ANOMALÍAS DETECTADAS: <strong style="color: var(--accent-color);">[ ${listaErrores.join(", ")} ]</strong> superan el rango escolar permitido (0-10).`;
-  } else {
+  }
+  else {
     $ID("resultadoAnomalia").innerHTML = `ANOMALÍAS DETECTADAS: <strong>Ninguna 🎉</strong>. Todos los datos están en rangos normales.`;
   }
 }
@@ -514,9 +497,9 @@ function evaluarTest() {
   }
 }
 
-// -----------------------
-// |  Seccion de Botones |
-// -----------------------
+// ------------------------
+// |  Seccion de Botones  |
+// ------------------------
 
 // Botones para agregar notas
 onClick("#btn-notaMath", () => { agregarNota("notaMath", notasMath, "tabla");  });
