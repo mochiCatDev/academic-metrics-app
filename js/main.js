@@ -144,14 +144,11 @@ function sacar_promedios() {
 }
 
 function agregarNota(id, arreglo, divTabla) {
-  let cmpNotas = parseFloat($ID(id).value);
   let tabla = "NOTAS";
-  let listado = $ID(divTabla);
-  arreglo.push(cmpNotas);
-  for (let i = 0; i < arreglo.length; i++) {
-    tabla += "<p>" + arreglo[i] + "<p/>";
-  }
-  listado.innerHTML = tabla;
+  arreglo.push(parseFloat($ID(id).value));
+  arreglo.forEach(nota => tabla += `<p>${nota}</p>`);
+    
+  $ID(divTabla).innerHTML = tabla;
   $ID(id).value = "";
 }
 
