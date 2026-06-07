@@ -46,7 +46,7 @@ function actualizarBarraProgreso(valorActual, valorMaximo) {
   const barra_progress = $ID("bar-progress");
   const text_progress = $ID("text-progress");
 
-  let porcentaje = ((valorActual / valorMaximo) * 100).toFixed(2);
+  let porcentaje = obtenerPorcentajeDelTotal(valorActula, valorMaximo);
 
   if (porcentaje < 0) porcentaje = 0;
   if (porcentaje > 100) porcentaje = 100;
