@@ -1,12 +1,30 @@
 // Variables Globales
-const data = [
-  "Matematicas",
-  "Inglés",
-  "Química",
-  "Biología",
-  "Filosofía",
-  "Física",
-];
+const DATOS_MATERIAS = {
+  matematica: {
+  	nombre: "Matemática",
+  	notas: []
+  },
+  ingles: {
+  	nombre: "Inglés",
+  	notas: []
+  },
+  quimica: {
+    nombre: "Química",
+  	notas: []
+  },
+  biologia: {
+    nombre: "Biología",
+  	notas: []
+  },
+  filosofia: {
+  	nombre: "Filosofía",
+  	notas: []
+  },
+  fisica: {
+  	nombre: "Física",
+  	notas: []
+  }
+};
 const SECCIONES = {
   main: $ID("section-main"),
   manager: $ID("section-manager"),
@@ -15,12 +33,6 @@ const SECCIONES = {
 };
 
 let miMiniChart = null;
-let notasMath = [];
-let notasIng = [];
-let notasQuim = [];
-let notasBio = [];
-let notasFilo = [];
-let notasFisi = [];
 let promedios = [];
 
 // Funcion para mostrar una seccion y ocultar las demas de manera automatica
@@ -55,7 +67,7 @@ function pintarBarras() {
   let backgroundColors = [];
   let borderColors = [];
 
-  promedios.forEach((nota) => {
+  promedios.forEach(nota => {
     if (nota < 5) {
       backgroundColors.push("rgba(255, 99, 132, 0.6)");
       borderColors.push("rgba(255, 99, 132, 1)");
@@ -71,7 +83,7 @@ function pintarBarras() {
   barras = new Chart(canva, {
     type: "bar",
     data: {
-      labels: data,
+      labels: Object.keys(DATOS_MATERIAS),
       datasets: [
         {
           label: "NOTAS GENERALES",
@@ -88,93 +100,45 @@ function pintarBarras() {
           beginAtZero: true,
           min: 0,
           max: 10,
+          step: 1
         },
       },
     },
   });
 }
 
-function promediar() {
+function sacar_promedios() {
   promedios = [];
-  let sumaMath = 0;
-  let sumaIng = 0;
-  let sumaQuim = 0;
-  let sumaBio = 0;
-  let sumaFilo = 0;
-  let sumaFisi = 0;
-  let promedioM;
-  let promedioI;
-  let promedioQ;
-  let promedioB;
-  let promedioFilo;
-  let promedioFis;
-  let promedioGeneral;
-  let tabla = "PROMEDIOS";
-  let listado = $ID("promedios");
 
-  notasMath.forEach((nota) => {
-    sumaMath = sumaMath + nota;
-  });
-  docM = (sumaMath / notasMath.length).toFixed(2);
-  promedioM = parseFloat(docM);
-  promedios.push(promedioM);
+  promedioMatematicas = promediar(DATOS_MATERIAS.matematica.notas, 2);
+  promedioIngles = promediar(DATOS_MATERIAS.ingles.notas, 2);
+  promedioQuimica = promediar(DATOS_MATERIAS.quimica.notas, 2);
+  promedioBiologia = promediar(DATOS_MATERIAS.biologia.notas, 2);
+  promedioFilosofia = promediar(DATOS_MATERIAS.filosofia.notas, 2);
+  promedioFisica = promediar(DATOS_MATERIAS.fisica.notas, 2);
 
-  notasIng.forEach((nota) => {
-    sumaIng = sumaIng + nota;
-  });
-  docI = (sumaIng / notasIng.length).toFixed(2);
-  promedioI = parseFloat(docI);
-  promedios.push(promedioI);
+  promedios.push(
+    promedioMatematicas,
+    promedioIngles,
+    promedioQuimica,
+    promedioBiologia,
+    promedioFilosofia,
+    promedioFisica
+  );
+  
+  promedioGeneral = promediar(promedios, 2);
 
-  notasQuim.forEach((nota) => {
-    sumaQuim = sumaQuim + nota;
-  });
-  docQ = (sumaQuim / notasQuim.length).toFixed(2);
-  promedioQ = parseFloat(docQ);
-  promedios.push(promedioQ);
-
-  notasBio.forEach((nota) => {
-    sumaBio = sumaBio + nota;
-  });
-  docB = (sumaBio / notasBio.length).toFixed(2);
-  promedioB = parseFloat(docB);
-  promedios.push(promedioB);
-
-  notasFilo.forEach((nota) => {
-    sumaFilo = sumaFilo + nota;
-  });
-  docFilo = (sumaFilo / notasFilo.length).toFixed(2);
-  promedioFilo = parseFloat(docFilo);
-  promedios.push(promedioFilo);
-
-  notasFisi.forEach((nota) => {
-    sumaFisi = sumaFisi + nota;
-  });
-  docFis = (sumaFisi / notasFisi.length).toFixed(2);
-  promedioFis = parseFloat(docFis);
-  promedios.push(promedioFis);
-
-  promedioGeneral = (
-    (promedioM +
-      promedioI +
-      promedioQ +
-      promedioB +
-      promedioFilo +
-      promedioFis) /
-    6
-  ).toFixed(2);
-
-  tabla = `
-    <p>Promedio matematicas: ${promedioM}</p>
-    <p>Promedio ingles: ${promedioI}</p>
-    <p>Promedio quimica: ${promedioQ}</p>
-    <p>Promedio biologia: ${promedioB}</p>
-    <p>Promedio filosofia: ${promedioFilo}</p>
-    <p>Promedio fisica: ${promedioFis}</p>
-    <p>Promedio Total: ${promedioGeneral}</p>
+  $ID("promedios").innerHTML = `
+    <h3>PROMEDIOS</h3>
+    <p>Promedio matematicas: ${promedioMatematicas}</p>
+    <p>Promedio ingles: ${promedioIngles}</p>
+    <p>Promedio quimica: ${promedioQuimica}</p>
+    <p>Promedio biologia: ${promedioBiologia}</p>
+    <p>Promedio filosofia: ${promedioFilosofia}</p>
+    <p>Promedio fisica: ${promedioFisica}</p>
+    <p>Promedio Total: ${promedioGeneral}</p>                            
   `;
 
-  listado.innerHTML = tabla;
   pintarBarras();
   actualizarBarraProgreso(promedioGeneral, 10);
 }
@@ -307,10 +271,8 @@ function promedioE() {
     return;
   }
 
-  let sumaTotal = 0;
-  notas.forEach(nota => { sumaTotal = sumaTotal + nota; });
+  let resultadoPromedio = promediar(notas, 2);
 
-  let resultadoPromedio = (sumaTotal / notas.length).toFixed(2);
   $ID("ejemplo1").innerHTML = `PROMEDIO: <strong>${resultadoPromedio}</strong>`;
 }
 
@@ -500,12 +462,12 @@ function evaluarTest() {
 // ------------------------
 
 // Botones para agregar notas
-onClick("#btn-notaMath", () => { agregarNota("notaMath", notasMath, "tabla");  });
-onClick("#btn-notaIng", () => { agregarNota("notaIng", notasIng, "tabla2");  });
-onClick("#btn-notaQuim", () => { agregarNota("notaQuim", notasQuim, "tabla3");  });
-onClick("#btn-notaBio", () => { agregarNota("notaBio", notasBio, "tabla4");	});
-onClick("#btn-notaFilo", () => { agregarNota("notaFilo", notasFilo, "tabla5"); });
-onClick("#btn-notaFis", () => { agregarNota("notaFis", notasFisi, "tabla6"); });
+onClick("#btn-notaMath", () => { agregarNota("notaMath", DATOS_MATERIAS.matematica.notas, "tabla");  });
+onClick("#btn-notaIng", () => { agregarNota("notaIng", DATOS_MATERIAS.ingles.notas, "tabla2");  });
+onClick("#btn-notaQuim", () => { agregarNota("notaQuim", DATOS_MATERIAS.quimica.notas, "tabla3");  });
+onClick("#btn-notaBio", () => { agregarNota("notaBio", DATOS_MATERIAS.biologia.notas, "tabla4");	});
+onClick("#btn-notaFilo", () => { agregarNota("notaFilo", DATOS_MATERIAS.filosofia.notas, "tabla5"); });
+onClick("#btn-notaFis", () => { agregarNota("notaFis", DATOS_MATERIAS.fisica.notas, "tabla6"); });
 
 // Botones para mostrar secciones
 onClick("#btn-main", () => { mostrarSeccion(SECCIONES.main) });

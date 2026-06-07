@@ -12,3 +12,9 @@ const onClick = (selector, callback) => {
     console.warn(`onClick: El elemento "${selector}" no se encontró en el DOM.`);
   }
 };
+
+// Funcion para promediar
+const promediar = (arreglo, decimales) => {
+  let sumaTotal = arreglo.reduce((acomulador, numeroActual) => { return acomulador + numeroActual }, 0);
+  return parseFloat((sumaTotal/arreglo.length).toFixed(decimales));
+};
