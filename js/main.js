@@ -1,33 +1,43 @@
 // Variables Globales
-const main = $ID("section-main");
-const manager = $ID("section-manager");
-const about = $ID("section-about");
-const teoria = $ID("section-teoria");
-const todasLasSecciones = [main, manager, teoria, about];
-const data = [
-  "Matematicas",
-  "Inglés",
-  "Química",
-  "Biología",
-  "Filosofía",
-  "Física",
-];
+const DATOS_MATERIAS = {
+  matematica: {
+  	nombre: "Matemática",
+  	notas: []
+  },
+  ingles: {
+  	nombre: "Inglés",
+  	notas: []
+  },
+  quimica: {
+    nombre: "Química",
+  	notas: []
+  },
+  biologia: {
+    nombre: "Biología",
+  	notas: []
+  },
+  filosofia: {
+  	nombre: "Filosofía",
+  	notas: []
+  },
+  fisica: {
+  	nombre: "Física",
+  	notas: []
+  }
+};
+const SECCIONES = {
+  main: $ID("section-main"),
+  manager: $ID("section-manager"),
+  about: $ID("section-about"),
+  teoria: $ID("section-teoria")
+};
 
 let miMiniChart = null;
-let notasMath = [];
-let notasIng = [];
-let notasQuim = [];
-let notasBio = [];
-let notasFilo = [];
-let notasFisi = [];
 let promedios = [];
 
 // Funcion para mostrar una seccion y ocultar las demas de manera automatica
 function mostrarSeccion(seccion) {
-  todasLasSecciones.forEach((seccion) => {
-    seccion.classList.add("oculto");
-  });
-
+  Object.keys(SECCIONES).forEach(secciones => SECCIONES[secciones].classList.add("oculto"));
   seccion.classList.remove("oculto");
 }
 
@@ -36,7 +46,7 @@ function actualizarBarraProgreso(valorActual, valorMaximo) {
   const barra_progress = $ID("bar-progress");
   const text_progress = $ID("text-progress");
 
-  let porcentaje = ((valorActual / valorMaximo) * 100).toFixed(2);
+  let porcentaje = obtenerPorcentajeDelTotal(valorActual, valorMaximo);
 
   if (porcentaje < 0) porcentaje = 0;
   if (porcentaje > 100) porcentaje = 100;
@@ -57,7 +67,7 @@ function pintarBarras() {
   let backgroundColors = [];
   let borderColors = [];
 
-  promedios.forEach((nota) => {
+  promedios.forEach(nota => {
     if (nota < 5) {
       backgroundColors.push("rgba(255, 99, 132, 0.6)");
       borderColors.push("rgba(255, 99, 132, 1)");
@@ -73,7 +83,7 @@ function pintarBarras() {
   barras = new Chart(canva, {
     type: "bar",
     data: {
-      labels: data,
+      labels: Object.keys(DATOS_MATERIAS),
       datasets: [
         {
           label: "NOTAS GENERALES",
@@ -90,106 +100,55 @@ function pintarBarras() {
           beginAtZero: true,
           min: 0,
           max: 10,
+          step: 1
         },
       },
     },
   });
 }
 
-function promediar() {
+function sacar_promedios() {
   promedios = [];
-  let sumaMath = 0;
-  let sumaIng = 0;
-  let sumaQuim = 0;
-  let sumaBio = 0;
-  let sumaFilo = 0;
-  let sumaFisi = 0;
-  let promedioM;
-  let promedioI;
-  let promedioQ;
-  let promedioB;
-  let promedioFilo;
-  let promedioFis;
-  let promedioGeneral;
-  let tabla = "PROMEDIOS";
-  let listado = $ID("promedios");
 
-  notasMath.forEach((nota) => {
-    sumaMath = sumaMath + nota;
-  });
-  docM = (sumaMath / notasMath.length).toFixed(2);
-  promedioM = parseFloat(docM);
-  promedios.push(promedioM);
+  promedioMatematicas = promediar(DATOS_MATERIAS.matematica.notas, 2);
+  promedioIngles = promediar(DATOS_MATERIAS.ingles.notas, 2);
+  promedioQuimica = promediar(DATOS_MATERIAS.quimica.notas, 2);
+  promedioBiologia = promediar(DATOS_MATERIAS.biologia.notas, 2);
+  promedioFilosofia = promediar(DATOS_MATERIAS.filosofia.notas, 2);
+  promedioFisica = promediar(DATOS_MATERIAS.fisica.notas, 2);
 
-  notasIng.forEach((nota) => {
-    sumaIng = sumaIng + nota;
-  });
-  docI = (sumaIng / notasIng.length).toFixed(2);
-  promedioI = parseFloat(docI);
-  promedios.push(promedioI);
+  promedios.push(
+    promedioMatematicas,
+    promedioIngles,
+    promedioQuimica,
+    promedioBiologia,
+    promedioFilosofia,
+    promedioFisica
+  );
+  
+  promedioGeneral = promediar(promedios, 2);
 
-  notasQuim.forEach((nota) => {
-    sumaQuim = sumaQuim + nota;
-  });
-  docQ = (sumaQuim / notasQuim.length).toFixed(2);
-  promedioQ = parseFloat(docQ);
-  promedios.push(promedioQ);
-
-  notasBio.forEach((nota) => {
-    sumaBio = sumaBio + nota;
-  });
-  docB = (sumaBio / notasBio.length).toFixed(2);
-  promedioB = parseFloat(docB);
-  promedios.push(promedioB);
-
-  notasFilo.forEach((nota) => {
-    sumaFilo = sumaFilo + nota;
-  });
-  docFilo = (sumaFilo / notasFilo.length).toFixed(2);
-  promedioFilo = parseFloat(docFilo);
-  promedios.push(promedioFilo);
-
-  notasFisi.forEach((nota) => {
-    sumaFisi = sumaFisi + nota;
-  });
-  docFis = (sumaFisi / notasFisi.length).toFixed(2);
-  promedioFis = parseFloat(docFis);
-  promedios.push(promedioFis);
-
-  promedioGeneral = (
-    (promedioM +
-      promedioI +
-      promedioQ +
-      promedioB +
-      promedioFilo +
-      promedioFis) /
-    6
-  ).toFixed(2);
-
-  tabla = `
-    <p>Promedio matematicas: ${promedioM}</p>
-    <p>Promedio ingles: ${promedioI}</p>
-    <p>Promedio quimica: ${promedioQ}</p>
-    <p>Promedio biologia: ${promedioB}</p>
-    <p>Promedio filosofia: ${promedioFilo}</p>
-    <p>Promedio fisica: ${promedioFis}</p>
-    <p>Promedio Total: ${promedioGeneral}</p>
+  $ID("promedios").innerHTML = `
+    <h3>PROMEDIOS</h3>
+    <p>Promedio matematicas: ${promedioMatematicas}</p>
+    <p>Promedio ingles: ${promedioIngles}</p>
+    <p>Promedio quimica: ${promedioQuimica}</p>
+    <p>Promedio biologia: ${promedioBiologia}</p>
+    <p>Promedio filosofia: ${promedioFilosofia}</p>
+    <p>Promedio fisica: ${promedioFisica}</p>
+    <p>Promedio Total: ${promedioGeneral}</p>                            
   `;
 
-  listado.innerHTML = tabla;
   pintarBarras();
   actualizarBarraProgreso(promedioGeneral, 10);
 }
 
 function agregarNota(id, arreglo, divTabla) {
-  let cmpNotas = parseFloat($ID(id).value);
   let tabla = "NOTAS";
-  let listado = $ID(divTabla);
-  arreglo.push(cmpNotas);
-  for (let i = 0; i < arreglo.length; i++) {
-    tabla += "<p>" + arreglo[i] + "<p/>";
-  }
-  listado.innerHTML = tabla;
+  arreglo.push(parseFloat($ID(id).value));
+  arreglo.forEach(nota => tabla += `<p>${nota}</p>`);
+    
+  $ID(divTabla).innerHTML = tabla;
   $ID(id).value = "";
 }
 
@@ -265,101 +224,22 @@ function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
   });
 }
 
-// Función para evaluar el mini-Test estadistico
-function evaluarTest() {
-  const totalPreguntas = 20;
-  let correctas = 0;
-
-  for (let i = 1; i <= totalPreguntas; i++) {
-    const opcionSeleccionada = document.querySelector(`input[name="p${i}"]:checked`);
-    
-    if (opcionSeleccionada && opcionSeleccionada.value === "correcto") {
-      correctas++;
-    }
-  }
-
-  const notaFinal = ((correctas / totalPreguntas) * 10).toFixed(2);
-  const contenedorResultado = $ID("quiz-resultado");
-
-  if (correctas === totalPreguntas) {
-    contenedorResultado.style.color = "#48bb78"; // Verde exito
-    contenedorResultado.innerHTML = `¡Rendimiento Perfecto! Nota: ${notaFinal}/10.00 (${correctas}/${totalPreguntas} aciertos)`;
-  } else if (notaFinal >= 7.00) {
-    contenedorResultado.style.color = "#2b6cb0"; // Azul enfoque (Aprobado)
-    contenedorResultado.innerHTML = `¡Aprobado! Nota: ${notaFinal}/10.00 (Acertaste ${correctas} de ${totalPreguntas})`;
-  } else if (correctas > 0) {
-    contenedorResultado.style.color = "#dd6b20"; // Naranja advertencia sutil
-    contenedorResultado.innerHTML = `Puedes mejorar. Nota: ${notaFinal}/10.00 (Acertaste ${correctas} de ${totalPreguntas})`;
-  } else {
-    contenedorResultado.style.color = "#e53e3e"; // Rojo error
-    contenedorResultado.innerHTML = `Nota: ${notaFinal}/10.00. Te recomendamos repasar las herramientas prácticas.`;
-  }
-}
-
-// Botones
-onClick("#btn-notaMath", () => {
-  agregarNota("notaMath", notasMath, "tabla");
-});
-onClick("#btn-notaIng", () => {
-  agregarNota("notaIng", notasIng, "tabla2");
-});
-onClick("#btn-notaQuim", () => {
-  agregarNota("notaQuim", notasQuim, "tabla3");
-});
-onClick("#btn-notaBio", () => {
-  agregarNota("notaBio", notasBio, "tabla4");
-});
-onClick("#btn-notaFilo", () => {
-  agregarNota("notaFilo", notasFilo, "tabla5");
-});
-onClick("#btn-notaFis", () => {
-  agregarNota("notaFis", notasFisi, "tabla6");
-});
-onClick("#btn-main", () => {
-  mostrarSeccion(main);
-});
-onClick("#btn-manager", () => {
-  mostrarSeccion(manager);
-});
-onClick("#btn-teoria", () => {
-  mostrarSeccion(teoria);
-});
-onClick("#btn-about", () => {
-  mostrarSeccion(about);
-});
-onClick("#btn-evaluar-quiz", () => {
-  evaluarTest();
-});
-onClick("#demo-tendencia-input", () => {
-  const inputTendencia = $ID("demo-tendencia-input");
-  if (inputTendencia) {
-    inputTendencia.addEventListener("input", demoTendencia);
-  }
-});
-
-demoTendencia();
-mostrarSeccion(main);
-pintarBarras();
-
-// funciones didacticas
-
+// --------------------------
+// |  Funciones didacticas  |
+// --------------------------
 
 //  PROMEDIO 
 let notas = []; 
 
 function promedioE() { 
   if (notas.length === 0) {
-    $ID("ejemplo1").innerHTML = "PROMEDIO: Sin datos ingresados";
+    $ID("ejemplo1").innerHTML = `PROMEDIO: <span style="color: red">Sin datos ingresados</span>`;
     return;
   }
 
-  let sumaTotal = 0;
-  notas.forEach((nota) => { 
-    sumaTotal = sumaTotal + nota;
-  });
+  let resultadoPromedio = promediar(notas, 2);
 
-  let resultadoPromedio = sumaTotal / notas.length;
-  $ID("ejemplo1").innerHTML = `PROMEDIO: <strong>${resultadoPromedio.toFixed(2)}</strong> (Datos: [ ${notas.join(" - ")} ])`;
+  $ID("ejemplo1").innerHTML = `PROMEDIO: <strong>${resultadoPromedio}</strong>`;
 }
 
 
@@ -406,30 +286,14 @@ function calcularModa() {
   if (datosModa.length === 0) return;
   let frecuencias = {}; 
   
-  for (let i = 0; i < datosModa.length; i++) {
-    let numeroActual = datosModa[i];
-    if (frecuencias[numeroActual] === undefined) {
-      frecuencias[numeroActual] = 1;
-    } else {
-      frecuencias[numeroActual] = frecuencias[numeroActual] + 1;
-    }
-  }
-
-  let maxRepeticiones = 0;
-  for (let numero in frecuencias) {
-    if (frecuencias[numero] > maxRepeticiones) {
-      maxRepeticiones = frecuencias[numero];
-    }
-  }
-  let modasEncontradas = [];
-  for (let numero in frecuencias) {
-    if (frecuencias[numero] === maxRepeticiones && maxRepeticiones > 1) {
-      modasEncontradas.push(numero);
-    }
-  }
+  datosModa.forEach(n => frecuencias[n] = (frecuencias[n] || 0) + 1);
+  let maxRepeticiones = Math.max(...Object.values(frecuencias));
+  let modasEncontradas = Object.keys(frecuencias).filter(n => frecuencias[n] === maxRepeticiones && maxRepeticiones > 1);
+  
   if (modasEncontradas.length === 0) {
     $ID("resultadoModa").innerHTML = `MODA: <strong>No hay moda</strong> (Ningún valor se repite)`;
-  } else {
+  } 
+  else {
     $ID("resultadoModa").innerHTML = `MODA: <strong>${modasEncontradas.join(", ")}</strong> (Se repite ${maxRepeticiones} veces)`;
   }
 }
@@ -444,8 +308,9 @@ function calcularPorcentajeTeoria() {
     $ID("resultadoPorcentaje").innerHTML = "PORCENTAJE: Por favor ingresa valores válidos.";
     return;
   }
-  let porcentajeCalculado = (parte / total) * 100;
-  $ID("resultadoPorcentaje").innerHTML = `PORCENTAJE: <strong>${porcentajeCalculado.toFixed(2)}%</strong>`;
+  
+  let porcentajeCalculado = obtenerPorcentajeDelTotal(parte, total);
+  $ID("resultadoPorcentaje").innerHTML = `PORCENTAJE: <strong>${porcentajeCalculado}%</strong>`;
 }
 
 
@@ -477,7 +342,8 @@ function calcularTendencia() {
 
     if (valorActual > valorAnterior) {
       contadorSubidas = contadorSubidas + 1; 
-    } else if (valorActual < valorAnterior) {
+    }
+    else if (valorActual < valorAnterior) {
       contadorBajadas = contadorBajadas + 1; 
     }
   }
@@ -512,71 +378,89 @@ function calcularAnomalia() {
 
   let limiteMaximoEscolar = 10;
   let listaErrores = [];
-
  
   for (let i = 0; i < datosAnomalias.length; i++) {
     let dato = datosAnomalias[i];
-    if (dato > limiteMaximoEscolar || dato < 0) {
-      listaErrores.push(dato);
-    }
+    if (dato > limiteMaximoEscolar || dato < 0) { listaErrores.push(dato); }
   }
   
   if (listaErrores.length > 0) {
     $ID("resultadoAnomalia").innerHTML = `ANOMALÍAS DETECTADAS: <strong style="color: var(--accent-color);">[ ${listaErrores.join(", ")} ]</strong> superan el rango escolar permitido (0-10).`;
-  } else {
+  }
+  else {
     $ID("resultadoAnomalia").innerHTML = `ANOMALÍAS DETECTADAS: <strong>Ninguna 🎉</strong>. Todos los datos están en rangos normales.`;
   }
 }
 
+
+// ---------------------
+// |  Mini-Test Final  |
+// ---------------------
+
+function evaluarTest() {
+  const CONTENEDOR = $ID("quiz-container");
+  const TOTAL_PREGUNTAS = CONTENEDOR.querySelectorAll(".quiz-question").length;
+  const CORRECTAS = CONTENEDOR.querySelectorAll('input:checked[value="correcto"]').length;
+  const NOTA_FINAL = ((CORRECTAS / TOTAL_PREGUNTAS) * 10).toFixed(2);
+  const CONTENEDOR_RESULTADO = $ID("quiz-resultado");
+
+  if (CORRECTAS === TOTAL_PREGUNTAS) {
+    CONTENEDOR_RESULTADO.style.color = "#48bb78"; // Verde exito
+    CONTENEDOR_RESULTADO.innerHTML = `¡Rendimiento Perfecto! Nota: ${NOTA_FINAL}/10.00 (${CORRECTAS}/${TOTAL_PREGUNTAS} aciertos)`;
+  } else if (NOTA_FINAL >= 7.00) {
+    CONTENEDOR_RESULTADO.style.color = "#2b6cb0"; // Azul enfoque (Aprobado)
+    CONTENEDOR_RESULTADO.innerHTML = `¡Aprobado! Nota: ${NOTA_FINAL}/10.00 (Acertaste ${CORRECTAS} de ${TOTAL_PREGUNTAS})`;
+  } else if (NOTA_FINAL >= 4) {
+    CONTENEDOR_RESULTADO.style.color = "#dd6b20"; // Naranja advertencia sutil
+    CONTENEDOR_RESULTADO.innerHTML = `Puedes mejorar. Nota: ${NOTA_FINAL}/10.00 (Acertaste ${CORRECTAS} de ${TOTAL_PREGUNTAS})`;
+  } else {
+    CONTENEDOR_RESULTADO.style.color = "#e53e3e"; // Rojo error
+    CONTENEDOR_RESULTADO.innerHTML = `Nota: ${NOTA_FINAL}/10.00. Te recomendamos repasar las herramientas prácticas.`;
+  }
+}
+
+
+// ------------------------
+// |  Seccion de Botones  |
+// ------------------------
+
+// Botones para agregar notas
+onClick("#btn-notaMath", () => { agregarNota("notaMath", DATOS_MATERIAS.matematica.notas, "tabla");  });
+onClick("#btn-notaIng", () => { agregarNota("notaIng", DATOS_MATERIAS.ingles.notas, "tabla2");  });
+onClick("#btn-notaQuim", () => { agregarNota("notaQuim", DATOS_MATERIAS.quimica.notas, "tabla3");  });
+onClick("#btn-notaBio", () => { agregarNota("notaBio", DATOS_MATERIAS.biologia.notas, "tabla4");	});
+onClick("#btn-notaFilo", () => { agregarNota("notaFilo", DATOS_MATERIAS.filosofia.notas, "tabla5"); });
+onClick("#btn-notaFis", () => { agregarNota("notaFis", DATOS_MATERIAS.fisica.notas, "tabla6"); });
+
+// Botones para mostrar secciones
+onClick("#btn-main", () => { mostrarSeccion(SECCIONES.main) });
+onClick("#btn-manager", () => { mostrarSeccion(SECCIONES.manager) });
+onClick("#btn-teoria", () => { mostrarSeccion(SECCIONES.teoria) });
+onClick("#btn-about", () => { mostrarSeccion(SECCIONES.about) });
+
+onClick("#btn-evaluar-quiz", () => { evaluarTest() });
+
+onClick("#demo-tendencia-input", () => {
+  const inputTendencia = $ID("demo-tendencia-input");
+  if (inputTendencia) {
+    inputTendencia.addEventListener("input", demoTendencia);
+  }
+});
+
 // botones seccion didactica
 onClick("#btn-add", () => { agregarNota("ejemploProm", notas, "ejemplo1"); });
 onClick("#btn-prueba", () => { promedioE(); });
-
 onClick("#btn-addMedia", () => { agregarMedia(); });
 onClick("#btn-calcMedia", () => { calcularMedia(); });
-
 onClick("#btn-addModa", () => { agregarModa(); });
 onClick("#btn-calcModa", () => { calcularModa(); });
-
 onClick("#btn-calcPorcentaje", () => { calcularPorcentajeTeoria(); });
-
 onClick("#btn-addTendencia", () => { agregarTendencia(); });
 onClick("#btn-calcTendencia", () => { calcularTendencia(); });
-
 onClick("#btn-addAnomalia", () => { agregarAnomalia(); });
 onClick("#btn-calcAnomalia", () => { calcularAnomalia(); });
 
 
-// Función para evaluar el mini-Test estadistico
-function evaluarTest() {
-  const totalPreguntas = 20;
-  let correctas = 0;
-
-  for (let i = 1; i <= totalPreguntas; i++) {
-    const opcionSeleccionada = document.querySelector(`input[name="p${i}"]:checked`);
-    
-    if (opcionSeleccionada && opcionSeleccionada.value === "correcto") {
-      correctas++;
-    }
-  }
-
-  const notaFinal = ((correctas / totalPreguntas) * 10).toFixed(2);
-  const contenedorResultado = $ID("quiz-resultado");
-
-  if (correctas === totalPreguntas) {
-    contenedorResultado.style.color = "#48bb78"; // Verde exito
-    contenedorResultado.innerHTML = `¡Rendimiento Perfecto! Nota: ${notaFinal}/10.00 (${correctas}/${totalPreguntas} aciertos)`;
-  } else if (notaFinal >= 7.00) {
-    contenedorResultado.style.color = "#2b6cb0"; // Azul enfoque (Aprobado)
-    contenedorResultado.innerHTML = `¡Aprobado! Nota: ${notaFinal}/10.00 (Acertaste ${correctas} de ${totalPreguntas})`;
-  } else if (correctas > 0) {
-    contenedorResultado.style.color = "#dd6b20"; // Naranja advertencia sutil
-    contenedorResultado.innerHTML = `Puedes mejorar. Nota: ${notaFinal}/10.00 (Acertaste ${correctas} de ${totalPreguntas})`;
-  } else {
-    contenedorResultado.style.color = "#e53e3e"; // Rojo error
-    contenedorResultado.innerHTML = `Nota: ${notaFinal}/10.00. Te recomendamos repasar las herramientas prácticas.`;
-  }
-}
-
-mostrarSeccion(main);
+demoTendencia();
+mostrarSeccion(SECCIONES.main);
 pintarBarras();
