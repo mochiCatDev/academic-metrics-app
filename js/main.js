@@ -1,9 +1,4 @@
 // Variables Globales
-const main = $ID("section-main");
-const manager = $ID("section-manager");
-const about = $ID("section-about");
-const teoria = $ID("section-teoria");
-const todasLasSecciones = [main, manager, teoria, about];
 const data = [
   "Matematicas",
   "Inglés",
@@ -12,6 +7,12 @@ const data = [
   "Filosofía",
   "Física",
 ];
+const SECCIONES = {
+  main: $ID("section-main"),
+  manager: $ID("section-manager"),
+  about: $ID("section-about"),
+  teoria: $ID("section-teoria")
+};
 
 let miMiniChart = null;
 let notasMath = [];
@@ -24,10 +25,7 @@ let promedios = [];
 
 // Funcion para mostrar una seccion y ocultar las demas de manera automatica
 function mostrarSeccion(seccion) {
-  todasLasSecciones.forEach((seccion) => {
-    seccion.classList.add("oculto");
-  });
-
+  Object.keys(SECCIONES).forEach(secciones => SECCIONES[secciones].classList.add("oculto"));
   seccion.classList.remove("oculto");
 }
 
@@ -510,10 +508,10 @@ onClick("#btn-notaFilo", () => { agregarNota("notaFilo", notasFilo, "tabla5"); }
 onClick("#btn-notaFis", () => { agregarNota("notaFis", notasFisi, "tabla6"); });
 
 // Botones para mostrar secciones
-onClick("#btn-main", () => { mostrarSeccion(main); });
-onClick("#btn-manager", () => { mostrarSeccion(manager); });
-onClick("#btn-teoria", () => { mostrarSeccion(teoria); });
-onClick("#btn-about", () => { mostrarSeccion(about); });
+onClick("#btn-main", () => { mostrarSeccion(SECCIONES.main) });
+onClick("#btn-manager", () => { mostrarSeccion(SECCIONES.manager) });
+onClick("#btn-teoria", () => { mostrarSeccion(SECCIONES.teoria) });
+onClick("#btn-about", () => { mostrarSeccion(SECCIONES.about) });
 
 onClick("#btn-evaluar-quiz", () => { evaluarTest(); });
 onClick("#demo-tendencia-input", () => {
@@ -538,5 +536,5 @@ onClick("#btn-calcAnomalia", () => { calcularAnomalia(); });
 
 
 demoTendencia();
-mostrarSeccion(main);
+mostrarSeccion(SECCIONES.main);
 pintarBarras();
