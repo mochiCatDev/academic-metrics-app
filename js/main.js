@@ -224,37 +224,6 @@ function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
   });
 }
 
-// Función para evaluar el mini-Test estadistico
-function evaluarTest() {
-  const totalPreguntas = 20;
-  let correctas = 0;
-
-  for (let i = 1; i <= totalPreguntas; i++) {
-    const opcionSeleccionada = document.querySelector(`input[name="p${i}"]:checked`);
-    
-    if (opcionSeleccionada && opcionSeleccionada.value === "correcto") {
-      correctas++;
-    }
-  }
-
-  const notaFinal = ((correctas / totalPreguntas) * 10).toFixed(2);
-  const contenedorResultado = $ID("quiz-resultado");
-
-  if (correctas === totalPreguntas) {
-    contenedorResultado.style.color = "#48bb78"; // Verde exito
-    contenedorResultado.innerHTML = `¡Rendimiento Perfecto! Nota: ${notaFinal}/10.00 (${correctas}/${totalPreguntas} aciertos)`;
-  } else if (notaFinal >= 7.00) {
-    contenedorResultado.style.color = "#2b6cb0"; // Azul enfoque (Aprobado)
-    contenedorResultado.innerHTML = `¡Aprobado! Nota: ${notaFinal}/10.00 (Acertaste ${correctas} de ${totalPreguntas})`;
-  } else if (correctas > 0) {
-    contenedorResultado.style.color = "#dd6b20"; // Naranja advertencia sutil
-    contenedorResultado.innerHTML = `Puedes mejorar. Nota: ${notaFinal}/10.00 (Acertaste ${correctas} de ${totalPreguntas})`;
-  } else {
-    contenedorResultado.style.color = "#e53e3e"; // Rojo error
-    contenedorResultado.innerHTML = `Nota: ${notaFinal}/10.00. Te recomendamos repasar las herramientas prácticas.`;
-  }
-}
-
 // --------------------------
 // |  Funciones didacticas  |
 // --------------------------
@@ -423,36 +392,33 @@ function calcularAnomalia() {
   }
 }
 
-// Función para evaluar el mini-Test estadistico
+
+// ---------------------
+// |  Mini-Test Final  |
+// ---------------------
+
 function evaluarTest() {
-  const totalPreguntas = 20;
-  let correctas = 0;
+  const CONTENEDOR = $ID("quiz-container");
+  const TOTAL_PREGUNTAS = CONTENEDOR.querySelectorAll(".quiz-question").length;
+  const CORRECTAS = CONTENEDOR.querySelectorAll('input:checked[value="correcto"]').length;
+  const NOTA_FINAL = ((CORRECTAS / TOTAL_PREGUNTAS) * 10).toFixed(2);
+  const CONTENEDOR_RESULTADO = $ID("quiz-resultado");
 
-  for (let i = 1; i <= totalPreguntas; i++) {
-    const opcionSeleccionada = document.querySelector(`input[name="p${i}"]:checked`);
-    
-    if (opcionSeleccionada && opcionSeleccionada.value === "correcto") {
-      correctas++;
-    }
-  }
-
-  const notaFinal = ((correctas / totalPreguntas) * 10).toFixed(2);
-  const contenedorResultado = $ID("quiz-resultado");
-
-  if (correctas === totalPreguntas) {
-    contenedorResultado.style.color = "#48bb78"; // Verde exito
-    contenedorResultado.innerHTML = `¡Rendimiento Perfecto! Nota: ${notaFinal}/10.00 (${correctas}/${totalPreguntas} aciertos)`;
-  } else if (notaFinal >= 7.00) {
-    contenedorResultado.style.color = "#2b6cb0"; // Azul enfoque (Aprobado)
-    contenedorResultado.innerHTML = `¡Aprobado! Nota: ${notaFinal}/10.00 (Acertaste ${correctas} de ${totalPreguntas})`;
-  } else if (correctas > 0) {
-    contenedorResultado.style.color = "#dd6b20"; // Naranja advertencia sutil
-    contenedorResultado.innerHTML = `Puedes mejorar. Nota: ${notaFinal}/10.00 (Acertaste ${correctas} de ${totalPreguntas})`;
+  if (CORRECTAS === TOTAL_PREGUNTAS) {
+    CONTENEDOR_RESULTADO.style.color = "#48bb78"; // Verde exito
+    CONTENEDOR_RESULTADO.innerHTML = `¡Rendimiento Perfecto! Nota: ${NOTA_FINAL}/10.00 (${CORRECTAS}/${TOTAL_PREGUNTAS} aciertos)`;
+  } else if (NOTA_FINAL >= 7.00) {
+    CONTENEDOR_RESULTADO.style.color = "#2b6cb0"; // Azul enfoque (Aprobado)
+    CONTENEDOR_RESULTADO.innerHTML = `¡Aprobado! Nota: ${NOTA_FINAL}/10.00 (Acertaste ${CORRECTAS} de ${TOTAL_PREGUNTAS})`;
+  } else if (NOTA_FINAL >= 4) {
+    CONTENEDOR_RESULTADO.style.color = "#dd6b20"; // Naranja advertencia sutil
+    CONTENEDOR_RESULTADO.innerHTML = `Puedes mejorar. Nota: ${NOTA_FINAL}/10.00 (Acertaste ${CORRECTAS} de ${TOTAL_PREGUNTAS})`;
   } else {
-    contenedorResultado.style.color = "#e53e3e"; // Rojo error
-    contenedorResultado.innerHTML = `Nota: ${notaFinal}/10.00. Te recomendamos repasar las herramientas prácticas.`;
+    CONTENEDOR_RESULTADO.style.color = "#e53e3e"; // Rojo error
+    CONTENEDOR_RESULTADO.innerHTML = `Nota: ${NOTA_FINAL}/10.00. Te recomendamos repasar las herramientas prácticas.`;
   }
 }
+
 
 // ------------------------
 // |  Seccion de Botones  |
@@ -472,7 +438,8 @@ onClick("#btn-manager", () => { mostrarSeccion(SECCIONES.manager) });
 onClick("#btn-teoria", () => { mostrarSeccion(SECCIONES.teoria) });
 onClick("#btn-about", () => { mostrarSeccion(SECCIONES.about) });
 
-onClick("#btn-evaluar-quiz", () => { evaluarTest(); });
+onClick("#btn-evaluar-quiz", () => { evaluarTest() });
+
 onClick("#demo-tendencia-input", () => {
   const inputTendencia = $ID("demo-tendencia-input");
   if (inputTendencia) {
