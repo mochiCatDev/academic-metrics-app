@@ -1,54 +1,67 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Academic Metrics App</title>
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <!-- Libreria Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Libreria KaTeX -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css"
+      integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js"
+      integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body)"
+    ></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Academic Metrics App</title>
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/estilos.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-  <!-- Libreria Chart -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Libreria KaTeX -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css"
-    integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB" crossorigin="anonymous" />
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js"
-    integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs"
-    crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js"
-    integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous"
-    onload="renderMathInElement(document.body)"></script>
-</head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>Aplicación de métricas académicas</h1>
+    </header>
 
-<body>
-  <!-- Header -->
-  <header>
-    <h1>Aplicación de métricas académicas</h1>
-  </header>
+    <!-- Nav -->
+    <nav>
+      <button id="btn-main">Principal</button>
+      <button id="btn-manager">Gestionar</button>
+      <button id="btn-teoria">Teoria</button>
+      <button id="btn-about">Acerca de</button>
+    </nav>
 
-  <!-- Nav -->
-  <nav>
-    <button id="btn-main">Principal</button>
-    <button id="btn-manager">Gestionar</button>
-    <button id="btn-teoria">Teoria</button>
-    <button id="btn-about">Acerca de</button>
-  </nav>
-
-  <!-- Main -->
-  <main>
-    <!-- Principal -->
-    <section id="section-main" class="oculto">
-      <div class="container-bar-progress">
-        <div class="border-bar-progress">
-          <div id="bar-progress"></div>
+    <!-- Main -->
+    <main>
+      <!-- Principal -->
+      <section id="section-main">
+        <div class="container-bar-progress">
+          <div class="border-bar-progress">
+            <div id="bar-progress"></div>
+          </div>
+          <div id="text-progress">0%</div>
         </div>
-        <div id="text-progress">0%</div>
-      </div>
-      <div class="container w-75">
-        <canvas id="canva" height="100" width="300"></canvas>
-      </div>
-    </section>
+        <div class="container w-75">
+          <canvas id="canva" height="100" width="300"></canvas>
+        </div>
+      </section>
 
       <!-- Gestion (Manager) -->
       <section id="section-manager" class="oculto">
@@ -99,7 +112,7 @@
           <div id="promedios">PROMEDIOS</div>
         </div>
       </section>
-      
+
       <!-- Informacion Teorica -->
       <section id="section-teoria" class="oculto">
         <h2>Estadística Aplicada</h2>
@@ -126,37 +139,40 @@
                 tocarían a cada uno.
               </p>
 
-            <h4>¿Cómo lo haces tú mismo?</h4>
-            <p>La fórmula matemática es esta:</p>
-            <p>$$\text{Promedio} = \frac{\sum x}{n}$$</p>
-            <ul>
-              <li>
-                <strong>Paso 1 (La sumatoria - \(\sum x\)):</strong> Suma
-                todos los valores que tienes. Por ejemplo, si las notas son 8,
-                9 y 7, la suma es 24.
-              </li>
-              <li>
-                <strong>Paso 2 (La division - \(n\)):</strong> Cuenta cuántos
-                valores sumaste. En este caso son 3 notas.
-              </li>
-              <li>
-                <strong>Paso 3:</strong> Divide la suma total entre la
-                cantidad de valores (24 divido para 3 es 8). ¡Ese es tu
-                promedio!
-              </li>
-              <strong>AHORA UN PEQUEÑO EJEMPLO:</strong>
-              <p>Ingresa tus notas una por una para calcular su promedio:</p>
-              <div class="ejemplo-didactico">
-                <input type="number" placeholder="Ingresa una nota" id="ejemploProm" />
-                <button id="btn-add">Agregar Nota</button>
-                <button id="btn-prueba">Calcular Promedio</button>
-                <div id="ejemplo1" class="ejemplo-resultado">PROMEDIO: </div>
-              </div>
-            </ul>
+              <h4>¿Cómo lo haces tú mismo?</h4>
+              <p>La fórmula matemática es esta:</p>
+              <p>$$\text{Promedio} = \frac{\sum x}{n}$$</p>
+              <ul>
+                <li>
+                  <strong>Paso 1 (La sumatoria - \(\sum x\)):</strong> Suma
+                  todos los valores que tienes. Por ejemplo, si las notas son 8,
+                  9 y 7, la suma es 24.
+                </li>
+                <li>
+                  <strong>Paso 2 (La division - \(n\)):</strong> Cuenta cuántos
+                  valores sumaste. En este caso son 3 notas.
+                </li>
+                <li>
+                  <strong>Paso 3:</strong> Divide la suma total entre la
+                  cantidad de valores (24 divido para 3 es 8). ¡Ese es tu
+                  promedio!
+                </li>
+                <strong>AHORA UN PEQUEÑO EJEMPLO:</strong>
+                <p>Ingresa tus notas una por una para calcular su promedio:</p>
+                <div class="ejemplo-didactico">
+                  <input
+                    type="number"
+                    placeholder="Ingresa una nota"
+                    id="ejemploProm"
+                  />
+                  <button id="btn-add">Agregar Nota</button>
+                  <button id="btn-prueba">Calcular Promedio</button>
+                  <div id="ejemplo1" class="ejemplo-resultado">PROMEDIO:</div>
+                </div>
+              </ul>
 
-
-            <h4>¿Cómo lo hace la computadora?</h4>
-            <pre><code class="language-javascript">
+              <h4>¿Cómo lo hace la computadora?</h4>
+              <pre><code class="language-javascript">
 function calcularPromedio(notas) {
     // 1. Sumamos todo (usando reduce)
     const suma = notas.reduce((acumulador, nota) => acumulador + nota, 0);
@@ -169,36 +185,42 @@ console.log(calcularPromedio([8, 9, 7])); // Resultado: 8
             </section>
           </li>
 
-        <li>
-          <section id="media-concept">
-            <h3>Media Aritmética</h3>
-            <p>
-              En el mundo de la programación y los datos, "Promedio" y "Media"
-              suelen usarse como sinónimos. La media es la medida que más
-              usamos en Inteligencia Artificial para encontrar el punto de
-              equilibrio en un mar de información.
-            </p>
+          <li>
+            <section id="media-concept">
+              <h3>Media Aritmética</h3>
+              <p>
+                En el mundo de la programación y los datos, "Promedio" y "Media"
+                suelen usarse como sinónimos. La media es la medida que más
+                usamos en Inteligencia Artificial para encontrar el punto de
+                equilibrio en un mar de información.
+              </p>
 
-            <h4>¿Cómo lo calculas?</h4>
-            <p>
-              Exactamente igual que el promedio. Si tienes las edades de tus
-              usuarios: 18, 20, 22 y 25.
-            </p>
-            <ul>
-              <li>Sumas las edades: 18 + 20 + 22 + 25 = 85.</li>
-              <li>Divides por los 4 usuarios que tienes: 85 / 4 = 21.25.</li>
-              <br>
-              <strong>PROBAR CON EDADES:</strong>
-              <p>Ingresa las edades de tu grupo para obtener la media:</p>
-              <div class="ejemplo-didactico">
-                <input type="number" placeholder="Ingresa una edad" id="inputMediaEdad" />
-                <button id="btn-addMedia">Agregar Edad</button>
-                <button id="btn-calcMedia">Calcular Media</button>
-                <div id="resultadoMedia" class="ejemplo-resultado">MEDIA ARITMÉTICA: </div>
-              </div>
-            </ul>
+              <h4>¿Cómo lo calculas?</h4>
+              <p>
+                Exactamente igual que el promedio. Si tienes las edades de tus
+                usuarios: 18, 20, 22 y 25.
+              </p>
+              <ul>
+                <li>Sumas las edades: 18 + 20 + 22 + 25 = 85.</li>
+                <li>Divides por los 4 usuarios que tienes: 85 / 4 = 21.25.</li>
+                <br />
+                <strong>PROBAR CON EDADES:</strong>
+                <p>Ingresa las edades de tu grupo para obtener la media:</p>
+                <div class="ejemplo-didactico">
+                  <input
+                    type="number"
+                    placeholder="Ingresa una edad"
+                    id="inputMediaEdad"
+                  />
+                  <button id="btn-addMedia">Agregar Edad</button>
+                  <button id="btn-calcMedia">Calcular Media</button>
+                  <div id="resultadoMedia" class="ejemplo-resultado">
+                    MEDIA ARITMÉTICA:
+                  </div>
+                </div>
+              </ul>
 
-            <pre><code class="language-javascript">
+              <pre><code class="language-javascript">
 const edades = [18, 20, 22, 25];
 let sumaEdades = 0;
 
@@ -211,18 +233,18 @@ for(let i = 0; i < edades.length; i++) {
 const media = sumaEdades / edades.length;
 console.log(`La media es: ${media}`);
         </code></pre>
-          </section>
-        </li>
+            </section>
+          </li>
 
-        <li>
-          <section id="moda-concept">
-            <h3>Moda</h3>
-            <p>
-              La moda no tiene nada que ver con ropa en este contexto; es
-              simplemente <strong>el valor que más se repite</strong> en un
-              conjunto de datos. Sirve muchísimo para saber cuáles son los
-              gustos más comunes de los usuarios.
-            </p>
+          <li>
+            <section id="moda-concept">
+              <h3>Moda</h3>
+              <p>
+                La moda no tiene nada que ver con ropa en este contexto; es
+                simplemente <strong>el valor que más se repite</strong> en un
+                conjunto de datos. Sirve muchísimo para saber cuáles son los
+                gustos más comunes de los usuarios.
+              </p>
 
               <h4>¿Cómo lo haces tú mismo?</h4>
               <ul>
@@ -232,61 +254,84 @@ console.log(`La media es: ${media}`);
                   El 5 aparece tres veces, más que cualquier otro. ¡Esa es tu
                   moda!
                 </li>
-                <br>
+                <br />
                 <strong>BUSCADOR DE MODA AUTOMÁTICO:</strong>
                 <p>Ingresa una serie de números para ver cuál se repite más:</p>
-              <div class="ejemplo-didactico">
-                <input type="number" placeholder="Ingresa un número" id="inputModa" />
-                <button id="btn-addModa">Agregar Número</button>
-                <button id="btn-calcModa">Encontrar Moda</button>
-                <div id="resultadoModa" class="ejemplo-resultado">MODA: </div>
-              </div>
+                <div class="ejemplo-didactico">
+                  <input
+                    type="number"
+                    placeholder="Ingresa un número"
+                    id="inputModa"
+                  />
+                  <button id="btn-addModa">Agregar Número</button>
+                  <button id="btn-calcModa">Encontrar Moda</button>
+                  <div id="resultadoModa" class="ejemplo-resultado">MODA:</div>
+                </div>
               </ul>
             </section>
           </li>
 
-        <li>
-          <section id="porcentaje-concept">
-            <h3>Porcentaje</h3>
-            <p>
-              El porcentaje nos ayuda a entender qué tan grande es una parte
-              en comparación con el todo, asumiendo que el "todo" siempre vale
-              100. Es vital para barras de progreso o descuentos.
-            </p>
+          <li>
+            <section id="porcentaje-concept">
+              <h3>Porcentaje</h3>
+              <p>
+                El porcentaje nos ayuda a entender qué tan grande es una parte
+                en comparación con el todo, asumiendo que el "todo" siempre vale
+                100. Es vital para barras de progreso o descuentos.
+              </p>
 
-            <h4>¿Cómo lo calculas a mano?</h4>
-            <p>
-              $$ \text{Porcentaje} = \left( \frac{\text{Parte}}{\text{Total}}
-              \right) \times 100 $$
-            </p>
-            <ul>
-              <li>
-                <strong>Paso 1:</strong> Toma la "Parte" que quieres analizar.
-                Ejemplo: Tienes 45 puntos en un examen.
-              </li>
-              <li>
-                <strong>Paso 2:</strong> Divídelo por el "Total" posible. El
-                examen valía 50 puntos (45 / 50 = 0.90).
-              </li>
-              <li>
-                <strong>Paso 3:</strong> Multiplica por 100 para pasarlo a
-                formato de porcentaje (0.90 * 100 = 90%).
-              </li>
-              <br>
-              <strong>SIMULADOR DE EFECTIVIDAD / AVANCE:</strong>
-              <p>Calcula el porcentaje de forma instantánea:</p>
-              <div class="ejemplo-didactico" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <input type="number" placeholder="Parte (ej. tus puntos)" id="inputPorcentajeParte"
-                  style="width: 48%;" />
-                <input type="number" placeholder="Total (ej. puntos totales)" id="inputPorcentajeTotal"
-                  style="width: 48%;" />
-                <button id="btn-calcPorcentaje" style="width: 100%;">Calcular Porcentaje</button>
-                <div id="resultadoPorcentaje" class="ejemplo-resultado" style="width: 100%;">PORCENTAJE: </div>
-              </div>
-            </ul>
+              <h4>¿Cómo lo calculas a mano?</h4>
+              <p>
+                $$ \text{Porcentaje} = \left( \frac{\text{Parte}}{\text{Total}}
+                \right) \times 100 $$
+              </p>
+              <ul>
+                <li>
+                  <strong>Paso 1:</strong> Toma la "Parte" que quieres analizar.
+                  Ejemplo: Tienes 45 puntos en un examen.
+                </li>
+                <li>
+                  <strong>Paso 2:</strong> Divídelo por el "Total" posible. El
+                  examen valía 50 puntos (45 / 50 = 0.90).
+                </li>
+                <li>
+                  <strong>Paso 3:</strong> Multiplica por 100 para pasarlo a
+                  formato de porcentaje (0.90 * 100 = 90%).
+                </li>
+                <br />
+                <strong>SIMULADOR DE EFECTIVIDAD / AVANCE:</strong>
+                <p>Calcula el porcentaje de forma instantánea:</p>
+                <div
+                  class="ejemplo-didactico"
+                  style="display: flex; gap: 10px; flex-wrap: wrap"
+                >
+                  <input
+                    type="number"
+                    placeholder="Parte (ej. tus puntos)"
+                    id="inputPorcentajeParte"
+                    style="width: 48%"
+                  />
+                  <input
+                    type="number"
+                    placeholder="Total (ej. puntos totales)"
+                    id="inputPorcentajeTotal"
+                    style="width: 48%"
+                  />
+                  <button id="btn-calcPorcentaje" style="width: 100%">
+                    Calcular Porcentaje
+                  </button>
+                  <div
+                    id="resultadoPorcentaje"
+                    class="ejemplo-resultado"
+                    style="width: 100%"
+                  >
+                    PORCENTAJE:
+                  </div>
+                </div>
+              </ul>
 
-            <h4>¿Cómo lo programamos?</h4>
-            <pre><code class="language-javascript">
+              <h4>¿Cómo lo programamos?</h4>
+              <pre><code class="language-javascript">
 function calcularPorcentaje(puntosObtenidos, puntosTotales) {
     return (puntosObtenidos / puntosTotales) * 100;
 }
@@ -297,33 +342,33 @@ console.log(`Lograste un ${miNota}% de efectividad`);
             </section>
           </li>
 
-        <li>
-          <section id="tendencias-concept">
-            <h3>Análisis de Tendencias</h3>
-            <p>
-              Una tendencia es un patrón. Nos dice hacia dónde se están
-              moviendo las cosas a lo largo del tiempo. Es la base de las
-              predicciones financieras y de crecimiento.
-            </p>
+          <li>
+            <section id="tendencias-concept">
+              <h3>Análisis de Tendencias</h3>
+              <p>
+                Una tendencia es un patrón. Nos dice hacia dónde se están
+                moviendo las cosas a lo largo del tiempo. Es la base de las
+                predicciones financieras y de crecimiento.
+              </p>
 
-            <h4>¿Cómo identificarla a simple vista?</h4>
-            <ul>
-              <li>
-                <strong>Ascendente:</strong> Cada valor nuevo es mayor que el
-                anterior (ej. ventas: 100, 150, 200). ¡El negocio crece!
-              </li>
-              <li>
-                <strong>Descendente:</strong> Cada valor nuevo es menor.
-                ¡Cuidado!
-              </li>
-              <li>
-                <strong>Estable:</strong> Los valores se mantienen muy
-                parecidos.
-              </li>
-              <br>
-            </ul>
+              <h4>¿Cómo identificarla a simple vista?</h4>
+              <ul>
+                <li>
+                  <strong>Ascendente:</strong> Cada valor nuevo es mayor que el
+                  anterior (ej. ventas: 100, 150, 200). ¡El negocio crece!
+                </li>
+                <li>
+                  <strong>Descendente:</strong> Cada valor nuevo es menor.
+                  ¡Cuidado!
+                </li>
+                <li>
+                  <strong>Estable:</strong> Los valores se mantienen muy
+                  parecidos.
+                </li>
+                <br />
+              </ul>
 
-            <pre><code class="language-javascript">
+              <pre><code class="language-javascript">
 const ventas = [100, 150, 200];
 
 // Comparamos si el último mes fue mejor que el anterior
@@ -331,112 +376,138 @@ if (ventas[2] > ventas[1]) {
     console.log("¡Tenemos una tendencia de crecimiento!");
 }
         </code></pre>
-              <strong>Análisis de Tendencias:</strong> Permite identificar la dirección (alcista o bajista) de una serie de datos a lo largo del tiempo.
-            <div class="demo-box">
-            <label for="demo-tendencia-input">Progreso temporal (ej: notas separadas por comas):</label>
-            <input type="text" id="demo-tendencia-input" value="4, 6, 5, 8, 7, 9" />
-            
-            <div class="mini-chart-container" style="margin-top: 15px; max-height: 180px; position: relative;">
-              <canvas id="demo-tendencia-chart"></canvas>
-            </div>
-          </div>
+              <strong>Análisis de Tendencias:</strong> Permite identificar la
+              dirección (alcista o bajista) de una serie de datos a lo largo del
+              tiempo.
+              <div class="demo-box">
+                <label for="demo-tendencia-input"
+                  >Progreso temporal (ej: notas separadas por comas):</label
+                >
+                <input
+                  type="text"
+                  id="demo-tendencia-input"
+                  value="4, 6, 5, 8, 7, 9"
+                />
+
+                <div
+                  class="mini-chart-container"
+                  style="
+                    margin-top: 15px;
+                    max-height: 180px;
+                    position: relative;
+                  "
+                >
+                  <canvas id="demo-tendencia-chart"></canvas>
+                </div>
+              </div>
             </section>
           </li>
 
-        <li>
-          <section id="graficos-concept">
-            <h3>Interpretación de Gráficos</h3>
-            <p>
-              A nuestro cerebro le cuesta leer miles de números en una tabla,
-              pero entiende formas y colores al instante. Un gráfico traduce
-              datos en dibujos.
-            </p>
+          <li>
+            <section id="graficos-concept">
+              <h3>Interpretación de Gráficos</h3>
+              <p>
+                A nuestro cerebro le cuesta leer miles de números en una tabla,
+                pero entiende formas y colores al instante. Un gráfico traduce
+                datos en dibujos.
+              </p>
 
-            <h4>¿Cómo elegir y leer el correcto?</h4>
-            <ul>
-              <li>
-                <strong>Gráfico de Barras:</strong> Úsalo para comparar
-                cantidades (¿Qué materia tiene mejores notas?).
-              </li>
-              <li>
-                <strong>Gráfico de Líneas:</strong> Úsalo para ver el tiempo
-                (¿Cómo evolucionó tu nota durante el año?).
-              </li>
-              <li>
-                <strong>Gráfico de Pastel:</strong> Úsalo para ver porcentajes
-                (¿Qué parte del día pasas estudiando vs jugando?).
-              </li>
-            </ul>
-          </section>
-        </li>
+              <h4>¿Cómo elegir y leer el correcto?</h4>
+              <ul>
+                <li>
+                  <strong>Gráfico de Barras:</strong> Úsalo para comparar
+                  cantidades (¿Qué materia tiene mejores notas?).
+                </li>
+                <li>
+                  <strong>Gráfico de Líneas:</strong> Úsalo para ver el tiempo
+                  (¿Cómo evolucionó tu nota durante el año?).
+                </li>
+                <li>
+                  <strong>Gráfico de Pastel:</strong> Úsalo para ver porcentajes
+                  (¿Qué parte del día pasas estudiando vs jugando?).
+                </li>
+              </ul>
+            </section>
+          </li>
 
-        <li>
-          <section id="analisis-datos-concept">
-            <h3>Análisis de Datos</h3>
-            <p>
-              No es magia, es un proceso paso a paso para sacarle la verdad a
-              los números. Como desarrolladores, creamos sistemas que hacen
-              esto automáticamente.
-            </p>
+          <li>
+            <section id="analisis-datos-concept">
+              <h3>Análisis de Datos</h3>
+              <p>
+                No es magia, es un proceso paso a paso para sacarle la verdad a
+                los números. Como desarrolladores, creamos sistemas que hacen
+                esto automáticamente.
+              </p>
 
-            <h4>Los 5 pasos que tú mismo puedes aplicar:</h4>
-            <ul>
-              <li>
-                <strong>1. Recolección:</strong> Conseguir los datos (pedir
-                las notas a los profesores).
-              </li>
-              <li>
-                <strong>2. Limpieza:</strong> Quitar lo que no sirve o está
-                mal (borrar un registro que dice nota "999" por error).
-              </li>
-              <li>
-                <strong>3. Procesamiento:</strong> Hacer los cálculos (sacar
-                promedios, porcentajes).
-              </li>
-              <li>
-                <strong>4. Visualización:</strong> Dibujar los gráficos.
-              </li>
-              <li>
-                <strong>5. Interpretación:</strong> Tomar decisiones con lo
-                que ves ("Debo estudiar más Física").
-              </li>
-            </ul>
-          </section>
-        </li>
+              <h4>Los 5 pasos que tú mismo puedes aplicar:</h4>
+              <ul>
+                <li>
+                  <strong>1. Recolección:</strong> Conseguir los datos (pedir
+                  las notas a los profesores).
+                </li>
+                <li>
+                  <strong>2. Limpieza:</strong> Quitar lo que no sirve o está
+                  mal (borrar un registro que dice nota "999" por error).
+                </li>
+                <li>
+                  <strong>3. Procesamiento:</strong> Hacer los cálculos (sacar
+                  promedios, porcentajes).
+                </li>
+                <li>
+                  <strong>4. Visualización:</strong> Dibujar los gráficos.
+                </li>
+                <li>
+                  <strong>5. Interpretación:</strong> Tomar decisiones con lo
+                  que ves ("Debo estudiar más Física").
+                </li>
+              </ul>
+            </section>
+          </li>
 
-        <li>
-          <section id="anomalias-concept">
-            <h3>Detección de Anomalías</h3>
-            <p>
-              Una anomalía es el "bicho raro" del grupo. Es un dato que se
-              aleja tanto de lo normal que nos obliga a investigar si hubo un
-              error o un evento especial.
-            </p>
+          <li>
+            <section id="anomalias-concept">
+              <h3>Detección de Anomalías</h3>
+              <p>
+                Una anomalía es el "bicho raro" del grupo. Es un dato que se
+                aleja tanto de lo normal que nos obliga a investigar si hubo un
+                error o un evento especial.
+              </p>
 
-            <h4>¿Cómo detectarlo manualmente?</h4>
-            <ul>
-              <li>
-                Mira tus datos normales: 20, 21, 22, 20. Sabes que el rango es
-                alrededor de 21.
-              </li>
-              <li>Aparece un 45.</li>
-              <li>
-                Comparas el 45 con tu rango normal. Al estar tan lejos, lo
-                marcas como anomalía.
-              </li>
-              <br>
-              <strong>FILTRO DE ANOMALÍAS AUTOMÁTICO:</strong>
-              <p>Ingresa notas (rango esperado 0-10). Si pones un error (ej: 88), el sistema lo aislará:</p>
-              <div class="ejemplo-didactico">
-                <input type="number" placeholder="Ingresa datos" id="inputAnomalia" />
-                <button id="btn-addAnomalia">Agregar Dato</button>
-                <button id="btn-calcAnomalia">Detectar Erreores (> 10)</button>
-                <div id="resultadoAnomalia" class="ejemplo-resultado">ANOMALÍAS DETECTADAS: </div>
-              </div>
-            </ul>
+              <h4>¿Cómo detectarlo manualmente?</h4>
+              <ul>
+                <li>
+                  Mira tus datos normales: 20, 21, 22, 20. Sabes que el rango es
+                  alrededor de 21.
+                </li>
+                <li>Aparece un 45.</li>
+                <li>
+                  Comparas el 45 con tu rango normal. Al estar tan lejos, lo
+                  marcas como anomalía.
+                </li>
+                <br />
+                <strong>FILTRO DE ANOMALÍAS AUTOMÁTICO:</strong>
+                <p>
+                  Ingresa notas (rango esperado 0-10). Si pones un error (ej:
+                  88), el sistema lo aislará:
+                </p>
+                <div class="ejemplo-didactico">
+                  <input
+                    type="number"
+                    placeholder="Ingresa datos"
+                    id="inputAnomalia"
+                  />
+                  <button id="btn-addAnomalia">Agregar Dato</button>
+                  <button id="btn-calcAnomalia">
+                    Detectar Erreores (> 10)
+                  </button>
+                  <div id="resultadoAnomalia" class="ejemplo-resultado">
+                    ANOMALÍAS DETECTADAS:
+                  </div>
+                </div>
+              </ul>
 
-            <h4>¿Cómo lo hace el código?</h4>
-            <pre><code class="language-javascript">
+              <h4>¿Cómo lo hace el código?</h4>
+              <pre><code class="language-javascript">
 const temperaturas = [20, 21, 22, 20, 21, 45];
 const limiteNormal = 30; // Definimos qué es "normal"
 
@@ -451,155 +522,455 @@ console.log("Cuidado, detectamos estas anomalías:", anomalias);
 
         <div id="quiz-container" class="about-card">
           <h3>Evaluación Estadística</h3>
-          <p class="quiz-instruction">Valida lo aprendido. Selecciona una respuesta para cada pregunta y calcula tu rendimiento.</p>
-          
-          <form id="quiz-form" onsubmit="event.preventDefault();">
-            
+          <p class="quiz-instruction">
+            Valida lo aprendido. Selecciona una respuesta para cada pregunta y
+            calcula tu rendimiento.
+          </p>
+
+          <form id="quiz-form" onsubmit="event.preventDefault()">
             <div class="quiz-question">
-              <p><strong>1. Si un estudiante tiene las notas 6, 8, 7 y 7, ¿cuál es el promedio de sus calificaciones?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p1" value="incorrecto"> a) 6.50</label>
-              <label class="quiz-option"><input type="radio" name="p1" value="correcto"> b) 7.00</label>
-              <label class="quiz-option"><input type="radio" name="p1" value="incorrecto"> c) 8.00</label>
+              <p>
+                <strong
+                  >1. Si un estudiante tiene las notas 6, 8, 7 y 7, ¿cuál es el
+                  promedio de sus calificaciones?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p1" value="incorrecto" /> a)
+                6.50</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p1" value="correcto" /> b)
+                7.00</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p1" value="incorrecto" /> c)
+                8.00</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>2. ¿Qué herramienta o método estadístico se usa comúnmente en Inteligencia Artificial para encontrar el punto de equilibrio en un mar de información?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p2" value="correcto"> a) La media aritmética.</label>
-              <label class="quiz-option"><input type="radio" name="p2" value="incorrecto"> b) La detección de anomalías por umbral.</label>
-              <label class="quiz-option"><input type="radio" name="p2" value="incorrecto"> c) El gráfico de pastel.</label>
+              <p>
+                <strong
+                  >2. ¿Qué herramienta o método estadístico se usa comúnmente en
+                  Inteligencia Artificial para encontrar el punto de equilibrio
+                  en un mar de información?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p2" value="correcto" /> a) La media
+                aritmética.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p2" value="incorrecto" /> b) La
+                detección de anomalías por umbral.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p2" value="incorrecto" /> c) El
+                gráfico de pastel.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>3. En un conjunto de datos numéricos, ¿cómo se define formalmente a "la moda"?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p3" value="incorrecto"> a) El valor más alto del grupo.</label>
-              <label class="quiz-option"><input type="radio" name="p3" value="incorrecto"> b) El resultado de dividir la suma total entre el número de elementos.</label>
-              <label class="quiz-option"><input type="radio" name="p3" value="correcto"> a) El valor que aparece con mayor frecuencia o se repite más veces.</label>
+              <p>
+                <strong
+                  >3. En un conjunto de datos numéricos, ¿cómo se define
+                  formalmente a "la moda"?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p3" value="incorrecto" /> a) El valor
+                más alto del grupo.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p3" value="incorrecto" /> b) El
+                resultado de dividir la suma total entre el número de
+                elementos.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p3" value="correcto" /> a) El valor
+                que aparece con mayor frecuencia o se repite más veces.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>4. Si queremos calcular un porcentaje, ¿cuál es el valor fijo que asumimos que representa al "todo" o la cantidad total?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p4" value="incorrecto"> a) 10</label>
-              <label class="quiz-option"><input type="radio" name="p4" value="correcto"> b) 100</label>
-              <label class="quiz-option"><input type="radio" name="p4" value="incorrecto"> c) 1000</label>
+              <p>
+                <strong
+                  >4. Si queremos calcular un porcentaje, ¿cuál es el valor fijo
+                  que asumimos que representa al "todo" o la cantidad
+                  total?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p4" value="incorrecto" /> a)
+                10</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p4" value="correcto" /> b) 100</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p4" value="incorrecto" /> c)
+                1000</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>5. Si una tienda registra ventas de $200, $180 y $150 en tres meses consecutivos, ¿qué tipo de tendencia presenta?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p5" value="incorrecto"> a) Ascendente.</label>
-              <label class="quiz-option"><input type="radio" name="p5" value="correcto"> b) Descendente.</label>
-              <label class="quiz-option"><input type="radio" name="p5" value="incorrecto"> c) Estable.</label>
+              <p>
+                <strong
+                  >5. Si una tienda registra ventas de $200, $180 y $150 en tres
+                  meses consecutivos, ¿qué tipo de tendencia presenta?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p5" value="incorrecto" /> a)
+                Ascendente.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p5" value="correcto" /> b)
+                Descendente.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p5" value="incorrecto" /> c)
+                Estable.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>6. ¿Cuál de los siguientes gráficos es el más adecuado si deseas observar cómo evolucionaron tus notas mes a mes durante todo el año?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p6" value="incorrecto"> a) Gráfico de Pastel.</label>
-              <label class="quiz-option"><input type="radio" name="p6" value="incorrecto"> b) Gráfico de Barras.</label>
-              <label class="quiz-option"><input type="radio" name="p6" value="correcto"> c) Gráfico de Líneas.</label>
+              <p>
+                <strong
+                  >6. ¿Cuál de los siguientes gráficos es el más adecuado si
+                  deseas observar cómo evolucionaron tus notas mes a mes durante
+                  todo el año?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p6" value="incorrecto" /> a) Gráfico
+                de Pastel.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p6" value="incorrecto" /> b) Gráfico
+                de Barras.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p6" value="correcto" /> c) Gráfico de
+                Líneas.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>7. Borrar de la base de datos un registro de nota que dice "999" por un error de tipeo es un ejemplo de qué paso del análisis de datos:</strong></p>
-              <label class="quiz-option"><input type="radio" name="p7" value="correcto"> a) Limpieza.</label>
-              <label class="quiz-option"><input type="radio" name="p7" value="incorrecto"> b) Recolección.</label>
-              <label class="quiz-option"><input type="radio" name="p7" value="incorrecto"> c) Visualización.</label>
+              <p>
+                <strong
+                  >7. Borrar de la base de datos un registro de nota que dice
+                  "999" por un error de tipeo es un ejemplo de qué paso del
+                  análisis de datos:</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p7" value="correcto" /> a)
+                Limpieza.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p7" value="incorrecto" /> b)
+                Recolección.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p7" value="incorrecto" /> c)
+                Visualización.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>8. ¿Cómo llamamos a un dato "bicho raro" que se aleja drásticamente del comportamiento normal de los demás elementos?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p8" value="incorrecto"> a) Tendencia estable.</label>
-              <label class="quiz-option"><input type="radio" name="p8" value="correcto"> b) Anomalía.</label>
-              <label class="quiz-option"><input type="radio" name="p8" value="incorrecto"> c) Media aritmética.</label>
+              <p>
+                <strong
+                  >8. ¿Cómo llamamos a un dato "bicho raro" que se aleja
+                  drásticamente del comportamiento normal de los demás
+                  elementos?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p8" value="incorrecto" /> a)
+                Tendencia estable.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p8" value="correcto" /> b)
+                Anomalía.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p8" value="incorrecto" /> c) Media
+                aritmética.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>9. En el código JavaScript para calcular el promedio, ¿qué parámetro representa el valor inicial del acumulador en el método `reduce()`?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p9" value="incorrecto"> a) El tamaño del arreglo (length).</label>
-              <label class="quiz-option"><input type="radio" name="p9" value="correcto"> b) El número 0 asignado al final de la función.</label>
-              <label class="quiz-option"><input type="radio" name="p9" value="incorrecto"> c) La primera nota del alumno.</label>
+              <p>
+                <strong
+                  >9. En el código JavaScript para calcular el promedio, ¿qué
+                  parámetro representa el valor inicial del acumulador en el
+                  método `reduce()`?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p9" value="incorrecto" /> a) El
+                tamaño del arreglo (length).</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p9" value="correcto" /> b) El número
+                0 asignado al final de la función.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p9" value="incorrecto" /> c) La
+                primera nota del alumno.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>10. Si un profesor quiere comparar de un vistazo rápido las calificaciones promedio de 6 materias diferentes, ¿qué gráfico es el recomendado?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p10" value="correcto"> a) Gráfico de Barras.</label>
-              <label class="quiz-option"><input type="radio" name="p10" value="incorrecto"> b) Gráfico de Líneas.</label>
-              <label class="quiz-option"><input type="radio" name="p10" value="incorrecto"> c) Gráfico de Pastel.</label>
+              <p>
+                <strong
+                  >10. Si un profesor quiere comparar de un vistazo rápido las
+                  calificaciones promedio de 6 materias diferentes, ¿qué gráfico
+                  es el recomendado?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p10" value="correcto" /> a) Gráfico
+                de Barras.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p10" value="incorrecto" /> b) Gráfico
+                de Líneas.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p10" value="incorrecto" /> c) Gráfico
+                de Pastel.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>11. Si tenemos los datos de edades [20, 25, 20, 30, 20, 25], ¿cuál es la moda de este conjunto?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p11" value="incorrecto"> a) 25</label>
-              <label class="quiz-option"><input type="radio" name="p11" value="correcto"> b) 20</label>
-              <label class="quiz-option"><input type="radio" name="p11" value="incorrecto"> c) 30</label>
+              <p>
+                <strong
+                  >11. Si tenemos los datos de edades [20, 25, 20, 30, 20, 25],
+                  ¿cuál es la moda de este conjunto?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p11" value="incorrecto" /> a)
+                25</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p11" value="correcto" /> b) 20</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p11" value="incorrecto" /> c)
+                30</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>12. Obtuviste 30 puntos de un total de 60 posibles en un test. ¿A qué porcentaje de efectividad equivale?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p12" value="incorrecto"> a) 30%</label>
-              <label class="quiz-option"><input type="radio" name="p12" value="correcto"> b) 50%</label>
-              <label class="quiz-option"><input type="radio" name="p12" value="incorrecto"> c) 60%</label>
+              <p>
+                <strong
+                  >12. Obtuviste 30 puntos de un total de 60 posibles en un
+                  test. ¿A qué porcentaje de efectividad equivale?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p12" value="incorrecto" /> a)
+                30%</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p12" value="correcto" /> b)
+                50%</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p12" value="incorrecto" /> c)
+                60%</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>13. Si en el análisis de tendencias los valores se mantienen muy parecidos a lo largo del tiempo, se dice que la tendencia es:</strong></p>
-              <label class="quiz-option"><input type="radio" name="p13" value="incorrecto"> a) Ascendente.</label>
-              <label class="quiz-option"><input type="radio" name="p13" value="incorrecto"> b) Descendente.</label>
-              <label class="quiz-option"><input type="radio" name="p13" value="correcto"> c) Estable.</label>
+              <p>
+                <strong
+                  >13. Si en el análisis de tendencias los valores se mantienen
+                  muy parecidos a lo largo del tiempo, se dice que la tendencia
+                  es:</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p13" value="incorrecto" /> a)
+                Ascendente.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p13" value="incorrecto" /> b)
+                Descendente.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p13" value="correcto" /> c)
+                Estable.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>14. ¿Cuál es el último paso del proceso de Análisis de Datos, donde el usuario usa la información para resolver un problema?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p14" value="incorrecto"> a) Procesamiento.</label>
-              <label class="quiz-option"><input type="radio" name="p14" value="correcto"> b) Interpretación (Tomar decisiones).</label>
-              <label class="quiz-option"><input type="radio" name="p14" value="incorrecto"> c) Recolección.</label>
+              <p>
+                <strong
+                  >14. ¿Cuál es el último paso del proceso de Análisis de Datos,
+                  donde el usuario usa la información para resolver un
+                  problema?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p14" value="incorrecto" /> a)
+                Procesamiento.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p14" value="correcto" /> b)
+                Interpretación (Tomar decisiones).</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p14" value="incorrecto" /> c)
+                Recolección.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>15. En el código de detección de anomalías presentado, ¿qué método nativo de los arrays en JavaScript se utiliza para aislar los valores que superan el límite normal?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p15" value="incorrecto"> a) reduce()</label>
-              <label class="quiz-option"><input type="radio" name="p15" value="correcto"> b) filter()</label>
-              <label class="quiz-option"><input type="radio" name="p15" value="incorrecto"> c) push()</label>
+              <p>
+                <strong
+                  >15. En el código de detección de anomalías presentado, ¿qué
+                  método nativo de los arrays en JavaScript se utiliza para
+                  aislar los valores que superan el límite normal?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p15" value="incorrecto" /> a)
+                reduce()</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p15" value="correcto" /> b)
+                filter()</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p15" value="incorrecto" /> c)
+                push()</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>16. Si en una lista de datos normales [10, 11, 10, 12] definimos un Limite Umbral Máximo de 15, ¿cuál de los siguientes valores nuevos activará una alerta de anomalía?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p16" value="incorrecto"> a) 11</label>
-              <label class="quiz-option"><input type="radio" name="p16" value="incorrecto"> b) 14</label>
-              <label class="quiz-option"><input type="radio" name="p16" value="correcto"> c) 16</label>
+              <p>
+                <strong
+                  >16. Si en una lista de datos normales [10, 11, 10, 12]
+                  definimos un Limite Umbral Máximo de 15, ¿cuál de los
+                  siguientes valores nuevos activará una alerta de
+                  anomalía?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p16" value="incorrecto" /> a)
+                11</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p16" value="incorrecto" /> b)
+                14</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p16" value="correcto" /> c) 16</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>17. ¿Por qué preferimos ver un gráfico interactivo en lugar de una tabla con miles de números en filas y columnas?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p17" value="correcto"> a) Porque nuestro cerebro entiende formas y colores de manera instantánea.</label>
-              <label class="quiz-option"><input type="radio" name="p17" value="incorrecto"> b) Porque los gráficos ocupan menos espacio en el código de la aplicación.</label>
-              <label class="quiz-option"><input type="radio" name="p17" value="incorrecto"> c) Porque los números tabulados siempre contienen errores de cálculo.</label>
+              <p>
+                <strong
+                  >17. ¿Por qué preferimos ver un gráfico interactivo en lugar
+                  de una tabla con miles de números en filas y columnas?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p17" value="correcto" /> a) Porque
+                nuestro cerebro entiende formas y colores de manera
+                instantánea.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p17" value="incorrecto" /> b) Porque
+                los gráficos ocupan menos espacio en el código de la
+                aplicación.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p17" value="incorrecto" /> c) Porque
+                los números tabulados siempre contienen errores de
+                cálculo.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>18. ¿Qué tipo de gráfico elegirías específicamente para mostrar la distribución de las porciones de un día completo que pasas estudiando en comparación con otras actividades?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p18" value="incorrecto"> a) Gráfico de Líneas.</label>
-              <label class="quiz-option"><input type="radio" name="p18" value="incorrecto"> b) Gráfico de Barras.</label>
-              <label class="quiz-option"><input type="radio" name="p18" value="correcto"> c) Gráfico de Pastel.</label>
+              <p>
+                <strong
+                  >18. ¿Qué tipo de gráfico elegirías específicamente para
+                  mostrar la distribución de las porciones de un día completo
+                  que pasas estudiando en comparación con otras
+                  actividades?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p18" value="incorrecto" /> a) Gráfico
+                de Líneas.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p18" value="incorrecto" /> b) Gráfico
+                de Barras.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p18" value="correcto" /> c) Gráfico
+                de Pastel.</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>19. Si calculamos de forma manual el promedio de las notas 9 y 7, el Paso 1 consiste en sumarlas (16). ¿Cuál es el divisor del Paso 2?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p19" value="correcto"> a) 2 (ya que son dos notas en total).</label>
-              <label class="quiz-option"><input type="radio" name="p19" value="incorrecto"> b) 16 (la sumatoria total).</label>
-              <label class="quiz-option"><input type="radio" name="p19" value="incorrecto"> c) 10 (la base estándar de calificación).</label>
+              <p>
+                <strong
+                  >19. Si calculamos de forma manual el promedio de las notas 9
+                  y 7, el Paso 1 consiste en sumarlas (16). ¿Cuál es el divisor
+                  del Paso 2?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p19" value="correcto" /> a) 2 (ya que
+                son dos notas en total).</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p19" value="incorrecto" /> b) 16 (la
+                sumatoria total).</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p19" value="incorrecto" /> c) 10 (la
+                base estándar de calificación).</label
+              >
             </div>
 
             <div class="quiz-question">
-              <p><strong>20. En la fórmula matemática del porcentaje: Parte dividida para el Total, ¿qué sucede si la Parte es exactamente igual al Total?</strong></p>
-              <label class="quiz-option"><input type="radio" name="p20" value="incorrecto"> a) El resultado final de la operación es 0%.</label>
-              <label class="quiz-option"><input type="radio" name="p20" value="incorrecto"> b) El resultado genera un error matemático.</label>
-              <label class="quiz-option"><input type="radio" name="p20" value="correcto"> c) El resultado final equivale al 100%.</label>
+              <p>
+                <strong
+                  >20. En la fórmula matemática del porcentaje: Parte dividida
+                  para el Total, ¿qué sucede si la Parte es exactamente igual al
+                  Total?</strong
+                >
+              </p>
+              <label class="quiz-option"
+                ><input type="radio" name="p20" value="incorrecto" /> a) El
+                resultado final de la operación es 0%.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p20" value="incorrecto" /> b) El
+                resultado genera un error matemático.</label
+              >
+              <label class="quiz-option"
+                ><input type="radio" name="p20" value="correcto" /> c) El
+                resultado final equivale al 100%.</label
+              >
             </div>
 
             <div class="quiz-actions">
-              <button type="button" id="btn-evaluar-quiz">Enviar Respuestas</button>
+              <button type="button" id="btn-evaluar-quiz">
+                Enviar Respuestas
+              </button>
               <div id="quiz-resultado"></div>
             </div>
-
           </form>
         </div>
       </section>
@@ -618,8 +989,15 @@ console.log("Cuidado, detectamos estas anomalías:", anomalias);
 
           <div class="feedback-container">
             <h3>¿Qué te pareció la aplicación?</h3>
-            <p>Tu opinión es muy importante para nosotros. Ayúdanos a mejorar respondiendo una breve encuesta.</p>
-            <a href="https://forms.gle/SD6XeVtA8CTfeXQx6" target="_blank" class="btn-feedback">
+            <p>
+              Tu opinión es muy importante para nosotros. Ayúdanos a mejorar
+              respondiendo una breve encuesta.
+            </p>
+            <a
+              href="https://forms.gle/SD6XeVtA8CTfeXQx6"
+              target="_blank"
+              class="btn-feedback"
+            >
               Evaluar en Google Forms
             </a>
           </div>
@@ -660,20 +1038,18 @@ console.log("Cuidado, detectamos estas anomalías:", anomalias);
           </div>
         </div>
       </section>
-
     </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>Proyecto realizado por el Team D<sup>2</sup></p>
-  </footer>
+    <!-- Footer -->
+    <footer>
+      <p>Proyecto realizado por el Team D<sup>2</sup></p>
+    </footer>
 
-  <!-- Scripts -->
-  <script src="js/utils.js"></script>
-  <script src="js/main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
-</body>
-
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+  </body>
 </html>
