@@ -286,17 +286,34 @@ function calcularModa() {
   if (datosModa.length === 0) return;
   let frecuencias = {}; 
   
-  datosModa.forEach(n => frecuencias[n] = (frecuencias[n] || 0) + 1);
-  let maxRepeticiones = Math.max(...Object.values(frecuencias));
-  let modasEncontradas = Object.keys(frecuencias).filter(n => frecuencias[n] === maxRepeticiones && maxRepeticiones > 1);
-  
+  for (let i = 0; i < datosModa.length; i++) {
+    let numeroActual = datosModa[i];
+    if (frecuencias[numeroActual] === undefined) {
+      frecuencias[numeroActual] = 1;
+    } else {
+      frecuencias[numeroActual] = frecuencias[numeroActual] + 1;
+    }
+  }
+
+  let maxRepeticiones = 0;
+  for (let numero in frecuencias) {
+    if (frecuencias[numero] > maxRepeticiones) {
+      maxRepeticiones = frecuencias[numero];
+    }
+  }
+  let modasEncontradas = [];
+  for (let numero in frecuencias) {
+    if (frecuencias[numero] === maxRepeticiones && maxRepeticiones > 1) {
+      modasEncontradas.push(numero);
+    }
+  }
   if (modasEncontradas.length === 0) {
     $ID("resultadoModa").innerHTML = `MODA: <strong>No hay moda</strong> (Ningún valor se repite)`;
-  } 
-  else {
+  } else {
     $ID("resultadoModa").innerHTML = `MODA: <strong>${modasEncontradas.join(", ")}</strong> (Se repite ${maxRepeticiones} veces)`;
   }
 }
+
 
 
 
