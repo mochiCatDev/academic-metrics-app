@@ -299,6 +299,7 @@ function calcularModa() {
 }
 
 
+
 //  PORCENTAJE
 function calcularPorcentajeTeoria() {
   let parte = parseFloat($ID("inputPorcentajeParte").value);
