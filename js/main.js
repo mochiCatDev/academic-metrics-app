@@ -1,35 +1,17 @@
 // Variables Globales
 const DATOS_MATERIAS = {
-  matematica: {
-  	nombre: "Matemática",
-  	notas: []
-  },
-  ingles: {
-  	nombre: "Inglés",
-  	notas: []
-  },
-  quimica: {
-    nombre: "Química",
-  	notas: []
-  },
-  biologia: {
-    nombre: "Biología",
-  	notas: []
-  },
-  filosofia: {
-  	nombre: "Filosofía",
-  	notas: []
-  },
-  fisica: {
-  	nombre: "Física",
-  	notas: []
-  }
+  matematica: { nombre: "Matemática", notas: [] },
+  ingles: { nombre: "Inglés", notas: [] },
+  quimica: { nombre: "Química", notas: [] },
+  biologia: { nombre: "Biología", notas: [] },
+  filosofia: { nombre: "Filosofía", notas: [] },
+  fisica: { nombre: "Física", notas: [] },
 };
 const SECCIONES = {
   main: $ID("section-main"),
   manager: $ID("section-manager"),
   about: $ID("section-about"),
-  teoria: $ID("section-teoria")
+  teoria: $ID("section-teoria"),
 };
 
 let miMiniChart = null;
@@ -37,7 +19,9 @@ let promedios = [];
 
 // Funcion para mostrar una seccion y ocultar las demas de manera automatica
 function mostrarSeccion(seccion) {
-  Object.keys(SECCIONES).forEach(secciones => SECCIONES[secciones].classList.add("oculto"));
+  Object.keys(SECCIONES).forEach((secciones) =>
+    SECCIONES[secciones].classList.add("oculto"),
+  );
   seccion.classList.remove("oculto");
 }
 
@@ -67,7 +51,7 @@ function pintarBarras() {
   let backgroundColors = [];
   let borderColors = [];
 
-  promedios.forEach(nota => {
+  promedios.forEach((nota) => {
     if (nota < 5) {
       backgroundColors.push("rgba(255, 99, 132, 0.6)");
       borderColors.push("rgba(255, 99, 132, 1)");
@@ -100,7 +84,7 @@ function pintarBarras() {
           beginAtZero: true,
           min: 0,
           max: 10,
-          step: 1
+          step: 1,
         },
       },
     },
@@ -123,9 +107,9 @@ function sacar_promedios() {
     promedioQuimica,
     promedioBiologia,
     promedioFilosofia,
-    promedioFisica
+    promedioFisica,
   );
-  
+
   promedioGeneral = promediar(promedios, 2);
 
   $ID("promedios").innerHTML = `
@@ -146,8 +130,8 @@ function sacar_promedios() {
 function agregarNota(id, arreglo, divTabla) {
   let tabla = "NOTAS";
   arreglo.push(parseFloat($ID(id).value));
-  arreglo.forEach(nota => tabla += `<p>${nota}</p>`);
-    
+  arreglo.forEach((nota) => (tabla += `<p>${nota}</p>`));
+
   $ID(divTabla).innerHTML = tabla;
   $ID(id).value = "";
 }
@@ -228,12 +212,13 @@ function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
 // |  Funciones didacticas  |
 // --------------------------
 
-//  PROMEDIO 
-let notas = []; 
+//  PROMEDIO
+let notas = [];
 
-function promedioE() { 
+function promedioE() {
   if (notas.length === 0) {
-    $ID("ejemplo1").innerHTML = `PROMEDIO: <span style="color: red">Sin datos ingresados</span>`;
+    $ID("ejemplo1").innerHTML =
+      `PROMEDIO: <span style="color: red">Sin datos ingresados</span>`;
     return;
   }
 
@@ -242,18 +227,18 @@ function promedioE() {
   $ID("ejemplo1").innerHTML = `PROMEDIO: <strong>${resultadoPromedio}</strong>`;
 }
 
-
-//  MEDIA ARITMÉTICA 
+//  MEDIA ARITMÉTICA
 let edadesMedia = [];
 
 function agregarMedia() {
   let campoInput = $ID("inputMediaEdad");
   let valorNumero = parseFloat(campoInput.value);
   if (!isNaN(valorNumero)) {
-    edadesMedia.push(valorNumero); 
-    $ID("resultadoMedia").innerHTML = `EDADES INGRESADAS: [ ${edadesMedia.join(", ")} ]`;
+    edadesMedia.push(valorNumero);
+    $ID("resultadoMedia").innerHTML =
+      `EDADES INGRESADAS: [ ${edadesMedia.join(", ")} ]`;
   }
-  campoInput.value = ""; 
+  campoInput.value = "";
 }
 
 function calcularMedia() {
@@ -264,11 +249,11 @@ function calcularMedia() {
   }
 
   let resultadoMedia = sumaEdades / edadesMedia.length;
-  $ID("resultadoMedia").innerHTML = `MEDIA ARITMÉTICA: <strong>${resultadoMedia.toFixed(2)}</strong> de las edades`;
+  $ID("resultadoMedia").innerHTML =
+    `MEDIA ARITMÉTICA: <strong>${resultadoMedia.toFixed(2)}</strong> de las edades`;
 }
 
-
-//  MODA 
+//  MODA
 let datosModa = [];
 
 function agregarModa() {
@@ -277,15 +262,16 @@ function agregarModa() {
 
   if (!isNaN(valorNumero)) {
     datosModa.push(valorNumero);
-    $ID("resultadoModa").innerHTML = `NÚMEROS INGRESADOS: [ ${datosModa.join(", ")} ]`;
+    $ID("resultadoModa").innerHTML =
+      `NÚMEROS INGRESADOS: [ ${datosModa.join(", ")} ]`;
   }
   campoInput.value = "";
 }
 
 function calcularModa() {
   if (datosModa.length === 0) return;
-  let frecuencias = {}; 
-  
+  let frecuencias = {};
+
   for (let i = 0; i < datosModa.length; i++) {
     let numeroActual = datosModa[i];
     if (frecuencias[numeroActual] === undefined) {
@@ -308,29 +294,29 @@ function calcularModa() {
     }
   }
   if (modasEncontradas.length === 0) {
-    $ID("resultadoModa").innerHTML = `MODA: <strong>No hay moda</strong> (Ningún valor se repite)`;
+    $ID("resultadoModa").innerHTML =
+      `MODA: <strong>No hay moda</strong> (Ningún valor se repite)`;
   } else {
-    $ID("resultadoModa").innerHTML = `MODA: <strong>${modasEncontradas.join(", ")}</strong> (Se repite ${maxRepeticiones} veces)`;
+    $ID("resultadoModa").innerHTML =
+      `MODA: <strong>${modasEncontradas.join(", ")}</strong> (Se repite ${maxRepeticiones} veces)`;
   }
 }
-
-
-
 
 //  PORCENTAJE
 function calcularPorcentajeTeoria() {
   let parte = parseFloat($ID("inputPorcentajeParte").value);
   let total = parseFloat($ID("inputPorcentajeTotal").value);
-  
+
   if (isNaN(parte) || isNaN(total) || total === 0) {
-    $ID("resultadoPorcentaje").innerHTML = "PORCENTAJE: Por favor ingresa valores válidos.";
+    $ID("resultadoPorcentaje").innerHTML =
+      "PORCENTAJE: Por favor ingresa valores válidos.";
     return;
   }
-  
-  let porcentajeCalculado = obtenerPorcentajeDelTotal(parte, total);
-  $ID("resultadoPorcentaje").innerHTML = `PORCENTAJE: <strong>${porcentajeCalculado}%</strong>`;
-}
 
+  let porcentajeCalculado = obtenerPorcentajeDelTotal(parte, total);
+  $ID("resultadoPorcentaje").innerHTML =
+    `PORCENTAJE: <strong>${porcentajeCalculado}%</strong>`;
+}
 
 //  ANÁLISIS DE TENDENCIAS
 let datosTendencia = [];
@@ -341,28 +327,29 @@ function agregarTendencia() {
 
   if (!isNaN(valorNumero)) {
     datosTendencia.push(valorNumero);
-    $ID("resultadoTendencia").innerHTML = `SERIE: [ ${datosTendencia.join(" → ")} ]`;
+    $ID("resultadoTendencia").innerHTML =
+      `SERIE: [ ${datosTendencia.join(" → ")} ]`;
   }
   campoInput.value = "";
 }
 
 function calcularTendencia() {
   if (datosTendencia.length < 2) {
-    $ID("resultadoTendencia").innerHTML = "TENDENCIA: Inserta al menos 2 datos en orden para analizar.";
+    $ID("resultadoTendencia").innerHTML =
+      "TENDENCIA: Inserta al menos 2 datos en orden para analizar.";
     return;
   }
   let contadorSubidas = 0;
   let contadorBajadas = 0;
-  
+
   for (let i = 1; i < datosTendencia.length; i++) {
     let valorActual = datosTendencia[i];
     let valorAnterior = datosTendencia[i - 1];
 
     if (valorActual > valorAnterior) {
-      contadorSubidas = contadorSubidas + 1; 
-    }
-    else if (valorActual < valorAnterior) {
-      contadorBajadas = contadorBajadas + 1; 
+      contadorSubidas = contadorSubidas + 1;
+    } else if (valorActual < valorAnterior) {
+      contadorBajadas = contadorBajadas + 1;
     }
   }
 
@@ -372,10 +359,10 @@ function calcularTendencia() {
   } else if (contadorBajadas > 0 && contadorSubidas === 0) {
     diagnostico = "Descendente 📉 (¡Atención, va disminuyendo!)";
   }
-  
-  $ID("resultadoTendencia").innerHTML = `TENDENCIA DETECTADA: <strong>${diagnostico}</strong>`;
-}
 
+  $ID("resultadoTendencia").innerHTML =
+    `TENDENCIA DETECTADA: <strong>${diagnostico}</strong>`;
+}
 
 // DETECCIÓN DE ANOMALÍAS
 let datosAnomalias = [];
@@ -386,7 +373,8 @@ function agregarAnomalia() {
 
   if (!isNaN(valorNumero)) {
     datosAnomalias.push(valorNumero);
-    $ID("resultadoAnomalia").innerHTML = `DATOS: [ ${datosAnomalias.join(", ")} ]`;
+    $ID("resultadoAnomalia").innerHTML =
+      `DATOS: [ ${datosAnomalias.join(", ")} ]`;
   }
   campoInput.value = "";
 }
@@ -396,20 +384,22 @@ function calcularAnomalia() {
 
   let limiteMaximoEscolar = 10;
   let listaErrores = [];
- 
+
   for (let i = 0; i < datosAnomalias.length; i++) {
     let dato = datosAnomalias[i];
-    if (dato > limiteMaximoEscolar || dato < 0) { listaErrores.push(dato); }
+    if (dato > limiteMaximoEscolar || dato < 0) {
+      listaErrores.push(dato);
+    }
   }
-  
+
   if (listaErrores.length > 0) {
-    $ID("resultadoAnomalia").innerHTML = `ANOMALÍAS DETECTADAS: <strong style="color: var(--accent-color);">[ ${listaErrores.join(", ")} ]</strong> superan el rango escolar permitido (0-10).`;
-  }
-  else {
-    $ID("resultadoAnomalia").innerHTML = `ANOMALÍAS DETECTADAS: <strong>Ninguna 🎉</strong>. Todos los datos están en rangos normales.`;
+    $ID("resultadoAnomalia").innerHTML =
+      `ANOMALÍAS DETECTADAS: <strong style="color: var(--accent-color);">[ ${listaErrores.join(", ")} ]</strong> superan el rango escolar permitido (0-10).`;
+  } else {
+    $ID("resultadoAnomalia").innerHTML =
+      `ANOMALÍAS DETECTADAS: <strong>Ninguna 🎉</strong>. Todos los datos están en rangos normales.`;
   }
 }
-
 
 // ---------------------
 // |  Mini-Test Final  |
@@ -418,14 +408,16 @@ function calcularAnomalia() {
 function evaluarTest() {
   const CONTENEDOR = $ID("quiz-container");
   const TOTAL_PREGUNTAS = CONTENEDOR.querySelectorAll(".quiz-question").length;
-  const CORRECTAS = CONTENEDOR.querySelectorAll('input:checked[value="correcto"]').length;
+  const CORRECTAS = CONTENEDOR.querySelectorAll(
+    'input:checked[value="correcto"]',
+  ).length;
   const NOTA_FINAL = ((CORRECTAS / TOTAL_PREGUNTAS) * 10).toFixed(2);
   const CONTENEDOR_RESULTADO = $ID("quiz-resultado");
 
   if (CORRECTAS === TOTAL_PREGUNTAS) {
     CONTENEDOR_RESULTADO.style.color = "#48bb78"; // Verde exito
     CONTENEDOR_RESULTADO.innerHTML = `¡Rendimiento Perfecto! Nota: ${NOTA_FINAL}/10.00 (${CORRECTAS}/${TOTAL_PREGUNTAS} aciertos)`;
-  } else if (NOTA_FINAL >= 7.00) {
+  } else if (NOTA_FINAL >= 7.0) {
     CONTENEDOR_RESULTADO.style.color = "#2b6cb0"; // Azul enfoque (Aprobado)
     CONTENEDOR_RESULTADO.innerHTML = `¡Aprobado! Nota: ${NOTA_FINAL}/10.00 (Acertaste ${CORRECTAS} de ${TOTAL_PREGUNTAS})`;
   } else if (NOTA_FINAL >= 4) {
@@ -437,26 +429,47 @@ function evaluarTest() {
   }
 }
 
-
 // ------------------------
 // |  Seccion de Botones  |
 // ------------------------
 
 // Botones para agregar notas
-onClick("#btn-notaMath", () => { agregarNota("notaMath", DATOS_MATERIAS.matematica.notas, "tabla");  });
-onClick("#btn-notaIng", () => { agregarNota("notaIng", DATOS_MATERIAS.ingles.notas, "tabla2");  });
-onClick("#btn-notaQuim", () => { agregarNota("notaQuim", DATOS_MATERIAS.quimica.notas, "tabla3");  });
-onClick("#btn-notaBio", () => { agregarNota("notaBio", DATOS_MATERIAS.biologia.notas, "tabla4");	});
-onClick("#btn-notaFilo", () => { agregarNota("notaFilo", DATOS_MATERIAS.filosofia.notas, "tabla5"); });
-onClick("#btn-notaFis", () => { agregarNota("notaFis", DATOS_MATERIAS.fisica.notas, "tabla6"); });
+onClick("#btn-notaMath", () => {
+  agregarNota("notaMath", DATOS_MATERIAS.matematica.notas, "tabla");
+});
+onClick("#btn-notaIng", () => {
+  agregarNota("notaIng", DATOS_MATERIAS.ingles.notas, "tabla2");
+});
+onClick("#btn-notaQuim", () => {
+  agregarNota("notaQuim", DATOS_MATERIAS.quimica.notas, "tabla3");
+});
+onClick("#btn-notaBio", () => {
+  agregarNota("notaBio", DATOS_MATERIAS.biologia.notas, "tabla4");
+});
+onClick("#btn-notaFilo", () => {
+  agregarNota("notaFilo", DATOS_MATERIAS.filosofia.notas, "tabla5");
+});
+onClick("#btn-notaFis", () => {
+  agregarNota("notaFis", DATOS_MATERIAS.fisica.notas, "tabla6");
+});
 
 // Botones para mostrar secciones
-onClick("#btn-main", () => { mostrarSeccion(SECCIONES.main) });
-onClick("#btn-manager", () => { mostrarSeccion(SECCIONES.manager) });
-onClick("#btn-teoria", () => { mostrarSeccion(SECCIONES.teoria) });
-onClick("#btn-about", () => { mostrarSeccion(SECCIONES.about) });
+onClick("#btn-main", () => {
+  mostrarSeccion(SECCIONES.main);
+});
+onClick("#btn-manager", () => {
+  mostrarSeccion(SECCIONES.manager);
+});
+onClick("#btn-teoria", () => {
+  mostrarSeccion(SECCIONES.teoria);
+});
+onClick("#btn-about", () => {
+  mostrarSeccion(SECCIONES.about);
+});
 
-onClick("#btn-evaluar-quiz", () => { evaluarTest() });
+onClick("#btn-evaluar-quiz", () => {
+  evaluarTest();
+});
 
 onClick("#demo-tendencia-input", () => {
   const inputTendencia = $ID("demo-tendencia-input");
@@ -466,18 +479,39 @@ onClick("#demo-tendencia-input", () => {
 });
 
 // botones seccion didactica
-onClick("#btn-add", () => { agregarNota("ejemploProm", notas, "ejemplo1"); });
-onClick("#btn-prueba", () => { promedioE(); });
-onClick("#btn-addMedia", () => { agregarMedia(); });
-onClick("#btn-calcMedia", () => { calcularMedia(); });
-onClick("#btn-addModa", () => { agregarModa(); });
-onClick("#btn-calcModa", () => { calcularModa(); });
-onClick("#btn-calcPorcentaje", () => { calcularPorcentajeTeoria(); });
-onClick("#btn-addTendencia", () => { agregarTendencia(); });
-onClick("#btn-calcTendencia", () => { calcularTendencia(); });
-onClick("#btn-addAnomalia", () => { agregarAnomalia(); });
-onClick("#btn-calcAnomalia", () => { calcularAnomalia(); });
-
+onClick("#btn-add", () => {
+  agregarNota("ejemploProm", notas, "ejemplo1");
+});
+onClick("#btn-prueba", () => {
+  promedioE();
+});
+onClick("#btn-addMedia", () => {
+  agregarMedia();
+});
+onClick("#btn-calcMedia", () => {
+  calcularMedia();
+});
+onClick("#btn-addModa", () => {
+  agregarModa();
+});
+onClick("#btn-calcModa", () => {
+  calcularModa();
+});
+onClick("#btn-calcPorcentaje", () => {
+  calcularPorcentajeTeoria();
+});
+onClick("#btn-addTendencia", () => {
+  agregarTendencia();
+});
+onClick("#btn-calcTendencia", () => {
+  calcularTendencia();
+});
+onClick("#btn-addAnomalia", () => {
+  agregarAnomalia();
+});
+onClick("#btn-calcAnomalia", () => {
+  calcularAnomalia();
+});
 
 demoTendencia();
 mostrarSeccion(SECCIONES.main);
