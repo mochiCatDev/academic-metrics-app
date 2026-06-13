@@ -118,15 +118,16 @@
         <h2>Estadística Aplicada</h2>
         <!-- Menu interno -->
         <div class="btns-teoria">
-          <a href="#promedio-concept">1. Promedio</a>
-          <a href="#media-concept">2. Media Aritmética</a>
-          <a href="#moda-concept">3. Moda</a>
-          <a href="#porcentaje-concept">4. Porcentaje</a>
-          <a href="#tendencias-concept">5. Análisis de Tendencias</a>
-          <a href="#graficos-concept">6. Interpretación de Gráficos</a>
-          <a href="#analisis-datos-concept">7. Análisis de Datos</a>
-          <a href="#anomalias-concept">8. Detección de Anomalías</a>
-          <a href="#quiz-container">9. Evaluación</a>
+          <a href="#promedio-concept">Promedio</a>
+          <a href="#media-concept">Media</a>
+          <a href="#mediana-concept">Mediana</a>
+          <a href="#moda-concept">Moda</a>
+          <a href="#porcentaje-concept">Porcentaje</a>
+          <a href="#tendencias-concept">Análisis de Tendencias</a>
+          <a href="#graficos-concept">Interpretación de Gráficos</a>
+          <a href="#analisis-datos-concept">Análisis de Datos</a>
+          <a href="#anomalias-concept">Detección de Anomalías</a>
+          <a href="#quiz-container">Evaluación</a>
         </div>
         <ol>
           <li>
@@ -220,6 +221,7 @@ console.log(calcularPromedio([8, 9, 7])); // Resultado: 8
                 </div>
               </ul>
 
+              <h4>¿Cómo lo hace la computadora?</h4>
               <pre><code class="language-javascript">
 const edades = [18, 20, 22, 25];
 let sumaEdades = 0;
@@ -233,6 +235,54 @@ for(let i = 0; i < edades.length; i++) {
 const media = sumaEdades / edades.length;
 console.log(`La media es: ${media}`);
         </code></pre>
+            </section>
+          </li>
+
+          <li>
+            <section id="mediana-concept">
+              <h3>Mediana</h3>
+              <p>
+                La mediana <strong>es el valor central de un conjunto de datos ordenados
+                de menor a mayor</strong>. Divide la distribución exactamente por la mitad,
+                dejando un 50% de los valores por debajo y un 50% por encima.
+                Es una medida de tendencia central clave en estadística
+              </p>
+              <h4>¿Cómo lo haces tú mismo?</h4>
+              <ul>
+                <li><strong>Paso 1:</strong> Ordena tus datos de menor a mayor.</li>
+                <li><strong>Paso 2:</strong> Cuenta su distancia.</li>
+                <li><strong>Paso 3:</strong> Si es impar la distancia: La media es exactamente el numero que este en la mitad.</li>
+                <li><strong>Paso 4:</strong> Si es par la distancia: La mediana es el promedio de los dos números centrales.</li>
+              </ul>
+              <h4>Ejemplos</h4>
+              <ul>
+                <li><strong>Cantidad impar =</strong> {3, 5, 8, 10, 11}. El número central es <strong>8</strong>.</li>
+                <li><strong>Cantidad par =</strong> {2, 4, 6, 8}. Los dos centrales son 4 y 6, por lo que el promedio es \(\frac{4+6}{2}\) = 5</li>
+              </ul>
+              <h4>¿Cómo lo programamos?</h4>
+              <pre><code class="language-javascript">function calcularMediana(listaNumeros) {
+  // 1. Ordenar los datos de menor a mayor.
+  // Usamos (a, b) => a - b porque si solo usas .sort(), JS los ordena como texto.
+  const datosOrdenados = [...listaNumeros].sort((a, b) => a - b);
+  const n = datosOrdenados.length;
+
+  // 2. Encontrar el índice de la mitad.
+  // Math.floor elimina los decimales.
+  const indiceMitad = Math.floor(n / 2);
+
+  // 3. Si la cantidad de datos es IMPAR
+  if (n % 2 !== 0) {
+    return datosOrdenados[indiceMitad];
+  }
+
+  // 4. Si la cantidad de datos es PAR
+  else {
+    const datoIzquierdo = datosOrdenados[indiceMitad - 1];
+    const datoDerecho = datosOrdenados[indiceMitad];
+    return (datoIzquierdo + datoDerecho) / 2;
+  }
+}</pre></code>
+            <h4>¿Quieres probarlo?</h4>
             </section>
           </li>
 
@@ -513,7 +563,7 @@ const limiteNormal = 30; // Definimos qué es "normal"
 
 // Filtramos todo lo que supere el límite
 const anomalias = temperaturas.filter(temp => temp > limiteNormal);
-console.log("Cuidado, detectamos estas anomalías:", anomalias); 
+console.log("Cuidado, detectamos estas anomalías:", anomalias);
 // Mostrará: [45]
         </code></pre>
             </section>
