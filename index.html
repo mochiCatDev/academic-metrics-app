@@ -173,16 +173,14 @@
               </ul>
 
               <h4>¿Cómo lo hace la computadora?</h4>
-              <pre><code class="language-javascript">
-function calcularPromedio(notas) {
+              <pre><code class="language-javascript">function calcularPromedio(notas) {
     // 1. Sumamos todo (usando reduce)
     const suma = notas.reduce((acumulador, nota) => acumulador + nota, 0);
     // 2. Dividimos por la cantidad de elementos
     return suma / notas.length;
 }
 
-console.log(calcularPromedio([8, 9, 7])); // Resultado: 8
-        </code></pre>
+console.log(calcularPromedio([8, 9, 7])); // Resultado: 8</code></pre>
             </section>
           </li>
 
@@ -222,8 +220,7 @@ console.log(calcularPromedio([8, 9, 7])); // Resultado: 8
               </ul>
 
               <h4>¿Cómo lo hace la computadora?</h4>
-              <pre><code class="language-javascript">
-const edades = [18, 20, 22, 25];
+              <pre><code class="language-javascript">const edades = [18, 20, 22, 25];
 let sumaEdades = 0;
 
 // Hacemos el Paso 1 iterando la lista
@@ -233,8 +230,7 @@ for(let i = 0; i < edades.length; i++) {
 
 // Hacemos el Paso 2
 const media = sumaEdades / edades.length;
-console.log(`La media es: ${media}`);
-        </code></pre>
+console.log(`La media es: ${media}`);</code></pre>
             </section>
           </li>
 
@@ -381,14 +377,12 @@ console.log(`La media es: ${media}`);
               </ul>
 
               <h4>¿Cómo lo programamos?</h4>
-              <pre><code class="language-javascript">
-function calcularPorcentaje(puntosObtenidos, puntosTotales) {
+              <pre><code class="language-javascript">function calcularPorcentaje(puntosObtenidos, puntosTotales) {
     return (puntosObtenidos / puntosTotales) * 100;
 }
 
 const miNota = calcularPorcentaje(45, 50);
-console.log(`Lograste un ${miNota}% de efectividad`);
-        </code></pre>
+console.log(`Lograste un ${miNota}% de efectividad`);</code></pre>
             </section>
           </li>
 
@@ -418,14 +412,12 @@ console.log(`Lograste un ${miNota}% de efectividad`);
                 <br />
               </ul>
 
-              <pre><code class="language-javascript">
-const ventas = [100, 150, 200];
+              <pre><code class="language-javascript">const ventas = [100, 150, 200];
 
 // Comparamos si el último mes fue mejor que el anterior
 if (ventas[2] > ventas[1]) {
     console.log("¡Tenemos una tendencia de crecimiento!");
-}
-        </code></pre>
+}</code></pre>
               <strong>Análisis de Tendencias:</strong> Permite identificar la
               dirección (alcista o bajista) de una serie de datos a lo largo del
               tiempo.
@@ -557,15 +549,13 @@ if (ventas[2] > ventas[1]) {
               </ul>
 
               <h4>¿Cómo lo hace el código?</h4>
-              <pre><code class="language-javascript">
-const temperaturas = [20, 21, 22, 20, 21, 45];
+              <pre><code class="language-javascript">const temperaturas = [20, 21, 22, 20, 21, 45];
 const limiteNormal = 30; // Definimos qué es "normal"
 
 // Filtramos todo lo que supere el límite
 const anomalias = temperaturas.filter(temp => temp > limiteNormal);
 console.log("Cuidado, detectamos estas anomalías:", anomalias);
-// Mostrará: [45]
-        </code></pre>
+// Mostrará: [45]</code></pre>
             </section>
           </li>
         </ol>
