@@ -32,6 +32,8 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body)"
     ></script>
+    <!-- CDN Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   </head>
 
   <body>
@@ -172,7 +174,7 @@
                 </div>
               </ul>
 
-              <h4>¿Cómo lo hace la computadora?</h4>
+              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
               <pre><code class="language-javascript">function calcularPromedio(notas) {
     // 1. Sumamos todo (usando reduce)
     const suma = notas.reduce((acumulador, nota) => acumulador + nota, 0);
@@ -219,7 +221,7 @@ console.log(calcularPromedio([8, 9, 7])); // Resultado: 8</code></pre>
                 </div>
               </ul>
 
-              <h4>¿Cómo lo hace la computadora?</h4>
+              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
               <pre><code class="language-javascript">const edades = [18, 20, 22, 25];
 let sumaEdades = 0;
 
@@ -255,7 +257,7 @@ console.log(`La media es: ${media}`);</code></pre>
                 <li><strong>Cantidad impar =</strong> {3, 5, 8, 10, 11}. El número central es <strong>8</strong>.</li>
                 <li><strong>Cantidad par =</strong> {2, 4, 6, 8}. Los dos centrales son 4 y 6, por lo que el promedio es \(\frac{4+6}{2}\) = 5</li>
               </ul>
-              <h4>¿Cómo lo programamos?</h4>
+              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
               <pre><code class="language-javascript">function calcularMediana(listaNumeros) {
   // 1. Ordenar los datos de menor a mayor.
   // Usamos (a, b) => a - b porque si solo usas .sort(), JS los ordena como texto.
@@ -376,7 +378,7 @@ console.log(`La media es: ${media}`);</code></pre>
                 </div>
               </ul>
 
-              <h4>¿Cómo lo programamos?</h4>
+              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
               <pre><code class="language-javascript">function calcularPorcentaje(puntosObtenidos, puntosTotales) {
     return (puntosObtenidos / puntosTotales) * 100;
 }
@@ -412,6 +414,7 @@ console.log(`Lograste un ${miNota}% de efectividad`);</code></pre>
                 <br />
               </ul>
 
+              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
               <pre><code class="language-javascript">const ventas = [100, 150, 200];
 
 // Comparamos si el último mes fue mejor que el anterior
@@ -548,7 +551,7 @@ if (ventas[2] > ventas[1]) {
                 </div>
               </ul>
 
-              <h4>¿Cómo lo hace el código?</h4>
+              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
               <pre><code class="language-javascript">const temperaturas = [20, 21, 22, 20, 21, 45];
 const limiteNormal = 30; // Definimos qué es "normal"
 
