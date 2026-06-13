@@ -180,9 +180,7 @@
     const suma = notas.reduce((acumulador, nota) => acumulador + nota, 0);
     // 2. Dividimos por la cantidad de elementos
     return suma / notas.length;
-}
-
-console.log(calcularPromedio([8, 9, 7])); // Resultado: 8</code></pre>
+}</code></pre>
             </section>
           </li>
 
@@ -222,17 +220,16 @@ console.log(calcularPromedio([8, 9, 7])); // Resultado: 8</code></pre>
               </ul>
 
               <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
-              <pre><code class="language-javascript">const edades = [18, 20, 22, 25];
-let sumaEdades = 0;
-
-// Hacemos el Paso 1 iterando la lista
-for(let i = 0; i < edades.length; i++) {
-    sumaEdades += edades[i];
-}
-
-// Hacemos el Paso 2
-const media = sumaEdades / edades.length;
-console.log(`La media es: ${media}`);</code></pre>
+              <pre><code class="language-javascript">function calcularMedia(arr) {
+  // 1. Sumamos todo
+  let suma = 0;
+  for (let i = 0; i < edades.length; i++) {
+    suma += arr[i];
+  }
+  // 2. Dividimos por la cantidad de elementos
+  const media = suma/arr.length;
+  return media;
+}</code></pre>
             </section>
           </li>
 
@@ -259,27 +256,24 @@ console.log(`La media es: ${media}`);</code></pre>
               </ul>
               <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
               <pre><code class="language-javascript">function calcularMediana(listaNumeros) {
-  // 1. Ordenar los datos de menor a mayor.
-  // Usamos (a, b) => a - b porque si solo usas .sort(), JS los ordena como texto.
+  // 1. Ordenar los datos de menor a mayor sin alterar la lista original
   const datosOrdenados = [...listaNumeros].sort((a, b) => a - b);
   const n = datosOrdenados.length;
 
-  // 2. Encontrar el índice de la mitad.
-  // Math.floor elimina los decimales.
+  // 2. Encontrar el índice de la mitad exacta
   const indiceMitad = Math.floor(n / 2);
 
-  // 3. Si la cantidad de datos es IMPAR
+  // 3. Si la cantidad de datos es IMPAR, el del centro es la mediana
   if (n % 2 !== 0) {
     return datosOrdenados[indiceMitad];
   }
-
-  // 4. Si la cantidad de datos es PAR
+  // 4. Si es PAR, se promedian los dos elementos del centro
   else {
     const datoIzquierdo = datosOrdenados[indiceMitad - 1];
     const datoDerecho = datosOrdenados[indiceMitad];
     return (datoIzquierdo + datoDerecho) / 2;
   }
-}</pre></code>
+}</code></pre>
             <h4>¿Quieres probarlo?</h4>
             </section>
           </li>
@@ -316,6 +310,37 @@ console.log(`La media es: ${media}`);</code></pre>
                   <div id="resultadoModa" class="ejemplo-resultado">MODA:</div>
                 </div>
               </ul>
+              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
+              <pre><code class="language-javascript">function calcularModaImperativa(lista) {
+  let conteo = {};
+  let maxVotos = 0;
+  let modas = [];
+
+  // 1. Contar los votos de cada número
+  for (let i = 0; i < lista.length; i++) {
+    let num = lista[i];
+    conteo[num] = (conteo[num] || 0) + 1;
+
+    // Mantener actualizado cuál es el récord de votos actual
+    if (conteo[num] > maxVotos) {
+      maxVotos = conteo[num];
+    }
+  }
+
+  // 2. Juntar a todos los que alcanzaron el récord de votos
+  for (let num in conteo) {
+    if (conteo[num] === maxVotos) {
+      modas.push(Number(num));
+    }
+  }
+
+  // Si todos tienen 1 voto, o todos empataron igual, no hay moda (Amodal)
+  if (maxVotos === 1 || modas.length === Object.keys(conteo).length) {
+    return "No hay moda";
+  }
+
+  return modas.length === 1 ? modas[0] : modas;
+}</code></pre>
             </section>
           </li>
 
@@ -380,11 +405,10 @@ console.log(`La media es: ${media}`);</code></pre>
 
               <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
               <pre><code class="language-javascript">function calcularPorcentaje(puntosObtenidos, puntosTotales) {
-    return (puntosObtenidos / puntosTotales) * 100;
-}
-
-const miNota = calcularPorcentaje(45, 50);
-console.log(`Lograste un ${miNota}% de efectividad`);</code></pre>
+  // 1. Dividimos los puntos logrados entre el total para obtener la fracción decimal
+  // 2. Multiplicamos por 100 para transformarlo en un porcentaje entero (0% - 100%)
+  return (puntosObtenidos / puntosTotales) * 100;
+}</code></pre>
             </section>
           </li>
 
@@ -415,11 +439,22 @@ console.log(`Lograste un ${miNota}% de efectividad`);</code></pre>
               </ul>
 
               <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
-              <pre><code class="language-javascript">const ventas = [100, 150, 200];
+              <pre><code class="language-javascript">function analizarTendencia(ventas) {
+  // 1. Si no hay suficientes datos para comparar, no podemos definir una tendencia
+  if (ventas.length < 2) return "Datos insuficientes";
 
-// Comparamos si el último mes fue mejor que el anterior
-if (ventas[2] > ventas[1]) {
-    console.log("¡Tenemos una tendencia de crecimiento!");
+  // 2. Ubicar dinámicamente el último y el penúltimo mes usando la longitud del arreglo
+  const ultimoMes = ventas[ventas.length - 1];
+  const mesAnterior = ventas[ventas.length - 2];
+
+  // 3. Comparar los valores para determinar la tendencia
+  if (ultimoMes > mesAnterior) {
+    return "¡Tendencia al alza!";
+  } else if (ultimoMes < mesAnterior) {
+    return "Tendencia a la baja";
+  } else {
+    return "Tendencia estable";
+  }
 }</code></pre>
               <strong>Análisis de Tendencias:</strong> Permite identificar la
               dirección (alcista o bajista) de una serie de datos a lo largo del
@@ -552,13 +587,39 @@ if (ventas[2] > ventas[1]) {
               </ul>
 
               <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
-              <pre><code class="language-javascript">const temperaturas = [20, 21, 22, 20, 21, 45];
-const limiteNormal = 30; // Definimos qué es "normal"
+              <pre><code class="language-javascript">function detectarAnomaliasTemperatura(temperaturas) {
+  if (temperaturas.length < 3) return "Datos insuficientes para analizar";
 
-// Filtramos todo lo que supere el límite
-const anomalias = temperaturas.filter(temp => temp > limiteNormal);
-console.log("Cuidado, detectamos estas anomalías:", anomalias);
-// Mostrará: [45]</code></pre>
+  // 1. Calcular el Promedio (Media)
+  let suma = 0;
+  for (let i = 0; i < temperaturas.length; i++) {
+    suma += temperaturas[i];
+  }
+  const promedio = suma / temperaturas.length;
+
+  // 2. Calcular la Desviación Estándar (Qué tanto varían los datos normalmente)
+  let sumaDiferenciasCuadrado = 0;
+  for (let i = 0; i < temperaturas.length; i++) {
+    sumaDiferenciasCuadrado += Math.pow(temperaturas[i] - promedio, 2);
+  }
+  const varianza = sumaDiferenciasCuadrado / temperaturas.length;
+  const desviacionEstandar = Math.sqrt(varianza);
+
+  // 3. Definir el límite inteligente (Promedio + 2 veces la desviación)
+  // El "2" es el factor de tolerancia. Más de 2 ya es muy raro.
+  const limiteSuperior = promedio + (2 * desviacionEstandar);
+  const limiteInferior = promedio - (2 * desviacionEstandar);
+
+  // 4. Filtrar las anomalías
+  let anomalias = [];
+  for (let i = 0; i < temperaturas.length; i++) {
+    if (temperaturas[i] > limiteSuperior || temperaturas[i] < limiteInferior) {
+      anomalias.push(temperaturas[i]);
+    }
+  }
+
+  return anomalias;
+}</code></pre>
             </section>
           </li>
         </ol>
