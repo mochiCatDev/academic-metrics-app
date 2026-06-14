@@ -120,7 +120,6 @@
         <h2>Estadística Aplicada</h2>
         <!-- Menu interno -->
         <div class="btns-teoria">
-          <a href="#promedio-concept">Promedio</a>
           <a href="#media-concept">Media</a>
           <a href="#mediana-concept">Mediana</a>
           <a href="#moda-concept">Moda</a>
@@ -133,92 +132,31 @@
         </div>
         <ol>
           <li>
-            <section id="promedio-concept">
-              <h3>Promedio</h3>
-              <p>
-                El promedio es un valor que representa el "centro" de un grupo
-                de números. Imagina que quieres repartir dulces de forma
-                equitativa entre tus amigos; el promedio te dice cuántos le
-                tocarían a cada uno.
-              </p>
-
-              <h4>¿Cómo lo haces tú mismo?</h4>
-              <p>La fórmula matemática es esta:</p>
-              <p>$$\text{Promedio} = \frac{\sum x}{n}$$</p>
-              <ul>
-                <li>
-                  <strong>Paso 1 (La sumatoria - \(\sum x\)):</strong> Suma
-                  todos los valores que tienes. Por ejemplo, si las notas son 8,
-                  9 y 7, la suma es 24.
-                </li>
-                <li>
-                  <strong>Paso 2 (La division - \(n\)):</strong> Cuenta cuántos
-                  valores sumaste. En este caso son 3 notas.
-                </li>
-                <li>
-                  <strong>Paso 3:</strong> Divide la suma total entre la
-                  cantidad de valores (24 divido para 3 es 8). ¡Ese es tu
-                  promedio!
-                </li>
-                <strong>AHORA UN PEQUEÑO EJEMPLO:</strong>
-                <p>Ingresa tus notas una por una para calcular su promedio:</p>
-                <div class="ejemplo-didactico">
-                  <input
-                    type="number"
-                    placeholder="Ingresa una nota"
-                    id="ejemploProm"
-                  />
-                  <button id="btn-add">Agregar Nota</button>
-                  <button id="btn-prueba">Calcular Promedio</button>
-                  <div id="ejemplo1" class="ejemplo-resultado">PROMEDIO:</div>
-                </div>
-              </ul>
-
-              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
-              <pre><code class="language-javascript">function calcularPromedio(notas) {
-    // 1. Sumamos todo (usando reduce)
-    const suma = notas.reduce((acumulador, nota) => acumulador + nota, 0);
-    // 2. Dividimos por la cantidad de elementos
-    return suma / notas.length;
-}</code></pre>
-            </section>
-          </li>
-
-          <li>
             <section id="media-concept">
-              <h3>Media Aritmética</h3>
-              <p>
-                En el mundo de la programación y los datos, "Promedio" y "Media"
-                suelen usarse como sinónimos. La media es la medida que más
-                usamos en Inteligencia Artificial para encontrar el punto de
-                equilibrio en un mar de información.
-              </p>
-
-              <h4>¿Cómo lo calculas?</h4>
-              <p>
-                Exactamente igual que el promedio. Si tienes las edades de tus
-                usuarios: 18, 20, 22 y 25.
-              </p>
+              <!-- tema -->
+              <h3>Promedio y Media Aritmética</h3>
+              <!-- explicacion basica -->
+              <h4>Explicación</h4>
+              <p>La media y el promedio son exactamente lo mismo.<br/>En el día a día usamos la palabra "promedio", pero en el mundo de las matemáticas y la estadística, los profesionales prefieren llamarle "media" (o formalmente, media aritmética). Ambas palabras se refieren al valor central de un grupo de números.</p>
+              <!-- formula matematica -->
+              <h4>Fórmula</h4>
+              <p>$$\bar{x} = \frac{\sum_{x=i}^n x_i}{n}$$</p>
+              <!-- significado de cada simbolo -->
+              <h4>¿Qué significa cada símbolo?</h4>
               <ul>
-                <li>Sumas las edades: 18 + 20 + 22 + 25 = 85.</li>
-                <li>Divides por los 4 usuarios que tienes: 85 / 4 = 21.25.</li>
-                <br />
-                <strong>PROBAR CON EDADES:</strong>
-                <p>Ingresa las edades de tu grupo para obtener la media:</p>
-                <div class="ejemplo-didactico">
-                  <input
-                    type="number"
-                    placeholder="Ingresa una edad"
-                    id="inputMediaEdad"
-                  />
-                  <button id="btn-addMedia">Agregar Edad</button>
-                  <button id="btn-calcMedia">Calcular Media</button>
-                  <div id="resultadoMedia" class="ejemplo-resultado">
-                    MEDIA ARITMÉTICA:
-                  </div>
-                </div>
+                <li>\(\bar{x}\) (se lee "x barra"): Representa la media aritmética o promedio.</li>
+                <li>\(\sum\) (letra griega Sigma): Es el símbolo de sumatoria, lo que significa que debes sumar todos los valores desde el primero (i=1) hasta el último (n).</li>
+                <li>\(x_i\): Representa cada uno de los valores individuales en tu conjunto de datos.</li>
+                <li>\(n\): Es el número total de datos que estás sumando.</li>
               </ul>
-
+              <strong>PROBAR CON EDADES:</strong>
+              <p>Ingresa las edades de tu grupo para obtener la media:</p>
+              <div class="ejemplo-didactico">
+                <input type="number" placeholder="Ingresa una edad" id="inputMediaEdad"/>
+                <button id="btn-addMedia">Agregar Edad</button>
+                <button id="btn-calcMedia">Calcular Media</button>
+                <div id="resultadoMedia" class="ejemplo-resultado">MEDIA ARITMÉTICA:</div>
+              </div>
               <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
               <pre><code class="language-javascript">function calcularMedia(arr) {
   // 1. Sumamos todo
