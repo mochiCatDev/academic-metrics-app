@@ -21,7 +21,9 @@ let promedios = [];
 function cambiarModos() {
   const esOscuro = document.body.getAttribute("data-theme") === "dark";
   const nuevoTema = esOscuro ? "light" : "dark";
+  const nuevoMensaje = esOscuro ? `<i class="fa-regular fa-sun"></i>` : `<i class="fa-regular fa-moon"></i>`;
   document.body.setAttribute("data-theme", nuevoTema);
+  $ID("btn-modos").innerHTML = nuevoMensaje;
 
   if (barras !== null) {
     pintarBarras();
