@@ -27,6 +27,34 @@ body {
   display: none !important;
 }
 
+/* Botón de cambio de modos - Esquina superior derecha circular */
+#btn-modos {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: var(--bg-card);
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#btn-modos:hover {
+  transform: scale(1.08);
+  background-color: var(--primary-color);
+  color: var(--bg-card);
+  border-color: var(--primary-color);
+}
+
 /* ==========================================================================
    Header y Navegación (Estilo Journal Científico)
    ========================================================================== */
@@ -92,11 +120,11 @@ nav button:focus {
   min-width: 300px;
 }
 
-/* Barra de progreso termómetro mejorada */
+/* Barra de progreso termómetro */
 .container-bar-progress {
   width: 80px;
   height: 320px;
-  background-color: #edf2f7;
+  background-color: var(--bg-app);
   border: 1px solid var(--border-color);
   border-radius: 50px;
   position: relative;
@@ -138,7 +166,7 @@ nav button:focus {
   font-size: 1.1rem;
   font-weight: bold;
   color: var(--text-main);
-  mix-blend-mode: difference; /* Efecto hacker/matemático: cambia de color según el fondo */
+  mix-blend-mode: difference;
   filter: invert(1) grayscale(1) contrast(9);
   z-index: 10;
 }
@@ -189,6 +217,8 @@ nav button:focus {
   font-size: 0.95rem;
   margin-bottom: 10px;
   outline: none;
+  background-color: var(--bg-card);
+  color: var(--text-main);
   transition: border-color 0.2s;
 }
 
@@ -199,7 +229,7 @@ nav button:focus {
 #section-manager button {
   width: 100%;
   background-color: var(--primary-color);
-  color: white;
+  color: var(--bg-card);
   border: none;
   padding: 8px;
   font-size: 0.85rem;
@@ -223,7 +253,8 @@ nav button:focus {
   gap: 15px;
   margin-top: 20px;
   padding: 20px;
-  background: #edf2f7;
+  background: var(--bg-app);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
 }
 
@@ -232,6 +263,7 @@ nav button:focus {
   padding: 12px 40px;
   font-size: 1.1rem;
   background-color: var(--accent-color);
+  color: white;
 }
 
 #section-manager > div:last-child button:hover {
@@ -366,7 +398,7 @@ nav button:focus {
   font-size: 1.1rem;
   margin-bottom: 15px;
   text-align: justify;
-  color: #333;
+  color: var(--text-main);
 }
 
 #section-teoria h4 {
@@ -389,7 +421,7 @@ nav button:focus {
 
 /* Bloques de Código de JavaScript */
 #section-teoria pre {
-  background-color: #1a202c !important; /* Ajuste manual por si falla Prism */
+  background-color: #1a202c !important;
   padding: 15px;
   border-radius: 6px;
   overflow-x: auto;
@@ -428,6 +460,8 @@ nav button:focus {
   border: 1px solid var(--border-color);
   border-radius: 4px;
   font-family: var(--font-mono);
+  background-color: var(--bg-card);
+  color: var(--text-main);
   margin-bottom: 10px;
   display: block;
 }
@@ -521,9 +555,10 @@ nav button:focus {
 .katex-display {
   margin: 20px 0 !important;
   padding: 10px;
-  background: #f8fafc;
+  background: var(--bg-app);
   border-radius: 4px;
   border: 1px dashed var(--border-color);
+  color: var(--text-main);
 }
 
 #section-about .about-card {
@@ -571,11 +606,11 @@ nav button:focus {
 
 .feedback-container h3 {
   margin-top: 0;
-  color: var(--color-text-main, #ffffff);
+  color: var(--text-main);
 }
 
 .feedback-container p {
-  color: var(--color-text-muted, #aaaaaa);
+  color: var(--text-muted);
   font-size: 0.95rem;
   margin-bottom: 15px;
 }
@@ -677,10 +712,10 @@ footer sup {
   font-weight: bold;
 }
 
-  Estilos para Ejemplos Didácticos Interactivos 
+/* Estilos para Ejemplos Didácticos Interactivos */
 
 .ejemplo-didactico {
-    background-color: #f8fafc;
+    background-color: var(--bg-app);
     border: 1px solid var(--border-color);
     padding: 15px;
     margin: 15px 0;
@@ -692,6 +727,8 @@ footer sup {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-family: var(--font-mono);
+    background-color: var(--bg-card);
+    color: var(--text-main);
     margin-right: 8px;
     margin-bottom: 10px;
 }
@@ -719,7 +756,8 @@ footer sup {
     font-size: 0.95rem;
     margin-top: 5px;
     padding: 8px;
-    background-color: #edf2f7;
+    background-color: var(--bg-app);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     color: var(--primary-color);
 }

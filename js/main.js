@@ -17,6 +17,13 @@ const SECCIONES = {
 let miMiniChart = null;
 let promedios = [];
 
+// Funcion para cambiar de modo claro a oscuro y viceversa
+function cambiarModos() {
+  const esOscuro = document.body.getAttribute("data-theme") === "dark";
+  const nuevoTema = esOscuro ? "light" : "dark";
+  document.body.setAttribute("data-theme", nuevoTema);
+}
+
 // Funcion para mostrar una seccion y ocultar las demas de manera automatica
 function mostrarSeccion(seccion) {
   Object.keys(SECCIONES).forEach((secciones) =>
@@ -120,7 +127,7 @@ function sacar_promedios() {
     <p>Promedio biologia: ${promedioBiologia}</p>
     <p>Promedio filosofia: ${promedioFilosofia}</p>
     <p>Promedio fisica: ${promedioFisica}</p>
-    <p>Promedio Total: ${promedioGeneral}</p>                            
+    <p>Promedio Total: ${promedioGeneral}</p>
   `;
 
   pintarBarras();
@@ -432,6 +439,9 @@ function evaluarTest() {
 // ------------------------
 // |  Seccion de Botones  |
 // ------------------------
+
+// Boton para cambiar de modos claro/oscuro
+onClick("#btn-modos", () => { cambiarModos() });
 
 // Botones para agregar notas
 onClick("#btn-notaMath", () => {
