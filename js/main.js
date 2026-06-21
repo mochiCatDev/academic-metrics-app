@@ -16,6 +16,7 @@ const SECCIONES = {
 
 let miMiniChart = null;
 let promedios = [];
+let colorPreferido = localStorage.getItem("colorFondo");
 
 // Funcion para cambiar de modo claro a oscuro y viceversa
 function cambiarModos() {
@@ -24,6 +25,7 @@ function cambiarModos() {
   const nuevoMensaje = esOscuro ? `<i class="fa-regular fa-sun"></i>` : `<i class="fa-regular fa-moon"></i>`;
   document.body.setAttribute("data-theme", nuevoTema);
   $ID("btn-modos").innerHTML = nuevoMensaje;
+  localStorage.setItem("colorFondo", nuevoTema);
 
   if (barras !== null) {
     pintarBarras();
@@ -560,3 +562,6 @@ onClick("#btn-calcAnomalia", () => {
 demoTendencia();
 mostrarSeccion(SECCIONES.main);
 pintarBarras();
+if (colorPreferido === "light") {
+  cambiarModos();
+}
