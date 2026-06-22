@@ -16,13 +16,13 @@ const SECCIONES = {
 
 let miMiniChart = null;
 let promedios = [];
-let colorPreferido = localStorage.getItem("colorFondo");
+let colorPreferido = localStorage.getItem("colorFondo") || "light";
+document.body.setAttribute("data-theme", colorPreferido);
 
-// Funcion para cambiar de modo claro a oscuro y viceversa
 function cambiarModos() {
-  const esOscuro = document.body.getAttribute("data-theme") === "dark";
-  const nuevoTema = esOscuro ? "light" : "dark";
-  const nuevoMensaje = esOscuro ? `<i class="fa-regular fa-sun"></i>` : `<i class="fa-regular fa-moon"></i>`;
+  const temaActual = document.body.getAttribute("data-theme") || colorPreferido;
+  const nuevoTema = temaActual === "dark" ? "light" : "dark";
+  const nuevoMensaje = nuevoTema === "light" ? `<i class="fa-regular fa-sun"></i>` : `<i class="fa-regular fa-moon"></i>`;
   document.body.setAttribute("data-theme", nuevoTema);
   $ID("btn-modos").innerHTML = nuevoMensaje;
   localStorage.setItem("colorFondo", nuevoTema);
@@ -32,7 +32,6 @@ function cambiarModos() {
   }
   demoTendencia();
 }
-
 // Funcion para mostrar una seccion y ocultar las demas de manera automatica
 function mostrarSeccion(seccion) {
   Object.keys(SECCIONES).forEach((secciones) =>
