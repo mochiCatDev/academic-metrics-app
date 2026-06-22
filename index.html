@@ -189,29 +189,38 @@
               </div>
             </section>
           </li>
-
           <li>
             <section id="mediana-concept">
-              <h3>Mediana</h3>
-              <p>
-                La mediana <strong>es el valor central de un conjunto de datos ordenados
-                de menor a mayor</strong>. Divide la distribución exactamente por la mitad,
-                dejando un 50% de los valores por debajo y un 50% por encima.
-                Es una medida de tendencia central clave en estadística
-              </p>
-              <h4>¿Cómo lo haces tú mismo?</h4>
+              <!-- Tema -->
+              <h3>La Mediana</h3>
+              <!-- Explicacion-->
+              <h4>Explicación</h4>
+              <p>La mediana <strong>es el valor central de un conjunto de datos ordenados de menor a mayor</strong>. Divide la distribución exactamente por la mitad, dejando un 50% de los valores por debajo y un 50% por encima. A diferencia de la media, no se ve afectada por números extremadamente grandes o pequeños, lo que la hace una medida de tendencia central muy confiable en estadística.</p>
+              <!-- Formula Matematica -->
+              <h4>Fórmula Matemática</h4>
+              <p>La posición de la mediana depende de si el número total de datos (\(n\)) es par o impar:</p>
               <ul>
-                <li><strong>Paso 1:</strong> Ordena tus datos de menor a mayor.</li>
-                <li><strong>Paso 2:</strong> Cuenta su distancia.</li>
-                <li><strong>Paso 3:</strong> Si es impar la distancia: La media es exactamente el numero que este en la mitad.</li>
-                <li><strong>Paso 4:</strong> Si es par la distancia: La mediana es el promedio de los dos números centrales.</li>
+                <li>Si \(n\) es <strong>impar</strong>, la mediana es el dato en la posición: $$\text{Posición} = \frac{n + 1}{2}$$</li>
+                <li>Si \(n\) es <strong>par</strong>, la mediana es el promedio de los datos en las posiciones: $$\frac{x_{\left(\frac{n}{2}\right)} + x_{\left(\frac{n}{2} + 1\right)}}{2}$$</li>
               </ul>
+              <!-- Como Hacerlo Tu Mismo -->
+              <h4>Cómo Hacerlo Tú Mismo</h4>
+              <p>Sigue estos pasos paso a paso en tu cuaderno para calcularla sin errores:</p>
+              <ul>
+                <li><strong>Paso 1:</strong> Ordena todos tus datos de menor a mayor de forma obligatoria.</li>
+                <li><strong>Paso 2:</strong> Cuenta la cantidad total de datos (\(n\)) que tienes en el conjunto.</li>
+                <li><strong>Paso 3:</strong> Si la cantidad es impar, la mediana es exactamente el número que se encuentra en el centro de la lista.</li>
+                <li><strong>Paso 4:</strong> Si la cantidad es par, toma los dos números del centro, súmalos y divídelos entre \(2\).</li>
+              </ul>
+              <!-- Ejemplos -->
               <h4>Ejemplos</h4>
               <ul>
-                <li><strong>Cantidad impar =</strong> {3, 5, 8, 10, 11}. El número central es <strong>8</strong>.</li>
-                <li><strong>Cantidad par =</strong> {2, 4, 6, 8}. Los dos centrales son 4 y 6, por lo que el promedio es \(\frac{4+6}{2}\) = 5</li>
+                <li><strong>Ejemplo con cantidad impar:</strong> Supongamos que tienes las edades \(\{3, 5, 8, 10, 11\}\). Como están ordenadas y son 5 datos (impar), el número del centro es directamente el <strong>\(8\)</strong>.</li>
+                <li><strong>Ejemplo con cantidad par:</strong> Supongamos que tienes las notas \(\{2, 4, 6, 8\}\). Al ser 4 datos (par), los dos valores centrales son \(4\) y \(6\). Su promedio es: $$\frac{4 + 6}{2} = 5$$</li>
               </ul>
-              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
+              <!-- Como Programarlo -->
+              <h4>Cómo Programarlo</h4>
+              <p>Así es como una computadora procesa este algoritmo usando JavaScript <i class="fa-brands fa-js"></i>:</p>
               <pre><code class="language-javascript">function calcularMediana(listaNumeros) {
   // 1. Ordenar los datos de menor a mayor sin alterar la lista original
   const datosOrdenados = [...listaNumeros].sort((a, b) => a - b);
@@ -231,10 +240,16 @@
     return (datoIzquierdo + datoDerecho) / 2;
   }
 }</code></pre>
-            <h4>¿Quieres probarlo?</h4>
+              <!-- Laboratorio Interactivo Basico -->
+              <h4>Laboratorio Interactivo Básico</h4>
+              <p>Ingresa una serie de números separados por comas para calcular su mediana de manera automática:</p>
+              <div class="ejemplo-didactico">
+                <input type="text" placeholder="Ejemplo: 5, 3, 8, 10, 11" id="inputMedianaDatos"/>
+                <button id="btn-calcMediana">Calcular Mediana</button>
+                <div id="resultadoMediana" class="ejemplo-resultado">MEDIANA:</div>
+              </div>
             </section>
           </li>
-
           <li>
             <section id="moda-concept">
               <h3>Moda</h3>
