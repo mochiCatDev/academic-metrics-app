@@ -175,6 +175,25 @@ nav button:focus {
   text-shadow: 0px 0px 4px var(--bg-card);
 }
 
+.container-data {
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+}
+
+.container-data .data-info {
+  width: 150px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin: 5px;
+  background-color: var(--bg-app);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ==========================================================================
    Sección de Gestión (Grid de Materias)
    ========================================================================== */
