@@ -55,3 +55,63 @@ const obtenerPorcentajeDelTotal = (parcial, total, decimales = 2) => {
   const porcentaje = (parcial / total) * 100;
   return parseFloat(porcentaje.toFixed(decimales));
 };
+
+/**
+ * Valida si el valor de un input cumple con las reglas según su tipo.
+ * @param {string} id - El ID del elemento input en el HTML.
+ * @param {string} tipo - El tipo de validación ('texto', 'numero', 'email', 'vacio').
+ * @returns {boolean} - true si es válido, false si no cumple las condiciones.
+ */
+function validarInput(id, tipo) {
+    const inputElement = $ID(id);
+    
+    // Verificamos si el elemento realmente existe en el DOM
+    if (!inputElement) {
+        console.error(`No se encontró ningún elemento con el ID: ${id}`);
+        return false;
+    }
+
+    const valor = inputElement.value.trim(); // Limpiamos espacios al inicio y al final
+
+    // Validación general - Que no este vacio
+    if (valor === "") {
+        console.warn(`El campo con ID "${id}" está vacío.`);
+        return false;
+    }
+
+    // Validaciones especificas según el tipo
+    switch (tipo.toLowerCase()) {
+        case 'texto':
+            // Expresion regular: Solo letras (incluyendo acentos y espacios)
+            const regexTexto = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+            if (!regexTexto.test(valor)) {
+                console.warn(`El campo "${id}" debe contener solo texto (no números ni caracteres especiales).`);
+                return false;
+            }
+            break;
+
+        case 'numero':
+            // Verificamos que sea un numero valido y que no sea un NaN (Not a Number)
+            if (isNaN(valor) || isNaN(Number(valor))) {
+                console.warn(`El campo "${id}" debe ser estrictamente un número.`);
+                return false;
+            }
+            break;
+
+        case 'email':
+            // Validacion básica de estructura de correo electronico
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regexEmail.test(valor)) {
+                console.warn(`El campo "${id}" no tiene un formato de email válido.`);
+                return false;
+            }
+            break;
+
+        default:
+            console.warn(`El tipo de validación "${tipo}" no está soportado. Se considerará válido solo por no estar vacío.`);
+            break;
+    }
+
+    // Si paso todas las pruebas, es válido
+    return true;
+}

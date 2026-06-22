@@ -123,7 +123,7 @@ function pintarBarras() {
   });
 }
 
-function sacar_promedios() {
+function sacarPromedios() {
   promedios = [];
 
   promedioMatematicas = promediar(DATOS_MATERIAS.matematica.notas, 2);
