@@ -252,70 +252,79 @@
           </li>
           <li>
             <section id="moda-concept">
-              <h3>Moda</h3>
-              <p>
-                La moda no tiene nada que ver con ropa en este contexto; es
-                simplemente <strong>el valor que más se repite</strong> en un
-                conjunto de datos. Sirve muchísimo para saber cuáles son los
-                gustos más comunes de los usuarios.
-              </p>
-
-              <h4>¿Cómo lo haces tú mismo?</h4>
+              <!-- Tema -->
+              <h3>La Moda</h3>
+              <!-- Explicacion -->
+              <h4>Explicación</h4>
+              <p>La moda no tiene nada que ver con ropa en este contexto; es simplemente <strong>el valor o los valores que más se repiten</strong> en un conjunto de datos (es decir, el dato con mayor frecuencia absoluta). Sirve muchísimo en el análisis de datos para identificar tendencias, preferencias o los gustos más comunes de un grupo de usuarios.</p>
+              <!-- Fomula Matematica -->
+              <h4>Fórmula Matemática</h4>
+              <p>A diferencia de otras medidas estadísticas, la moda no requiere de operaciones algebraicas complejas o una ecuación rígida. Se define conceptualmente a través de la frecuencia de los elementos:</p>
+              <p>$$\text{Mo} = \{x_i \in X \mid f(x_i) = \max(f)\}$$</p>
+              <p>Donde \(\text{Mo}\) es la moda, \(x_i\) representa los valores del conjunto, y \(f(x_i)\) es la frecuencia absoluta de dicho valor. Un conjunto puede ser:</p>
               <ul>
-                <li>Mira tu lista de datos: 5, 7, 5, 9, 5, 8.</li>
-                <li>Cuenta cuántas veces aparece cada número.</li>
-                <li>
-                  El 5 aparece tres veces, más que cualquier otro. ¡Esa es tu
-                  moda!
-                </li>
-                <br />
-                <strong>BUSCADOR DE MODA AUTOMÁTICO:</strong>
-                <p>Ingresa una serie de números para ver cuál se repite más:</p>
-                <div class="ejemplo-didactico">
-                  <input
-                    type="number"
-                    placeholder="Ingresa un número"
-                    id="inputModa"
-                  />
-                  <button id="btn-addModa">Agregar Número</button>
-                  <button id="btn-calcModa">Encontrar Moda</button>
-                  <div id="resultadoModa" class="ejemplo-resultado">MODA:</div>
-                </div>
+                <li><strong>Unimodal:</strong> Tiene una sola moda.</li>
+                <li><strong>Bimodal o Multimodal:</strong> Tiene dos o más valores empatados con la máxima frecuencia.</li>
+                <li><strong>Amodal:</strong> No tiene moda porque ningún valor se repite más que los otros.</li>
               </ul>
-              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
+              <!-- Como Hacerlo Tu mismo -->
+              <h4>Cómo Hacerlo Tú Mismo</h4>
+              <p>Sigue estos pasos sencillos para encontrarla manualmente en tu cuaderno:</p>
+              <ul>
+                <li><strong>Paso 1:</strong> Mira detalladamente tu lista de datos. *(Opcional pero recomendado: ordénalos de menor a mayor para verlos mejor)*.</li>
+                <li><strong>Paso 2:</strong> Cuenta cuántas veces aparece cada número dentro del conjunto.</li>
+                <li><strong>Paso 3:</strong> Identifica cuál o cuáles números alcanzaron el récord de repeticiones. ¡Esa será tu moda!</li>
+              </ul>
+              <!-- Ejemplos -->
+              <h4>Ejemplos</h4>
+              <ul>
+                <li><strong>Ejemplo 1 (Unimodal):</strong> Imagina que tienes la lista de datos \(\{5, 7, 5, 9, 5, 8\}\). Contamos las repeticiones: el \(7\), el \(9\) y el \(8\) aparecen una sola vez, mientras que el número \(5\) aparece tres veces. Como el \(5\) se repite más que cualquier otro, la moda es \(\text{Mo} = 5\).</li>
+                <li><strong>Ejemplo 2 (Bimodal):</strong> En la lista \(\{3, 3, 3, 4, 6, 6, 6, 7\}\), tanto el \(3\) como el \(6\) aparecen tres veces. Al compartir el récord de repeticiones, este conjunto tiene dos modas: \(\text{Mo} = \{3, 6\}\).</li>
+              </ul>
+              <!-- Como Programarlo -->
+              <h4>Cómo Programarlo</h4>
+              <p>Así es como una computadora procesa este algoritmo de conteo utilizando JavaScript <i class="fa-brands fa-js"></i>:</p>
               <pre><code class="language-javascript">function calcularModaImperativa(lista) {
   let conteo = {};
   let maxVotos = 0;
   let modas = [];
 
-  // 1. Contar los votos de cada número
+  // 1. Contar las repeticiones de cada número
   for (let i = 0; i < lista.length; i++) {
     let num = lista[i];
     conteo[num] = (conteo[num] || 0) + 1;
 
-    // Mantener actualizado cuál es el récord de votos actual
+    // Mantener actualizado cuál es el récord de repeticiones actual
     if (conteo[num] > maxVotos) {
       maxVotos = conteo[num];
     }
   }
 
-  // 2. Juntar a todos los que alcanzaron el récord de votos
+  // 2. Juntar a todos los que alcanzaron el récord de repeticiones
   for (let num in conteo) {
     if (conteo[num] === maxVotos) {
       modas.push(Number(num));
     }
   }
 
-  // Si todos tienen 1 voto, o todos empataron igual, no hay moda (Amodal)
+  // Si todos tienen 1 repetición, o todos empataron por igual, es Amodal (no hay moda)
   if (maxVotos === 1 || modas.length === Object.keys(conteo).length) {
     return "No hay moda";
   }
 
   return modas.length === 1 ? modas[0] : modas;
 }</code></pre>
+              <!-- Laboratorio Interactivo Basico -->
+              <h4>Laboratorio Interactivo Básico</h4>
+              <p>Ingresa una serie de números uno a uno para construir tu conjunto de datos y evaluar dinámicamente cuál es la tendencia matemática:</p>
+              <div class="ejemplo-didactico">
+                <input type="number" placeholder="Ingresa un número" id="inputModa"/>
+                <button id="btn-addModa">Agregar Número</button>
+                <button id="btn-calcModa">Encontrar Moda</button>
+                <div id="resultadoModa" class="ejemplo-resultado">MODA:</div>
+              </div>
             </section>
           </li>
-
           <li>
             <section id="porcentaje-concept">
               <h3>Porcentaje</h3>
