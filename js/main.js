@@ -486,19 +486,29 @@ onClick("#btn-notaMath", () => {
   }
 });
 onClick("#btn-notaIng", () => {
-  agregarNota("notaIng", DATOS_MATERIAS.ingles.notas, "tabla2");
+  if (validarInput("notaIng", "numero", "error-notaIng")) {
+    agregarNota("notaIng", DATOS_MATERIAS.ingles.notas, "tabla2");
+  }
 });
 onClick("#btn-notaQuim", () => {
-  agregarNota("notaQuim", DATOS_MATERIAS.quimica.notas, "tabla3");
+  if (validarInput("notaQuim", "numero", "error-notaQuim")) {
+    agregarNota("notaQuim", DATOS_MATERIAS.quimica.notas, "tabla3");
+  }
 });
 onClick("#btn-notaBio", () => {
-  agregarNota("notaBio", DATOS_MATERIAS.biologia.notas, "tabla4");
+  if (validarInput("notaBio", "numero", "error-notaBio")) {
+    agregarNota("notaBio", DATOS_MATERIAS.biologia.notas, "tabla4");
+  }
 });
 onClick("#btn-notaFilo", () => {
-  agregarNota("notaFilo", DATOS_MATERIAS.filosofia.notas, "tabla5");
+  if (validarInput("notaFilo", "numero", "error-notaFilo")) {
+    agregarNota("notaFilo", DATOS_MATERIAS.filosofia.notas, "tabla5");
+  }
 });
 onClick("#btn-notaFis", () => {
-  agregarNota("notaFis", DATOS_MATERIAS.fisica.notas, "tabla6");
+  if (validarInput("notaFis", "numero", "error-notaFis")) {
+    agregarNota("notaFis", DATOS_MATERIAS.fisica.notas, "tabla6");
+  }
 });
 
 // Botones para mostrar secciones
