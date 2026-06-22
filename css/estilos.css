@@ -367,15 +367,17 @@ nav button:focus {
 }
 
 #section-teoria ol {
-  list-style-position: inside;
+  list-style-position: outside;
+  margin-left: 25px;
 }
 
-#section-teoria li {
-  margin-bottom: 35px;
+#section-teoria > ol > li {
+  margin-bottom: 50px;
 }
 
 #section-teoria li section {
-  display: inline;
+  display: block;
+  width: 100%;
 }
 
 #section-teoria ol li section,
@@ -385,37 +387,45 @@ nav button:focus {
 
 #section-teoria h3 {
   font-family: var(--font-academic);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: var(--primary-color);
-  display: inline-block;
+  display: block;
+  margin-top: 10px;
   margin-bottom: 15px;
   border-bottom: 1px solid var(--border-color);
+  padding-bottom: 5px;
 }
 
 #section-teoria p {
   font-family: var(--font-academic);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin-bottom: 15px;
   text-align: justify;
   color: var(--text-main);
+  line-height: 1.6;
 }
 
 #section-teoria h4 {
-  font-size: 1rem;
-  margin: 15px 0 8px 0;
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 25px 0 10px 0;
   color: var(--secondary-color);
 }
 
 #section-teoria ul {
   list-style-type: square;
-  margin-left: 30px;
-  margin-bottom: 15px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding-left: 0;
 }
 
 #section-teoria li ul li {
   font-family: var(--font-academic);
-  font-size: 1.05rem;
-  margin-bottom: 5px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  list-style-position: outside;
 }
 
 /* Bloques de Código de JavaScript */
@@ -424,8 +434,8 @@ nav button:focus {
   padding: 15px;
   border-radius: 6px;
   overflow-x: auto;
-  margin: 15px 0;
-  border-left: 4px solid var(--secondary-color);
+  margin: 20px 0;
+  width: 100%;
 }
 
 #section-teoria code {
@@ -433,55 +443,85 @@ nav button:focus {
   font-size: 0.9rem !important;
 }
 
-/* Estilos para las cajas de ejemplo interactivo en teoría */
-.demo-box {
-  background-color: var(--bg-app);
+/* ==========================================================================
+   Estilos para Ejemplos Didácticos Interactivos (Laboratorios)
+   ========================================================================== */
+.ejemplo-didactico {
+  background-color: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-left: 4px solid var(--accent-color);
-  padding: 15px;
+  padding: 20px;
+  margin: 20px 0 30px 0;
+  border-radius: 8px;
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+}
+
+.ejemplo-didactico input[type="number"],
+.ejemplo-didactico input[type="text"],
+.ejemplo-didactico select {
+  width: 100% !important;
+  padding: 11px 14px;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
-  margin: 15px 0 25px 0;
+  font-family: var(--font-mono);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  margin: 0 !important;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.ejemplo-didactico button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  cursor: pointer;
+  width: 100% !important;
+  margin: 0 !important;
+  transition: background-color 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.ejemplo-didactico button:hover {
+  background-color: var(--primary-color);
+}
+
+.ejemplo-resultado {
+  margin-top: 5px;
+  padding: 14px 16px;
+  background-color: var(--bg-app);
+  border-left: 4px solid var(--accent-color);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--text-main);
+  width: 100% !important;
+  border-radius: 0 6px 6px 0;
+  box-sizing: border-box;
+}
+
+.demo-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .demo-box label {
-  display: block;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.demo-box input[type="text"],
-.demo-box input[type="number"] {
-  width: 100%;
-  max-width: 400px;
-  padding: 6px 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-family: var(--font-mono);
-  background-color: var(--bg-card);
-  color: var(--text-main);
-  margin-bottom: 10px;
-  display: block;
-}
-
-.demo-box p {
-  margin-top: 5px;
-  margin-bottom: 0 !important;
-  font-size: 1rem !important;
-  color: var(--text-main);
-}
-
-.demo-box strong {
-  color: var(--accent-color);
 }
 
 .mini-chart-container {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-  height: 150px;
-  margin: 15px auto 0 0;
+  width: 100% !important;
+  margin-top: 10px;
 }
 
 /* Estilos para el mini-Test estadistico */
