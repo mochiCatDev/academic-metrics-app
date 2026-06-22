@@ -369,31 +369,32 @@
           </li>
           <li>
             <section id="tendencias-concept">
+              <!-- Tema -->
               <h3>Análisis de Tendencias</h3>
-              <p>
-                Una tendencia es un patrón. Nos dice hacia dónde se están
-                moviendo las cosas a lo largo del tiempo. Es la base de las
-                predicciones financieras y de crecimiento.
-              </p>
-
-              <h4>¿Cómo identificarla a simple vista?</h4>
+              <!-- Explicacion -->
+              <h4>Explicación</h4>
+              <p>Una tendencia es un patrón que nos dice hacia dónde se están moviendo las cosas a lo largo del tiempo. Es la base fundamental para realizar predicciones financieras, proyecciones de crecimiento de usuarios o estimaciones de rendimiento en cualquier sistema de software.</p>
+              <!-- Formula Matematica -->
+              <h4>Fórmula Matemática</h4>
+              <p>Para identificar la dirección del cambio entre dos periodos de tiempo consecutivos, evaluamos la tasa de variación: $$\Delta x = x_t - x_{t-1}$$</p>
+              <p>Donde \(\Delta x\) es el cambio absoluto, \(x_t\) es el valor del periodo actual y \(x_{t-1}\) es el valor del periodo inmediato anterior. Si \(\Delta x > 0\) la tendencia sube, si \(\Delta x < 0\) la tendencia baja, y si \(\Delta x = 0\) se mantiene estable.</p>
+              <!-- Como Hacerlo Tu Mismo -->
+              <h4>¿Cómo lo haces tú mismo?</h4>
+              <p>Sigue estos pasos para identificar la dirección de un patrón de datos de forma visual:</p>
               <ul>
-                <li>
-                  <strong>Ascendente:</strong> Cada valor nuevo es mayor que el
-                  anterior (ej. ventas: 100, 150, 200). ¡El negocio crece!
-                </li>
-                <li>
-                  <strong>Descendente:</strong> Cada valor nuevo es menor.
-                  ¡Cuidado!
-                </li>
-                <li>
-                  <strong>Estable:</strong> Los valores se mantienen muy
-                  parecidos.
-                </li>
-                <br />
+                <li><strong>Ascendente (Al alza):</strong> Cada valor nuevo es mayor que el anterior (ej. ventas: \(100, 150, 200\)). ¡El negocio crece!</li>
+                <li><strong>Descendente (A la baja):</strong> Cada valor nuevo es menor que el anterior (ej. usuarios: \(90, 75, 40\)). ¡Cuidado!</li>
+                <li><strong>Estable:</strong> Los valores numéricos se mantienen muy parecidos o idénticos en el tiempo (ej. visitas: \(50, 51, 50\)).</li>
               </ul>
-
-              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
+              <!-- Ejemplos -->
+              <h4>Ejemplos</h4>
+              <ul>
+                <li><strong>Ejemplo de tendencia alcista:</strong> Un sitio web registra \([4, 6, 8]\) visitas por día. Al evaluar la variación final \(\Delta x = 8 - 6 = 2\), vemos que el resultado es positivo, lo que confirma un comportamiento al alza.</li>
+                <li><strong>Ejemplo de tendencia bajista:</strong> Las temperaturas de una máquina bajan consecutivamente \([35, 30, 24]\). La variación final es \(\Delta x = 24 - 30 = -6\); al ser un número negativo, la tendencia va a la baja.</li>
+              </ul>
+              <!-- Como Programarlo -->
+              <h4>Cómo Programarlo</h4>
+              <p>Así es como una computadora procesa este algoritmo de comparación utilizando JavaScript <i class="fa-brands fa-js"></i>:</p>
               <pre><code class="language-javascript">function analizarTendencia(ventas) {
   // 1. Si no hay suficientes datos para comparar, no podemos definir una tendencia
   if (ventas.length < 2) return "Datos insuficientes";
@@ -411,27 +412,12 @@
     return "Tendencia estable";
   }
 }</code></pre>
-              <strong>Análisis de Tendencias:</strong> Permite identificar la
-              dirección (alcista o bajista) de una serie de datos a lo largo del
-              tiempo.
+              <!-- Laboratorio Interactivo Basico -->
+              <h4>Laboratorio Interactivo Básico</h4>
+              <p>Progreso temporal (ej: notas separadas por comas):</p>
               <div class="demo-box">
-                <label for="demo-tendencia-input"
-                  >Progreso temporal (ej: notas separadas por comas):</label
-                >
-                <input
-                  type="text"
-                  id="demo-tendencia-input"
-                  value="4, 6, 5, 8, 7, 9"
-                />
-
-                <div
-                  class="mini-chart-container"
-                  style="
-                    margin-top: 15px;
-                    max-height: 180px;
-                    position: relative;
-                  "
-                >
+                <input type="text" id="demo-tendencia-input" value="4, 6, 5, 8, 7, 9" />
+                <div class="mini-chart-container" style="margin-top: 15px; max-height: 180px; position: relative;">
                   <canvas id="demo-tendencia-chart"></canvas>
                 </div>
               </div>
@@ -440,108 +426,129 @@
 
           <li>
             <section id="graficos-concept">
+              <!-- Tema -->
               <h3>Interpretación de Gráficos</h3>
-              <p>
-                A nuestro cerebro le cuesta leer miles de números en una tabla,
-                pero entiende formas y colores al instante. Un gráfico traduce
-                datos en dibujos.
-              </p>
-
-              <h4>¿Cómo elegir y leer el correcto?</h4>
+              <!-- Explicacion -->
+              <h4>Explicación</h4>
+              <p>A nuestro cerebro le cuesta procesar miles de números crudos distribuidos en una tabla, pero entiende formas, proporciones y colores de manera instantánea. Un gráfico traduce datos matemáticos en dibujos y patrones visuales fáciles de asimilar.</p>
+              <!-- Formula Matematica -->
+              <h4>Fórmula Matemática</h4>
+              <p>Cada tipo de gráfico se rige por proporciones matemáticas exactas. Por ejemplo, en un gráfico de pastel, el ángulo en grados de cada rebanada se calcula multiplicando su frecuencia relativa por el total de la circunferencia: $$\theta = \frac{\text{Parte}}{\text{Total}} \times 360^\circ$$</p>
+              <!-- Como Hacerlo Tu Mismo -->
+              <h4>¿Cómo lo haces tú mismo?</h4>
+              <p>Para interpretar y elegir el gráfico adecuado, debes identificar el objetivo de tu análisis de datos:</p>
               <ul>
-                <li>
-                  <strong>Gráfico de Barras:</strong> Úsalo para comparar
-                  cantidades (¿Qué materia tiene mejores notas?).
-                </li>
-                <li>
-                  <strong>Gráfico de Líneas:</strong> Úsalo para ver el tiempo
-                  (¿Cómo evolucionó tu nota durante el año?).
-                </li>
-                <li>
-                  <strong>Gráfico de Pastel:</strong> Úsalo para ver porcentajes
-                  (¿Qué parte del día pasas estudiando vs jugando?).
-                </li>
+                <li><strong>Gráfico de Barras:</strong> Úsalo para comparar cantidades individuales entre categorías diferentes (ej. ¿Qué materia tiene mejores notas?).</li>
+                <li><strong>Gráfico de Líneas:</strong> Úsalo para observar la evolución temporal de una variable (ej. ¿Cómo cambió tu nota durante el año?).</li>
+                <li><strong>Gráfico de Pastel:</strong> Úsalo para representar porcentajes y proporciones de un total absoluto (ej. ¿Qué fracción del día pasas estudiando vs jugando?).</li>
               </ul>
+              <!-- Ejemplos -->
+              <h4>Ejemplos</h4>
+              <ul>
+                <li><strong>Ejemplo de Barras:</strong> Si comparas las notas de Matemáticas (\(8\)) y Química (\(10\)), el gráfico mostrará una barra notablemente más alta para Química, permitiendo ver la diferencia de inmediato.</li>
+                <li><strong>Ejemplo de Líneas:</strong> Al graficar tus notas mensuales \([6, 7, 9]\), la línea dibujará una diagonal ascendente, mostrando tu progreso visualmente.</li>
+              </ul>
+              <!-- Como Programarlo -->
+              <h4>Cómo Programarlo</h4>
+              <p>En el desarrollo web, solemos estructurar la configuración de los gráficos mediante objetos de JavaScript utilizando librerías como Chart.js:</p>
+              <pre><code class="language-javascript">const configGrafico = {
+  type: 'line', // Define el dibujo: 'bar', 'line' o 'pie'
+  data: {
+    labels: ['Enero', 'Febrero', 'Marzo'],
+    datasets: [{
+      label: 'Rendimiento',
+      data: [6, 7, 9]
+    }]
+  }
+};</code></pre>
+              <!-- Laboratorio Interactivo Basico -->
+              <h4>Laboratorio Interactivo Básico</h4>
+              <p>Visualiza y simula el comportamiento de un renderizado gráfico dinámico cambiando las opciones preestablecidas:</p>
+              <div class="ejemplo-didactico">
+                <select id="selectTipoGrafico" style="width: 100%; margin-bottom: 10px;">
+                  <option value="bar">Gráfico de Barras (Comparar)</option>
+                  <option value="line">Gráfico de Líneas (Tiempo)</option>
+                  <option value="pie">Gráfico de Pastel (Porcentajes)</option>
+                </select>
+                <div id="areaPrevisualizacion" class="ejemplo-resultado">CONFIGURACIÓN PREPARADA CON ÉXITO</div>
+              </div>
             </section>
           </li>
 
           <li>
             <section id="analisis-datos-concept">
+              <!-- Tema -->
               <h3>Análisis de Datos</h3>
-              <p>
-                No es magia, es un proceso paso a paso para sacarle la verdad a
-                los números. Como desarrolladores, creamos sistemas que hacen
-                esto automáticamente.
-              </p>
-
-              <h4>Los 5 pasos que tú mismo puedes aplicar:</h4>
+              <!-- Explicacion -->
+              <h4>Explicación</h4>
+              <p>El análisis de datos no es magia, es un proceso metodológico estructurado paso a paso para extraer información real, verídica y útil a partir de números sueltos. Como desarrolladores, creamos algoritmos y sistemas automatizados que ejecutan este ciclo continuamente.</p>
+              <!-- Formula Matematica -->
+              <h4>Fórmula Matemática</h4>
+              <p>El proceso cuantifica la calidad de la información mediante métricas como la tasa de error o registros filtrados: $$\text{Eficiencia} = \frac{\text{Datos Limpios}}{\text{Datos Recolectados}} \times 100$$</p>
+              <!-- Como Hacerlo Tu mismo -->
+              <h4>¿Cómo lo haces tú mismo?</h4>
+              <p>Puedes aplicar de forma manual este flujo analítico en cualquier proyecto o problema cotidiano:</p>
               <ul>
-                <li>
-                  <strong>1. Recolección:</strong> Conseguir los datos (pedir
-                  las notas a los profesores).
-                </li>
-                <li>
-                  <strong>2. Limpieza:</strong> Quitar lo que no sirve o está
-                  mal (borrar un registro que dice nota "999" por error).
-                </li>
-                <li>
-                  <strong>3. Procesamiento:</strong> Hacer los cálculos (sacar
-                  promedios, porcentajes).
-                </li>
-                <li>
-                  <strong>4. Visualización:</strong> Dibujar los gráficos.
-                </li>
-                <li>
-                  <strong>5. Interpretación:</strong> Tomar decisiones con lo
-                  que ves ("Debo estudiar más Física").
-                </li>
+                <li><strong>1. Recolección:</strong> Conseguir los datos brutos desde las fuentes disponibles (ej. pedir las notas en papel a tus profesores).</li>
+                <li><strong>2. Limpieza:</strong> Quitar registros duplicados, nulos o erróneos (ej. borrar un renglón que dice nota "999" por una falla de tipeo).</li>
+                <li><strong>3. Procesamiento:</strong> Realizar todas las operaciones matemáticas necesarias (ej. calcular promedios, medianas o porcentajes).</li>
+                <li><strong>4. Visualización:</strong> Traducir esos resultados numéricos finales en componentes visuales (ej. dibujar los gráficos de líneas o barras).</li>
+                <li><strong>5. Interpretación:</strong> Tomar decisiones lógicas basadas en la evidencia obtenida (ej. "Mi promedio bajó en Física, debo estudiar más ahí").</li>
               </ul>
+              <!-- Ejemplos -->
+              <h4>Ejemplos</h4>
+              <ul>
+                <li><strong>Caso práctico:</strong> Recolectas las notas \([8, 10, 999, 9]\). En la limpieza eliminas el \(999\). En el procesamiento calculas el promedio de los datos válidos: \(\frac{8+10+9}{3} = 9\). Lo visualizas y concluyes que tu rendimiento es excelente.</li>
+              </ul>
+              <!-- Como Programarlo -->
+              <h4>Cómo Programarlo</h4>
+              <p>Este es un ejemplo de cómo programar en JavaScript las etapas de limpieza (filtrado) y procesamiento (cálculo de media) sobre un arreglo:</p>
+              <pre><code class="language-javascript">function procesarDatosEstatidicos(datosIncompletos) {
+  // 1. Etapa de Limpieza: Filtramos y quitamos notas imposibles (ej. mayores a 10)
+  const datosLimpios = datosIncompletos.filter(nota => nota >= 0 && nota <= 10);
+
+  // 2. Etapa de Procesamiento: Calculamos la media con los datos válidos
+  const suma = datosLimpios.reduce((acc, curr) => acc + curr, 0);
+  return datosLimpios.length > 0 ? suma / datosLimpios.length : 0;
+}</code></pre>
+              <!-- Laboratorio Interactivo Basico -->
+              <h4>Laboratorio Interactivo Básico</h4>
+              <p>Simulador del ciclo de análisis (Ingresa una lista mezclada con errores como el 999):</p>
+              <div class="ejemplo-didactico">
+                <input type="text" placeholder="Ejemplo: 8, 10, 999, 7" id="inputAnalisisCiclo" style="width: 100%; margin-bottom: 10px;"/>
+                <button id="btn-procesarCiclo" style="width: 100%;">Ejecutar Ciclo de Análisis</button>
+                <div id="resultadoCiclo" class="ejemplo-resultado">ESTADO: Esperando datos...</div>
+              </div>
             </section>
           </li>
 
           <li>
             <section id="anomalias-concept">
+              <!-- Tema -->
               <h3>Detección de Anomalías</h3>
-              <p>
-                Una anomalía es el "bicho raro" del grupo. Es un dato que se
-                aleja tanto de lo normal que nos obliga a investigar si hubo un
-                error o un evento especial.
-              </p>
-
-              <h4>¿Cómo detectarlo manualmente?</h4>
+              <!-- Explicacion -->
+              <h4>Explicación</h4>
+              <p>Una anomalía es un dato atípico que se aleja de forma extrema del comportamiento normal del resto del grupo. Detectarlos es crucial en la informática para identificar fraudes con tarjetas de crédito, intrusos en redes de servidores o errores graves de medición.</p>
+              <!-- Formula Matematica -->
+              <h4>Fórmula Matemática</h4>
+              <p>Un método estadístico estándar consiste en marcar como anomalía cualquier dato (\(x_i\)) que se encuentre fuera del intervalo delimitado por varias desviaciones estándar (\(\sigma\)) respecto a la media (\(\bar{x}\)): $$\text{Anomalía} \iff x_i < \bar{x} - 2\sigma \quad \text{ó} \quad x_i > \bar{x} + 2\sigma$$</p>
+              <p>Donde la desviación estándar se calcula como: $$\sigma = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n}}$$</p>
+              <!-- Como Hacerlo Tu Mismo -->
+              <h4>¿Cómo lo haces tú mismo?</h4>
+              <p>Puedes detectar datos anómalos de manera lógica en tu cuaderno siguiendo estos pasos:</p>
               <ul>
-                <li>
-                  Mira tus datos normales: 20, 21, 22, 20. Sabes que el rango es
-                  alrededor de 21.
-                </li>
-                <li>Aparece un 45.</li>
-                <li>
-                  Comparas el 45 con tu rango normal. Al estar tan lejos, lo
-                  marcas como anomalía.
-                </li>
-                <br />
-                <strong>FILTRO DE ANOMALÍAS AUTOMÁTICO:</strong>
-                <p>
-                  Ingresa notas (rango esperado 0-10). Si pones un error (ej:
-                  88), el sistema lo aislará:
-                </p>
-                <div class="ejemplo-didactico">
-                  <input
-                    type="number"
-                    placeholder="Ingresa datos"
-                    id="inputAnomalia"
-                  />
-                  <button id="btn-addAnomalia">Agregar Dato</button>
-                  <button id="btn-calcAnomalia">
-                    Detectar Erreores (> 10)
-                  </button>
-                  <div id="resultadoAnomalia" class="ejemplo-resultado">
-                    ANOMALÍAS DETECTADAS:
-                  </div>
-                </div>
+                <li><strong>Paso 1:</strong> Observa tus datos normales y define su rango regular (ej. \([20, 21, 22, 20]\) se mueven alrededor de \(21\)).</li>
+                <li><strong>Paso 2:</strong> Examina si aparece un valor radicalmente alejado del grupo (ej. un valor de \(45\)).</li>
+                <li><strong>Paso 3:</strong> Compara ese dato sospechoso contra la dispersión típica. Al romper drásticamente el patrón, lo clasificas como anomalía.</li>
               </ul>
-
-              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
+              <!-- Ejemplos -->
+              <h4>Ejemplos</h4>
+              <ul>
+                <li><strong>Ejemplo en temperaturas:</strong> Si un sensor registra \([22, 23, 22, 85, 23]\) grados, el número \(85\) representa una anomalía evidente, probablemente ocasionada por una falla eléctrica o un cortocircuito.</li>
+              </ul>
+              <!-- Como Programarlo -->
+              <h4>Cómo Programarlo</h4>
+              <p>Así es como un sistema calcula de forma exacta la media y la desviación estándar en JavaScript para aislar los valores atípicos:</p>
               <pre><code class="language-javascript">function detectarAnomaliasTemperatura(temperaturas) {
   if (temperaturas.length < 3) return "Datos insuficientes para analizar";
 
@@ -561,7 +568,6 @@
   const desviacionEstandar = Math.sqrt(varianza);
 
   // 3. Definir el límite inteligente (Promedio + 2 veces la desviación)
-  // El "2" es el factor de tolerancia. Más de 2 ya es muy raro.
   const limiteSuperior = promedio + (2 * desviacionEstandar);
   const limiteInferior = promedio - (2 * desviacionEstandar);
 
@@ -575,6 +581,15 @@
 
   return anomalias;
 }</code></pre>
+              <!-- Laboratorio Interactivo Basico -->
+              <h4>Laboratorio Interactivo Básico</h4>
+              <p>Filtro automático de anomalías (Ingresa notas del 0 al 10. Si pones un error como el 88, el sistema lo aislará):</p>
+              <div class="ejemplo-didactico">
+                <input type="number" placeholder="Ingresa datos" id="inputAnomalia" />
+                <button id="btn-addAnomalia">Agregar Dato</button>
+                <button id="btn-calcAnomalia">Detectar Erreores (&gt; 10)</button>
+                <div id="resultadoAnomalia" class="ejemplo-resultado">ANOMALÍAS DETECTADAS:</div>
+              </div>
             </section>
           </li>
         </ol>
