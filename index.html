@@ -327,72 +327,46 @@
           </li>
           <li>
             <section id="porcentaje-concept">
+              <!-- Tema -->
               <h3>Porcentaje</h3>
-              <p>
-                El porcentaje nos ayuda a entender qué tan grande es una parte
-                en comparación con el todo, asumiendo que el "todo" siempre vale
-                100. Es vital para barras de progreso o descuentos.
-              </p>
-
-              <h4>¿Cómo lo calculas a mano?</h4>
-              <p>
-                $$ \text{Porcentaje} = \left( \frac{\text{Parte}}{\text{Total}}
-                \right) \times 100 $$
-              </p>
+              <!-- Explicacion -->
+              <h4>Explicación</h4>
+              <p>El porcentaje nos ayuda a entender qué tan grande es una parte en comparación con el todo, asumiendo que el "todo" siempre vale 100. Es una herramienta matemática vital en el desarrollo web para diseñar elementos como barras de progreso, calcular descuentos en comercios electrónicos o mostrar métricas de carga.</p>
+              <!-- Formula Matematica -->
+              <h4>Fórmula Matemática</h4>
+              <p>$$ \text{Porcentaje} = \left( \frac{\text{Parte}}{\text{Total}} \right) \times 100 $$</p>
+              <!-- Como Hacerlo Tu Mismo -->
+              <h4>¿Cómo lo haces tú mismo?</h4>
+              <p>Sigue estos pasos para calcular cualquier porcentaje de forma manual en tu cuaderno:</p>
               <ul>
-                <li>
-                  <strong>Paso 1:</strong> Toma la "Parte" que quieres analizar.
-                  Ejemplo: Tienes 45 puntos en un examen.
-                </li>
-                <li>
-                  <strong>Paso 2:</strong> Divídelo por el "Total" posible. El
-                  examen valía 50 puntos (45 / 50 = 0.90).
-                </li>
-                <li>
-                  <strong>Paso 3:</strong> Multiplica por 100 para pasarlo a
-                  formato de porcentaje (0.90 * 100 = 90%).
-                </li>
-                <br />
-                <strong>SIMULADOR DE EFECTIVIDAD / AVANCE:</strong>
-                <p>Calcula el porcentaje de forma instantánea:</p>
-                <div
-                  class="ejemplo-didactico"
-                  style="display: flex; gap: 10px; flex-wrap: wrap"
-                >
-                  <input
-                    type="number"
-                    placeholder="Parte (ej. tus puntos)"
-                    id="inputPorcentajeParte"
-                    style="width: 48%"
-                  />
-                  <input
-                    type="number"
-                    placeholder="Total (ej. puntos totales)"
-                    id="inputPorcentajeTotal"
-                    style="width: 48%"
-                  />
-                  <button id="btn-calcPorcentaje" style="width: 100%">
-                    Calcular Porcentaje
-                  </button>
-                  <div
-                    id="resultadoPorcentaje"
-                    class="ejemplo-resultado"
-                    style="width: 100%"
-                  >
-                    PORCENTAJE:
-                  </div>
-                </div>
+                <li><strong>Paso 1:</strong> Identifica y toma la "Parte" que deseas analizar de tu conjunto.</li>
+                <li><strong>Paso 2:</strong> Divídela entre el "Total" posible para obtener un valor decimal.</li>
+                <li><strong>Paso 3:</strong> Multiplica ese resultado decimal por 100 para convertirlo formalmente al formato de porcentaje.</li>
               </ul>
-
+              <!-- Ejemplos -->
+              <h4>Ejemplos</h4>
+              <ul>
+                <li><strong>Ejemplo 1 (Calificaciones de un examen):</strong> Imagina que obtuviste 45 puntos en una prueba cuyo valor máximo posible era de 50 puntos. Dividimos la parte entre el total: \(\frac{45}{50} = 0.90\). Luego, multiplicamos por 100: \(0.90 \times 100 = 90\%\). Tu rendimiento fue del \(90\%\).</li>
+                <li><strong>Ejemplo 2 (Descuento en una tienda):</strong> Si un artículo cuesta originalmente \$80 y te descuentan \$20, puedes averiguar qué porcentaje representa ese descuento: \(\frac{20}{80} = 0.25\). Multiplicas por 100: \(0.25 \times 100 = 25\%\). Te hicieron un \(25\%\) de descuento.</li>
+              </ul>
+              <!-- Como Programarlo -->
               <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
               <pre><code class="language-javascript">function calcularPorcentaje(puntosObtenidos, puntosTotales) {
   // 1. Dividimos los puntos logrados entre el total para obtener la fracción decimal
-  // 2. Multiplicamos por 100 para transformarlo en un porcentaje entero (0% - 100%)
+  // 2. Multiplicamos por 100 para transformarlo en un porcentaje (0% - 100%)
   return (puntosObtenidos / puntosTotales) * 100;
 }</code></pre>
+              <!-- Laboratorio Interactivo Basico -->
+              <h4>Laboratorio Interactivo Básico</h4>
+              <p>Calcula el porcentaje de forma instantánea ingresando los valores requeridos en el siguiente simulador:</p>
+              <div class="ejemplo-didactico" style="display: flex; gap: 10px; flex-wrap: wrap">
+                <input type="number" placeholder="Parte (ej. tus puntos)" id="inputPorcentajeParte" style="width: 48%"/>
+                <input type="number" placeholder="Total (ej. puntos totales)" id="inputPorcentajeTotal" style="width: 48%"/>
+                <button id="btn-calcPorcentaje" style="width: 100%">Calcular Porcentaje</button>
+                <div id="resultadoPorcentaje" class="ejemplo-resultado" style="width: 100%">PORCENTAJE:</div>
+              </div>
             </section>
           </li>
-
           <li>
             <section id="tendencias-concept">
               <h3>Análisis de Tendencias</h3>
