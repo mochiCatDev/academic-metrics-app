@@ -112,3 +112,26 @@ function validarInput(id, tipo, span) {
 
     return true;
 }
+
+/**
+ * Calcula la mediana de un array de números.
+ * @param {Array<number>} numbers - El array de números a evaluar.
+ * @returns {number} La mediana de los números.
+ * @throws {Error} Si el parámetro no es un array válido o está vacío.
+ */
+const getMedian = (numbers) => {
+  if (!Array.isArray(numbers) || numbers.length === 0) {
+    throw new Error("El argumento debe ser un array no vacío de números.");
+  }
+
+  // Clonamos el array para no mutar el original y lo ordenamos de menor a mayor
+  const sorted = [...numbers].sort((a, b) => a - b);
+  
+  const mid = Math.floor(sorted.length / 2);
+
+  // Si la longitud es impar, devolvemos el número del centro
+  // Si es par, promediamos los dos números centrales
+  return sorted.length % 2 !== 0 
+    ? sorted[mid] 
+    : (sorted[mid - 1] + sorted[mid]) / 2;
+};
