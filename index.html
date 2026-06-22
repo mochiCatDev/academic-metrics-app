@@ -118,25 +118,33 @@
         <ol>
           <li>
             <section id="media-concept">
-              <!-- tema -->
+              <!-- Tema -->
               <h3>Promedio y Media Aritmética</h3>
-              <!-- explicacion basica -->
+              <!-- Explicacion -->
               <h4>Explicación</h4>
               <p>La media y el promedio son exactamente lo mismo.<br/>En el día a día usamos la palabra "promedio", pero en el mundo de las matemáticas y la estadística, los profesionales prefieren llamarle "media" (o formalmente, media aritmética). Es el valor que se obtiene al sumar todos los datos de un conjunto y luego dividir el resultado entre el número total de datos.</p>
-              <!-- formula matematica -->
+              <!-- Formula Matematica -->
               <h4>Fórmula</h4>
-              <p>$$\bar{x} = \frac{\sum_{x=i}^n x_i}{n}$$</p>
-              <!-- significado de cada simbolo -->
+              <p>$$\bar{x} = \frac{\sum_{i=1}^n x_i}{n}$$</p>
               <h4>¿Qué significa cada símbolo?</h4>
               <ul>
                 <li>\(\bar{x}\) (se lee "x barra"): Representa la media aritmética o promedio.</li>
-                <li>\(\sum\) (letra griega Sigma): Es el símbolo de sumatoria, lo que significa que debes sumar todos los valores desde el primero (i=1) hasta el último (n).</li>
+                <li>\(\sum\) (letra griega Sigma): Es el símbolo de sumatoria, lo que significa que debes sumar todos los valores desde el primero (\(i=1\)) hasta el último (\(n\)).</li>
                 <li>\(x_i\): Representa cada uno de los valores individuales en tu conjunto de datos.</li>
                 <li>\(n\): Es el número total de datos que estás sumando.</li>
               </ul>
-              <!-- ejemplos -->
+              <!-- Como Hacerlo Tu Mismo -->
+              <h4>¿Cómo lo haces tú mismo?</h4>
+              <p>Sigue estos pasos para que no te pierdas al momento de quererlo hacer tú mismo en un cuaderno:</p>
+              <p>Imaginemos que los datos que tienes son: \([8, 9, 7]\)</p>
+              <ol>
+               <li>Suma todos los datos -> \(8 + 9 + 7 = 24\)</li>
+               <li>Cuenta la cantidad de tus datos -> \([8, 9, 7] = 3\) datos</li>
+               <li>Ahora divides la suma total entre la cantidad de datos -> \(\frac{24}{3} = 8\)</li>
+               <li>¡Listo! Ya tienes tu media aritmética (promedio), que es por supuesto \(8\)</li>
+              </ol>
+              <!-- Ejemplos -->
               <h4>Ejemplos</h4>
-              <!-- ejemplo 1 -->
               <h5><strong>Ejemplo 1:</strong> El promedio de tus calificaciones</h5>
               <p>Imagina que quieres saber cuál fue tu rendimiento final en una materia y tus notas de los cuatro periodos del año fueron: 8, 9, 7 y 10.</p>
               <ol>
@@ -144,15 +152,13 @@
                 <li><strong>Divides entre el número total de notas:</strong> \(\frac{34}{4} = 8.5\)</li>
                 <li><strong>Resultado:</strong> La media aritmética de tus calificaciones es \(8.5\)</li>
               </ol>
-              <!-- ejemplo 2 -->
               <h5><strong>Ejemplo 2:</strong> Los puntos anotados por un jugador de baloncesto</h5>
               <p>Un jugador de básquetbol quiere saber cuántos puntos mete por partido en promedio. En sus últimos 5 juegos anotó: 12, 18, 15, 20 y 10 puntos.</p>
               <ol>
                 <li><strong>Sumas los puntos de todos los partidos:</strong> \(12 + 18 + 15 + 20 + 10 = 75\)</li>
-                <li><strong>Divides entre el número total de notas:</strong> \(\frac{75}{5} = 15\)</li>
+                <li><strong>Divides entre el número total de partidos:</strong> \(\frac{75}{5} = 15\)</li>
                 <li><strong>Resultado:</strong> La media aritmética es \(15\) puntos por partido.</li>
               </ol>
-              <!-- ejemplo 3 -->
               <h5><strong>Ejemplo 3:</strong> El dinero que gastas en la semana</h5>
               <p>Quieres calcular cuánto gastas típicamente en transporte de lunes a viernes. Tus gastos diarios fueron: $2.50, $3.00, $2.50, $4.00 y $3.00.</p>
               <ol>
@@ -160,25 +166,27 @@
                 <li><strong>Divides entre los 5 días de la semana:</strong> \(\frac{15.00}{5} = 3.00\)</li>
                 <li><strong>Resultado:</strong> La media aritmética de tu gasto diario es de \(\$3.00\)</li>
               </ol>
-              <strong>PROBAR CON EDADES:</strong>
-              <p>Ingresa las edades de tu grupo para obtener la media:</p>
+              <!-- Como programarlo -->
+              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
+              <pre><code class="language-javascript">function calcularMedia(arr) {
+  // 1. Sumamos todo
+  let suma = 0;
+  for (let i = 0; i < arr.length; i++) {
+    suma += arr[i];
+  }
+  // 2. Dividimos por la cantidad de elementos
+  const media = suma / arr.length;
+  return media;
+}</code></pre>
+              <!-- Laboratorio Interactivo Basico -->
+              <h4>¿Quieres ahora probarlo?</h4>
+              <p>Ingresa edades para obtener la media:</p>
               <div class="ejemplo-didactico">
                 <input type="number" placeholder="Ingresa una edad" id="inputMediaEdad"/>
                 <button id="btn-addMedia">Agregar Edad</button>
                 <button id="btn-calcMedia">Calcular Media</button>
                 <div id="resultadoMedia" class="ejemplo-resultado">MEDIA ARITMÉTICA:</div>
               </div>
-              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
-              <pre><code class="language-javascript">function calcularMedia(arr) {
-  // 1. Sumamos todo
-  let suma = 0;
-  for (let i = 0; i < edades.length; i++) {
-    suma += arr[i];
-  }
-  // 2. Dividimos por la cantidad de elementos
-  const media = suma/arr.length;
-  return media;
-}</code></pre>
             </section>
           </li>
 
