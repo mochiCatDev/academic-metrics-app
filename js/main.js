@@ -16,6 +16,22 @@ const SECCIONES = {
 
 let miMiniChart = null;
 let promedios = [];
+let colorPreferido = localStorage.getItem("colorFondo");
+
+// Funcion para cambiar de modo claro a oscuro y viceversa
+function cambiarModos() {
+  const esOscuro = document.body.getAttribute("data-theme") === "dark";
+  const nuevoTema = esOscuro ? "light" : "dark";
+  const nuevoMensaje = esOscuro ? `<i class="fa-regular fa-sun"></i>` : `<i class="fa-regular fa-moon"></i>`;
+  document.body.setAttribute("data-theme", nuevoTema);
+  $ID("btn-modos").innerHTML = nuevoMensaje;
+  localStorage.setItem("colorFondo", nuevoTema);
+
+  if (barras !== null) {
+    pintarBarras();
+  }
+  demoTendencia();
+}
 
 // Funcion para mostrar una seccion y ocultar las demas de manera automatica
 function mostrarSeccion(seccion) {
@@ -64,6 +80,11 @@ function pintarBarras() {
     }
   });
 
+  // Detectamos si el modo oscuro está activo
+  const esOscuro = document.body.getAttribute("data-theme") === "dark";
+  const colorTexto = esOscuro ? "#94a3b8" : "#718096";  // --text-muted adaptativo
+  const colorLineas = esOscuro ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)";
+
   barras = new Chart(canva, {
     type: "bar",
     data: {
@@ -79,12 +100,23 @@ function pintarBarras() {
       ],
     },
     options: {
+      plugins: {
+        legend: {
+          labels: { font: { size: 12 }, color: colorTexto }
+        }
+      },
       scales: {
+        x: {
+          grid: { color: colorLineas },
+          ticks: { color: colorTexto }
+        },
         y: {
           beginAtZero: true,
           min: 0,
           max: 10,
           step: 1,
+          grid: { color: colorLineas },
+          ticks: { color: colorTexto }
         },
       },
     },
@@ -120,7 +152,7 @@ function sacar_promedios() {
     <p>Promedio biologia: ${promedioBiologia}</p>
     <p>Promedio filosofia: ${promedioFilosofia}</p>
     <p>Promedio fisica: ${promedioFisica}</p>
-    <p>Promedio Total: ${promedioGeneral}</p>                            
+    <p>Promedio Total: ${promedioGeneral}</p>
   `;
 
   pintarBarras();
@@ -177,6 +209,11 @@ function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
   const labelsX = datosValidos.map((_, index) => `t-${index + 1}`);
   const ctx = $ID("demo-tendencia-chart").getContext("2d");
 
+  const esOscuro = document.body.getAttribute("data-theme") === "dark";
+  const colorTexto = esOscuro ? "#94a3b8" : "#718096";
+  const colorLineas = esOscuro ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)";
+  const colorPunto = esOscuro ? "#90cdf4" : "#1a365d";
+
   miMiniChart = new Chart(ctx, {
     type: "line",
     data: {
@@ -190,7 +227,7 @@ function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
           borderWidth: 3,
           tension: 0.2,
           pointRadius: 4,
-          pointBackgroundColor: "#1a365d",
+          pointBackgroundColor: colorPunto,
         },
       ],
     },
@@ -201,8 +238,14 @@ function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
         legend: { display: false },
       },
       scales: {
-        x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-        y: { ticks: { font: { size: 10 } } },
+        x: {
+          grid: { display: false },
+          ticks: { font: { size: 10 }, color: colorTexto }
+        },
+        y: {
+          grid: { color: colorLineas },
+          ticks: { font: { size: 10 }, color: colorTexto }
+        },
       },
     },
   });
@@ -433,6 +476,9 @@ function evaluarTest() {
 // |  Seccion de Botones  |
 // ------------------------
 
+// Boton para cambiar de modos claro/oscuro
+onClick("#btn-modos", () => { cambiarModos() });
+
 // Botones para agregar notas
 onClick("#btn-notaMath", () => {
   agregarNota("notaMath", DATOS_MATERIAS.matematica.notas, "tabla");
@@ -516,3 +562,6 @@ onClick("#btn-calcAnomalia", () => {
 demoTendencia();
 mostrarSeccion(SECCIONES.main);
 pintarBarras();
+if (colorPreferido === "light") {
+  cambiarModos();
+}
