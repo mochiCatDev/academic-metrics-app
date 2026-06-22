@@ -124,6 +124,7 @@ function pintarBarras() {
 }
 
 function sacarPromedios() {
+  const ELEMENT_PROM_DATA = $ID("data-promedio");
   promedios = [];
 
   promedioMatematicas = promediar(DATOS_MATERIAS.matematica.notas, 2);
@@ -155,6 +156,7 @@ function sacarPromedios() {
     <p>Promedio Total: ${promedioGeneral}</p>
   `;
 
+  ELEMENT_PROM_DATA.innerHTML = `<strong>Promedio</strong><p>${promedioGeneral}</p>`;
   pintarBarras();
   actualizarBarraProgreso(promedioGeneral, 10);
 }
