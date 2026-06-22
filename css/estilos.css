@@ -27,6 +27,11 @@ body {
   display: none !important;
 }
 
+.error {
+  color: red;
+  font-size: 12px;
+}
+
 /* Botón de cambio de modos - Esquina superior derecha circular */
 #btn-modos {
   position: fixed;

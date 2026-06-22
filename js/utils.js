@@ -20,7 +20,7 @@ const onClick = (selector, callback) => {
   if (element) {
     element.addEventListener("click", callback);
   } else {
-    console.warn(`onClick: El elemento "${selector}" no se encontró en el DOM.`);
+    spanElement.textContent = (`onClick: El elemento "${selector}" no se encontró en el DOM.`);
   }
 };
 
@@ -60,58 +60,55 @@ const obtenerPorcentajeDelTotal = (parcial, total, decimales = 2) => {
  * Valida si el valor de un input cumple con las reglas según su tipo.
  * @param {string} id - El ID del elemento input en el HTML.
  * @param {string} tipo - El tipo de validación ('texto', 'numero', 'email', 'vacio').
- * @returns {boolean} - true si es válido, false si no cumple las condiciones.
+ * @param {string} span - El ID del elemento span en el HTML.
  */
-function validarInput(id, tipo) {
+function validarInput(id, tipo, span) {
     const inputElement = $ID(id);
-    
-    // Verificamos si el elemento realmente existe en el DOM
+    const spanElement = $ID(span);
+    const tipoInput = tipo.toLowerCase();
+
+    // Verificamos si los elementos realmente existen en el DOM
     if (!inputElement) {
         console.error(`No se encontró ningún elemento con el ID: ${id}`);
         return false;
     }
-
-    const valor = inputElement.value.trim(); // Limpiamos espacios al inicio y al final
+    if (!spanElement) {
+        console.error(`No se encontró ningún span con el ID: ${span}`);
+        return false;
+    }
+    
+    // Limpiamos espacios al inicio y al final
+    let valor = inputElement.value.trim();
+    spanElement.classList.add("oculto");
+    spanElement.textContent = "";
 
     // Validación general - Que no este vacio
     if (valor === "") {
-        console.warn(`El campo con ID "${id}" está vacío.`);
+        spanElement.classList.remove("oculto");
+        spanElement.textContent = `El campo está vacío.`;
         return false;
     }
 
     // Validaciones especificas según el tipo
-    switch (tipo.toLowerCase()) {
-        case 'texto':
-            // Expresion regular: Solo letras (incluyendo acentos y espacios)
-            const regexTexto = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
-            if (!regexTexto.test(valor)) {
-                console.warn(`El campo "${id}" debe contener solo texto (no números ni caracteres especiales).`);
-                return false;
-            }
-            break;
-
-        case 'numero':
-            // Verificamos que sea un numero valido y que no sea un NaN (Not a Number)
-            if (isNaN(valor) || isNaN(Number(valor))) {
-                console.warn(`El campo "${id}" debe ser estrictamente un número.`);
-                return false;
-            }
-            break;
-
-        case 'email':
-            // Validacion básica de estructura de correo electronico
-            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!regexEmail.test(valor)) {
-                console.warn(`El campo "${id}" no tiene un formato de email válido.`);
-                return false;
-            }
-            break;
-
-        default:
-            console.warn(`El tipo de validación "${tipo}" no está soportado. Se considerará válido solo por no estar vacío.`);
-            break;
+    if (tipoInput == "texto") {
+        const regexTexto = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+        if (!regexTexto.test(valor)) {
+            spanElement.classList.remove("oculto");
+            spanElement.textContent = `El campo debe contener solo texto`;
+            return false;
+        }
+    }
+    else if (tipoInput == "numero") {
+        if (isNaN(valor) || isNaN(Number(valor))) {
+            spanElement.classList.remove("oculto");
+            spanElement.textContent = `El campo debe ser estrictamente un número.`;
+            return false;
+        }
+    }
+    else {
+        console.warn(`Se desconoce el tipo: ${tipo}`)
+        return false;
     }
 
-    // Si paso todas las pruebas, es válido
     return true;
 }

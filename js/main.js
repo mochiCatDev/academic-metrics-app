@@ -481,7 +481,9 @@ onClick("#btn-modos", () => { cambiarModos() });
 
 // Botones para agregar notas
 onClick("#btn-notaMath", () => {
-  agregarNota("notaMath", DATOS_MATERIAS.matematica.notas, "tabla");
+  if (validarInput("notaMath", "numero", "error-notaMath")) {
+    agregarNota("notaMath", DATOS_MATERIAS.matematica.notas, "tabla");
+  }
 });
 onClick("#btn-notaIng", () => {
   agregarNota("notaIng", DATOS_MATERIAS.ingles.notas, "tabla2");
