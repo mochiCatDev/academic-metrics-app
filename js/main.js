@@ -13,16 +13,21 @@ const SECCIONES = {
   about: $ID("section-about"),
   teoria: $ID("section-teoria"),
 };
+const ELEMENT_PROM_DATA = $ID("data-promedio");
+const ELEMENT_MEDIANA_DATA = $ID("data-mediana");
+const ElEMENT_MODA_DATA = $ID("data-moda");
+const ELEMENT_MEJOR_MATERIA_DATA = $ID("data-mejor-materia");
+const ELEMENT_PEOR_MATERIA_DATA = $ID("data-peor-materia");
 
 let miMiniChart = null;
-let promedios = [];
-let colorPreferido = localStorage.getItem("colorFondo");
+let promedios = [0, 0, 0, 0, 0, 0];
+let colorPreferido = localStorage.getItem("colorFondo") || "light";
+document.body.setAttribute("data-theme", colorPreferido);
 
-// Funcion para cambiar de modo claro a oscuro y viceversa
 function cambiarModos() {
-  const esOscuro = document.body.getAttribute("data-theme") === "dark";
-  const nuevoTema = esOscuro ? "light" : "dark";
-  const nuevoMensaje = esOscuro ? `<i class="fa-regular fa-sun"></i>` : `<i class="fa-regular fa-moon"></i>`;
+  const temaActual = document.body.getAttribute("data-theme") || colorPreferido;
+  const nuevoTema = temaActual === "dark" ? "light" : "dark";
+  const nuevoMensaje = nuevoTema === "light" ? `<i class="fa-regular fa-sun"></i>` : `<i class="fa-regular fa-moon"></i>`;
   document.body.setAttribute("data-theme", nuevoTema);
   $ID("btn-modos").innerHTML = nuevoMensaje;
   localStorage.setItem("colorFondo", nuevoTema);
@@ -32,7 +37,6 @@ function cambiarModos() {
   }
   demoTendencia();
 }
-
 // Funcion para mostrar una seccion y ocultar las demas de manera automatica
 function mostrarSeccion(seccion) {
   Object.keys(SECCIONES).forEach((secciones) =>
@@ -82,7 +86,7 @@ function pintarBarras() {
 
   // Detectamos si el modo oscuro está activo
   const esOscuro = document.body.getAttribute("data-theme") === "dark";
-  const colorTexto = esOscuro ? "#94a3b8" : "#718096";  // --text-muted adaptativo
+  const colorTexto = esOscuro ? "#94a3b8" : "#718096";
   const colorLineas = esOscuro ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)";
 
   barras = new Chart(canva, {
@@ -123,7 +127,7 @@ function pintarBarras() {
   });
 }
 
-function sacar_promedios() {
+function sacarPromedios() {
   promedios = [];
 
   promedioMatematicas = promediar(DATOS_MATERIAS.matematica.notas, 2);
@@ -142,7 +146,25 @@ function sacar_promedios() {
     promedioFisica,
   );
 
-  promedioGeneral = promediar(promedios, 2);
+  let promediosMaterias = {
+    "Matematicas": promedioMatematicas,
+    "Ingles": promedioIngles,
+    "Quimica": promedioQuimica,
+    "Biologia": promedioBiologia,
+    "Filosofia": promedioFilosofia,
+    "Fisica": promedioFisica
+  }
+  
+  let promedioGeneral = promediar(promedios, 2);
+  let medianaGeneral = getMedian(promedios);
+  let modaGeneral = obtenerModa(promedios);
+
+  const listaMaterias = Object.entries(promediosMaterias);
+  const notaMaxima = Math.max(...listaMaterias.map(m => m[1]));
+  let mejorMateriaGeneral = listaMaterias.filter(m => m[1] === notaMaxima).map(([nombre]) => nombre);
+
+  const notaMinima = Math.min(...listaMaterias.map(m => m[1]));
+  let peorMateriaGeneral = listaMaterias.filter(m => m[1] === notaMinima).map(([nombre]) => nombre);
 
   $ID("promedios").innerHTML = `
     <h3>PROMEDIOS</h3>
@@ -155,6 +177,18 @@ function sacar_promedios() {
     <p>Promedio Total: ${promedioGeneral}</p>
   `;
 
+  const formateador = new Intl.ListFormat('es', { style: 'long', type: 'conjunction' });
+  let textoMaterias = formateador.format(mejorMateriaGeneral); 
+  let titulo = mejorMateriaGeneral.length > 1 ? "Tus mejores materias son" : "Tu mejor materia es";
+  ELEMENT_MEJOR_MATERIA_DATA.innerHTML = `<strong>${titulo}</strong><p>${textoMaterias}</p>`;
+
+  textoMaterias = formateador.format(peorMateriaGeneral);
+  titulo = peorMateriaGeneral.length > 1 ? "Tus peores materias son" : "Tu peor materia es"; 
+  ELEMENT_PEOR_MATERIA_DATA.innerHTML = `<strong>${titulo}</strong><p>${textoMaterias}</p>`
+
+  ELEMENT_PROM_DATA.innerHTML = `<strong>Promedio</strong><p>${promedioGeneral}</p>`;
+  ELEMENT_MEDIANA_DATA.innerHTML = `<strong>Mediana</strong><p>${medianaGeneral}</p>`;
+  ElEMENT_MODA_DATA.innerHTML = `<strong>Moda</strong><p>${modaGeneral}</p>`;
   pintarBarras();
   actualizarBarraProgreso(promedioGeneral, 10);
 }
@@ -313,35 +347,18 @@ function agregarModa() {
 
 function calcularModa() {
   if (datosModa.length === 0) return;
-  let frecuencias = {};
 
-  for (let i = 0; i < datosModa.length; i++) {
-    let numeroActual = datosModa[i];
-    if (frecuencias[numeroActual] === undefined) {
-      frecuencias[numeroActual] = 1;
-    } else {
-      frecuencias[numeroActual] = frecuencias[numeroActual] + 1;
-    }
-  }
+  const resultado = obtenerModa(datosModa);
 
-  let maxRepeticiones = 0;
-  for (let numero in frecuencias) {
-    if (frecuencias[numero] > maxRepeticiones) {
-      maxRepeticiones = frecuencias[numero];
-    }
-  }
-  let modasEncontradas = [];
-  for (let numero in frecuencias) {
-    if (frecuencias[numero] === maxRepeticiones && maxRepeticiones > 1) {
-      modasEncontradas.push(numero);
-    }
-  }
-  if (modasEncontradas.length === 0) {
+  if (resultado === null) {
     $ID("resultadoModa").innerHTML =
       `MODA: <strong>No hay moda</strong> (Ningún valor se repite)`;
+  } else if (Array.isArray(resultado)) {
+    $ID("resultadoModa").innerHTML =
+      `MODA MULTIMODAL: <strong>${resultado.join(", ")}</strong>`;
   } else {
     $ID("resultadoModa").innerHTML =
-      `MODA: <strong>${modasEncontradas.join(", ")}</strong> (Se repite ${maxRepeticiones} veces)`;
+      `MODA: <strong>${resultado}</strong>`;
   }
 }
 
@@ -481,22 +498,34 @@ onClick("#btn-modos", () => { cambiarModos() });
 
 // Botones para agregar notas
 onClick("#btn-notaMath", () => {
-  agregarNota("notaMath", DATOS_MATERIAS.matematica.notas, "tabla");
+  if (validarInput("notaMath", "numero", "error-notaMath")) {
+    agregarNota("notaMath", DATOS_MATERIAS.matematica.notas, "tabla");
+  }
 });
 onClick("#btn-notaIng", () => {
-  agregarNota("notaIng", DATOS_MATERIAS.ingles.notas, "tabla2");
+  if (validarInput("notaIng", "numero", "error-notaIng")) {
+    agregarNota("notaIng", DATOS_MATERIAS.ingles.notas, "tabla2");
+  }
 });
 onClick("#btn-notaQuim", () => {
-  agregarNota("notaQuim", DATOS_MATERIAS.quimica.notas, "tabla3");
+  if (validarInput("notaQuim", "numero", "error-notaQuim")) {
+    agregarNota("notaQuim", DATOS_MATERIAS.quimica.notas, "tabla3");
+  }
 });
 onClick("#btn-notaBio", () => {
-  agregarNota("notaBio", DATOS_MATERIAS.biologia.notas, "tabla4");
+  if (validarInput("notaBio", "numero", "error-notaBio")) {
+    agregarNota("notaBio", DATOS_MATERIAS.biologia.notas, "tabla4");
+  }
 });
 onClick("#btn-notaFilo", () => {
-  agregarNota("notaFilo", DATOS_MATERIAS.filosofia.notas, "tabla5");
+  if (validarInput("notaFilo", "numero", "error-notaFilo")) {
+    agregarNota("notaFilo", DATOS_MATERIAS.filosofia.notas, "tabla5");
+  }
 });
 onClick("#btn-notaFis", () => {
-  agregarNota("notaFis", DATOS_MATERIAS.fisica.notas, "tabla6");
+  if (validarInput("notaFis", "numero", "error-notaFis")) {
+    agregarNota("notaFis", DATOS_MATERIAS.fisica.notas, "tabla6");
+  }
 });
 
 // Botones para mostrar secciones
@@ -562,6 +591,3 @@ onClick("#btn-calcAnomalia", () => {
 demoTendencia();
 mostrarSeccion(SECCIONES.main);
 pintarBarras();
-if (colorPreferido === "light") {
-  cambiarModos();
-}

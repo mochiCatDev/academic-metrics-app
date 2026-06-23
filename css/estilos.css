@@ -170,9 +170,54 @@ nav button:focus {
   text-shadow: 0px 0px 4px var(--bg-card);
 }
 
+.container-data {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.data-info {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.data-info strong {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.data-info p {
+  font-family: var(--font-ui);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+}
+
 /* ==========================================================================
    Sección de Gestión (Grid de Materias)
    ========================================================================== */
+/* ==========================================================================
+   SECCIÓN: MANAGER DE NOTAS INTERACTIVO
+   ========================================================================== */
+
 #section-manager {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -207,41 +252,81 @@ nav button:focus {
   font-weight: 600;
 }
 
-#section-manager input[type="number"] {
+/* --- ESTRUCTURA RESPONSIVA DE INPUTS CON ICONO + --- */
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
   width: 100%;
-  padding: 8px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+}
+
+/* Fila flexible: mantiene el input y el botón pegados horizontalmente */
+.input-inline-row {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+}
+
+/* El input adaptado a la fila flexible */
+#section-manager input[type="number"] {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
   font-family: var(--font-mono);
   font-size: 0.95rem;
-  margin-bottom: 10px;
   outline: none;
   background-color: var(--bg-card);
   color: var(--text-main);
-  transition: border-color 0.2s;
+  transition: all 0.25s ease-in-out;
+  margin-bottom: 0;
 }
 
 #section-manager input[type="number"]:focus {
   border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
 }
 
-#section-manager button {
-  width: 100%;
-  background-color: var(--primary-color);
-  color: var(--bg-card);
-  border: none;
-  padding: 8px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  transition: background-color 0.2s;
-}
-
-#section-manager button:hover {
+/* El nuevo botón de icono circular/cuadrado moderno */
+#section-manager .btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px; 
   background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s, transform 0.1s;
 }
+
+#section-manager .btn-icon:hover {
+  background-color: var(--primary-color);
+}
+
+#section-manager .btn-icon:active {
+  transform: scale(0.95);
+}
+
+/* Control y diseño elegante para los errores debajo del input */
+#section-manager .error {
+  color: #e53e3e;
+  font-size: 0.8rem;
+  font-family: var(--font-ui);
+  margin-top: 6px;
+  display: block;
+}
+
+#section-manager .error.oculto {
+  display: none !important;
+}
+
+/* --- BLOQUES DE RENDERIZADO Y PROMEDIOS --- */
 
 /* Bloque final del botón Promediar */
 #section-manager > div:last-child {
@@ -257,12 +342,19 @@ nav button:focus {
   border-radius: 6px;
 }
 
+/* Estilo específico para el súper botón "Sacar Promedios" */
 #section-manager > div:last-child button {
   width: auto;
   padding: 12px 40px;
   font-size: 1.1rem;
   background-color: var(--accent-color);
   color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s;
 }
 
 #section-manager > div:last-child button:hover {
@@ -367,15 +459,17 @@ nav button:focus {
 }
 
 #section-teoria ol {
-  list-style-position: inside;
+  list-style-position: outside;
+  margin-left: 25px;
 }
 
-#section-teoria li {
-  margin-bottom: 35px;
+#section-teoria > ol > li {
+  margin-bottom: 50px;
 }
 
 #section-teoria li section {
-  display: inline;
+  display: block;
+  width: 100%;
 }
 
 #section-teoria ol li section,
@@ -385,37 +479,45 @@ nav button:focus {
 
 #section-teoria h3 {
   font-family: var(--font-academic);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: var(--primary-color);
-  display: inline-block;
+  display: block;
+  margin-top: 10px;
   margin-bottom: 15px;
   border-bottom: 1px solid var(--border-color);
+  padding-bottom: 5px;
 }
 
 #section-teoria p {
   font-family: var(--font-academic);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin-bottom: 15px;
   text-align: justify;
   color: var(--text-main);
+  line-height: 1.6;
 }
 
 #section-teoria h4 {
-  font-size: 1rem;
-  margin: 15px 0 8px 0;
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 25px 0 10px 0;
   color: var(--secondary-color);
 }
 
 #section-teoria ul {
   list-style-type: square;
-  margin-left: 30px;
-  margin-bottom: 15px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding-left: 0;
 }
 
 #section-teoria li ul li {
   font-family: var(--font-academic);
-  font-size: 1.05rem;
-  margin-bottom: 5px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  list-style-position: outside;
 }
 
 /* Bloques de Código de JavaScript */
@@ -424,8 +526,8 @@ nav button:focus {
   padding: 15px;
   border-radius: 6px;
   overflow-x: auto;
-  margin: 15px 0;
-  border-left: 4px solid var(--secondary-color);
+  margin: 20px 0;
+  width: 100%;
 }
 
 #section-teoria code {
@@ -433,55 +535,85 @@ nav button:focus {
   font-size: 0.9rem !important;
 }
 
-/* Estilos para las cajas de ejemplo interactivo en teoría */
-.demo-box {
-  background-color: var(--bg-app);
+/* ==========================================================================
+   Estilos para Ejemplos Didácticos Interactivos (Laboratorios)
+   ========================================================================== */
+.ejemplo-didactico {
+  background-color: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-left: 4px solid var(--accent-color);
-  padding: 15px;
+  padding: 20px;
+  margin: 20px 0 30px 0;
+  border-radius: 8px;
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+}
+
+.ejemplo-didactico input[type="number"],
+.ejemplo-didactico input[type="text"],
+.ejemplo-didactico select {
+  width: 100% !important;
+  padding: 11px 14px;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
-  margin: 15px 0 25px 0;
+  font-family: var(--font-mono);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  margin: 0 !important;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.ejemplo-didactico button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  cursor: pointer;
+  width: 100% !important;
+  margin: 0 !important;
+  transition: background-color 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.ejemplo-didactico button:hover {
+  background-color: var(--primary-color);
+}
+
+.ejemplo-resultado {
+  margin-top: 5px;
+  padding: 14px 16px;
+  background-color: var(--bg-app);
+  border-left: 4px solid var(--accent-color);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--text-main);
+  width: 100% !important;
+  border-radius: 0 6px 6px 0;
+  box-sizing: border-box;
+}
+
+.demo-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .demo-box label {
-  display: block;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.demo-box input[type="text"],
-.demo-box input[type="number"] {
-  width: 100%;
-  max-width: 400px;
-  padding: 6px 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-family: var(--font-mono);
-  background-color: var(--bg-card);
-  color: var(--text-main);
-  margin-bottom: 10px;
-  display: block;
-}
-
-.demo-box p {
-  margin-top: 5px;
-  margin-bottom: 0 !important;
-  font-size: 1rem !important;
-  color: var(--text-main);
-}
-
-.demo-box strong {
-  color: var(--accent-color);
 }
 
 .mini-chart-container {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-  height: 150px;
-  margin: 15px auto 0 0;
+  width: 100% !important;
+  margin-top: 10px;
 }
 
 /* Estilos para el mini-Test estadistico */
