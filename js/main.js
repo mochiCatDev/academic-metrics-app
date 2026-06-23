@@ -15,7 +15,7 @@ const SECCIONES = {
 };
 
 let miMiniChart = null;
-let promedios = [];
+let promedios = [0, 0, 0, 0, 0, 0];
 let colorPreferido = localStorage.getItem("colorFondo") || "light";
 document.body.setAttribute("data-theme", colorPreferido);
 
@@ -81,7 +81,7 @@ function pintarBarras() {
 
   // Detectamos si el modo oscuro está activo
   const esOscuro = document.body.getAttribute("data-theme") === "dark";
-  const colorTexto = esOscuro ? "#94a3b8" : "#718096";  // --text-muted adaptativo
+  const colorTexto = esOscuro ? "#94a3b8" : "#718096";
   const colorLineas = esOscuro ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)";
 
   barras = new Chart(canva, {
@@ -575,6 +575,3 @@ onClick("#btn-calcAnomalia", () => {
 demoTendencia();
 mostrarSeccion(SECCIONES.main);
 pintarBarras();
-if (colorPreferido === "light") {
-  cambiarModos();
-}

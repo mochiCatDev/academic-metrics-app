@@ -20,7 +20,7 @@ const onClick = (selector, callback) => {
   if (element) {
     element.addEventListener("click", callback);
   } else {
-    spanElement.textContent = (`onClick: El elemento "${selector}" no se encontró en el DOM.`);
+    console.warn(`onClick: El elemento "${selector}" no se encontró en el DOM.`);
   }
 };
 

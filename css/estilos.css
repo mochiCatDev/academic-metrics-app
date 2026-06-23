@@ -176,22 +176,44 @@ nav button:focus {
 }
 
 .container-data {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
   width: 100%;
-  display: flex;
-  flex-flow: wrap;
 }
 
-.container-data .data-info {
-  width: 150px;
-  padding: 20px;
+.data-info {
+  background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  margin: 5px;
-  background-color: var(--bg-app);
+  padding: 24px;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.data-info strong {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.data-info p {
+  font-family: var(--font-ui);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
 }
 
 /* ==========================================================================
