@@ -16,7 +16,8 @@ const SECCIONES = {
 const ELEMENT_PROM_DATA = $ID("data-promedio");
 const ELEMENT_MEDIANA_DATA = $ID("data-mediana");
 const ElEMENT_MODA_DATA = $ID("data-moda");
-
+const ELEMENT_MEJOR_MATERIA_DATA = $ID("data-mejor-materia");
+const ELEMENT_PEOR_MATERIA_DATA = $ID("data-peor-materia");
 
 let miMiniChart = null;
 let promedios = [0, 0, 0, 0, 0, 0];
@@ -145,9 +146,20 @@ function sacarPromedios() {
     promedioFisica,
   );
 
+  let promediosMaterias = {
+    "Matematicas": promedioMatematicas,
+    "Ingles": promedioIngles,
+    "Quimica": promedioQuimica,
+    "Biologia": promedioBiologia,
+    "Filosofia": promedioFilosofia,
+    "Fisica": promedioFisica
+  }
+  const listaMaterias = Object.entries(promediosMaterias);
+  const notaMaxima = Math.max(...listaMaterias.map(m => m[1]));
   let promedioGeneral = promediar(promedios, 2);
   let medianaGeneral = getMedian(promedios);
   let modaGeneral = obtenerModa(promedios);
+  let mejorMateriaGeneral = listaMaterias.filter(m => m[1] === notaMaxima).map(([nombre]) => nombre);
 
   $ID("promedios").innerHTML = `
     <h3>PROMEDIOS</h3>
@@ -160,9 +172,14 @@ function sacarPromedios() {
     <p>Promedio Total: ${promedioGeneral}</p>
   `;
 
+  const formateador = new Intl.ListFormat('es', { style: 'long', type: 'conjunction' });
+  const textoMaterias = formateador.format(mejorMateriaGeneral); 
+  const titulo = mejorMateriaGeneral.length > 1 ? "Tus mejores materias son" : "Tu mejor materia es";
+  ELEMENT_MEJOR_MATERIA_DATA.innerHTML = `<strong>${titulo}</strong><p>${textoMaterias}</p>`;
+
   ELEMENT_PROM_DATA.innerHTML = `<strong>Promedio</strong><p>${promedioGeneral}</p>`;
   ELEMENT_MEDIANA_DATA.innerHTML = `<strong>Mediana</strong><p>${medianaGeneral}</p>`;
-  ElEMENT_MODA_DATA.innerHTML = `<strong>Moda</strong><p>${modaGeneral}</p>`
+  ElEMENT_MODA_DATA.innerHTML = `<strong>Moda</strong><p>${modaGeneral}</p>`;
   pintarBarras();
   actualizarBarraProgreso(promedioGeneral, 10);
 }
