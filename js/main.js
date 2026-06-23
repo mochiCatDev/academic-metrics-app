@@ -317,35 +317,18 @@ function agregarModa() {
 
 function calcularModa() {
   if (datosModa.length === 0) return;
-  let frecuencias = {};
 
-  for (let i = 0; i < datosModa.length; i++) {
-    let numeroActual = datosModa[i];
-    if (frecuencias[numeroActual] === undefined) {
-      frecuencias[numeroActual] = 1;
-    } else {
-      frecuencias[numeroActual] = frecuencias[numeroActual] + 1;
-    }
-  }
+  const resultado = obtenerModa(datosModa);
 
-  let maxRepeticiones = 0;
-  for (let numero in frecuencias) {
-    if (frecuencias[numero] > maxRepeticiones) {
-      maxRepeticiones = frecuencias[numero];
-    }
-  }
-  let modasEncontradas = [];
-  for (let numero in frecuencias) {
-    if (frecuencias[numero] === maxRepeticiones && maxRepeticiones > 1) {
-      modasEncontradas.push(numero);
-    }
-  }
-  if (modasEncontradas.length === 0) {
+  if (resultado === null) {
     $ID("resultadoModa").innerHTML =
       `MODA: <strong>No hay moda</strong> (Ningún valor se repite)`;
+  } else if (Array.isArray(resultado)) {
+    $ID("resultadoModa").innerHTML =
+      `MODA MULTIMODAL: <strong>${resultado.join(", ")}</strong>`;
   } else {
     $ID("resultadoModa").innerHTML =
-      `MODA: <strong>${modasEncontradas.join(", ")}</strong> (Se repite ${maxRepeticiones} veces)`;
+      `MODA: <strong>${resultado}</strong>`;
   }
 }
 
