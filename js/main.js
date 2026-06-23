@@ -13,6 +13,10 @@ const SECCIONES = {
   about: $ID("section-about"),
   teoria: $ID("section-teoria"),
 };
+const ELEMENT_PROM_DATA = $ID("data-promedio");
+const ELEMENT_MEDIANA_DATA = $ID("data-mediana");
+const ElEMENT_MODA_DATA = $ID("data-moda");
+
 
 let miMiniChart = null;
 let promedios = [0, 0, 0, 0, 0, 0];
@@ -123,8 +127,6 @@ function pintarBarras() {
 }
 
 function sacarPromedios() {
-  const ELEMENT_PROM_DATA = $ID("data-promedio");
-  const ELEMENT_MEDIANA_DATA = $ID("data-mediana");
   promedios = [];
 
   promedioMatematicas = promediar(DATOS_MATERIAS.matematica.notas, 2);
@@ -145,6 +147,7 @@ function sacarPromedios() {
 
   let promedioGeneral = promediar(promedios, 2);
   let medianaGeneral = getMedian(promedios);
+  let modaGeneral = obtenerModa(promedios);
 
   $ID("promedios").innerHTML = `
     <h3>PROMEDIOS</h3>
@@ -159,6 +162,7 @@ function sacarPromedios() {
 
   ELEMENT_PROM_DATA.innerHTML = `<strong>Promedio</strong><p>${promedioGeneral}</p>`;
   ELEMENT_MEDIANA_DATA.innerHTML = `<strong>Mediana</strong><p>${medianaGeneral}</p>`;
+  ElEMENT_MODA_DATA.innerHTML = `<strong>Moda</strong><p>${modaGeneral}</p>`
   pintarBarras();
   actualizarBarraProgreso(promedioGeneral, 10);
 }
