@@ -27,11 +27,6 @@ body {
   display: none !important;
 }
 
-.error {
-  color: red;
-  font-size: 12px;
-}
-
 /* Botón de cambio de modos - Esquina superior derecha circular */
 #btn-modos {
   position: fixed;
@@ -219,6 +214,10 @@ nav button:focus {
 /* ==========================================================================
    Sección de Gestión (Grid de Materias)
    ========================================================================== */
+/* ==========================================================================
+   SECCIÓN: MANAGER DE NOTAS INTERACTIVO
+   ========================================================================== */
+
 #section-manager {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -253,41 +252,81 @@ nav button:focus {
   font-weight: 600;
 }
 
-#section-manager input[type="number"] {
+/* --- ESTRUCTURA RESPONSIVA DE INPUTS CON ICONO + --- */
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
   width: 100%;
-  padding: 8px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+}
+
+/* Fila flexible: mantiene el input y el botón pegados horizontalmente */
+.input-inline-row {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+}
+
+/* El input adaptado a la fila flexible */
+#section-manager input[type="number"] {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
   font-family: var(--font-mono);
   font-size: 0.95rem;
-  margin-bottom: 10px;
   outline: none;
   background-color: var(--bg-card);
   color: var(--text-main);
-  transition: border-color 0.2s;
+  transition: all 0.25s ease-in-out;
+  margin-bottom: 0;
 }
 
 #section-manager input[type="number"]:focus {
   border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
 }
 
-#section-manager button {
-  width: 100%;
-  background-color: var(--primary-color);
-  color: var(--bg-card);
-  border: none;
-  padding: 8px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  transition: background-color 0.2s;
-}
-
-#section-manager button:hover {
+/* El nuevo botón de icono circular/cuadrado moderno */
+#section-manager .btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px; 
   background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s, transform 0.1s;
 }
+
+#section-manager .btn-icon:hover {
+  background-color: var(--primary-color);
+}
+
+#section-manager .btn-icon:active {
+  transform: scale(0.95);
+}
+
+/* Control y diseño elegante para los errores debajo del input */
+#section-manager .error {
+  color: #e53e3e;
+  font-size: 0.8rem;
+  font-family: var(--font-ui);
+  margin-top: 6px;
+  display: block;
+}
+
+#section-manager .error.oculto {
+  display: none !important;
+}
+
+/* --- BLOQUES DE RENDERIZADO Y PROMEDIOS --- */
 
 /* Bloque final del botón Promediar */
 #section-manager > div:last-child {
@@ -303,12 +342,19 @@ nav button:focus {
   border-radius: 6px;
 }
 
+/* Estilo específico para el súper botón "Sacar Promedios" */
 #section-manager > div:last-child button {
   width: auto;
   padding: 12px 40px;
   font-size: 1.1rem;
   background-color: var(--accent-color);
   color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s;
 }
 
 #section-manager > div:last-child button:hover {
