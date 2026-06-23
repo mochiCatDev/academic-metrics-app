@@ -154,12 +154,17 @@ function sacarPromedios() {
     "Filosofia": promedioFilosofia,
     "Fisica": promedioFisica
   }
-  const listaMaterias = Object.entries(promediosMaterias);
-  const notaMaxima = Math.max(...listaMaterias.map(m => m[1]));
+  
   let promedioGeneral = promediar(promedios, 2);
   let medianaGeneral = getMedian(promedios);
   let modaGeneral = obtenerModa(promedios);
+
+  const listaMaterias = Object.entries(promediosMaterias);
+  const notaMaxima = Math.max(...listaMaterias.map(m => m[1]));
   let mejorMateriaGeneral = listaMaterias.filter(m => m[1] === notaMaxima).map(([nombre]) => nombre);
+
+  const notaMinima = Math.min(...listaMaterias.map(m => m[1]));
+  let peorMateriaGeneral = listaMaterias.filter(m => m[1] === notaMinima).map(([nombre]) => nombre);
 
   $ID("promedios").innerHTML = `
     <h3>PROMEDIOS</h3>
@@ -173,9 +178,13 @@ function sacarPromedios() {
   `;
 
   const formateador = new Intl.ListFormat('es', { style: 'long', type: 'conjunction' });
-  const textoMaterias = formateador.format(mejorMateriaGeneral); 
-  const titulo = mejorMateriaGeneral.length > 1 ? "Tus mejores materias son" : "Tu mejor materia es";
+  let textoMaterias = formateador.format(mejorMateriaGeneral); 
+  let titulo = mejorMateriaGeneral.length > 1 ? "Tus mejores materias son" : "Tu mejor materia es";
   ELEMENT_MEJOR_MATERIA_DATA.innerHTML = `<strong>${titulo}</strong><p>${textoMaterias}</p>`;
+
+  textoMaterias = formateador.format(peorMateriaGeneral);
+  titulo = peorMateriaGeneral.length > 1 ? "Tus peores materias son" : "Tu peor materia es"; 
+  ELEMENT_PEOR_MATERIA_DATA.innerHTML = `<strong>${titulo}</strong><p>${textoMaterias}</p>`
 
   ELEMENT_PROM_DATA.innerHTML = `<strong>Promedio</strong><p>${promedioGeneral}</p>`;
   ELEMENT_MEDIANA_DATA.innerHTML = `<strong>Mediana</strong><p>${medianaGeneral}</p>`;
