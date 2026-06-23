@@ -135,3 +135,41 @@ const getMedian = (numbers) => {
     ? sorted[mid] 
     : (sorted[mid - 1] + sorted[mid]) / 2;
 };
+
+/**
+ * Calcula la moda de un array de números.
+ * Puede retornar un número (unimodal), un array de números (multimodal) 
+ * o null si no existe ninguna moda.
+ *
+ * @param {number[]} arreglo - Array de números a evaluar.
+ * @returns {number|number[]|null} La moda, un array de modas, o null si no hay moda.
+ */
+
+const obtenerModa = (arreglo) => {
+  if (!Array.isArray(arreglo) || arreglo.length === 0) return null;
+
+  const frecuencias = {};
+  let maxRepeticiones = 0;
+
+  // Contar cuántas veces se repite cada número
+  arreglo.forEach((numero) => {
+    frecuencias[numero] = (frecuencias[numero] || 0) + 1;
+    if (frecuencias[numero] > maxRepeticiones) {
+      maxRepeticiones = frecuencias[numero];
+    }
+  });
+
+  // Si el número máximo de repeticiones es 1, significa que ninguno se repite
+  if (maxRepeticiones === 1) return null;
+
+  // Agrupar todos los números que alcanzaron el máximo de repeticiones
+  const modas = [];
+  for (const numero in frecuencias) {
+    if (frecuencias[numero] === maxRepeticiones) {
+      modas.push(Number(numero));
+    }
+  }
+
+  // Retornar un solo número si solo hay una moda, o el array si hay varias
+  return modas.length === 1 ? modas[0] : modas;
+};
