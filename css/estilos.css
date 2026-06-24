@@ -212,9 +212,6 @@ nav button:focus {
 }
 
 /* ==========================================================================
-   Sección de Gestión (Grid de Materias)
-   ========================================================================== */
-/* ==========================================================================
    SECCIÓN: MANAGER DE NOTAS INTERACTIVO
    ========================================================================== */
 
@@ -518,21 +515,6 @@ nav button:focus {
   margin-bottom: 8px;
   line-height: 1.5;
   list-style-position: outside;
-}
-
-/* Bloques de Código de JavaScript */
-#section-teoria pre {
-  background-color: #1a202c !important;
-  padding: 15px;
-  border-radius: 6px;
-  overflow-x: auto;
-  margin: 20px 0;
-  width: 100%;
-}
-
-#section-teoria code {
-  font-family: var(--font-mono) !important;
-  font-size: 0.9rem !important;
 }
 
 /* ==========================================================================

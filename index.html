@@ -175,10 +175,10 @@
               <p>Sigue estos pasos para que no te pierdas al momento de quererlo hacer tú mismo en un cuaderno:</p>
               <p>Imaginemos que los datos que tienes son: \([8, 9, 7]\)</p>
               <ol>
-               <li>Suma todos los datos -> \(8 + 9 + 7 = 24\)</li>
-               <li>Cuenta la cantidad de tus datos -> \([8, 9, 7] = 3\) datos</li>
-               <li>Ahora divides la suma total entre la cantidad de datos -> \(\frac{24}{3} = 8\)</li>
-               <li>¡Listo! Ya tienes tu media aritmética (promedio), que es por supuesto \(8\)</li>
+                <li>Suma todos los datos -> \(8 + 9 + 7 = 24\)</li>
+                <li>Cuenta la cantidad de tus datos -> \([8, 9, 7] = 3\) datos</li>
+                <li>Ahora divides la suma total entre la cantidad de datos -> \(\frac{24}{3} = 8\)</li>
+                <li>¡Listo! Ya tienes tu media aritmética (promedio), que es por supuesto \(8\)</li>
               </ol>
               <!-- Ejemplos -->
               <h4>Ejemplos</h4>
@@ -203,18 +203,6 @@
                 <li><strong>Divides entre los 5 días de la semana:</strong> \(\frac{15.00}{5} = 3.00\)</li>
                 <li><strong>Resultado:</strong> La media aritmética de tu gasto diario es de \(\$3.00\)</li>
               </ol>
-              <!-- Como programarlo -->
-              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
-              <pre><code class="language-javascript">function calcularMedia(arr) {
-  // 1. Sumamos todo
-  let suma = 0;
-  for (let i = 0; i < arr.length; i++) {
-    suma += arr[i];
-  }
-  // 2. Dividimos por la cantidad de elementos
-  const media = suma / arr.length;
-  return media;
-}</code></pre>
               <!-- Laboratorio Interactivo Basico -->
               <h4>¿Quieres ahora probarlo?</h4>
               <p>Ingresa edades para obtener la media:</p>
@@ -256,28 +244,6 @@
                 <li><strong>Ejemplo con cantidad impar:</strong> Supongamos que tienes las edades \(\{3, 5, 8, 10, 11\}\). Como están ordenadas y son 5 datos (impar), el número del centro es directamente el <strong>\(8\)</strong>.</li>
                 <li><strong>Ejemplo con cantidad par:</strong> Supongamos que tienes las notas \(\{2, 4, 6, 8\}\). Al ser 4 datos (par), los dos valores centrales son \(4\) y \(6\). Su promedio es: $$\frac{4 + 6}{2} = 5$$</li>
               </ul>
-              <!-- Como Programarlo -->
-              <h4>Cómo Programarlo</h4>
-              <p>Así es como una computadora procesa este algoritmo usando JavaScript <i class="fa-brands fa-js"></i>:</p>
-              <pre><code class="language-javascript">function calcularMediana(listaNumeros) {
-  // 1. Ordenar los datos de menor a mayor sin alterar la lista original
-  const datosOrdenados = [...listaNumeros].sort((a, b) => a - b);
-  const n = datosOrdenados.length;
-
-  // 2. Encontrar el índice de la mitad exacta
-  const indiceMitad = Math.floor(n / 2);
-
-  // 3. Si la cantidad de datos es IMPAR, el del centro es la mediana
-  if (n % 2 !== 0) {
-    return datosOrdenados[indiceMitad];
-  }
-  // 4. Si es PAR, se promedian los dos elementos del centro
-  else {
-    const datoIzquierdo = datosOrdenados[indiceMitad - 1];
-    const datoDerecho = datosOrdenados[indiceMitad];
-    return (datoIzquierdo + datoDerecho) / 2;
-  }
-}</code></pre>
               <!-- Laboratorio Interactivo Basico -->
               <h4>Laboratorio Interactivo Básico</h4>
               <p>Ingresa una serie de números separados por comas para calcular su mediana de manera automática:</p>
@@ -319,39 +285,6 @@
                 <li><strong>Ejemplo 1 (Unimodal):</strong> Imagina que tienes la lista de datos \(\{5, 7, 5, 9, 5, 8\}\). Contamos las repeticiones: el \(7\), el \(9\) y el \(8\) aparecen una sola vez, mientras que el número \(5\) aparece tres veces. Como el \(5\) se repite más que cualquier otro, la moda es \(\text{Mo} = 5\).</li>
                 <li><strong>Ejemplo 2 (Bimodal):</strong> En la lista \(\{3, 3, 3, 4, 6, 6, 6, 7\}\), tanto el \(3\) como el \(6\) aparecen tres veces. Al compartir el récord de repeticiones, este conjunto tiene dos modas: \(\text{Mo} = \{3, 6\}\).</li>
               </ul>
-              <!-- Como Programarlo -->
-              <h4>Cómo Programarlo</h4>
-              <p>Así es como una computadora procesa este algoritmo de conteo utilizando JavaScript <i class="fa-brands fa-js"></i>:</p>
-              <pre><code class="language-javascript">function calcularModaImperativa(lista) {
-  let conteo = {};
-  let maxVotos = 0;
-  let modas = [];
-
-  // 1. Contar las repeticiones de cada número
-  for (let i = 0; i < lista.length; i++) {
-    let num = lista[i];
-    conteo[num] = (conteo[num] || 0) + 1;
-
-    // Mantener actualizado cuál es el récord de repeticiones actual
-    if (conteo[num] > maxVotos) {
-      maxVotos = conteo[num];
-    }
-  }
-
-  // 2. Juntar a todos los que alcanzaron el récord de repeticiones
-  for (let num in conteo) {
-    if (conteo[num] === maxVotos) {
-      modas.push(Number(num));
-    }
-  }
-
-  // Si todos tienen 1 repetición, o todos empataron por igual, es Amodal (no hay moda)
-  if (maxVotos === 1 || modas.length === Object.keys(conteo).length) {
-    return "No hay moda";
-  }
-
-  return modas.length === 1 ? modas[0] : modas;
-}</code></pre>
               <!-- Laboratorio Interactivo Basico -->
               <h4>Laboratorio Interactivo Básico</h4>
               <p>Ingresa una serie de números uno a uno para construir tu conjunto de datos y evaluar dinámicamente cuál es la tendencia matemática:</p>
@@ -388,13 +321,6 @@
                 <li><strong>Ejemplo 1 (Calificaciones de un examen):</strong> Imagina que obtuviste 45 puntos en una prueba cuyo valor máximo posible era de 50 puntos. Dividimos la parte entre el total: \(\frac{45}{50} = 0.90\). Luego, multiplicamos por 100: \(0.90 \times 100 = 90\%\). Tu rendimiento fue del \(90\%\).</li>
                 <li><strong>Ejemplo 2 (Descuento en una tienda):</strong> Si un artículo cuesta originalmente \$80 y te descuentan \$20, puedes averiguar qué porcentaje representa ese descuento: \(\frac{20}{80} = 0.25\). Multiplicas por 100: \(0.25 \times 100 = 25\%\). Te hicieron un \(25\%\) de descuento.</li>
               </ul>
-              <!-- Como Programarlo -->
-              <h4>¿Cómo lo hace la computadora? Usando JavaScript <i class="fa-brands fa-js"></i></h4>
-              <pre><code class="language-javascript">function calcularPorcentaje(puntosObtenidos, puntosTotales) {
-  // 1. Dividimos los puntos logrados entre el total para obtener la fracción decimal
-  // 2. Multiplicamos por 100 para transformarlo en un porcentaje (0% - 100%)
-  return (puntosObtenidos / puntosTotales) * 100;
-}</code></pre>
               <!-- Laboratorio Interactivo Basico -->
               <h4>Laboratorio Interactivo Básico</h4>
               <p>Calcula el porcentaje de forma instantánea ingresando los valores requeridos en el siguiente simulador:</p>
@@ -433,26 +359,6 @@
                 <li><strong>Ejemplo de tendencia alcista:</strong> Un sitio web registra \([4, 6, 8]\) visitas por día. Al evaluar la variación final \(\Delta x = 8 - 6 = 2\), vemos que el resultado es positivo, lo que confirma un comportamiento al alza.</li>
                 <li><strong>Ejemplo de tendencia bajista:</strong> Las temperaturas de una máquina bajan consecutivamente \([35, 30, 24]\). La variación final es \(\Delta x = 24 - 30 = -6\); al ser un número negativo, la tendencia va a la baja.</li>
               </ul>
-              <!-- Como Programarlo -->
-              <h4>Cómo Programarlo</h4>
-              <p>Así es como una computadora procesa este algoritmo de comparación utilizando JavaScript <i class="fa-brands fa-js"></i>:</p>
-              <pre><code class="language-javascript">function analizarTendencia(ventas) {
-  // 1. Si no hay suficientes datos para comparar, no podemos definir una tendencia
-  if (ventas.length < 2) return "Datos insuficientes";
-
-  // 2. Ubicar dinámicamente el último y el penúltimo mes usando la longitud del arreglo
-  const ultimoMes = ventas[ventas.length - 1];
-  const mesAnterior = ventas[ventas.length - 2];
-
-  // 3. Comparar los valores para determinar la tendencia
-  if (ultimoMes > mesAnterior) {
-    return "¡Tendencia al alza!";
-  } else if (ultimoMes < mesAnterior) {
-    return "Tendencia a la baja";
-  } else {
-    return "Tendencia estable";
-  }
-}</code></pre>
               <!-- Laboratorio Interactivo Basico -->
               <h4>Laboratorio Interactivo Básico</h4>
               <p>Progreso temporal (ej: notas separadas por comas):</p>
@@ -489,19 +395,6 @@
                 <li><strong>Ejemplo de Barras:</strong> Si comparas las notas de Matemáticas (\(8\)) y Química (\(10\)), el gráfico mostrará una barra notablemente más alta para Química, permitiendo ver la diferencia de inmediato.</li>
                 <li><strong>Ejemplo de Líneas:</strong> Al graficar tus notas mensuales \([6, 7, 9]\), la línea dibujará una diagonal ascendente, mostrando tu progreso visualmente.</li>
               </ul>
-              <!-- Como Programarlo -->
-              <h4>Cómo Programarlo</h4>
-              <p>En el desarrollo web, solemos estructurar la configuración de los gráficos mediante objetos de JavaScript utilizando librerías como Chart.js:</p>
-              <pre><code class="language-javascript">const configGrafico = {
-  type: 'line', // Define el dibujo: 'bar', 'line' o 'pie'
-  data: {
-    labels: ['Enero', 'Febrero', 'Marzo'],
-    datasets: [{
-      label: 'Rendimiento',
-      data: [6, 7, 9]
-    }]
-  }
-};</code></pre>
               <!-- Laboratorio Interactivo Basico -->
               <h4>Laboratorio Interactivo Básico</h4>
               <p>Visualiza y simula el comportamiento de un renderizado gráfico dinámico cambiando las opciones preestablecidas:</p>
@@ -541,17 +434,6 @@
               <ul>
                 <li><strong>Caso práctico:</strong> Recolectas las notas \([8, 10, 999, 9]\). En la limpieza eliminas el \(999\). En el procesamiento calculas el promedio de los datos válidos: \(\frac{8+10+9}{3} = 9\). Lo visualizas y concluyes que tu rendimiento es excelente.</li>
               </ul>
-              <!-- Como Programarlo -->
-              <h4>Cómo Programarlo</h4>
-              <p>Este es un ejemplo de cómo programar en JavaScript las etapas de limpieza (filtrado) y procesamiento (cálculo de media) sobre un arreglo:</p>
-              <pre><code class="language-javascript">function procesarDatosEstatidicos(datosIncompletos) {
-  // 1. Etapa de Limpieza: Filtramos y quitamos notas imposibles (ej. mayores a 10)
-  const datosLimpios = datosIncompletos.filter(nota => nota >= 0 && nota <= 10);
-
-  // 2. Etapa de Procesamiento: Calculamos la media con los datos válidos
-  const suma = datosLimpios.reduce((acc, curr) => acc + curr, 0);
-  return datosLimpios.length > 0 ? suma / datosLimpios.length : 0;
-}</code></pre>
               <!-- Laboratorio Interactivo Basico -->
               <h4>Laboratorio Interactivo Básico</h4>
               <p>Simulador del ciclo de análisis (Ingresa una lista mezclada con errores como el 999):</p>
@@ -587,41 +469,6 @@
               <ul>
                 <li><strong>Ejemplo en temperaturas:</strong> Si un sensor registra \([22, 23, 22, 85, 23]\) grados, el número \(85\) representa una anomalía evidente, probablemente ocasionada por una falla eléctrica o un cortocircuito.</li>
               </ul>
-              <!-- Como Programarlo -->
-              <h4>Cómo Programarlo</h4>
-              <p>Así es como un sistema calcula de forma exacta la media y la desviación estándar en JavaScript para aislar los valores atípicos:</p>
-              <pre><code class="language-javascript">function detectarAnomaliasTemperatura(temperaturas) {
-  if (temperaturas.length < 3) return "Datos insuficientes para analizar";
-
-  // 1. Calcular el Promedio (Media)
-  let suma = 0;
-  for (let i = 0; i < temperaturas.length; i++) {
-    suma += temperaturas[i];
-  }
-  const promedio = suma / temperaturas.length;
-
-  // 2. Calcular la Desviación Estándar (Qué tanto varían los datos normalmente)
-  let sumaDiferenciasCuadrado = 0;
-  for (let i = 0; i < temperaturas.length; i++) {
-    sumaDiferenciasCuadrado += Math.pow(temperaturas[i] - promedio, 2);
-  }
-  const varianza = sumaDiferenciasCuadrado / temperaturas.length;
-  const desviacionEstandar = Math.sqrt(varianza);
-
-  // 3. Definir el límite inteligente (Promedio + 2 veces la desviación)
-  const limiteSuperior = promedio + (2 * desviacionEstandar);
-  const limiteInferior = promedio - (2 * desviacionEstandar);
-
-  // 4. Filtrar las anomalías
-  let anomalias = [];
-  for (let i = 0; i < temperaturas.length; i++) {
-    if (temperaturas[i] > limiteSuperior || temperaturas[i] < limiteInferior) {
-      anomalias.push(temperaturas[i]);
-    }
-  }
-
-  return anomalias;
-}</code></pre>
               <!-- Laboratorio Interactivo Basico -->
               <h4>Laboratorio Interactivo Básico</h4>
               <p>Filtro automático de anomalías (Ingresa notas del 0 al 10. Si po oculto 88, el sistema lo aislará):</p>
