@@ -135,8 +135,8 @@
           </div>
           <div id="tabla6"></div>
         </div>
-        <div>
-          <button onclick="sacarPromedios()">promediar</button>
+        <div class="manager-footer">
+          <button id="btn-calcular-promedios-manual" class="btn-promediar">promediar</button>
           <div id="promedios"></div>
         </div>
       </section>
@@ -328,13 +328,13 @@
               <!-- Laboratorio Interactivo Basico -->
               <h4>Laboratorio Interactivo Básico</h4>
               <p>Calcula el porcentaje de forma instantánea ingresando los valores requeridos en el siguiente simulador:</p>
-              <div class="ejemplo-didactico" style="display: flex; gap: 10px; flex-wrap: wrap">
-                <input type="text" placeholder="Parte (ej. tus puntos)" id="inputPorcentajeParte" style="width: 48%"/>
+              <div class="ejemplo-didactico" >
+                <input type="text" placeholder="Parte (ej. tus puntos)" id="inputPorcentajeParte"/>
                 <span id="error-inputPorcentajeParte" class="error oculto"></span>
-                <input type="text" placeholder="Total (ej. puntos totales)" id="inputPorcentajeTotal" style="width: 48%"/>
+                <input type="text" placeholder="Total (ej. puntos totales)" id="inputPorcentajeTotal"/>
                 <span id="error-inputPorcentajeTotal" class="error oculto"></span>
-                <button id="btn-calcPorcentaje" style="width: 100%">Calcular Porcentaje</button>
-                <div id="resultadoPorcentaje" class="ejemplo-resultado" style="width: 100%">PORCENTAJE:</div>
+                <button id="btn-calcPorcentaje">Calcular Porcentaje</button>
+                <div id="resultadoPorcentaje" class="ejemplo-resultado">PORCENTAJE:</div>
               </div>
             </section>
           </li>
@@ -403,7 +403,7 @@
               <h4>Laboratorio Interactivo Básico</h4>
               <p>Visualiza y simula el comportamiento de un renderizado gráfico dinámico cambiando las opciones preestablecidas:</p>
               <div class="ejemplo-didactico">
-                <select id="selectTipoGrafico" style="width: 100%; margin-bottom: 10px;">
+                <select id="selectTipoGrafico">
                   <option value="bar">Gráfico de Barras (Comparar)</option>
                   <option value="line">Gráfico de Líneas (Tiempo)</option>
                   <option value="pie">Gráfico de Pastel (Porcentajes)</option>
@@ -442,8 +442,8 @@
               <h4>Laboratorio Interactivo Básico</h4>
               <p>Simulador del ciclo de análisis (Ingresa una lista mezclada con errores como el 999):</p>
               <div class="ejemplo-didactico">
-                <input type="text" placeholder="Ejemplo: 8, 10, 999, 7" id="inputAnalisisCiclo" style="width: 100%; margin-bottom: 10px;"/>
-                <button id="btn-procesarCiclo" style="width: 100%;">Ejecutar Ciclo de Análisis</button>
+                <input type="text" placeholder="Ejemplo: 8, 10, 999, 7" id="inputAnalisisCiclo"/>
+                <button id="btn-procesarCiclo">Ejecutar Ciclo de Análisis</button>
                 <div id="resultadoCiclo" class="ejemplo-resultado">ESTADO: Esperando datos...</div>
               </div>
             </section>
