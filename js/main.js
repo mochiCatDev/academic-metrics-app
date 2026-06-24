@@ -1,12 +1,16 @@
 // Variables Globales
-const DATOS_MATERIAS = {
+const MATERIAS_POR_DEFECTO = {
   matematica: { nombre: "Matemática", notas: [] },
-  ingles: { nombre: "Inglés", notas: [] },
-  quimica: { nombre: "Química", notas: [] },
-  biologia: { nombre: "Biología", notas: [] },
-  filosofia: { nombre: "Filosofía", notas: [] },
-  fisica: { nombre: "Física", notas: [] },
+  ingles:     { nombre: "Inglés",     notas: [] },
+  quimica:    { nombre: "Química",    notas: [] },
+  biologia:   { nombre: "Biología",   notas: [] },
+  filosofia:  { nombre: "Filosofía",  notes: [] },
+  fisica:     { nombre: "Física",     notas: [] }
 };
+
+// intentar cargar las materias desde localStorage, o usar las por defecto
+let DATOS_MATERIAS = JSON.parse(localStorage.getItem("datosMaterias")) || MATERIAS_POR_DEFECTO;
+
 const SECCIONES = {
   main: $ID("section-main"),
   manager: $ID("section-manager"),
