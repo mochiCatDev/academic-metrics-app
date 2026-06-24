@@ -28,6 +28,11 @@ let promedios = [0, 0, 0, 0, 0, 0];
 let colorPreferido = localStorage.getItem("colorFondo") || "light";
 document.body.setAttribute("data-theme", colorPreferido);
 
+// funcion centralizada para guardar el estado de las materias en LocalStorage
+function guardarEnStorage() {
+  localStorage.setItem("datosMaterias", JSON.stringify(DATOS_MATERIAS));
+}
+
 function cambiarModos() {
   const temaActual = document.body.getAttribute("data-theme") || colorPreferido;
   const nuevoTema = temaActual === "dark" ? "light" : "dark";
