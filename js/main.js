@@ -1,11 +1,11 @@
 // Variables Globales
 const MATERIAS_POR_DEFECTO = {
-  matematica: { nombre: "Matemática", notas: [] },
-  ingles:     { nombre: "Inglés",     notas: [] },
-  quimica:    { nombre: "Química",    notas: [] },
-  biologia:   { nombre: "Biología",   notas: [] },
-  filosofia:  { nombre: "Filosofía",  notes: [] },
-  fisica:     { nombre: "Física",     notas: [] }
+  matematica: { nombre: "Matemática", notas: [], tareas: [] },
+  ingles:     { nombre: "Inglés",     notas: [], tareas: [] },
+  quimica:    { nombre: "Química",    notas: [], tareas: [] },
+  biologia:   { nombre: "Biología",   notas: [], tareas: [] },
+  filosofia:  { nombre: "Filosofía",  notas: [], tareas: [] },
+  fisica:     { nombre: "Física",     notas: [], tareas: [] }
 };
 
 // intentar cargar las materias desde localStorage, o usar las por defecto
