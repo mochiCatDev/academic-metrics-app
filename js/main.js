@@ -33,6 +33,17 @@ function guardarEnStorage() {
   localStorage.setItem("datosMaterias", JSON.stringify(DATOS_MATERIAS));
 }
 
+// funcion para borrar absolutamente todo el almacenamiento y reiniciar la app
+function limpiarDatosGenerales() {
+  if (confirm("¿Estás seguro de que deseas borrar TODOS los datos y reiniciar la aplicación?")) {
+    localStorage.removeItem("datosMaterias");
+    DATOS_MATERIAS = JSON.parse(JSON.stringify(MATERIAS_POR_DEFECTO));
+    guardarEnStorage();
+    sacarPromedios();
+    alert("Aplicación reiniciada con éxito.");
+  }
+}
+
 function cambiarModos() {
   const temaActual = document.body.getAttribute("data-theme") || colorPreferido;
   const nuevoTema = temaActual === "dark" ? "light" : "dark";
