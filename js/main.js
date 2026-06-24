@@ -533,6 +533,9 @@ function evaluarTest() {
 // Boton para cambiar de modos claro/oscuro
 onClick("#btn-modos", () => { cambiarModos() });
 
+// Boton para reinicio general de la aplicacion
+onClick("#btn-resetear-todo", limpiarDatosGenerales);
+
 // Botones para agregar notas
 onClick("#btn-notaMath", () => {
   if (validarInput("notaMath", "numero", "error-notaMath")) {
