@@ -203,12 +203,14 @@ function sacarPromedios() {
 }
 
 function agregarNota(id, arreglo, divTabla) {
-  let tabla = "NOTAS";
-  arreglo.push(parseFloat($ID(id).value));
-  arreglo.forEach((nota) => (tabla += `<p>${nota}</p>`));
+  let valor = parseFloat($ID(id).value);
+  arreglo.push(valor);
+  
+  guardarEnStorage();
 
-  $ID(divTabla).innerHTML = tabla;
+  $ID(divTabla).innerHTML = "NOTAS" + arreglo.map(nota => `<p>${nota}</p>`).join("");
   $ID(id).value = "";
+  sacarPromedios();
 }
 
 // Laboratorio Interactivo
