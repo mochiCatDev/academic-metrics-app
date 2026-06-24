@@ -533,8 +533,15 @@ function evaluarTest() {
 // Boton para cambiar de modos claro/oscuro
 onClick("#btn-modos", () => { cambiarModos() });
 
-// Boton para reinicio general de la aplicacion
+// Botones de limpieza
 onClick("#btn-resetear-todo", limpiarDatosGenerales);
+
+document.querySelectorAll(".btn-limpiar-materia").forEach(boton => {
+  boton.addEventListener("click", () => {
+    const idMateria = boton.getAttribute("data-materia");
+    limpiarNotasMateria(idMateria);
+  });
+});
 
 // Botones para agregar notas
 onClick("#btn-notaMath", () => {
