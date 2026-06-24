@@ -90,10 +90,6 @@ if (inputTendencia) {
 
 // --- BOTONES COMPLETO: SECCIÓN DIDÁCTICA Y LABORATORIOS DE TEORÍA ---
 
-// Inserción y cálculo de promedios experimentales independientes
-onClick("#btn-add", () => { agregarNota("ejemploProm", notas, "ejemplo1"); });
-onClick("#btn-prueba", () => { promedioE(); });
-
 // Adición y ejecución analítica de la Media Aritmética
 onClick("#btn-addMedia", () => { agregarMedia(); });
 onClick("#btn-calcMedia", () => { calcularMedia(); });
@@ -107,10 +103,6 @@ onClick("#btn-calcModa", () => { calcularModa(); });
 
 // Resolución algebraica del porcentaje didáctico
 onClick("#btn-calcPorcentaje", () => { calcularPorcentajeTeoria(); });
-
-// Construcción gráfica manual por hitos temporales para Tendencias
-onClick("#btn-addTendencia", () => { agregarTendencia(); });
-onClick("#btn-calcTendencia", () => { calcularTendencia(); });
 
 // Inserción estructurada y aislamiento automatizado de Anomalías
 onClick("#btn-addAnomalia", () => { agregarAnomalia(); });
