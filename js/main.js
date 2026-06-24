@@ -1,14 +1,9 @@
 import { $ID, onClick, promediar, getPorcent, validarInput, getMedian, getModa }  from "./utils.js"
 import { dataMaterias, guardarEnStorage } from "./storage.js"
 import { pintarBarras, actualizarMiniGrafica } from "./charts.js"
+import { SECCIONES, mostrarSeccion, actualizarBarrProgreso } from "./ui.js"
 
 // Variables Globales
-const SECCIONES = {
-  main: $ID("section-main"),
-  manager: $ID("section-manager"),
-  about: $ID("section-about"),
-  teoria: $ID("section-teoria"),
-};
 const ELEMENT_PROM_DATA = $ID("data-promedio");
 const ELEMENT_MEDIANA_DATA = $ID("data-mediana");
 const ElEMENT_MODA_DATA = $ID("data-moda");
@@ -46,27 +41,6 @@ function cambiarModos() {
     pintarBarras();
   }
   demoTendencia();
-}
-// Funcion para mostrar una seccion y ocultar las demas de manera automatica
-function mostrarSeccion(seccion) {
-  Object.keys(SECCIONES).forEach((secciones) =>
-    SECCIONES[secciones].classList.add("oculto"),
-  );
-  seccion.classList.remove("oculto");
-}
-
-// Funcion para que la barra se llene con el porcentaje que se le de
-function actualizarBarraProgreso(valorActual, valorMaximo) {
-  const barra_progress = $ID("bar-progress");
-  const text_progress = $ID("text-progress");
-
-  let porcentaje = getPorcent(valorActual, valorMaximo);
-
-  if (porcentaje < 0) porcentaje = 0;
-  if (porcentaje > 100) porcentaje = 100;
-
-  barra_progress.style.height = porcentaje + "%";
-  text_progress.textContent = porcentaje + "%";
 }
 
 function sacarPromedios() {
