@@ -1,3 +1,5 @@
+import { $ID, onClick, promediar, getPorcent, validarInput, getMedian, getModa }  from "./utils.js"
+
 // Variables Globales
 const MATERIAS_POR_DEFECTO = {
   matematica: { nombre: "Matemática", notas: [], tareas: [] },
@@ -85,7 +87,7 @@ function actualizarBarraProgreso(valorActual, valorMaximo) {
   const barra_progress = $ID("bar-progress");
   const text_progress = $ID("text-progress");
 
-  let porcentaje = obtenerPorcentajeDelTotal(valorActual, valorMaximo);
+  let porcentaje = getPorcent(valorActual, valorMaximo);
 
   if (porcentaje < 0) porcentaje = 0;
   if (porcentaje > 100) porcentaje = 100;
@@ -189,10 +191,10 @@ function sacarPromedios() {
     "Filosofia": promedioFilosofia,
     "Fisica": promedioFisica
   }
-  
+
   let promedioGeneral = promediar(promedios, 2);
   let medianaGeneral = getMedian(promedios);
-  let modaGeneral = obtenerModa(promedios);
+  let modaGeneral = getModa(promedios);
 
   const listaMaterias = Object.entries(promediosMaterias);
   const notaMaxima = Math.max(...listaMaterias.map(m => m[1]));
@@ -213,12 +215,12 @@ function sacarPromedios() {
   `;
 
   const formateador = new Intl.ListFormat('es', { style: 'long', type: 'conjunction' });
-  let textoMaterias = formateador.format(mejorMateriaGeneral); 
+  let textoMaterias = formateador.format(mejorMateriaGeneral);
   let titulo = mejorMateriaGeneral.length > 1 ? "Tus mejores materias son" : "Tu mejor materia es";
   ELEMENT_MEJOR_MATERIA_DATA.innerHTML = `<strong>${titulo}</strong><p>${textoMaterias}</p>`;
 
   textoMaterias = formateador.format(peorMateriaGeneral);
-  titulo = peorMateriaGeneral.length > 1 ? "Tus peores materias son" : "Tu peor materia es"; 
+  titulo = peorMateriaGeneral.length > 1 ? "Tus peores materias son" : "Tu peor materia es";
   ELEMENT_PEOR_MATERIA_DATA.innerHTML = `<strong>${titulo}</strong><p>${textoMaterias}</p>`
 
   ELEMENT_PROM_DATA.innerHTML = `<strong>Promedio</strong><p>${promedioGeneral}</p>`;
@@ -231,7 +233,7 @@ function sacarPromedios() {
 function agregarNota(id, arreglo, divTabla) {
   let valor = parseFloat($ID(id).value);
   arreglo.push(valor);
-  
+
   guardarEnStorage();
 
   $ID(divTabla).innerHTML = "NOTAS" + arreglo.map(nota => `<p>${nota}</p>`).join("");
@@ -385,7 +387,7 @@ function agregarModa() {
 function calcularModa() {
   if (datosModa.length === 0) return;
 
-  const resultado = obtenerModa(datosModa);
+  const resultado = getModa(datosModa);
 
   if (resultado === null) {
     $ID("resultadoModa").innerHTML =
@@ -410,7 +412,7 @@ function calcularPorcentajeTeoria() {
     return;
   }
 
-  let porcentajeCalculado = obtenerPorcentajeDelTotal(parte, total);
+  let porcentajeCalculado = getPorcent(parte, total);
   $ID("resultadoPorcentaje").innerHTML =
     `PORCENTAJE: <strong>${porcentajeCalculado}%</strong>`;
 }

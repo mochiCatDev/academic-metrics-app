@@ -1,21 +1,21 @@
 /**
  * Busca y retorna un elemento del DOM utilizando su atributo `id`.
- * Es un alias minimalista para `document.getElementById`.
+ * Es un alias para `document.getElementById`.
  *
- * @param {string} id - El identificador único (ID) del elemento HTML que se desea seleccionar.
- * @returns {HTMLElement|null} El elemento del DOM correspondiente al ID especificado, 
+ * @param {string} id - El identificador único (ID) del elemento HTML que se desea
+ * seleccionar.
+ * @returns {HTMLElement|null} El elemento del DOM correspondiente al ID especificado,
  * o `null` si no se encuentra ninguna coincidencia.
- */
- 
-const $ID = (id) => document.getElementById(id);
+*/
+export const $ID = (id) => document.getElementById(id);
 
 /**
- * Helper para asignar eventos click de forma segura y sencilla
- * @param {string} selector - Selector CSS (ej: '#btn', '.btn-enviar', 'button')
+ * Funcion que asigna un evento de click de manera facil y segura.
+ * @param {string} selector - Selector (ej: '#btn', '.btn-enviar', 'button')
  * @param {Function} callback - Función a ejecutar
+ * @returns {void}
  */
- 
-const onClick = (selector, callback) => {
+export const onClick = (selector, callback) => {
   const element = document.querySelector(selector);
   if (element) {
     element.addEventListener("click", callback);
@@ -25,15 +25,15 @@ const onClick = (selector, callback) => {
 };
 
 /**
- * Calcula el promedio de los números en un arreglo, 
+ * Calcula el promedio de los números en un arreglo,
  * redondeado a una cantidad específica de decimales.
  *
  * @param {number[]} arreglo - Array de números a promediar.
  * @param {number} [decimales=2] - Número de decimales para el redondeo (por defecto es 2).
  * @returns {number} El promedio de los números, o 0 si el arreglo está vacío.
+ * @returns {void}
  */
- 
-const promediar = (arreglo, decimales = 2) => {
+export const promediar = (arreglo, decimales = 2) => {
   if (!arreglo || arreglo.length === 0) return 0;
   const sumaTotal = arreglo.reduce((acumulador, numeroActual) => acumulador + numeroActual, 0);
   return parseFloat((sumaTotal / arreglo.length).toFixed(decimales));
@@ -48,10 +48,9 @@ const promediar = (arreglo, decimales = 2) => {
  * @param {number} [decimales=2] - Cantidad de decimales para el redondeo (por defecto 2).
  * @returns {number} El porcentaje que representa la parte parcial (de 0 a 100).
  */
- 
-const obtenerPorcentajeDelTotal = (parcial, total, decimales = 2) => {
+export const getPorcent = (parcial, total, decimales = 2) => {
   if (!total || total === 0) return 0;
-  
+
   const porcentaje = (parcial / total) * 100;
   return parseFloat(porcentaje.toFixed(decimales));
 };
@@ -61,13 +60,13 @@ const obtenerPorcentajeDelTotal = (parcial, total, decimales = 2) => {
  * @param {string} id - El ID del elemento input en el HTML.
  * @param {string} tipo - El tipo de validación ('texto', 'numero', 'email', 'vacio').
  * @param {string} span - El ID del elemento span en el HTML.
+ * @returns {void}
  */
-function validarInput(id, tipo, span) {
+export function validarInput(id, tipo, span) {
     const inputElement = $ID(id);
     const spanElement = $ID(span);
     const tipoInput = tipo.toLowerCase();
 
-    // Verificamos si los elementos realmente existen en el DOM
     if (!inputElement) {
         console.error(`No se encontró ningún elemento con el ID: ${id}`);
         return false;
@@ -76,20 +75,17 @@ function validarInput(id, tipo, span) {
         console.error(`No se encontró ningún span con el ID: ${span}`);
         return false;
     }
-    
-    // Limpiamos espacios al inicio y al final
+
     let valor = inputElement.value.trim();
     spanElement.classList.add("oculto");
     spanElement.textContent = "";
 
-    // Validación general - Que no este vacio
     if (valor === "") {
         spanElement.classList.remove("oculto");
         spanElement.textContent = `El campo está vacío.`;
         return false;
     }
 
-    // Validaciones especificas según el tipo
     if (tipoInput == "texto") {
         const regexTexto = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
         if (!regexTexto.test(valor)) {
@@ -119,39 +115,33 @@ function validarInput(id, tipo, span) {
  * @returns {number} La mediana de los números.
  * @throws {Error} Si el parámetro no es un array válido o está vacío.
  */
-const getMedian = (numbers) => {
+export const getMedian = (numbers) => {
   if (!Array.isArray(numbers) || numbers.length === 0) {
     throw new Error("El argumento debe ser un array no vacío de números.");
   }
 
-  // Clonamos el array para no mutar el original y lo ordenamos de menor a mayor
   const sorted = [...numbers].sort((a, b) => a - b);
-  
   const mid = Math.floor(sorted.length / 2);
 
-  // Si la longitud es impar, devolvemos el número del centro
-  // Si es par, promediamos los dos números centrales
-  return sorted.length % 2 !== 0 
-    ? sorted[mid] 
+  return sorted.length % 2 !== 0
+    ? sorted[mid]
     : (sorted[mid - 1] + sorted[mid]) / 2;
 };
 
 /**
  * Calcula la moda de un array de números.
- * Puede retornar un número (unimodal), un array de números (multimodal) 
+ * Puede retornar un número (unimodal), un array de números (multimodal)
  * o null si no existe ninguna moda.
  *
  * @param {number[]} arreglo - Array de números a evaluar.
  * @returns {number|number[]|null} La moda, un array de modas, o null si no hay moda.
  */
-
-const obtenerModa = (arreglo) => {
+export const getModa = (arreglo) => {
   if (!Array.isArray(arreglo) || arreglo.length === 0) return null;
 
   const frecuencias = {};
   let maxRepeticiones = 0;
 
-  // Contar cuántas veces se repite cada número
   arreglo.forEach((numero) => {
     frecuencias[numero] = (frecuencias[numero] || 0) + 1;
     if (frecuencias[numero] > maxRepeticiones) {
@@ -159,10 +149,8 @@ const obtenerModa = (arreglo) => {
     }
   });
 
-  // Si el número máximo de repeticiones es 1, significa que ninguno se repite
   if (maxRepeticiones === 1) return null;
 
-  // Agrupar todos los números que alcanzaron el máximo de repeticiones
   const modas = [];
   for (const numero in frecuencias) {
     if (frecuencias[numero] === maxRepeticiones) {
@@ -170,6 +158,5 @@ const obtenerModa = (arreglo) => {
     }
   }
 
-  // Retornar un solo número si solo hay una moda, o el array si hay varias
   return modas.length === 1 ? modas[0] : modas;
 };
