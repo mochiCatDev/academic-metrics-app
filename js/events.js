@@ -1,3 +1,5 @@
+import { limpiarDatosGenerales } from "./storage.js"
+
 // Boton para cambiar de modo claro/oscuro
 onClick("#btn-modos", () => { cambiarModos() })
 

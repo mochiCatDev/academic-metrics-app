@@ -1,18 +1,7 @@
 import { $ID, onClick, promediar, getPorcent, validarInput, getMedian, getModa }  from "./utils.js"
+import { dataMaterias, guardarEnStorage } from "./storage.js"
 
 // Variables Globales
-const MATERIAS_POR_DEFECTO = {
-  matematica: { nombre: "Matemática", notas: [], tareas: [] },
-  ingles:     { nombre: "Inglés",     notas: [], tareas: [] },
-  quimica:    { nombre: "Química",    notas: [], tareas: [] },
-  biologia:   { nombre: "Biología",   notas: [], tareas: [] },
-  filosofia:  { nombre: "Filosofía",  notas: [], tareas: [] },
-  fisica:     { nombre: "Física",     notas: [], tareas: [] }
-};
-
-// intentar cargar las materias desde localStorage, o usar las por defecto
-let DATOS_MATERIAS = JSON.parse(localStorage.getItem("datosMaterias")) || MATERIAS_POR_DEFECTO;
-
 const SECCIONES = {
   main: $ID("section-main"),
   manager: $ID("section-manager"),
@@ -30,28 +19,12 @@ let promedios = [0, 0, 0, 0, 0, 0];
 let colorPreferido = localStorage.getItem("colorFondo") || "light";
 document.body.setAttribute("data-theme", colorPreferido);
 
-// funcion centralizada para guardar el estado de las materias en LocalStorage
-function guardarEnStorage() {
-  localStorage.setItem("datosMaterias", JSON.stringify(DATOS_MATERIAS));
-}
-
-// funcion para borrar absolutamente todo el almacenamiento y reiniciar la app
-function limpiarDatosGenerales() {
-  if (confirm("¿Estás seguro de que deseas borrar TODOS los datos y reiniciar la aplicación?")) {
-    localStorage.removeItem("datosMaterias");
-    DATOS_MATERIAS = JSON.parse(JSON.stringify(MATERIAS_POR_DEFECTO));
-    guardarEnStorage();
-    sacarPromedios();
-    alert("Aplicación reiniciada con éxito.");
-  }
-}
-
 // funcion para vaciar las notas y tareas de una materia específica sin eliminarla
 function limpiarNotasMateria(idMateria) {
-  if (DATOS_MATERIAS[idMateria]) {
-    if (confirm(`¿Deseas borrar todas las notas de la materia: ${DATOS_MATERIAS[idMateria].nombre}?`)) {
-      DATOS_MATERIAS[idMateria].notas = [];
-      DATOS_MATERIAS[idMateria].tareas = [];
+  if (dataMaterias[idMateria]) {
+    if (confirm(`¿Deseas borrar todas las notas de la materia: ${dataMaterias[idMateria].nombre}?`)) {
+      dataMaterias[idMateria].notas = [];
+      dataMaterias[idMateria].tareas = [];
       guardarEnStorage();
       sacarPromedios();
       alert("Notas limpiadas correctamente.");
@@ -129,7 +102,7 @@ function pintarBarras() {
   barras = new Chart(canva, {
     type: "bar",
     data: {
-      labels: Object.keys(DATOS_MATERIAS),
+      labels: Object.keys(dataMaterias),
       datasets: [
         {
           label: "NOTAS GENERALES",
@@ -167,12 +140,12 @@ function pintarBarras() {
 function sacarPromedios() {
   promedios = [];
 
-  promedioMatematicas = promediar(DATOS_MATERIAS.matematica.notas, 2);
-  promedioIngles = promediar(DATOS_MATERIAS.ingles.notas, 2);
-  promedioQuimica = promediar(DATOS_MATERIAS.quimica.notas, 2);
-  promedioBiologia = promediar(DATOS_MATERIAS.biologia.notas, 2);
-  promedioFilosofia = promediar(DATOS_MATERIAS.filosofia.notas, 2);
-  promedioFisica = promediar(DATOS_MATERIAS.fisica.notas, 2);
+  promedioMatematicas = promediar(dataMaterias.matematica.notas, 2);
+  promedioIngles = promediar(dataMaterias.ingles.notas, 2);
+  promedioQuimica = promediar(dataMaterias.quimica.notas, 2);
+  promedioBiologia = promediar(dataMaterias.biologia.notas, 2);
+  promedioFilosofia = promediar(dataMaterias.filosofia.notas, 2);
+  promedioFisica = promediar(dataMaterias.fisica.notas, 2);
 
   promedios.push(
     promedioMatematicas,
