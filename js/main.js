@@ -44,6 +44,21 @@ function limpiarDatosGenerales() {
   }
 }
 
+// funcion para vaciar las notas y tareas de una materia específica sin eliminarla
+function limpiarNotasMateria(idMateria) {
+  if (DATOS_MATERIAS[idMateria]) {
+    if (confirm(`¿Deseas borrar todas las notas de la materia: ${DATOS_MATERIAS[idMateria].nombre}?`)) {
+      DATOS_MATERIAS[idMateria].notas = [];
+      DATOS_MATERIAS[idMateria].tareas = [];
+      guardarEnStorage();
+      sacarPromedios();
+      alert("Notas limpiadas correctamente.");
+    }
+  } else {
+    console.error(`La materia con ID "${idMateria}" no existe.`);
+  }
+}
+
 function cambiarModos() {
   const temaActual = document.body.getAttribute("data-theme") || colorPreferido;
   const nuevoTema = temaActual === "dark" ? "light" : "dark";
