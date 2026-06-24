@@ -1,8 +1,14 @@
+import { $ID } from "./utils.js";
+import { promedios } from "./main.js";
+
 let barras = null;
 let miMiniChart = null;
 
+// Reconstruye el gráfico de barras comparativo adaptando los colores de fondo según la nota
 export function pintarBarras() {
-  let canva = $ID("canva").getContext("2d");
+  let elementCanva = $ID("canva");
+  if (!elementCanva) return;
+  let canva = elementCanva.getContext("2d");
 
   if (barras !== null) {
     barras.destroy();
@@ -24,7 +30,6 @@ export function pintarBarras() {
     }
   });
 
-  // Detectamos si el modo oscuro está activo
   const esOscuro = document.body.getAttribute("data-theme") === "dark";
   const colorTexto = esOscuro ? "#94a3b8" : "#718096";
   const colorLineas = esOscuro ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)";
@@ -32,53 +37,50 @@ export function pintarBarras() {
   barras = new Chart(canva, {
     type: "bar",
     data: {
-      labels: Object.keys(dataMaterias),
-      datasets: [
-        {
-          label: "NOTAS GENERALES",
-          data: promedios,
-          backgroundColor: backgroundColors,
-          borderColor: borderColors,
-          borderWidth: 2,
-        },
-      ],
+      labels: ["Matemática", "Inglés", "Química", "Biología", "Filosofía", "Física"],
+      datasets: [{
+        label: "Promedio por Materia",
+        data: promedios,
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1
+      }]
     },
     options: {
-      plugins: {
-        legend: {
-          labels: { font: { size: 12 }, color: colorTexto }
-        }
-      },
+      responsive: true,
       scales: {
+        y: {
+          beginAtZero: true,
+          max: 10,
+          grid: { color: colorLineas },
+          ticks: { color: colorTexto }
+        },
         x: {
           grid: { color: colorLineas },
           ticks: { color: colorTexto }
-        },
-        y: {
-          beginAtZero: true,
-          min: 0,
-          max: 10,
-          step: 1,
-          grid: { color: colorLineas },
-          ticks: { color: colorTexto }
-        },
+        }
       },
-    },
+      plugins: {
+        legend: { labels: { color: colorTexto } }
+      }
+    }
   });
 }
 
+// Modifica o instancia dinámicamente un gráfico de líneas para la sección interactiva de tendencias
 export function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
   if (miMiniChart) {
     miMiniChart.destroy();
   }
 
+  let elementChart = $ID("demo-tendencia-chart");
+  if (!elementChart) return;
+  const ctx = elementChart.getContext("2d");
   const labelsX = datosValidos.map((_, index) => `t-${index + 1}`);
-  const ctx = $ID("demo-tendencia-chart").getContext("2d");
 
   const esOscuro = document.body.getAttribute("data-theme") === "dark";
   const colorTexto = esOscuro ? "#94a3b8" : "#718096";
   const colorLineas = esOscuro ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)";
-  const colorPunto = esOscuro ? "#90cdf4" : "#1a365d";
 
   miMiniChart = new Chart(ctx, {
     type: "line",
@@ -93,26 +95,25 @@ export function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
           borderWidth: 3,
           tension: 0.2,
           pointRadius: 4,
-          pointBackgroundColor: colorPunto,
-        },
-      ],
+          pointBackgroundColor: colorLinea
+        }
+      ]
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-      },
       scales: {
-        x: {
-          grid: { display: false },
-          ticks: { font: { size: 10 }, color: colorTexto }
-        },
-        y: {
-          grid: { color: colorLineas },
-          ticks: { font: { size: 10 }, color: colorTexto }
-        },
+        y: { grid: { color: colorLineas }, ticks: { color: colorTexto } },
+        x: { grid: { color: colorLineas }, ticks: { color: colorTexto } }
       },
-    },
+      plugins: { legend: { labels: { color: colorTexto } } }
+    }
   });
+}
+
+// Destruye de forma segura el gráfico miniatura y limpia su espacio de memoria
+export function destruirMiniGrafica() {
+  if (miMiniChart) {
+    miMiniChart.destroy();
+    miMiniChart = null;
+  }
 }

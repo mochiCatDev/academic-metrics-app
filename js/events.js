@@ -1,11 +1,23 @@
-import { limpiarDatosGenerales } from "./storage.js"
+import { onClick, validarInput, $ID } from "./utils.js";
+import { limpiarDatosGenerales, dataMaterias } from "./storage.js";
+import { mostrarSeccion, SECCIONES } from "./ui.js";
+import {
+  evaluarTest, demoTendencia, notas, promedioE, agregarMedia, calcularMedia,
+  agregarModa, calcularModa, calcularPorcentajeTeoria, agregarTendencia,
+  calcularTendencia, agregarAnomalia, calcularAnomalia, calcularMedianaDidactica
+} from "./didactica.js";
+import { cambiarModos, limpiarNotasMateria, agregarNota, sacarPromedios } from "./main.js";
 
-// Boton para cambiar de modo claro/oscuro
-onClick("#btn-modos", () => { cambiarModos() })
+// Escucha el botón superior encargado de alternar la paleta de color claro/oscuro
+onClick("#btn-modos", () => { cambiarModos(); });
 
-// Botones de limpieza
+// Escucha la limpieza absoluta del registro histórico de datos
 onClick("#btn-resetear-todo", limpiarDatosGenerales);
 
+// Vincula de manera modular el botón manual para calcular estadísticas académicas
+onClick("#btn-calcular-promedios-manual", sacarPromedios);
+
+// Asigna eventos dinámicos a cada uno de los botones para borrar materias específicas en la vista gestora
 document.querySelectorAll(".btn-limpiar-materia").forEach(boton => {
   boton.addEventListener("click", () => {
     const idMateria = boton.getAttribute("data-materia");
@@ -13,94 +25,93 @@ document.querySelectorAll(".btn-limpiar-materia").forEach(boton => {
   });
 });
 
-// Botones para agregar notas
+// Enlace interactivo para inserción de calificaciones en Matemática
 onClick("#btn-notaMath", () => {
   if (validarInput("notaMath", "numero", "error-notaMath")) {
-    agregarNota("notaMath", DATOS_MATERIAS.matematica.notas, "tabla");
+    agregarNota("notaMath", dataMaterias.matematica.notas, "tabla");
   }
 });
+
+// Enlace interactivo para inserción de calificaciones en Inglés
 onClick("#btn-notaIng", () => {
   if (validarInput("notaIng", "numero", "error-notaIng")) {
-    agregarNota("notaIng", DATOS_MATERIAS.ingles.notas, "tabla2");
+    agregarNota("notaIng", dataMaterias.ingles.notas, "tabla2");
   }
 });
+
+// Enlace interactivo para inserción de calificaciones en Química
 onClick("#btn-notaQuim", () => {
   if (validarInput("notaQuim", "numero", "error-notaQuim")) {
-    agregarNota("notaQuim", DATOS_MATERIAS.quimica.notas, "tabla3");
+    agregarNota("notaQuim", dataMaterias.quimica.notas, "tabla3");
   }
 });
+
+// Enlace interactivo para inserción de calificaciones en Biología
 onClick("#btn-notaBio", () => {
   if (validarInput("notaBio", "numero", "error-notaBio")) {
-    agregarNota("notaBio", DATOS_MATERIAS.biologia.notas, "tabla4");
+    agregarNota("notaBio", dataMaterias.biologia.notas, "tabla4");
   }
 });
+
+// Enlace interactivo para inserción de calificaciones en Filosofía (ID CORREGIDO)
 onClick("#btn-notaFilo", () => {
   if (validarInput("notaFilo", "numero", "error-notaFilo")) {
-    agregarNota("notaFilo", DATOS_MATERIAS.filosofia.notas, "tabla5");
+    agregarNota("notaFilo", dataMaterias.filosofia.notas, "tabla5");
   }
 });
+
+// Enlace interactivo para inserción de calificaciones en Física
 onClick("#btn-notaFis", () => {
   if (validarInput("notaFis", "numero", "error-notaFis")) {
-    agregarNota("notaFis", DATOS_MATERIAS.fisica.notas, "tabla6");
+    agregarNota("notaFis", dataMaterias.fisica.notas, "tabla6");
   }
 });
 
-// Botones para mostrar secciones
-onClick("#btn-main", () => {
-  mostrarSeccion(SECCIONES.main);
-});
-onClick("#btn-manager", () => {
-  mostrarSeccion(SECCIONES.manager);
-});
-onClick("#btn-teoria", () => {
-  mostrarSeccion(SECCIONES.teoria);
-});
-onClick("#btn-about", () => {
-  mostrarSeccion(SECCIONES.about);
-});
+// Controladores de navegación modular: muestra Panel Principal
+onClick("#btn-main", () => { mostrarSeccion(SECCIONES.main); });
 
-onClick("#btn-evaluar-quiz", () => {
-  evaluarTest();
-});
+// Controladores de navegación modular: muestra Gestor de Asignaturas
+onClick("#btn-manager", () => { mostrarSeccion(SECCIONES.manager); });
 
-onClick("#demo-tendencia-input", () => {
-  const inputTendencia = $ID("demo-tendencia-input");
-  if (inputTendencia) {
-    inputTendencia.addEventListener("input", demoTendencia);
-  }
-});
+// Controladores de navegación modular: muestra Aula Didáctica / Teórica
+onClick("#btn-teoria", () => { mostrarSeccion(SECCIONES.teoria); });
 
-// botones seccion didactica
-onClick("#btn-add", () => {
-  agregarNota("ejemploProm", notas, "ejemplo1");
-});
-onClick("#btn-prueba", () => {
-  promedioE();
-});
-onClick("#btn-addMedia", () => {
-  agregarMedia();
-});
-onClick("#btn-calcMedia", () => {
-  calcularMedia();
-});
-onClick("#btn-addModa", () => {
-  agregarModa();
-});
-onClick("#btn-calcModa", () => {
-  calcularModa();
-});
-onClick("#btn-calcPorcentaje", () => {
-  calcularPorcentajeTeoria();
-});
-onClick("#btn-addTendencia", () => {
-  agregarTendencia();
-});
-onClick("#btn-calcTendencia", () => {
-  calcularTendencia();
-});
-onClick("#btn-addAnomalia", () => {
-  agregarAnomalia();
-});
-onClick("#btn-calcAnomalia", () => {
-  calcularAnomalia();
-});
+// Controladores de navegación modular: muestra Información de Desarrolladores
+onClick("#btn-about", () => { mostrarSeccion(SECCIONES.about); });
+
+// Escucha el botón que procesa las respuestas del cuestionario interactivo
+onClick("#btn-evaluar-quiz", () => { evaluarTest(); });
+
+// Vincula el campo de tendencias estadísticas para recalcular interactivamente al tipear
+const inputTendencia = $ID("demo-tendencia-input");
+if (inputTendencia) {
+  inputTendencia.addEventListener("input", demoTendencia);
+}
+
+// --- BOTONES COMPLETO: SECCIÓN DIDÁCTICA Y LABORATORIOS DE TEORÍA ---
+
+// Inserción y cálculo de promedios experimentales independientes
+onClick("#btn-add", () => { agregarNota("ejemploProm", notas, "ejemplo1"); });
+onClick("#btn-prueba", () => { promedioE(); });
+
+// Adición y ejecución analítica de la Media Aritmética
+onClick("#btn-addMedia", () => { agregarMedia(); });
+onClick("#btn-calcMedia", () => { calcularMedia(); });
+
+// Cálculo dinámico de la Mediana Didáctica por cadena de caracteres
+onClick("#btn-calcMediana", () => { calcularMedianaDidactica(); });
+
+// Adición y discriminación de la Moda estadística
+onClick("#btn-addModa", () => { agregarModa(); });
+onClick("#btn-calcModa", () => { calcularModa(); });
+
+// Resolución algebraica del porcentaje didáctico
+onClick("#btn-calcPorcentaje", () => { calcularPorcentajeTeoria(); });
+
+// Construcción gráfica manual por hitos temporales para Tendencias
+onClick("#btn-addTendencia", () => { agregarTendencia(); });
+onClick("#btn-calcTendencia", () => { calcularTendencia(); });
+
+// Inserción estructurada y aislamiento automatizado de Anomalías
+onClick("#btn-addAnomalia", () => { agregarAnomalia(); });
+onClick("#btn-calcAnomalia", () => { calcularAnomalia(); });
