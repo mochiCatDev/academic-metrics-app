@@ -1244,3 +1244,200 @@ footer sup {
     padding-bottom: var(--space-4);
   }
 }
+
+/* ==========================================================================
+   11. OPTIMIZACIÓN COMPACTA PARA DISPOSITIVOS MÓVILES (RESPONSIVE)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Reducción general de espacios globales */
+  body {
+    width: 94%;
+    padding-bottom: var(--space-6);
+  }
+
+  header {
+    padding: var(--space-6) var(--space-2) var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  header h1 {
+    font-size: 1.6rem; /* Más pequeño y legible en pantallas verticales */
+  }
+
+  nav {
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  nav button {
+    padding: var(--space-2) var(--space-4);
+    font-size: 0.85rem; /* Botones de navegación más compactos */
+  }
+
+  /* Dashboard y Bloques de Datos */
+  #section-main {
+    padding: var(--space-4);
+    gap: var(--space-4);
+  }
+
+  .container-data {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Columnas más delgadas */
+    gap: var(--space-3);
+  }
+
+  .data-info {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .data-info p {
+    font-size: 1.5rem; /* Números de KPI menos masivos */
+  }
+
+  .data-info strong {
+    font-size: 0.65rem;
+  }
+
+  /* Zoom de Materia */
+  .section-zoom {
+    padding: var(--space-5);
+    margin-top: var(--space-6);
+  }
+
+  .section-zoom h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .metric-card {
+    padding: var(--space-4);
+  }
+
+  .metric-value {
+    font-size: 1.4rem;
+  }
+
+  /* Gestor de Asignaturas (Cards del Manager) */
+  #contenedor-gestor-materias {
+    grid-template-columns: 1fr; /* Una sola columna fluida */
+    gap: var(--space-4);
+  }
+
+  #contenedor-gestor-materias > div {
+    padding: var(--space-4);
+  }
+
+  #contenedor-gestor-materias h2 {
+    font-size: 1.25rem;
+  }
+
+  .formulario-agregar {
+    padding: var(--space-4);
+    gap: var(--space-2);
+  }
+
+  .formulario-agregar input {
+    font-size: 0.9rem;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  /* Sección Teoría y Didáctica */
+  #section-teoria {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  #section-teoria > h2 {
+    font-size: 1.8rem;
+    margin-bottom: var(--space-5);
+  }
+
+  #section-teoria h3 {
+    font-size: 1.4rem;
+  }
+
+  #section-teoria p, 
+  #section-teoria ul li, 
+  #section-teoria ol li > ol li {
+    font-size: 0.95rem; /* Texto de lectura adaptado a pantallas pequeñas */
+    line-height: 1.5;
+  }
+
+  #section-teoria > ol > li::before {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  /* Cajas de herramientas didácticas y laboratorios */
+  .ejemplo-didactico, .demo-box {
+    padding: var(--space-4);
+    margin: var(--space-4) 0;
+  }
+
+  /* Sección Evaluación (Quiz) */
+  #quiz-container {
+    padding: var(--space-5);
+    margin-top: var(--space-6);
+  }
+
+  #quiz-container h3 {
+    font-size: 1.5rem;
+  }
+
+  .quiz-question {
+    padding: var(--space-4);
+  }
+
+  .quiz-question p strong {
+    font-size: 1rem;
+  }
+
+  .quiz-option {
+    font-size: 0.85rem;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  /* Sección Acerca de (About) */
+  #section-about .about-card {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  #section-about h2 {
+    font-size: 1.6rem;
+  }
+
+  #section-about p {
+    font-size: 0.95rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .member-profile {
+    padding: var(--space-5);
+  }
+
+  .member-avatar {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustes quirúrgicos extremos para teléfonos muy pequeños */
+  header h1 {
+    font-size: 1.35rem;
+  }
+
+  .container-data {
+    grid-template-columns: repeat(2, 1fr); /* Fuerza cuadrícula de 2 columnas compactas */
+  }
+
+  .input-inline-row {
+    flex-direction: column; /* Desapila controles si el espacio horizontal colapsa */
+    align-items: stretch;
+  }
+
+  .btn-icon, .btn-limpiar-materia {
+    width: 100%; /* Botones de acción anchos para fácil pulsación táctil */
+    height: 38px;
+  }
+}
