@@ -1,10 +1,5 @@
-/* ==========================================================================
-   estilos.css — Academic Metrics App
-   Hoja de estilos principal. Estructura modular, comentada por sección.
-   ========================================================================== */
-
 /* --------------------------------------------------------------------------
-   0. RESET & BASE
+    RESET & BASE
    -------------------------------------------------------------------------- */
 *, *::before, *::after {
   margin: 0;
@@ -30,13 +25,13 @@ body {
   transition: background-color var(--transition-slow), color var(--transition-slow);
 }
 
-/* Elemento oculto — clase de utilidad protegida para el JS */
+/* clase para ocultar elementos */
 .oculto {
   display: none !important;
 }
 
 /* --------------------------------------------------------------------------
-   1. BOTÓN DE CAMBIO DE MODO (Tema claro/oscuro)
+    BOTÓN DE CAMBIO DE MODO (Tema claro/oscuro)
    -------------------------------------------------------------------------- */
 #btn-modos {
   position: fixed;
@@ -77,7 +72,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   2. HEADER
+    HEADER
    -------------------------------------------------------------------------- */
 header {
   text-align: center;
@@ -109,7 +104,7 @@ header h1 {
 }
 
 /* --------------------------------------------------------------------------
-   3. NAVEGACIÓN
+    NAVEGACIÓN
    -------------------------------------------------------------------------- */
 nav {
   display: flex;
@@ -148,7 +143,7 @@ nav button:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   4. SECCIÓN PRINCIPAL — Panel de métricas y gráfico
+    SECCIÓN PRINCIPAL
    -------------------------------------------------------------------------- */
 #section-main {
   display: grid;
@@ -234,7 +229,7 @@ nav button:focus-visible {
 .data-info {
   background-color: var(--bg-subtle);
   border: 1px solid var(--border-subtle);
-  border-top: 3px solid var(--secondary-color);
+  border: 1px solid var(--secondary-color);
   border-radius: var(--radius-md);
   padding: var(--space-5) var(--space-4);
   text-align: center;
@@ -253,11 +248,11 @@ nav button:focus-visible {
 }
 
 /* Colores de acento diferenciados por tarjeta KPI */
-.data-info:nth-child(1) { border-top-color: var(--secondary-color); }
-.data-info:nth-child(2) { border-top-color: var(--color-quim); }
-.data-info:nth-child(3) { border-top-color: var(--color-filo); }
-.data-info:nth-child(4) { border-top-color: var(--success-color); }
-.data-info:nth-child(5) { border-top-color: var(--danger-color); }
+.data-info:nth-child(1) { border-color: var(--secondary-color); }
+.data-info:nth-child(2) { border-color: var(--color-quim); }
+.data-info:nth-child(3) { border-color: var(--color-filo); }
+.data-info:nth-child(4) { border-color: var(--success-color); }
+.data-info:nth-child(5) { border-color: var(--danger-color); }
 
 .data-info strong {
   font-family: var(--font-ui);
@@ -280,7 +275,7 @@ nav button:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   5. GESTOR DE ASIGNATURAS
+    GESTOR DE ASIGNATURAS
    -------------------------------------------------------------------------- */
 #section-manager {
   display: grid;
@@ -494,7 +489,7 @@ nav button:focus-visible {
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
 }
 
-/* Área de resultado / promedios (mantenido por compatibilidad JS) */
+/* Área de resultado / promedios */
 #promedios {
   display: none;
 }
@@ -505,7 +500,7 @@ nav button:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   6. MENSAJES DE ERROR INLINE
+    MENSAJES DE ERROR INLINE
    -------------------------------------------------------------------------- */
 .error {
   font-size: 0.76rem;
@@ -515,7 +510,7 @@ nav button:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   7. SECCIÓN DE TEORÍA ESTADÍSTICA
+    SECCIÓN DE TEORÍA ESTADÍSTICA
    -------------------------------------------------------------------------- */
 #section-teoria {
   background: var(--bg-card);
@@ -725,7 +720,7 @@ nav button:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   8. LABORATORIOS DIDÁCTICOS INTERACTIVOS
+    LABORATORIOS DIDÁCTICOS INTERACTIVOS
    -------------------------------------------------------------------------- */
 .ejemplo-didactico {
   background-color: var(--bg-subtle);
@@ -842,7 +837,7 @@ nav button:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   9. EVALUACIÓN / QUIZ
+    EVALUACIÓN / QUIZ
    -------------------------------------------------------------------------- */
 #quiz-container {
   margin-top: var(--space-10);
@@ -950,7 +945,7 @@ nav button:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   10. SECCIÓN ACERCA DE
+    SECCIÓN ACERCA DE
    -------------------------------------------------------------------------- */
 #section-about .about-card {
   background-color: var(--bg-card);
@@ -1111,7 +1106,7 @@ nav button:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   11. FOOTER
+    FOOTER
    -------------------------------------------------------------------------- */
 footer {
   text-align: center;
@@ -1130,7 +1125,7 @@ footer sup {
 }
 
 /* --------------------------------------------------------------------------
-   12. RESPONSIVIDAD
+    RESPONSIVIDAD
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   body {
@@ -1202,7 +1197,7 @@ footer sup {
 }
 
 /* --------------------------------------------------------------------------
-   13. PREFERENCIAS DE ACCESIBILIDAD
+    PREFERENCIAS DE ACCESIBILIDAD
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
