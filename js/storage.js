@@ -1,6 +1,6 @@
-import { sacarPromedios } from "./main.js";
+import { sacarPromedios, renderizarMaterias } from "./main.js";
 
-// Estructura limpia inicial por defecto para las asignaturas del sistema académico
+// Estructura limpia inicial por defecto para las asignaturas
 const MATERIAS_POR_DEFECTO = {
   matematica: { nombre: "Matemática", notas: [], tareas: [] },
   ingles:     { nombre: "Inglés",     notas: [], tareas: [] },
@@ -10,21 +10,54 @@ const MATERIAS_POR_DEFECTO = {
   fisica:     { nombre: "Física",     notas: [], tareas: [] }
 };
 
-// Carga las materias existentes desde el espacio local o inicializa el objeto por defecto
 export let dataMaterias = JSON.parse(localStorage.getItem("datosMaterias")) || MATERIAS_POR_DEFECTO;
 
-// Almacena permanentemente el estado actualizado de las asignaturas en formato JSON
 export function guardarEnStorage() {
   localStorage.setItem("datosMaterias", JSON.stringify(dataMaterias));
 }
 
-// Remueve el almacenamiento, limpia la memoria volátil y fuerza el recálculo general de la app
+// Remueve el almacenamiento, limpia la memoria y recarga UI
 export function limpiarDatosGenerales() {
   if (confirm("¿Estás seguro de que deseas borrar TODOS los datos y reiniciar la aplicación?")) {
     localStorage.removeItem("datosMaterias");
     dataMaterias = JSON.parse(JSON.stringify(MATERIAS_POR_DEFECTO));
     guardarEnStorage();
     sacarPromedios();
+    renderizarMaterias();
     alert("Aplicación reiniciada con éxito.");
   }
 }
+
+// Genera ID, agrega materia y refresca el DOM
+export function crearNuevaMateria(nombre) {
+  if (!nombre || nombre.trim() === "") return null;
+  
+  const idMateria = nombre.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "_");
+  
+  if (dataMaterias[idMateria]) {
+    alert(`La materia "${nombre}" ya existe.`);
+    return null;
+  }
+
+  dataMaterias[idMateria] = {
+    nombre: nombre.trim(),
+    notas: [],
+    tareas: []
+  };
+
+  guardarEnStorage();
+  sacarPromedios(); 
+  renderizarMaterias();
+
+  return idMateria;
+}
+
+// Borra materia específica
+window.eliminarMateria = (idMateria) => {
+    if (confirm(`¿Borrar la materia ${dataMaterias[idMateria].nombre}?`)) {
+        delete dataMaterias[idMateria];
+        guardarEnStorage();
+        sacarPromedios();
+        renderizarMaterias();
+    }
+};

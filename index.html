@@ -52,93 +52,54 @@
         </div>
       </section>
 
+      <section id="detalle-materia-zoom" class="oculto section-zoom">
+      <h2 id="zoom-titulo-materia">Análisis Detallado: Selecciona una materia</h2>
+      
+      <div class="zoom-panel-superior">
+        
+        <div class="zoom-termometro-vertical">
+          <div class="zoom-termometro-body">
+            <div id="zoom-mini-bar-progress" class="zoom-termometro-fill"></div>
+          </div>
+          <span id="zoom-mini-text-progress" class="zoom-termometro-label">0%</span>
+        </div>
+
+        <div class="zoom-chart-card">
+          <canvas id="canvas-evolucion-materia"></canvas>
+        </div>
+
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">Promedio Local</span>
+          <div class="metric-value" id="zoom-data-promedio">-</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Mediana Local</span>
+          <div class="metric-value" id="zoom-data-mediana">-</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Moda Local</span>
+          <div class="metric-value" id="zoom-data-moda">-</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Varianza (Dispersión)</span>
+          <div class="metric-value" id="zoom-data-varianza">-</div>
+        </div>
+      </div>
+    </section>
+
       <!-- Gestion (Manager) -->
       <section id="section-manager" class="oculto">
         <div class="control-limpieza-global">
           <button id="btn-resetear-todo" class="btn-danger"><i class="fa-solid fa-trash-can"></i> Reiniciar Toda la Aplicación</button>
         </div>
-        <div class="math">
-          <h2>MATEMATICAS</h2>
-          <label for="notaMath">Calificaciones</label>
-          <div class="input-group">
-            <div class="input-inline-row">
-              <input type="number" id="notaMath" class="input-academic" placeholder="Nota Matemática" />
-              <button id="btn-notaMath" class="btn-icon" title="Agregar Nota"><i class="fa-solid fa-plus"></i></button>
-              <button class="btn-limpiar-materia" data-materia="matematica" title="Limpiar notas de Matemática"><i class="fa-solid fa-broom"></i></button>
-            </div>
-            <span id="error-notaMath" class="error oculto"></span>
-          </div>
-          <div id="tabla"></div>
+        <div class="formulario-agregar">
+          <input type="text" id="input-nueva-materia" placeholder="Nombre de la materia">
+          <button id="btn-agregar-materia"><i class="fa-solid fa-plus"></i></button>
         </div>
-        <div class="ing">
-          <h2>INGLÉS</h2>
-          <label for="notaIng">Calificaciones</label>
-          <div class="input-group">
-            <div class="input-inline-row">
-              <input type="number" id="notaIng" class="input-academic" placeholder="Nota Inglés" />
-              <button id="btn-notaIng" class="btn-icon" title="Agregar Nota"><i class="fa-solid fa-plus"></i></button>
-              <button class="btn-limpiar-materia" data-materia="ingles" title="Limpiar notas de Inglés"><i class="fa-solid fa-broom"></i></button>
-            </div>
-            <span id="error-notaIng" class="error oculto"></span>
-          </div>
-          <div id="tabla2"></div>
-        </div>
-        <div class="quimica">
-          <h2>QUIMICA</h2>
-          <label for="notaQuim">Calificaciones</label>
-          <div class="input-group">
-            <div class="input-inline-row">
-              <input type="number" id="notaQuim" class="input-academic" placeholder="Nota Quimica" />
-              <button id="btn-notaQuim" class="btn-icon" title="Agregar Nota"><i class="fa-solid fa-plus"></i></button>
-              <button class="btn-limpiar-materia" data-materia="quimica" title="Limpiar notas de Quimica"><i class="fa-solid fa-broom"></i></button>
-            </div>
-            <span id="error-notaQuim" class="error oculto"></span>
-          </div>
-          <div id="tabla3"></div>
-        </div>
-        <div class="biologia">
-          <h2>BIOLOGIA</h2>
-          <label for="notaBio">Calificaciones</label>
-          <div class="input-group">
-            <div class="input-inline-row">
-              <input type="number" id="notaBio" class="input-academic" placeholder="Nota Biologia" />
-              <button id="btn-notaBio" class="btn-icon" title="Agregar Nota"><i class="fa-solid fa-plus"></i></button>
-              <button class="btn-limpiar-materia" data-materia="biologia" title="Limpiar notas de Biologia"><i class="fa-solid fa-broom"></i></button>
-            </div>
-            <span id="error-notaBio" class="error oculto"></span>
-          </div>
-          <div id="tabla4"></div>
-        </div>
-        <div class="filosifia">
-          <h2>FILOSOFIA</h2>
-          <label for="notaFilo">Calificaciones</label>
-          <div class="input-group">
-            <div class="input-inline-row">
-              <input type="number" id="notaFilo" class="input-academic" placeholder="Nota Filosofia" />
-              <button id="btn-notaFilo" class="btn-icon" title="Agregar Nota"><i class="fa-solid fa-plus"></i></button>
-              <button class="btn-limpiar-materia" data-materia="filosifia" title="Limpiar notas de Filosofia"><i class="fa-solid fa-broom"></i></button>
-            </div>
-            <span id="error-notaFilo" class="error oculto"></span>
-          </div>
-          <div id="tabla5"></div>
-        </div>
-        <div class="fisica">
-          <h2>FISICA</h2>
-          <label for="notaFis">Calificaciones</label>
-          <div class="input-group">
-            <div class="input-inline-row">
-              <input type="number" id="notaFis" class="input-academic" placeholder="Nota Fisica" />
-              <button id="btn-notaFis" class="btn-icon" title="Agregar Nota"><i class="fa-solid fa-plus"></i></button>
-              <button class="btn-limpiar-materia" data-materia="fisica" title="Limpiar notas de Fisica"><i class="fa-solid fa-broom"></i></button>
-            </div>
-            <span id="error-notaFis" class="error oculto"></span>
-          </div>
-          <div id="tabla6"></div>
-        </div>
-        <div class="manager-footer">
-          <button id="btn-calcular-promedios-manual" class="btn-promediar">promediar</button>
-          <div id="promedios"></div>
-        </div>
+        <div id="contenedor-gestor-materias"></div>
       </section>
 
       <!-- Informacion Teorica -->
@@ -1012,6 +973,6 @@
       <p>Proyecto realizado por el Team D<sup>2</sup></p>
     </footer>
 
-    <script type="module" src="js/main.js"></script>
+    <script defer type="module" src="js/main.js"></script>
   </body>
 </html>
