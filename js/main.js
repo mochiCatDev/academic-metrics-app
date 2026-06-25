@@ -110,6 +110,25 @@ export function limpiarNotasMateria(idMateria) {
   }
 }
 
+// funcion para renderizar las materias en la seccion gestión
+function renderizarMaterias() {
+    const contenedor = document.getElementById('contenedor-gestor-materias');
+    contenedor.innerHTML = '';
+
+    Object.keys(DATOS_MATERIAS).forEach(id => {
+        const materia = DATOS_MATERIAS[id];
+        const div = document.createElement('div');
+        div.className = 'tarjeta-materia';
+        div.innerHTML = `
+            <span>${materia.nombre}</span>
+            <button onclick="eliminarMateria('${id}')">
+                <i class='fa-solid fa-trash'></i>
+            </button>
+        `;
+        contenedor.appendChild(div);
+    });
+}
+
 // Alterna la propiedad cromática 'data-theme' del body guardando la preferencia del usuario
 export function cambiarModos() {
   const temaActual = document.body.getAttribute("data-theme") === "dark" ? "light" : "dark";
