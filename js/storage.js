@@ -52,3 +52,17 @@ export function crearNuevaMateria(nombre) {
 
   return idMateria;
 }
+
+// Remueve por completo una materia del objeto global de datos usando su ID único
+export function eliminarMateria(idMateria) {
+  if (!idMateria || !dataMaterias[idMateria]) return false;
+
+  if (confirm(`¿Estás seguro de que deseas eliminar la materia "${dataMaterias[idMateria].nombre}" por completo?`)) {
+    delete dataMaterias[idMateria];
+    guardarEnStorage();
+    sacarPromedios();
+    return true;
+  }
+  
+  return false;
+}
