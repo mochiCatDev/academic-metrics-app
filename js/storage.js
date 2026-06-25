@@ -28,3 +28,27 @@ export function limpiarDatosGenerales() {
     alert("Aplicación reiniciada con éxito.");
   }
 }
+
+// Genera un ID único y añade una nueva asignatura al objeto global de datos
+export function crearNuevaMateria(nombre) {
+  if (!nombre || nombre.trim() === "") return null;
+  
+  const idMateria = nombre.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "_");
+  
+  // Validamos si la materia ya existe
+  if (dataMaterias[idMateria]) {
+    alert(`La materia o ID "${nombre}" ya existe.`);
+    return null;
+  }
+
+  dataMaterias[idMateria] = {
+    nombre: nombre.trim(),
+    notas: [],
+    tareas: []
+  };
+
+  guardarEnStorage();
+  sacarPromedios(); 
+
+  return idMateria;
+}
