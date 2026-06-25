@@ -1,10 +1,10 @@
 import { $ID } from "./utils.js";
 import { promedios } from "./main.js";
+import { dataMaterias } from "./storage.js"; // Importación clave
 
 let barras = null;
 let miMiniChart = null;
 
-// Reconstruye el gráfico de barras comparativo adaptando los colores de fondo según la nota
 export function pintarBarras() {
   let elementCanva = $ID("canva");
   if (!elementCanva) return;
@@ -16,6 +16,9 @@ export function pintarBarras() {
 
   let backgroundColors = [];
   let borderColors = [];
+  
+  // Extrae los nombres reales de las materias existentes para ponerlas en el eje X
+  let etiquetasDinamicas = Object.keys(dataMaterias).map(key => dataMaterias[key].nombre);
 
   promedios.forEach((nota) => {
     if (nota < 5) {
@@ -37,7 +40,7 @@ export function pintarBarras() {
   barras = new Chart(canva, {
     type: "bar",
     data: {
-      labels: ["Matemática", "Inglés", "Química", "Biología", "Filosofía", "Física"],
+      labels: etiquetasDinamicas,
       datasets: [{
         label: "Promedio por Materia",
         data: promedios,
@@ -67,7 +70,7 @@ export function pintarBarras() {
   });
 }
 
-// Modifica o instancia dinámicamente un gráfico de líneas para la sección interactiva de tendencias
+// Modifica o instancia dinámicamente un gráfico de líneas
 export function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
   if (miMiniChart) {
     miMiniChart.destroy();
@@ -110,7 +113,6 @@ export function actualizarMiniGrafica(datosValidos, colorLinea, colorFondo) {
   });
 }
 
-// Destruye de forma segura el gráfico miniatura y limpia su espacio de memoria
 export function destruirMiniGrafica() {
   if (miMiniChart) {
     miMiniChart.destroy();
