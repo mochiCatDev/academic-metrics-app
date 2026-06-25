@@ -5,11 +5,14 @@ import { actualizarBarraProgreso } from "./ui.js";
 
 // Inicialización controlada de variables globales y de renderizado básico de estilos
 export let promedios = [0, 0, 0, 0, 0, 0];
-const ELEMENT_PROM_DATA = $ID("data-promedio");
-const ELEMENT_MEDIANA_DATA = $ID("data-mediana");
-const ElEMENT_MODA_DATA = $ID("data-moda");
-const ELEMENT_MEJOR_MATERIA_DATA = $ID("data-mejor-materia");
-const ELEMENT_PEOR_MATERIA_DATA = $ID("data-peor-materia");
+
+const ELEMENT_DATA = {
+  promedio: $ID("data-promedio"),
+  mediana: $ID("data-mediana"),
+  moda: $ID("data-moda"),
+  mejorMateria: $ID("data-mejor-materia"),
+  peorMateria: $ID("data-peor-materia")
+}
 
 let colorPreferido = localStorage.getItem("colorFondo") || "light";
 document.body.setAttribute("data-theme", colorPreferido);
@@ -52,24 +55,22 @@ export function sacarPromedios() {
   const medianaGeneral = getMedian(todasLasNotas);
   const modaGeneral = getModa(todasLasNotas);
 
-  if (ELEMENT_PROM_DATA) ELEMENT_PROM_DATA.innerHTML = `<strong>Promedio</strong><p>${promedioGeneral}</p>`;
-  if (ELEMENT_MEDIANA_DATA) ELEMENT_MEDIANA_DATA.innerHTML = `<strong>Mediana</strong><p>${medianaGeneral}</p>`;
-  if (ElEMENT_MODA_DATA) {
-    ElEMENT_MODA_DATA.innerHTML = `<strong>Moda</strong><p>${Array.isArray(modaGeneral) ? modaGeneral.join(', ') : modaGeneral}</p>`;
-  }
+  if (ELEMENT_DATA.promedio) ELEMENT_DATA.promedio.innerHTML = `<strong>Promedio</strong><p>${promedioGeneral}</p>`;
+  if (ELEMENT_DATA.mediana) ELEMENT_DATA.mediana.innerHTML = `<strong>Mediana</strong><p>${medianaGeneral}</p>`;
+  if (ELEMENT_DATA.moda) { ELEMENT_DATA.moda.innerHTML = `<strong>Moda</strong><p>${Array.isArray(modaGeneral) ? modaGeneral.join(', ') : modaGeneral}</p>`; }
 
   const formateador = new Intl.ListFormat('es', { style: 'long', type: 'conjunction' });
 
-  if (ELEMENT_MEJOR_MATERIA_DATA && mejorMateriaGeneral.length > 0) {
+  if (ELEMENT_DATA.mejorMateria && mejorMateriaGeneral.length > 0) {
     let textoMaterias = formateador.format(mejorMateriaGeneral);
     let titulo = mejorMateriaGeneral.length > 1 ? "Tus mejores materias son" : "Tu mejor materia es";
-    ELEMENT_MEJOR_MATERIA_DATA.innerHTML = `<strong>${titulo}</strong><p>${textoMaterias}</p>`;
+    ELEMENT_DATA.mejorMateria.innerHTML = `<strong>${titulo}</strong><p>${textoMaterias}</p>`;
   }
 
-  if (ELEMENT_PEOR_MATERIA_DATA && peorMateriaGeneral.length > 0) {
+  if (ELEMENT_DATA.peorMateria && peorMateriaGeneral.length > 0) {
     let textoMaterias = formateador.format(peorMateriaGeneral);
     let titulo = peorMateriaGeneral.length > 1 ? "Tus peores materias son" : "Tu peor materia es";
-    ELEMENT_PEOR_MATERIA_DATA.innerHTML = `<strong>${titulo}</strong><p>${textoMaterias}</p>`;
+    ELEMENT_DATA.peorMateria.innerHTML = `<strong>${titulo}</strong><p>${textoMaterias}</p>`;
   }
 
   pintarBarras();
