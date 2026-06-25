@@ -13,6 +13,12 @@ export function mostrarSeccion(seccion) {
   Object.keys(SECCIONES).forEach((sec) => {
     if (SECCIONES[sec]) SECCIONES[sec].classList.add("oculto");
   });
+  
+  const panelZoom = $ID("detalle-materia-zoom");
+  if (panelZoom) {
+    panelZoom.classList.add("oculto");
+  }
+
   if (seccion) seccion.classList.remove("oculto");
 }
 

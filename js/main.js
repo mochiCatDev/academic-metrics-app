@@ -1,6 +1,6 @@
 import { $ID, promediar, getMedian, getModa } from "./utils.js";
 import { dataMaterias, guardarEnStorage } from "./storage.js";
-import { pintarBarras } from "./charts.js";
+import { pintarBarras, pintarLineaEvolucion } from "./charts.js";
 import { actualizarBarraProgreso } from "./ui.js";
 
 // Inicialización controlada de variables globales y de renderizado básico de estilos
@@ -141,6 +141,62 @@ export function renderizarMaterias() {
         `;
         contenedor.appendChild(div);
     });
+}
+
+function calcularVarianza(valores) {
+  if (!valores || valores.length === 0) return 0;
+  const promedio = promediar(valores);
+  const sumatoriaDiferenciasCuadrado = valores.reduce((acum, val) => acum + Math.pow(val - promedio, 2), 0);
+  return sumatoriaDiferenciasCuadrado / valores.length;
+}
+
+export function mostrarDetalleMateria(idMateria) {
+  const contenedorZoom = $ID("detalle-materia-zoom");
+  const materia = dataMaterias[idMateria];
+  
+  if (!contenedorZoom || !materia) return;
+
+  // CORRECCIÓN CRÍTICA: Primero mostramos la sección en el DOM para que el Canvas adquiera tamaño real
+  contenedorZoom.classList.remove("oculto");
+
+  // Extraer datos y procesar métricas estadísticas específicas
+  const notasMateria = materia.notas || [];
+  const prom = promediar(notasMateria);
+  const mediana = getMedian(notasMateria);
+  const moda = getModa(notasMateria);
+  const varianza = calcularVarianza(notasMateria);
+
+  // Renderizar Textos e Información General del Zoom
+  $ID("zoom-titulo-materia").textContent = `Análisis Detallado: ${materia.nombre}`;
+  $ID("zoom-data-promedio").textContent = prom.toFixed(2);
+  $ID("zoom-data-mediana").textContent = mediana;
+  $ID("zoom-data-moda").textContent = Array.isArray(moda) ? moda.join(', ') : moda;
+  $ID("zoom-data-varianza").textContent = varianza.toFixed(4);
+
+  // Renderizar su propio Termómetro de Rendimiento VERTICAL
+  const barraMini = $ID("zoom-mini-bar-progress");
+  const textoMini = $ID("zoom-mini-text-progress");
+  
+  let porcentajeRendimiento = (prom / 10) * 100;
+  if (isNaN(porcentajeRendimiento) || porcentajeRendimiento < 0) porcentajeRendimiento = 0;
+  
+  // CORRECCIÓN: Si estamos en pantallas normales, alteramos la altura de forma vertical (height)
+  if (barraMini) {
+    if (window.innerWidth > 768) {
+      barraMini.style.width = "100%";
+      barraMini.style.height = porcentajeRendimiento + "%";
+    } else {
+      barraMini.style.height = "100%";
+      barraMini.style.width = porcentajeRendimiento + "%";
+    }
+  }
+  if (textoMini) textoMini.textContent = porcentajeRendimiento.toFixed(2) + "%";
+
+  // CORRECCIÓN: Invocamos la gráfica lineal justo ahora que el canvas mide más de 0px
+  pintarLineaEvolucion(idMateria, notasMateria);
+
+  // Desplazamiento sutil hacia la analítica extendida
+  contenedorZoom.scrollIntoView({ behavior: "smooth" });
 }
 
 // Alterna la propiedad cromática 'data-theme'

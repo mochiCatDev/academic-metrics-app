@@ -52,6 +52,44 @@
         </div>
       </section>
 
+      <section id="detalle-materia-zoom" class="oculto section-zoom">
+      <h2 id="zoom-titulo-materia">Análisis Detallado: Selecciona una materia</h2>
+      
+      <div class="zoom-panel-superior">
+        
+        <div class="zoom-termometro-vertical">
+          <div class="zoom-termometro-body">
+            <div id="zoom-mini-bar-progress" class="zoom-termometro-fill"></div>
+          </div>
+          <span id="zoom-mini-text-progress" class="zoom-termometro-label">0%</span>
+        </div>
+
+        <div class="zoom-chart-card">
+          <canvas id="canvas-evolucion-materia"></canvas>
+        </div>
+
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">Promedio Local</span>
+          <div class="metric-value" id="zoom-data-promedio">-</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Mediana Local</span>
+          <div class="metric-value" id="zoom-data-mediana">-</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Moda Local</span>
+          <div class="metric-value" id="zoom-data-moda">-</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Varianza (Dispersión)</span>
+          <div class="metric-value" id="zoom-data-varianza">-</div>
+        </div>
+      </div>
+    </section>
+
       <!-- Gestion (Manager) -->
       <section id="section-manager" class="oculto">
         <div class="control-limpieza-global">

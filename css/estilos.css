@@ -274,6 +274,107 @@ nav button:focus-visible {
   line-height: 1.1;
 }
 
+/* ==========================================================================
+    ESTILOS COMPONENTES ZOOM DE MATERIA
+   ========================================================================== */
+.section-zoom {
+  margin-top: var(--space-8);
+  border-top: 2px dashed var(--border-color);
+  padding-top: var(--space-6);
+  width: 100%;
+}
+
+.section-zoom h2 {
+  color: var(--text-main);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-4);
+}
+
+/* Alineación lado a lado de termómetro y gráfico */
+.zoom-panel-superior {
+  display: flex;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Estructura del Termómetro Vertical */
+.zoom-termometro-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-3);
+  min-width: 90px;
+}
+
+.zoom-termometro-body {
+  position: relative;
+  width: 24px;
+  height: 220px;
+  background-color: var(--border-color);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.zoom-termometro-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%; /* Crecerá dinámicamente de abajo hacia arriba */
+  background: linear-gradient(0deg, var(--danger-color), var(--warning-color), var(--success-color));
+  border-radius: var(--radius-full);
+  transition: height var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.zoom-termometro-label {
+  margin-top: var(--space-3);
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Tarjeta contenedora de la Gráfica lineal */
+.zoom-chart-card {
+  position: relative;
+  flex: 1;
+  height: 290px;
+  background-color: var(--bg-card);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+/* Responsive para pantallas móviles */
+@media (max-width: 768px) {
+  .zoom-panel-superior {
+    flex-direction: column;
+  }
+  .zoom-termometro-vertical {
+    flex-direction: row;
+    min-width: 100%;
+    height: auto;
+    gap: var(--space-4);
+  }
+  .zoom-termometro-body {
+    width: 100%;
+    height: 20px;
+  }
+  .zoom-termometro-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--danger-color), var(--warning-color), var(--success-color));
+  }
+}
+
 /* --------------------------------------------------------------------------
     GESTOR DE ASIGNATURAS
    -------------------------------------------------------------------------- */
