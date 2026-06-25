@@ -1,21 +1,21 @@
 /**
  * Busca y retorna un elemento del DOM utilizando su atributo `id`.
- * Es un alias minimalista para `document.getElementById`.
+ * Es un alias para `document.getElementById`.
  *
- * @param {string} id - El identificador único (ID) del elemento HTML que se desea seleccionar.
- * @returns {HTMLElement|null} El elemento del DOM correspondiente al ID especificado, 
+ * @param {string} id - El identificador único (ID) del elemento HTML que se desea
+ * seleccionar.
+ * @returns {HTMLElement|null} El elemento del DOM correspondiente al ID especificado,
  * o `null` si no se encuentra ninguna coincidencia.
- */
- 
-const $ID = (id) => document.getElementById(id);
+*/
+export const $ID = (id) => document.getElementById(id);
 
 /**
- * Helper para asignar eventos click de forma segura y sencilla
- * @param {string} selector - Selector CSS (ej: '#btn', '.btn-enviar', 'button')
+ * Funcion que asigna un evento de click de manera facil y segura.
+ * @param {string} selector - Selector (ej: '#btn', '.btn-enviar', 'button')
  * @param {Function} callback - Función a ejecutar
+ * @returns {void}
  */
- 
-const onClick = (selector, callback) => {
+export const onClick = (selector, callback) => {
   const element = document.querySelector(selector);
   if (element) {
     element.addEventListener("click", callback);
@@ -25,93 +25,31 @@ const onClick = (selector, callback) => {
 };
 
 /**
- * Calcula el promedio de los números en un arreglo, 
+ * Calcula el promedio de los números en un arreglo,
  * redondeado a una cantidad específica de decimales.
  *
  * @param {number[]} arreglo - Array de números a promediar.
  * @param {number} [decimales=2] - Número de decimales para el redondeo (por defecto es 2).
  * @returns {number} El promedio de los números, o 0 si el arreglo está vacío.
  */
- 
-const promediar = (arreglo, decimales = 2) => {
-  if (!arreglo || arreglo.length === 0) return 0;
-  const sumaTotal = arreglo.reduce((acumulador, numeroActual) => acumulador + numeroActual, 0);
-  return parseFloat((sumaTotal / arreglo.length).toFixed(decimales));
+export const promediar = (arreglo, decimales = 2) => {
+  if (!Array.isArray(arreglo) || arreglo.length === 0) return 0;
+  const suma = arreglo.reduce((acc, val) => acc + val, 0);
+  return parseFloat((suma / arreglo.length).toFixed(decimales));
 };
 
 /**
  * Calcula qué porcentaje representa una cantidad parcial respecto a un total.
  * Ej: 10 de un total de 50 representa el 20%.
  *
- * @param {number} parcial - La cantidad o parte actual.
- * @param {number} total - La cantidad máxima o total (representa el 100%).
- * @param {number} [decimales=2] - Cantidad de decimales para el redondeo (por defecto 2).
+ * @param {number} valorActual - La cantidad o parte actual.
+ * @param {number} valorMaximo - La cantidad máxima o total (representa el 100%).
  * @returns {number} El porcentaje que representa la parte parcial (de 0 a 100).
  */
- 
-const obtenerPorcentajeDelTotal = (parcial, total, decimales = 2) => {
-  if (!total || total === 0) return 0;
-  
-  const porcentaje = (parcial / total) * 100;
-  return parseFloat(porcentaje.toFixed(decimales));
+export const getPorcent = (valorActual, valorMaximo) => {
+  if (valorMaximo === 0) return 0;
+  return (valorActual / valorMaximo) * 100;
 };
-
-/**
- * Valida si el valor de un input cumple con las reglas según su tipo.
- * @param {string} id - El ID del elemento input en el HTML.
- * @param {string} tipo - El tipo de validación ('texto', 'numero', 'email', 'vacio').
- * @param {string} span - El ID del elemento span en el HTML.
- */
-function validarInput(id, tipo, span) {
-    const inputElement = $ID(id);
-    const spanElement = $ID(span);
-    const tipoInput = tipo.toLowerCase();
-
-    // Verificamos si los elementos realmente existen en el DOM
-    if (!inputElement) {
-        console.error(`No se encontró ningún elemento con el ID: ${id}`);
-        return false;
-    }
-    if (!spanElement) {
-        console.error(`No se encontró ningún span con el ID: ${span}`);
-        return false;
-    }
-    
-    // Limpiamos espacios al inicio y al final
-    let valor = inputElement.value.trim();
-    spanElement.classList.add("oculto");
-    spanElement.textContent = "";
-
-    // Validación general - Que no este vacio
-    if (valor === "") {
-        spanElement.classList.remove("oculto");
-        spanElement.textContent = `El campo está vacío.`;
-        return false;
-    }
-
-    // Validaciones especificas según el tipo
-    if (tipoInput == "texto") {
-        const regexTexto = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
-        if (!regexTexto.test(valor)) {
-            spanElement.classList.remove("oculto");
-            spanElement.textContent = `El campo debe contener solo texto`;
-            return false;
-        }
-    }
-    else if (tipoInput == "numero") {
-        if (isNaN(valor) || isNaN(Number(valor))) {
-            spanElement.classList.remove("oculto");
-            spanElement.textContent = `El campo debe ser estrictamente un número.`;
-            return false;
-        }
-    }
-    else {
-        console.warn(`Se desconoce el tipo: ${tipo}`)
-        return false;
-    }
-
-    return true;
-}
 
 /**
  * Calcula la mediana de un array de números.
@@ -119,57 +57,62 @@ function validarInput(id, tipo, span) {
  * @returns {number} La mediana de los números.
  * @throws {Error} Si el parámetro no es un array válido o está vacío.
  */
-const getMedian = (numbers) => {
-  if (!Array.isArray(numbers) || numbers.length === 0) {
-    throw new Error("El argumento debe ser un array no vacío de números.");
-  }
-
-  // Clonamos el array para no mutar el original y lo ordenamos de menor a mayor
+export const getMedian = (numbers) => {
+  if (!Array.isArray(numbers) || numbers.length === 0) return 0;
   const sorted = [...numbers].sort((a, b) => a - b);
-  
   const mid = Math.floor(sorted.length / 2);
-
-  // Si la longitud es impar, devolvemos el número del centro
-  // Si es par, promediamos los dos números centrales
-  return sorted.length % 2 !== 0 
-    ? sorted[mid] 
-    : (sorted[mid - 1] + sorted[mid]) / 2;
+  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
 };
 
 /**
  * Calcula la moda de un array de números.
- * Puede retornar un número (unimodal), un array de números (multimodal) 
+ * Puede retornar un número (unimodal), un array de números (multimodal)
  * o null si no existe ninguna moda.
  *
  * @param {number[]} arreglo - Array de números a evaluar.
  * @returns {number|number[]|null} La moda, un array de modas, o null si no hay moda.
  */
-
-const obtenerModa = (arreglo) => {
-  if (!Array.isArray(arreglo) || arreglo.length === 0) return null;
-
+export const getModa = (arreglo) => {
+  if (!Array.isArray(arreglo) || arreglo.length === 0) return "N/A";
   const frecuencias = {};
   let maxRepeticiones = 0;
-
-  // Contar cuántas veces se repite cada número
   arreglo.forEach((numero) => {
     frecuencias[numero] = (frecuencias[numero] || 0) + 1;
     if (frecuencias[numero] > maxRepeticiones) {
       maxRepeticiones = frecuencias[numero];
     }
   });
+  if (maxRepeticiones <= 1) return "No hay moda";
+  const modas = Object.keys(frecuencias).filter((numero) => frecuencias[numero] === maxRepeticiones).map(Number);
+  return modas.length === 1 ? modas[0] : modas;
+};
 
-  // Si el número máximo de repeticiones es 1, significa que ninguno se repite
-  if (maxRepeticiones === 1) return null;
+/**
+ * Valida si el valor de un input cumple con las reglas según su tipo.
+ * @param {string} id - El ID del elemento input en el HTML.
+ * @param {string} tipo - El tipo de validación ('texto', 'numero', 'email', 'vacio').
+ * @param {string} idError - El ID del elemento span en el HTML.
+ * @returns {void}
+ */
+export const validarInput = (id, tipo, idError) => {
+  const input = $ID(id);
+  const errorElement = $ID(idError);
+  if (!input) return false;
 
-  // Agrupar todos los números que alcanzaron el máximo de repeticiones
-  const modas = [];
-  for (const numero in frecuencias) {
-    if (frecuencias[numero] === maxRepeticiones) {
-      modas.push(Number(numero));
+  let valido = true;
+  let valor = input.value.trim();
+
+  if (tipo === "numero") {
+    const num = parseFloat(valor);
+    if (isNaN(num) || num < 0 || num > 10) {
+      valido = false;
     }
+  } else if (valor === "") {
+    valido = false;
   }
 
-  // Retornar un solo número si solo hay una moda, o el array si hay varias
-  return modas.length === 1 ? modas[0] : modas;
+  if (errorElement) {
+    errorElement.style.display = valido ? "none" : "block";
+  }
+  return valido;
 };

@@ -1,7 +1,12 @@
 /* ==========================================================================
-   Estilos Globales e Interfaz de Usuario
+   estilos.css — Academic Metrics App
+   Hoja de estilos principal. Estructura modular, comentada por sección.
    ========================================================================== */
-* {
+
+/* --------------------------------------------------------------------------
+   0. RESET & BASE
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,137 +14,177 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  width: 85%;
-  max-width: 1200px;
+  width: 90%;
+  max-width: 1180px;
   min-height: 100vh;
   margin: 0 auto;
   font-family: var(--font-ui);
   background-color: var(--bg-app);
-  color: var(--text-main);
-  line-height: 1.6;
+  color: var(--text-body);
+  line-height: 1.65;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
 }
 
-/* Ocultar secciones inactivas */
+/* Elemento oculto — clase de utilidad protegida para el JS */
 .oculto {
   display: none !important;
 }
 
-/* Botón de cambio de modos - Esquina superior derecha circular */
+/* --------------------------------------------------------------------------
+   1. BOTÓN DE CAMBIO DE MODO (Tema claro/oscuro)
+   -------------------------------------------------------------------------- */
 #btn-modos {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
+  top: var(--space-5);
+  right: var(--space-5);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
   background-color: var(--bg-card);
   color: var(--primary-color);
-  border: 1px solid var(--border-color);
-  font-size: 1.1rem;
+  border: 1.5px solid var(--border-color);
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  box-shadow: var(--shadow-md);
+  transition:
+    transform var(--transition-base),
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
 #btn-modos:hover {
-  transform: scale(1.08);
+  transform: rotate(15deg) scale(1.08);
   background-color: var(--primary-color);
-  color: var(--bg-card);
+  color: var(--text-inverse);
   border-color: var(--primary-color);
+  box-shadow: var(--shadow-lg);
 }
 
-/* ==========================================================================
-   Header y Navegación (Estilo Journal Científico)
-   ========================================================================== */
+#btn-modos:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   2. HEADER
+   -------------------------------------------------------------------------- */
 header {
   text-align: center;
-  padding: 30px 10px 15px 10px;
-  border-bottom: 2px solid var(--primary-color);
-  margin-bottom: 20px;
+  padding: var(--space-10) var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: var(--space-6);
+  position: relative;
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--radius-full);
 }
 
 header h1 {
   font-family: var(--font-academic);
-  font-size: 2.2rem;
-  color: var(--primary-color);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  color: var(--text-main);
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
+/* --------------------------------------------------------------------------
+   3. NAVEGACIÓN
+   -------------------------------------------------------------------------- */
 nav {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+  flex-wrap: wrap;
+  padding: 0 var(--space-4);
 }
 
 nav button {
   background-color: transparent;
-  color: var(--secondary-color);
-  border: 1px solid var(--secondary-color);
-  padding: 8px 18px;
-  font-size: 0.95rem;
+  color: var(--text-muted);
+  border: 1.5px solid var(--border-color);
+  padding: var(--space-2) var(--space-5);
+  font-size: 0.875rem;
   font-weight: 500;
+  font-family: var(--font-ui);
+  letter-spacing: 0.01em;
   cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  border-radius: var(--radius-sm);
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
 nav button:hover,
-nav button:focus {
+nav button:focus-visible {
   background-color: var(--secondary-color);
-  color: white;
+  color: #ffffff;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  outline: none;
 }
 
-/* ==========================================================================
-   Sección Principal (Métricas y Gráficos)
-   ========================================================================== */
+/* --------------------------------------------------------------------------
+   4. SECCIÓN PRINCIPAL — Panel de métricas y gráfico
+   -------------------------------------------------------------------------- */
 #section-main {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  grid-template-rows: auto auto;
+  gap: var(--space-6);
+  align-items: start;
   background: var(--bg-card);
-  padding: 30px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Contenedor del Canvas de Chart.js */
-.container.w-75 {
-  flex: 1;
-  min-width: 300px;
-}
-
-/* Barra de progreso termómetro */
+/* Barra de progreso tipo termómetro */
 .container-bar-progress {
-  width: 80px;
-  height: 320px;
-  background-color: var(--bg-app);
-  border: 1px solid var(--border-color);
-  border-radius: 50px;
+  grid-column: 1;
+  grid-row: 1 / 3;
+  width: 72px;
+  height: 300px;
+  background-color: var(--bg-subtle);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-full);
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.06);
+  align-self: center;
 }
 
 .border-bar-progress {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50px;
+  inset: 0;
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 
@@ -149,322 +194,425 @@ nav button:focus {
   left: 0;
   width: 100%;
   height: 0%;
-  background: linear-gradient(
-    to top,
-    var(--primary-color),
-    var(--secondary-color)
-  );
-  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+  transition: height var(--transition-slow);
+  border-radius: 0 0 var(--radius-full) var(--radius-full);
 }
 
 #text-progress {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(-90deg);
   font-family: var(--font-ui);
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: 0.7rem;
+  font-weight: 700;
   color: var(--text-main);
   z-index: 10;
-  text-shadow: 0px 0px 4px var(--bg-card);
+  white-space: nowrap;
+  text-shadow: 0 0 6px var(--bg-card), 0 0 6px var(--bg-card);
+  letter-spacing: 0.04em;
 }
 
-.container-data {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  padding: 20px 0;
+/* Canvas de Chart.js */
+.container.w-75 {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
   width: 100%;
 }
 
+/* Tarjetas de métricas KPI */
+.container-data {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-4);
+}
+
 .data-info {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 24px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-top: 3px solid var(--secondary-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-4);
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  gap: var(--space-2);
+  box-shadow: var(--shadow-xs);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
 }
+
+.data-info:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Colores de acento diferenciados por tarjeta KPI */
+.data-info:nth-child(1) { border-top-color: var(--secondary-color); }
+.data-info:nth-child(2) { border-top-color: var(--color-quim); }
+.data-info:nth-child(3) { border-top-color: var(--color-filo); }
+.data-info:nth-child(4) { border-top-color: var(--success-color); }
+.data-info:nth-child(5) { border-top-color: var(--danger-color); }
 
 .data-info strong {
   font-family: var(--font-ui);
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
+  letter-spacing: 0.07em;
   display: block;
 }
 
 .data-info p {
   font-family: var(--font-ui);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 800;
   color: var(--text-main);
   margin: 0;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
 }
 
-/* ==========================================================================
-   Sección de Gestión (Grid de Materias)
-   ========================================================================== */
-/* ==========================================================================
-   SECCIÓN: MANAGER DE NOTAS INTERACTIVO
-   ========================================================================== */
-
+/* --------------------------------------------------------------------------
+   5. GESTOR DE ASIGNATURAS
+   -------------------------------------------------------------------------- */
 #section-manager {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-5);
+  align-items: start;
 }
 
-/* Contenedor de cada materia */
-#section-manager > div:not(:last-child) {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+/* Barra de herramientas global (reset + promediar) */
+.control-limpieza-global {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--space-4) var(--space-2) var(--space-2);
 }
+
+/* Cada tarjeta de materia — el efecto "notebook tab" */
+#section-manager > div {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-5) var(--space-5) calc(var(--space-5) + 2px);
+  border-left: 4px solid var(--border-color);
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+#section-manager > div:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* Colores del borde izquierdo por asignatura (la firma del diseño) */
+#section-manager > div.math,
+#section-manager > .math     { border-left-color: var(--color-mate); }
+#section-manager > div.ing,
+#section-manager > .ing      { border-left-color: var(--color-ing); }
+#section-manager > div.quimica,
+#section-manager > .quimica  { border-left-color: var(--color-quim); }
+#section-manager > div.biologia,
+#section-manager > .biologia { border-left-color: var(--color-bio); }
+#section-manager > div.filosifia,
+#section-manager > .filosifia { border-left-color: var(--color-filo); }
+#section-manager > div.fisica,
+#section-manager > .fisica   { border-left-color: var(--color-fis); }
 
 #section-manager h2 {
-  font-family: var(--font-academic);
-  font-size: 1.2rem;
-  color: var(--primary-color);
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 8px;
-  margin-bottom: 15px;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-1);
 }
 
 #section-manager label {
-  display: block;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--text-muted);
-  margin-bottom: 5px;
-  font-weight: 600;
 }
 
-/* --- ESTRUCTURA RESPONSIVA DE INPUTS CON ICONO + --- */
-
+/* Grupo de input + botones */
 .input-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
-  width: 100%;
+  gap: var(--space-1);
 }
 
-/* Fila flexible: mantiene el input y el botón pegados horizontalmente */
 .input-inline-row {
   display: flex;
-  gap: 8px;
-  width: 100%;
+  gap: var(--space-2);
   align-items: center;
 }
 
-/* El input adaptado a la fila flexible */
-#section-manager input[type="number"] {
+.input-academic {
   flex: 1;
-  padding: 10px 14px;
-  border: 2px solid var(--border-color);
-  border-radius: 6px;
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  outline: none;
-  background-color: var(--bg-card);
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-subtle);
+  font-size: 0.9rem;
+  font-family: var(--font-ui);
   color: var(--text-main);
-  transition: all 0.25s ease-in-out;
-  margin-bottom: 0;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  -webkit-appearance: textfield;
+  appearance: textfield;
 }
 
-#section-manager input[type="number"]:focus {
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+.input-academic:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  background-color: var(--bg-card);
 }
 
-/* El nuevo botón de icono circular/cuadrado moderno */
-#section-manager .btn-icon {
+.input-academic::placeholder {
+  color: var(--text-placeholder);
+}
+
+/* Oculta las flechas en inputs tipo número */
+.input-academic[type="number"]::-webkit-inner-spin-button,
+.input-academic[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.btn-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: background-color var(--transition-base), transform var(--transition-fast);
+}
+
+.btn-icon:hover {
+  background-color: var(--primary-color);
+  transform: scale(1.06);
+}
+
+.btn-icon:active {
+  transform: scale(0.96);
+}
+
+.btn-limpiar-materia {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition:
+    color var(--transition-base),
+    border-color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.btn-limpiar-materia:hover {
+  color: var(--danger-color);
+  border-color: var(--danger-color);
+  background-color: rgba(220, 38, 38, 0.06);
+}
+
+/* Contenedor de badges de notas */
+#tabla, #tabla2, #tabla3, #tabla4, #tabla5, #tabla6 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  min-height: 32px;
+}
+
+/* Badge de nota */
+.nota-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px; 
-  background-color: var(--secondary-color);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.2s, transform 0.1s;
-}
-
-#section-manager .btn-icon:hover {
-  background-color: var(--primary-color);
-}
-
-#section-manager .btn-icon:active {
-  transform: scale(0.95);
-}
-
-/* Control y diseño elegante para los errores debajo del input */
-#section-manager .error {
-  color: #e53e3e;
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
   font-size: 0.8rem;
+  font-weight: 600;
   font-family: var(--font-ui);
-  margin-top: 6px;
-  display: block;
+  color: var(--text-body);
+  font-variant-numeric: tabular-nums;
+  transition: background-color var(--transition-base);
 }
 
-#section-manager .error.oculto {
-  display: none !important;
+/* Botón de peligro — resetear todo */
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background-color: transparent;
+  color: var(--danger-color);
+  border: 1.5px solid var(--danger-color);
+  padding: var(--space-2) var(--space-5);
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: var(--font-ui);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
-/* --- BLOQUES DE RENDERIZADO Y PROMEDIOS --- */
+.btn-danger:hover {
+  background-color: var(--danger-color);
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+}
 
-/* Bloque final del botón Promediar */
+/* Área de resultado / promedios (mantenido por compatibilidad JS) */
+#promedios {
+  display: none;
+}
+
+/* Contenedor del botón promediar (fila ancha) */
 #section-manager > div:last-child {
   grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  margin-top: 20px;
-  padding: 20px;
-  background: var(--bg-app);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
 }
 
-/* Estilo específico para el súper botón "Sacar Promedios" */
-#section-manager > div:last-child button {
-  width: auto;
-  padding: 12px 40px;
-  font-size: 1.1rem;
-  background-color: var(--accent-color);
-  color: white;
-  border: none;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  transition: background-color 0.2s;
+/* --------------------------------------------------------------------------
+   6. MENSAJES DE ERROR INLINE
+   -------------------------------------------------------------------------- */
+.error {
+  font-size: 0.76rem;
+  color: var(--danger-color);
+  font-weight: 500;
+  padding: var(--space-1) 0;
 }
 
-#section-manager > div:last-child button:hover {
-  background-color: #c05621;
-}
-
-#promedios {
-  font-family: var(--font-mono);
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--primary-color);
-}
-
-/* Tablas de notas ingresadas */
-[id^="tabla"] {
-  margin-top: 12px;
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--text-main);
-}
-
-/* ==========================================================================
-   Sección de Teoría (Formato de Reporte Técnico / LaTeX)
-   ========================================================================== */
+/* --------------------------------------------------------------------------
+   7. SECCIÓN DE TEORÍA ESTADÍSTICA
+   -------------------------------------------------------------------------- */
 #section-teoria {
   background: var(--bg-card);
-  padding: 40px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
   width: 100%;
 }
 
+/* Barra de navegación interna pegajosa */
 #section-teoria .btns-teoria {
   position: sticky;
   top: 0;
   z-index: 100;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  gap: 12px;
-  border-radius: 12px;
+  gap: var(--space-2);
   width: 100%;
-  margin: 0 auto 30px auto;
-  padding: 10px;
+  margin-bottom: var(--space-8);
+  padding: var(--space-3) var(--space-3);
   overflow-x: auto;
-  background-color: var(--bg-app);
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-subtle);
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) transparent;
 }
 
-#section-teoria .btns-teoria::-webkit-scrollbar {
-  height: 5px;
-}
-
-#section-teoria .btns-teoria::-webkit-scrollbar-track {
-  background: transparent;
-}
-
+#section-teoria .btns-teoria::-webkit-scrollbar { height: 3px; }
+#section-teoria .btns-teoria::-webkit-scrollbar-track { background: transparent; }
 #section-teoria .btns-teoria::-webkit-scrollbar-thumb {
   background-color: var(--border-color);
-  border-radius: 20px;
-}
-
-#section-teoria .btns-teoria::-webkit-scrollbar-thumb:hover {
-  background-color: var(--text-muted);
+  border-radius: var(--radius-full);
 }
 
 #section-teoria .btns-teoria a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-card);
-  color: var(--secondary-color);
-  border: 1px solid var(--border-color);
-  padding: 10px 20px;
-  font-size: 0.88rem;
+  background-color: var(--bg-subtle);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-2) var(--space-4);
+  font-size: 0.8rem;
   font-weight: 500;
+  font-family: var(--font-ui);
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-  transition: all 0.2s ease-in-out;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
   flex-shrink: 0;
 }
 
 #section-teoria .btns-teoria a:hover,
-#section-teoria .btns-teoria a:focus {
+#section-teoria .btns-teoria a:focus-visible {
   background-color: var(--secondary-color);
   color: #ffffff;
   border-color: var(--secondary-color);
-  box-shadow: 0 4px 8px rgba(43, 108, 176, 0.15);
-  transform: translateY(-1px);
+  outline: none;
 }
 
+/* Título de la sección teoría */
 #section-teoria > h2 {
   font-family: var(--font-academic);
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 30px;
-  color: var(--primary-color);
+  margin-bottom: var(--space-6);
+  color: var(--text-main);
+  font-weight: 700;
 }
 
+/* Lista numerada de conceptos */
 #section-teoria ol {
-  list-style-position: outside;
-  margin-left: 25px;
+  list-style: none;
+  counter-reset: concepto-counter;
+  margin: 0;
+  padding: 0;
 }
 
 #section-teoria > ol > li {
-  margin-bottom: 50px;
+  counter-increment: concepto-counter;
+  margin-bottom: var(--space-12);
+  padding-left: var(--space-8);
+  position: relative;
+}
+
+#section-teoria > ol > li::before {
+  content: counter(concepto-counter, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 4px;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-placeholder);
+  letter-spacing: 0.05em;
 }
 
 #section-teoria li section {
@@ -477,291 +625,419 @@ nav button:focus {
   scroll-margin-top: 80px;
 }
 
+/* Títulos dentro de los conceptos */
 #section-teoria h3 {
   font-family: var(--font-academic);
   font-size: 1.5rem;
-  color: var(--primary-color);
+  color: var(--text-main);
+  font-weight: 700;
   display: block;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 5px;
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-3);
+}
+
+#section-teoria h4 {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--secondary-color);
+  margin: var(--space-6) 0 var(--space-3) 0;
+}
+
+#section-teoria h5 {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-body);
+  margin: var(--space-4) 0 var(--space-2) 0;
 }
 
 #section-teoria p {
   font-family: var(--font-academic);
   font-size: 1.05rem;
-  margin-bottom: 15px;
-  text-align: justify;
-  color: var(--text-main);
-  line-height: 1.6;
-}
-
-#section-teoria h4 {
-  font-family: var(--font-ui);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 25px 0 10px 0;
-  color: var(--secondary-color);
+  line-height: 1.75;
+  margin-bottom: var(--space-4);
+  color: var(--text-body);
+  text-align: left;
 }
 
 #section-teoria ul {
-  list-style-type: square;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  padding-left: 0;
-}
-
-#section-teoria li ul li {
-  font-family: var(--font-academic);
-  font-size: 1rem;
-  margin-bottom: 8px;
-  line-height: 1.5;
-  list-style-position: outside;
-}
-
-/* Bloques de Código de JavaScript */
-#section-teoria pre {
-  background-color: #1a202c !important;
-  padding: 15px;
-  border-radius: 6px;
-  overflow-x: auto;
-  margin: 20px 0;
-  width: 100%;
-}
-
-#section-teoria code {
-  font-family: var(--font-mono) !important;
-  font-size: 0.9rem !important;
-}
-
-/* ==========================================================================
-   Estilos para Ejemplos Didácticos Interactivos (Laboratorios)
-   ========================================================================== */
-.ejemplo-didactico {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  padding: 20px;
-  margin: 20px 0 30px 0;
-  border-radius: 8px;
-  width: 100% !important;
+  list-style: none;
+  margin: 0 0 var(--space-5) 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+  gap: var(--space-2);
+}
+
+#section-teoria li ul li,
+#section-teoria ul li {
+  font-family: var(--font-academic);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  padding-left: var(--space-5);
+  position: relative;
+}
+
+#section-teoria ul li::before {
+  content: '·';
+  position: absolute;
+  left: var(--space-2);
+  color: var(--secondary-color);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+#section-teoria ol li > ol {
+  counter-reset: sub-counter;
+  list-style: decimal inside;
+  margin: var(--space-3) 0 0 var(--space-4);
+}
+
+#section-teoria ol li > ol li {
+  font-family: var(--font-academic);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  padding-left: 0;
+  list-style: decimal inside;
+  margin-bottom: var(--space-2);
+}
+
+#section-teoria ol li > ol li::before {
+  display: none;
+}
+
+/* KaTeX — fórmulas matemáticas */
+.katex-display {
+  margin: var(--space-5) 0 !important;
+  padding: var(--space-5) var(--space-6);
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-color);
+  color: var(--text-main);
+  overflow-x: auto;
+}
+
+/* --------------------------------------------------------------------------
+   8. LABORATORIOS DIDÁCTICOS INTERACTIVOS
+   -------------------------------------------------------------------------- */
+.ejemplo-didactico {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  margin: var(--space-4) 0 var(--space-8) 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-xs);
 }
 
 .ejemplo-didactico input[type="number"],
 .ejemplo-didactico input[type="text"],
 .ejemplo-didactico select {
-  width: 100% !important;
-  padding: 11px 14px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  background-color: var(--bg-app);
+  font-size: 0.9rem;
+  background-color: var(--bg-card);
   color: var(--text-main);
-  margin: 0 !important;
-  font-size: 0.95rem;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
   box-sizing: border-box;
+}
+
+.ejemplo-didactico input:focus,
+.ejemplo-didactico select:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .ejemplo-didactico button {
   background-color: var(--secondary-color);
-  color: white;
+  color: #ffffff;
   border: none;
-  padding: 12px 16px;
-  border-radius: 6px;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-sm);
   font-family: var(--font-ui);
   font-weight: 600;
+  font-size: 0.875rem;
   cursor: pointer;
-  width: 100% !important;
-  margin: 0 !important;
-  transition: background-color 0.2s ease;
-  font-size: 0.95rem;
+  width: 100%;
+  transition: background-color var(--transition-base), transform var(--transition-fast);
 }
 
 .ejemplo-didactico button:hover {
   background-color: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.ejemplo-didactico button:active {
+  transform: translateY(0);
 }
 
 .ejemplo-resultado {
-  margin-top: 5px;
-  padding: 14px 16px;
-  background-color: var(--bg-app);
-  border-left: 4px solid var(--accent-color);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--bg-card);
+  border-left: 3px solid var(--accent-color);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  font-weight: bold;
+  font-size: 0.875rem;
+  font-weight: 500;
   color: var(--text-main);
-  width: 100% !important;
-  border-radius: 0 6px 6px 0;
-  box-sizing: border-box;
+  width: 100%;
+  line-height: 1.5;
+  word-break: break-word;
 }
 
+/* Demo box de tendencias con mini gráfico */
 .demo-box {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin: var(--space-4) 0 var(--space-8) 0;
 }
 
 .demo-box label {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--text-muted);
 }
 
-.mini-chart-container {
-  width: 100% !important;
-  margin-top: 10px;
+.demo-box input {
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  width: 100%;
 }
 
-/* Estilos para el mini-Test estadistico */
+.demo-box input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
 
+.mini-chart-container {
+  width: 100%;
+  max-height: 200px;
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   9. EVALUACIÓN / QUIZ
+   -------------------------------------------------------------------------- */
 #quiz-container {
-  margin-top: 40px;
-  padding: 25px;
+  margin-top: var(--space-10);
+  padding: var(--space-8);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  scroll-margin-top: 80px;
 }
 
 #quiz-container h3 {
-  color: var(--primary-color);
-  margin-bottom: 5px;
+  font-family: var(--font-academic);
+  font-size: 1.5rem;
+  color: var(--text-main);
+  font-weight: 700;
+  margin-bottom: var(--space-2);
 }
 
 .quiz-instruction {
-  font-size: 0.95rem;
-  margin-bottom: 20px;
-  color: var(--text-main);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
+  line-height: 1.5;
 }
 
 .quiz-question {
-  margin-bottom: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .quiz-question p {
-  margin-bottom: 8px;
+  font-family: var(--font-academic);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+  color: var(--text-main);
+  line-height: 1.5;
+  text-align: left;
 }
 
 .quiz-option {
-  display: block;
-  margin: 6px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: var(--space-2) 0;
   cursor: pointer;
+  font-family: var(--font-academic);
   font-size: 0.95rem;
+  color: var(--text-body);
+  line-height: 1.5;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.quiz-option:hover {
+  background-color: var(--bg-subtle);
 }
 
 .quiz-option input[type="radio"] {
-  margin-right: 6px;
+  margin-top: 3px;
+  flex-shrink: 0;
+  accent-color: var(--secondary-color);
   cursor: pointer;
 }
 
 .quiz-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: var(--space-5);
   flex-wrap: wrap;
-  margin-top: 25px;
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
 }
 
 #btn-evaluar-quiz {
-  padding: 10px 20px;
-  font-weight: bold;
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
   background-color: var(--primary-color);
-  color: var(--bg-card);
+  color: #ffffff;
   border: none;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-base), box-shadow var(--transition-base);
+  letter-spacing: 0.01em;
 }
 
 #btn-evaluar-quiz:hover {
   background-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
 #quiz-resultado {
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
-/* Estilos para KaTeX (Ajuste de fórmulas en bloque) */
-.katex-display {
-  margin: 20px 0 !important;
-  padding: 10px;
-  background: var(--bg-app);
-  border-radius: 4px;
-  border: 1px dashed var(--border-color);
-  color: var(--text-main);
-}
-
+/* --------------------------------------------------------------------------
+   10. SECCIÓN ACERCA DE
+   -------------------------------------------------------------------------- */
 #section-about .about-card {
   background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 40px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-8);
+  box-shadow: var(--shadow-sm);
 }
 
 #section-about h2 {
   font-family: var(--font-academic);
-  color: var(--primary-color);
-  font-size: 1.8rem;
-  margin-bottom: 15px;
+  color: var(--text-main);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: var(--space-4);
 }
 
 #section-about h3 {
   font-family: var(--font-academic);
-  color: var(--primary-color);
-  font-size: 1.4rem;
-  margin-bottom: 25px;
+  color: var(--text-main);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: var(--space-3);
 }
 
 #section-about p {
-  font-size: 1.05rem;
-  color: var(--text-main);
+  font-family: var(--font-academic);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  margin-bottom: var(--space-5);
   text-align: justify;
-  margin-bottom: 20px;
 }
 
-/* Sección de Evaluación en Google Forms */
 .feedback-container {
-  padding: 20px;
-  background-color: var(--bg-app);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 25px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-6) var(--space-6);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
 }
 
 .feedback-container h3 {
-  margin-top: 0;
   color: var(--text-main);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0;
 }
 
 .feedback-container p {
   color: var(--text-muted);
-  font-size: 0.95rem;
-  margin-bottom: 15px;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  margin-bottom: 0;
+  text-align: center;
 }
 
 .btn-feedback {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   text-decoration: none;
-  padding: 10px 20px;
-  background-color: #28a745;
+  padding: var(--space-3) var(--space-6);
+  background-color: #16a34a;
   color: #ffffff;
-  border-radius: 5px;
-  font-weight: bold;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
   transition:
-    background-color 0.2s ease,
-    transform 0.1s ease;
+    background-color var(--transition-base),
+    transform var(--transition-fast),
+    box-shadow var(--transition-base);
 }
 
 .btn-feedback:hover {
-  background-color: #218838;
+  background-color: #15803d;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
 }
 
 .btn-feedback:active {
@@ -770,125 +1046,179 @@ nav button:focus {
 
 #section-about .divider {
   height: 1px;
-  background-color: var(--border-color);
-  margin: 30px 0;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+  margin: var(--space-8) 0;
 }
 
 #section-about .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-5);
 }
 
 #section-about .member-profile {
-  background-color: var(--bg-app);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 25px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: var(--space-2);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+#section-about .member-profile:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 #section-about .member-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
   object-fit: cover;
-  margin-bottom: 15px;
+  border: 3px solid var(--border-color);
+  margin-bottom: var(--space-2);
 }
 
 #section-about .member-profile h4 {
   font-family: var(--font-ui);
   color: var(--text-main);
-  font-size: 1.1rem;
-  margin-bottom: 5px;
-  text-align: center;
-}
-
-#section-about .member-profile .role {
-  font-size: 0.85rem;
-  color: var(--accent-color);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-#section-about .member-profile .bio {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  text-align: center;
-  line-height: 1.5;
+  font-size: 1.05rem;
+  font-weight: 700;
   margin-bottom: 0;
 }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
+#section-about .member-profile .role {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--accent-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-2);
+}
+
+#section-about .member-profile .bio {
+  font-family: var(--font-academic);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   11. FOOTER
+   -------------------------------------------------------------------------- */
 footer {
   text-align: center;
-  padding: 30px 10px;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border-color);
-  margin-top: 50px;
+  padding: var(--space-8) var(--space-4) var(--space-10);
+  font-size: 0.8rem;
+  color: var(--text-placeholder);
+  border-top: 1px solid var(--border-subtle);
+  margin-top: var(--space-12);
+  letter-spacing: 0.02em;
 }
 
 footer sup {
   font-family: var(--font-academic);
-  font-weight: bold;
+  font-weight: 700;
+  color: var(--primary-color);
 }
 
-/* Estilos para Ejemplos Didácticos Interactivos */
+/* --------------------------------------------------------------------------
+   12. RESPONSIVIDAD
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  body {
+    width: 95%;
+  }
 
-.ejemplo-didactico {
-    background-color: var(--bg-app);
-    border: 1px solid var(--border-color);
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 6px;
+  #section-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: var(--space-5);
+    padding: var(--space-5);
+  }
+
+  .container-bar-progress {
+    grid-column: 1;
+    grid-row: auto;
+    width: 100%;
+    height: 14px;
+    border-radius: var(--radius-full);
+    flex-direction: row;
+  }
+
+  #bar-progress {
+    height: 100% !important;
+    width: 0%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    border-radius: var(--radius-full);
+    transition: width var(--transition-slow);
+  }
+
+  #text-progress {
+    transform: translate(-50%, -50%);
+  }
+
+  .container.w-75,
+  .container-data {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  #section-teoria {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  #section-about .about-card {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  #section-manager {
+    grid-template-columns: 1fr;
+  }
 }
 
-.ejemplo-didactico input[type="number"] {
-    padding: 6px 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-family: var(--font-mono);
-    background-color: var(--bg-card);
-    color: var(--text-main);
-    margin-right: 8px;
-    margin-bottom: 10px;
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.4rem;
+  }
+
+  nav button {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.8rem;
+  }
+
+  .container-data {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.ejemplo-didactico button {
-    background-color: var(--secondary-color);
-    color: white;
-    border: none;
-    padding: 7px 14px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 5px;
-    margin-bottom: 10px;
-    transition: background-color 0.2s;
+/* --------------------------------------------------------------------------
+   13. PREFERENCIAS DE ACCESIBILIDAD
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-.ejemplo-didactico button:hover {
-    background-color: var(--primary-color);
+/* Foco visible en todos los elementos interactivos */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
 }
 
-.ejemplo-resultado {
-    font-family: var(--font-mono);
-    font-size: 0.95rem;
-    margin-top: 5px;
-    padding: 8px;
-    background-color: var(--bg-app);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    color: var(--primary-color);
+/* Eliminamos outline para mouse, preservamos para teclado */
+:focus:not(:focus-visible) {
+  outline: none;
 }
