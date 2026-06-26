@@ -10,7 +10,7 @@ import { cambiarModos, limpiarNotasMateria, agregarNota, sacarPromedios, renderi
 
 // Agregar nueva materia
 onClick("#btn-agregar-materia", () => {
-    const input = $ID("input-nueva-materia");
+    const input = document.getElementById("input-nueva-materia");
     const nombre = input.value;
     if (crearNuevaMateria(nombre)) {
         input.value = "";
@@ -23,7 +23,7 @@ onClick("#btn-resetear-todo", limpiarDatosGenerales);
 // DELEGACIÓN DE EVENTOS: Escucha los clics de elementos dinámicos
 const contenedorGestor = $ID("contenedor-gestor-materias");
 if (contenedorGestor) {
-    onclick(contenedorGestor, (e) => {
+    contenedorGestor.addEventListener("click", (e) => {
         // Intercepta el botón "Agregar Nota" (icono de check)
         const btnAgregar = e.target.closest(".btn-agregar-nota");
         if (btnAgregar) {
@@ -60,7 +60,7 @@ onClick("#btn-evaluar-quiz", () => { evaluarTest(); });
 // Eventos interactivos de teoría
 const inputTendencia = $ID("demo-tendencia-input");
 if (inputTendencia) {
-  onclick(inputTendencia, demoTendencia);
+  inputTendencia.addEventListener("input", demoTendencia);
 }
 
 onClick("#btn-addMedia", () => { agregarMedia(); });
